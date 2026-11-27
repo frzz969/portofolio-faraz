@@ -457,16 +457,16 @@ const navItems = [
         top: 0;
         z-index: 50;
         width: 100%;
-        background: transparent;
-        border-bottom: 1px solid transparent;
+        background: var(--black);
+        border-bottom: 1px solid var(--strong);
         transition: background-color var(--dur-ui) var(--ease-ui),
                     border-color var(--dur-ui) var(--ease-ui);
       }
-      /* State scroll: permukaan solid tipis + garis 1px. rgba turunan dari
-         #080808, bukan warna baru; transisi 240ms (--dur-ui). */
+      /* Header selalu deep black: transparan di atas hero justru memperlihatkan
+         body putih di Termux/Chrome render, jadi permukaan solid dipakai dari
+         awal. State scroll hanya menguatkan garis bawah (feedback halus). */
       .site-header.is-scrolled {
-        background: rgba(8, 8, 8, 0.92);
-        border-bottom-color: var(--strong);
+        border-bottom-color: var(--muted);
       }
       .site-header__inner {
         display: flex;

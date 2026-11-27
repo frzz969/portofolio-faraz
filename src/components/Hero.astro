@@ -130,6 +130,9 @@
   .hero__headline {
     margin-block: 28px 28px;
     color: var(--white);
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
   }
   .hero-line-wrap { display: block; }
   .hero-line { display: block; }
@@ -201,7 +204,7 @@
       transform: translate3d(var(--hero-px, 0px), calc(-50% + var(--hero-py, 0px)), 0);
       will-change: transform;
     }
-    .hero__copy { padding-right: clamp(280px, 30vw, 400px); }
+    .hero__copy { padding-right: clamp(220px, 22vw, 320px); }
     .hero__portrait figcaption { text-align: right; }
     .hero__availability { margin-top: 40px; }
     .hero__scroll { position: absolute; bottom: -56px; left: 0; margin-top: 0; }

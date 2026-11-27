@@ -1,17 +1,18 @@
 ---
 // EDUCATION & CERTIFICATIONS - kredensial akurat. Status "in issuance"
-// dipertahankan apa adanya, tidak diubah jadi "issued".
+// dipertahankan apa adanya, tidak diubah jadi "issued". Periode 2023 / 2026
+// dipertahankan utuh. Baris spesifikasi teknis memakai mono.
 const certifications = [
   { title: 'MikroTik Certified Network Associate (MTCNA)', detail: 'RouterOS configuration, firewall filters, NAT, queue bandwidth management', badge: 'Issued 2025', pending: false },
   { title: 'BNSP Junior Fiber Optic Cable Jointer', detail: 'National professional competency in fusion splicing and OTDR testing', badge: 'Issued 2026', pending: false },
-  { title: 'Practical Office Advance', detail: 'BPVP Surakarta · 260 hours · 9 competency units', badge: 'BPVP 2026', pending: false },
+  { title: 'Practical Office Advance', detail: 'BPVP Surakarta · 33-day training after graduation · certificate obtained after the training', badge: 'BPVP 2026', pending: false },
   { title: 'BNSP Practical Office Advance', detail: 'National Vocational Certification Board candidate qualification', badge: 'In issuance / printing process', pending: true },
 ];
 ---
 
-<section class="section" id="education">
+<section class="section section--education" id="education">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-enter section-enter--right">
       <div>
         <span class="eyebrow">05 / Qualifications</span>
         <h2 class="h2">Education &amp; Certifications</h2>
@@ -19,8 +20,8 @@ const certifications = [
       <p class="mono section-head__note">Formal vocational grounding and validated competencies</p>
     </div>
 
-    <div class="edu__grid">
-      <div class="edu__formal reveal">
+    <div class="edu__grid section-enter section-enter--right" style="--stagger:1">
+      <div class="edu__formal">
         <span class="eyebrow">Formal academics</span>
         <h3 class="h3 edu__school">SMK Negeri 1 Sukoharjo</h3>
         <p class="h4">Computer and Network Engineering (TJKT)</p>
@@ -31,15 +32,15 @@ const certifications = [
         </p>
         <div class="edu__period">
           <span class="meta-label">Graduation cycle</span>
-          <span class="mono">2023 / 2026</span>
+          <time class="mono">2023 / 2026</time>
         </div>
       </div>
 
       <div class="edu__creds">
         <span class="eyebrow">Professional licenses and credentials</span>
         <ul class="edu__list">
-          {certifications.map((cert, index) => (
-            <li class="edu__item reveal" style={`--stagger:${index}`}>
+          {certifications.map((cert) => (
+            <li class="edu__item">
               <div>
                 <h4 class="h4">{cert.title}</h4>
                 <p class="body">{cert.detail}</p>
@@ -60,10 +61,10 @@ const certifications = [
   .edu__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 48px;
   }
   .edu__formal {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--strong);
     padding-top: 24px;
   }
   .edu__school { margin-block: 16px 4px; }
@@ -75,11 +76,11 @@ const certifications = [
     gap: 16px;
     margin-top: 28px;
     padding-top: 16px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--strong);
   }
   .edu__list {
     margin-top: 20px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--strong);
   }
   .edu__item {
     display: flex;
@@ -87,10 +88,10 @@ const certifications = [
     align-items: flex-start;
     gap: 12px;
     padding-block: 18px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--strong);
   }
-  .edu__item .body { font-size: 0.875rem; margin-top: 4px; }
-  .edu__footnote { margin-top: 20px; color: var(--subtle); }
+  .edu__item .body { font-size: 0.9375rem; margin-top: 4px; }
+  .edu__footnote { margin-top: 20px; color: var(--strong); }
 
   @media (min-width: 768px) {
     .edu__item {
@@ -105,5 +106,8 @@ const certifications = [
       grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
       gap: clamp(48px, 6vw, 88px);
     }
+    /* Garis tipis sebagai rel, bukan kartu: kredensial dibaca sebagai
+       daftar bernomor urut di sebelah kanan latar akademik (R-31). */
+    .edu__creds { border-left: 1px solid var(--strong); padding-left: clamp(24px, 3vw, 40px); }
   }
 </style>

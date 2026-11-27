@@ -22,12 +22,23 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    id: 'poa-bpvp',
+    role: 'Practical Office Advance (POA) Training',
+    organization: 'BPVP Surakarta',
+    period: '2026 · after graduation',
+    bullets: [
+      'Completed a 33-day vocational training at BPVP Surakarta after graduating from vocational school.',
+      'Practical office skills covered documents, spreadsheets, presentations, data handling, and administrative documentation; the certificate was obtained after the training.',
+      'BNSP certificate is still in the issuance / printing process.',
+    ],
+  },
+  {
     id: 'pmr',
     role: 'Member, Activities Section',
-    organization: 'Palang Merah Remaja (PMR) Wira',
+    organization: 'Youth Red Cross (PMR), Wira Unit',
     period: '2023 – 2025',
     bullets: [
-      'Helped plan and run social activities and basic PMR training sessions.',
+      'Helped plan and run social activities and basic Youth Red Cross training sessions.',
       'Prepared equipment lists and supported event rundowns together with members from other sections.',
       'Supported member administration and routine coordination.',
     ],
@@ -35,7 +46,7 @@ export const experiences: Experience[] = [
   {
     id: 'dewan-ambalan',
     role: 'Member, Activities Section',
-    organization: 'Dewan Ambalan Pramuka',
+    organization: 'Scout Ambalan Council',
     period: '2023 – 2025',
     bullets: [
       'Assisted with activity scheduling and day-to-day coordination.',

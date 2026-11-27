@@ -1,7 +1,11 @@
 ---
 import { skillGroups } from '../data/skills';
 
-// SKILLS - grouped lists. Tidak ada progress bar atau persentase.
+// SKILLS - permukaan gelap #151515. Empat grup interaktif memakai
+// <details>/<summary> native: keyboard accessible, tanpa JS, dan default open
+// supaya konten tidak pernah tersembunyi saat reduced-motion atau tanpa script.
+// Item konkret dari src/data/skills.ts dipertahankan apa adanya. Tidak ada
+// progress bar atau persentase (R-31).
 const introductions = [
   'Models, assisted execution, and evaluation workflows.',
   'Runtimes, frameworks, and deterministic APIs.',
@@ -10,28 +14,38 @@ const introductions = [
 ];
 ---
 
-<section class="section" id="skills">
+<section class="section surface-dark" id="skills">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-enter">
       <div>
         <span class="eyebrow">06 / Toolkit</span>
         <h2 class="h2">Skills &amp; Technologies</h2>
       </div>
-      <p class="mono section-head__note">Organized by discipline. No subjective percentage bars.</p>
+      <p class="mono section-head__note">Organized by discipline. Open a group to scan it.</p>
     </div>
 
     <div class="skills__grid">
       {skillGroups.map((group, index) => (
-        <section class="skills__group reveal" style={`--stagger:${index}`} aria-labelledby={`skill-${index}`}>
-          <span class="num skills__num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-          <h3 class="h3" id={`skill-${index}`}>{group.name}</h3>
-          <p class="body skills__desc">{introductions[index]}</p>
-          <ul class="skills__list">
-            {group.items.map((item) => (
-              <li class="mono">{item}</li>
-            ))}
-          </ul>
-        </section>
+        <details
+          class="skills__group section-enter"
+          style={`--stagger:${index}`}
+          aria-labelledby={`skill-${index}`}
+          open
+        >
+          <summary class="skills__summary">
+            <span class="num skills__num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="h3 skills__title" id={`skill-${index}`}>{group.name}</h3>
+            <span class="skills__toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="skills__panel">
+            <p class="body skills__desc">{introductions[index]}</p>
+            <ul class="skills__list">
+              {group.items.map((item) => (
+                <li class="mono skills__item">{item}</li>
+              ))}
+            </ul>
+          </div>
+        </details>
       ))}
     </div>
   </div>
@@ -41,20 +55,57 @@ const introductions = [
   .skills__grid {
     display: grid;
     grid-template-columns: 1fr;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--strong);
   }
   .skills__group {
     position: relative;
-    padding: 28px 0 32px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--strong);
   }
+  /* Summary menerima seluruh area klik: target sentuh minimal 44px. */
+  .skills__summary {
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    align-items: end;
+    gap: 8px 16px;
+    min-height: 44px;
+    padding-block: 28px 20px;
+    cursor: pointer;
+    list-style: none;
+  }
+  .skills__summary::-webkit-details-marker { display: none; }
+  .skills__summary:focus-visible { outline-color: var(--white); outline-offset: -4px; }
+  /* Angka kategori besar, #A3A3A3 di #151515 (7.24:1). */
   .skills__num {
-    position: absolute;
-    top: 24px;
-    right: 0;
-    font-size: 2.25rem;
+    grid-column: 1;
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    line-height: 0.9;
   }
-  .skills__desc { margin-top: 10px; max-width: 34ch; }
+  .skills__title { grid-column: 1; margin-top: 8px; }
+  /* Penanda buka/tutup digambar dari garis 1px, bukan ikon atau glyph. */
+  .skills__toggle {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    width: 16px;
+    height: 16px;
+  }
+  .skills__toggle::before,
+  .skills__toggle::after {
+    content: "";
+    position: absolute;
+    background: var(--muted);
+    transition: transform var(--dur-ui) var(--ease-ui), opacity var(--dur-ui) var(--ease-ui);
+  }
+  .skills__toggle::before { left: 0; right: 0; top: 7px; height: 1px; }
+  .skills__toggle::after { top: 0; bottom: 0; left: 7px; width: 1px; }
+  .skills__group[open] .skills__toggle::after { transform: scaleY(0); opacity: 0; }
+  .skills__summary:hover .skills__toggle::before,
+  .skills__summary:hover .skills__toggle::after { background: var(--white); }
+
+  .skills__panel { padding-bottom: 32px; }
+  .skills__desc { max-width: 34ch; }
   .skills__list {
     display: flex;
     flex-wrap: wrap;
@@ -62,10 +113,19 @@ const introductions = [
     margin-top: 20px;
     max-width: 48ch;
   }
-  .skills__list li {
-    color: var(--ink);
-    border-bottom: 1px solid var(--border);
+  .skills__item {
+    color: var(--white);
+    border-bottom: 1px solid var(--strong);
+    padding-block: 2px;
+    transition: transform var(--dur-ui) var(--ease-ui), border-color var(--dur-ui) var(--ease-ui);
   }
+  /* Sentuhan tetap punya feedback tanpa hover. */
+  .skills__item:active { transform: translateY(2px); border-color: var(--white); }
+  @media (hover: hover) and (pointer: fine) {
+    .skills__item:hover { transform: translateY(-2px); border-color: var(--white); }
+  }
+  /* Penutupan: konten tidak dibungkus animasi yang menyembunyikannya saat
+     reduced-motion; native details langsung membuka/tutup tanpa transisi. */
 
   @media (min-width: 640px) {
     .skills__grid {
@@ -78,5 +138,6 @@ const introductions = [
       grid-template-columns: repeat(4, minmax(0, 1fr));
       column-gap: 28px;
     }
+    .skills__summary { padding-block: 36px 24px; }
   }
 </style>

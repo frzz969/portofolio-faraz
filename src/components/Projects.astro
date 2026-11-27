@@ -1,8 +1,8 @@
 ---
 import { projects } from '../data/projects';
 
-// SELECTED PROJECTS - DEXTRA sebagai feature utama. Tidak ada screenshot
-// rekaan; preview berupa teks dan alur governance bernomor.
+// SELECTED PROJECTS - DEXTRA sebagai case study tipografis, bukan paragraf.
+// Tidak ada screenshot rekaan; preview jujur berupa teks + alur governance.
 const [dextra, detector, experiments] = projects;
 
 // liveLabel berasal dari data; buang panah dekoratif dari accessible name.
@@ -11,14 +11,46 @@ const labelOf = (project: typeof dextra) =>
 
 // Sumber data memakai em dash; tampilan memakai separator "·" (R-02,
 // DESIGN.md). Data tidak diubah, hanya teks yang dirender.
-const clean = (text: string) => text.replace(/\s*[—–]\s*/g, ' · ');
+const clean = (text: string) => text.replace(/\s*[\u2014\u2013]\s*/g, ' · ');
 
-// Alur governance DEXTRA: langkah nyata dari deskripsi proyek, bukan fitur rekaan.
-const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute', 'Audit'];
-
+// Alur governance DEXTRA: enam langkah nyata dari deskripsi proyek.
+// Setiap langkah punya keterangan pendek; ditampilkan di panel saat step
+// dipilih lewat radio (klik / sentuh / keyboard arrow keys).
+const governanceFlow = [
+  {
+    name: 'Request',
+    detail:
+      'A request enters the platform: a task, a question, or an operational action from a defined user.',
+  },
+  {
+    name: 'Analyze',
+    detail:
+      'Specialized AI workers read the context and supporting data. Four specialists cover Finance, HR, Inventory, and Operations. AI reads and analyzes, nothing is executed here.',
+  },
+  {
+    name: 'Recommend',
+    detail:
+      'The workers produce a proposed plan. The recommendation ends at advice: no data is written and no outside system is touched.',
+  },
+  {
+    name: 'Approve',
+    detail:
+      'A human reviews the plan. The Policy Validator, a deterministic governance engine (not an AI agent), checks the plan against policy before approval.',
+  },
+  {
+    name: 'Execute',
+    detail:
+      'Only after an approved plan and an explicit human mandate may an action change data or the outside world.',
+  },
+  {
+    name: 'Audit',
+    detail:
+      'Every action leaves an audit record: what was requested, what was approved, what ran, and who mandated it.',
+  },
+];
 ---
 
-<section class="section" id="work">
+<section class="section section--projects" id="work">
   <div class="container" id="projects">
     <div class="section-head">
       <div>
@@ -29,17 +61,22 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
       <span class="sr-only">Anchor for the projects section</span>
     </div>
 
-    <!-- Feature utama: DEXTRA, asimetris (teks kiri, alur governance kanan). -->
-    <article class="project-card project-card--feature reveal">
-      <div class="project-card__info">
+    <!-- FEATURE: DEXTRA sebagai case study satu halaman penuh di #080808.
+         Judul oversized, status mono jujur, alur governance interaktif.
+         Tanpa preview UI rekaan; keterbatasan screenshot dinyatakan jujur. -->
+    <article class="project-card project-card--feature reveal" style="--stagger:0">
+      <header class="project-card__head">
         <div class="project-card__top">
-          <span class="status status--solid">Built</span>
-          <span class="meta-label">Enterprise Architecture</span>
+          <span class="status">BUILT / LIVE DEMO PROTOTYPE</span>
+          <span class="meta-label">Governed Enterprise AI Workforce &amp; Operations Platform</span>
         </div>
-        <h3 class="h2 project-card__title">{dextra.title}</h3>
-        <p class="h4 project-card__subtitle">{dextra.subtitle}</p>
+        <h3 class="project-card__title">{dextra.title}</h3>
+        <p class="project-card__rule" aria-hidden="true"></p>
+      </header>
+
+      <div class="project-card__body">
+        <p class="mono project-preview-note">Authentic product screenshot pending · preview shown as text only.</p>
         <p class="body project-card__desc">{clean(dextra.description)}</p>
-        <p class="mono project-preview-note">No authentic product screenshot yet. This preview is text only.</p>
 
         <dl class="project-facts">
           <div>
@@ -52,11 +89,17 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
           </div>
           <div>
             <dt>Governance</dt>
-            <dd>AI reads, analyzes and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an audit record. Four specialists: Finance, HR, Inventory, Operations. The Policy Validator is a deterministic governance engine, not an AI agent.</dd>
+            <dd>
+              AI reads, analyzes and recommends. Any action that changes data or the outside
+              world requires an approved plan and a <strong>human mandate</strong>, then leaves an
+              <strong>audit record</strong>. Four specialists: Finance, HR, Inventory, Operations. The
+              <strong>Policy Validator</strong> is a deterministic governance engine, not an AI agent.
+              Interactive prototype, not a production enterprise system.
+            </dd>
           </div>
           <div>
-            <dt>Approach</dt>
-            <dd>Multi-agent orchestration, MCP integration, deterministic policy validation, and audit trails. Interactive prototype, not a production enterprise deployment.</dd>
+            <dt>Stack</dt>
+            <dd>Next.js, React, Python, FastAPI, MCP, deterministic policy validation, audit trails.</dd>
           </div>
         </dl>
 
@@ -64,6 +107,7 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
           <li class="sr-only">Technologies used</li>
           {dextra.focus.map((tag) => <li class="tag">{tag}</li>)}
         </ul>
+
         <div class="project-card__links">
           <a
             class="text-link"
@@ -77,37 +121,64 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
         </div>
       </div>
 
-      <!-- Signature visual DEXTRA: alur governance sebagai baris editorial
-           bernomor. Monokrom, tanpa screenshot rekaan atau mockup dashboard.
-           Angka 01-06 adalah urutan langkah, bukan metrik. -->
+      <!-- SIGNATURE: alur governance interaktif, CSS-only via radio inputs.
+           Klik/sentuh pada label atau arrow keys pada radio memilih langkah.
+           Panel keterangan mengikuti :checked; pembaca layar membaca label
+           radio yang dipilih, jadi tidak perlu aria-live yang berisik. -->
       <div class="project-flow">
-        <span class="meta-label">Governance path</span>
-        <ol class="project-flow__steps">
-          {governanceFlow.map((step, index) => (
-            <li class="project-flow__step">
-              <span class="project-flow__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-              <span class="project-flow__name">{step}</span>
-            </li>
-          ))}
-        </ol>
+        <span class="meta-label">Governance path / select a step</span>
+
+        <div class="project-flow__interactive">
+          <fieldset class="project-flow__fieldset">
+            <legend class="sr-only">Governance steps, use arrow keys to select a step</legend>
+            {governanceFlow.map((step, index) => (
+              <span class="project-flow__step">
+                <input
+                  class="project-flow__input sr-only"
+                  type="radio"
+                  name="gov-step"
+                  id={`gov-step-${index}`}
+                  checked={index === 0}
+                />
+                <label class="project-flow__label" for={`gov-step-${index}`}>
+                  <span class="project-flow__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="project-flow__name">{step.name}</span>
+                  <span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span>
+                </label>
+              </span>
+            ))}
+          </fieldset>
+
+          <div class="project-flow__panels" aria-live="polite">
+            {governanceFlow.map((step, index) => (
+              <p class="project-flow__panel" data-step={index}>
+                <span class="meta-label">{String(index + 1).padStart(2, '0')} / {step.name}</span>
+                <span class="project-flow__panel-text">{step.detail}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+
         <p class="mono project-flow__note">
-          AI acts up to recommendation. Writing to data or the outside world needs an approved plan, a human mandate, and an audit record.
+          AI acts up to recommendation. Writing to data or the outside world needs an approved plan,
+          a human mandate, and an audit record.
         </p>
       </div>
     </article>
 
-    <!-- Dua pendukung: layout tidak simetris penuh, urutan visual berbeda. -->
+    <!-- Dua pendukung sengaja tidak simetris: research lab di #151515,
+         experiments di #080808 dengan offset vertikal. Bukan bento / 3 kartu sama. -->
     <div class="project-pair">
-      <article class="project-card project-card--support reveal" style="--stagger:0">
+      <article class="project-card project-card--support project-card--lab reveal" style="--stagger:1">
         <div class="project-card__top">
-          <span class="status status--solid">Live demo</span>
+          <span class="status">LIVE DEMO</span>
           <span class="meta-label">Research Lab</span>
         </div>
         <h3 class="h3 project-card__title">{detector.title}</h3>
         <p class="h4 project-card__subtitle">{detector.subtitle}</p>
-        <p class="body project-card__desc">{clean(detector.description)}</p>
-        <p class="mono project-preview-note">No authentic product screenshot yet. This preview is text only.</p>
+        <p class="mono project-preview-note">Authentic product screenshot pending · preview shown as text only.</p>
 
+        <p class="body project-card__desc">{clean(detector.description)}</p>
 
         <dl class="project-facts project-facts--compact">
           <div>
@@ -116,7 +187,14 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
           </div>
           <div>
             <dt>Status</dt>
-            <dd>Live demo (prototype). It reads pasted or uploaded txt, md, pdf and docx files, checks 10 language patterns, and shows a score with highlighted text plus a PDF report. The score is an uncertain indicator, not proof of AI use or an academic-integrity verdict. No detector is 100% accurate, and this is not a replacement for Turnitin.</dd>
+            <dd>
+              Live demo (prototype). It reads pasted or uploaded txt, md, pdf and docx files,
+              checks 10 language patterns, and shows a score with highlighted text plus a PDF
+              report, in Indonesian and English. Text stays private in the browser. The score is
+              an <strong>uncertain indicator</strong>, <strong>not proof</strong> of AI use or an
+              academic-integrity verdict. No detector is 100% accurate, and this is
+              <strong>not a replacement for Turnitin</strong>.
+            </dd>
           </div>
         </dl>
 
@@ -137,17 +215,16 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
         </div>
       </article>
 
-      <article class="project-card project-card--support project-card--offset reveal" style="--stagger:1">
+      <article class="project-card project-card--support project-card--offset project-card--experiments reveal" style="--stagger:2">
         <div class="project-card__top">
-          <span class="status">Ongoing exploration</span>
-          <span class="meta-label">Experimental</span>
+          <span class="status">ONGOING</span>
+          <span class="meta-label">Field Notes</span>
         </div>
         <h3 class="h3 project-card__title">{experiments.title}</h3>
         <p class="h4 project-card__subtitle">{experiments.subtitle}</p>
-
+        <p class="mono project-preview-note">No public product screenshot. Documented as learning notes.</p>
 
         <p class="body project-card__desc">{clean(experiments.description)}</p>
-        <p class="mono project-preview-note">No public product screenshot. Documented as learning notes.</p>
 
         <dl class="project-facts project-facts--compact">
           <div>
@@ -170,9 +247,15 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
 </section>
 
 <style>
+  /* --- Section ------------------------------------------------------------ */
+  .section--projects { border-top-color: var(--surface); }
+
+  .section-head > div > .h2 { font-size: clamp(2.5rem, 6vw, 5rem); }
+
+  /* --- Kartu dasar -------------------------------------------------------- */
   .project-card {
-    border: 1px solid var(--border);
-    background: var(--paper);
+    border: 1px solid var(--strong);
+    background: var(--white);
     padding: clamp(24px, 4vw, 44px);
   }
   .project-card__top {
@@ -182,95 +265,223 @@ const governanceFlow = ['Request', 'Analyze', 'Recommend', 'Approve', 'Execute',
     gap: 12px;
     margin-bottom: 20px;
   }
-  /* Projects dan Contact diberi tekanan hierarki lebih besar dari section
-     lain. Garis, eyebrow, dan note tetap dipertahankan, layout tidak dirombak. */
-  .section-head > div > .h2 { font-size: clamp(2.125rem, 5.2vw, 3.375rem); }
-
   .project-card__title { margin-bottom: 6px; }
-  .project-card__subtitle { color: var(--subtle); margin-bottom: 20px; }
+  .project-card__subtitle { color: var(--strong); margin-bottom: 20px; }
   .project-card__desc { max-width: 62ch; }
+  .project-card__links { margin-top: 24px; }
 
+  /* --- FEATURE: DEXTRA, permukaan deep black ------------------------------ */
+  .project-card--feature {
+    background: var(--black);
+    border-color: var(--black);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-bottom: 24px;
+    padding: clamp(24px, 5vw, 64px);
+  }
+  .project-card--feature .status {
+    border-color: var(--muted);
+    color: var(--white);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+  }
+  .project-card--feature .meta-label,
+  .project-card--feature .mono,
+  .project-card--feature .project-preview-note { color: var(--muted); }
+  .project-card--feature .body { color: var(--muted); }
+  .project-card--feature .text-link { border-color: var(--muted); color: var(--white); }
+  .project-card--feature .tag { border-color: var(--muted); color: var(--muted); }
+
+  .project-card__head { min-width: 0; }
+  .project-card--feature .project-card__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3rem, 10vw, 7rem);
+    line-height: 0.88;
+    letter-spacing: -0.055em;
+    color: var(--white);
+    /* Judul adalah satu focal point; tidak ada outline/glow. */
+  }
+  .project-card__rule {
+    height: 1px;
+    margin-top: 26px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .project-card__body { min-width: 0; }
+
+  /* --- Alur governance: radio CSS-only, keyboard + touch ------------------ */
   .project-flow {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    padding: 24px;
-    border: 1px solid var(--border);
+    gap: 16px;
+    padding: clamp(20px, 3vw, 32px);
+    border: 1px solid var(--strong);
     background: var(--surface);
+    color: var(--white);
+    min-width: 0;
   }
-  .project-flow__steps {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
-  .project-flow__step {
+  .project-flow .meta-label { color: var(--muted); }
+  .project-flow__interactive {
     display: grid;
-    grid-template-columns: 44px 1fr;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .project-flow__fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .project-flow__step { display: block; }
+
+  /* Label = satu baris editorial. Radio sr-only tetap fokus-able via keyboard;
+     :focus-visible pada input mengirim outline ke label bersebelahan. */
+  .project-flow__label {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
     align-items: baseline;
     gap: 12px;
-    padding-block: 10px;
-    border-top: 1px solid var(--border);
+    min-height: 48px;
+    padding-block: 11px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
   }
-  .project-flow__step:first-child { border-top: 0; }
-  /* Angka urutan dibaca sebagai struktur, bukan dekorasi: pakai tinta,
-     bukan --border yang nyaris tak terlihat di atas surface. */
-  .project-flow__num { font-size: 1.5rem; color: var(--ink); }
+  .project-flow__step:first-child .project-flow__label { border-top: 0; }
+  .project-flow__num { font-size: 1.75rem; color: var(--muted); }
   .project-flow__name {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 1.0625rem;
-    letter-spacing: -0.015em;
-    color: var(--ink);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    letter-spacing: -0.025em;
+    color: var(--white);
   }
-  .project-flow__note { color: var(--subtle); }
+  .project-flow__arrow { color: var(--muted); opacity: 0; }
 
+  /* :checked = state terpilih. :focus-visible memberi feedback keyboard yang
+     setara dengan klik, tanpa warna baru. */
+  .project-flow__input:checked + .project-flow__label .project-flow__name { color: var(--white); }
+  .project-flow__input:checked + .project-flow__label .project-flow__num { color: var(--white); }
+  .project-flow__input:checked + .project-flow__label .project-flow__arrow { opacity: 1; }
+  .project-flow__input:checked + .project-flow__label {
+    border-top-color: var(--muted);
+    border-bottom: 1px solid var(--muted);
+    padding-inline-start: 6px;
+  }
+  .project-flow__input:focus-visible + .project-flow__label {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+  }
+
+  /* Panel: semua teks ada di DOM; yang tidak dipilih disembunyikan secara
+     visual tapi masih bisa dibaca pembaca layar lewat aria-live="polite". */
+  .project-flow__panels { min-height: 0; }
+  .project-flow__panel {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    border: 1px solid var(--strong);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .project-flow__panel-text { color: var(--white); }
+
+  /* Sibling selector: fieldset berisi input, panels adalah saudara fieldset.
+     Urutan DOM: fieldset -> panels, jadi ~ bekerja. */
+  .project-flow__fieldset:has(#gov-step-0:checked) ~ .project-flow__panels [data-step="0"],
+  .project-flow__fieldset:has(#gov-step-1:checked) ~ .project-flow__panels [data-step="1"],
+  .project-flow__fieldset:has(#gov-step-2:checked) ~ .project-flow__panels [data-step="2"],
+  .project-flow__fieldset:has(#gov-step-3:checked) ~ .project-flow__panels [data-step="3"],
+  .project-flow__fieldset:has(#gov-step-4:checked) ~ .project-flow__panels [data-step="4"],
+  .project-flow__fieldset:has(#gov-step-5:checked) ~ .project-flow__panels [data-step="5"] {
+    display: flex;
+  }
+  /* Fallback untuk browser tanpa :has(): panel pertama tampil sebagai default. */
+  @supports not selector(:has(*)) {
+    .project-flow__panel[data-step="0"] { display: flex; }
+  }
+  .project-flow__note { color: var(--muted); }
+
+  /* --- Facts -------------------------------------------------------------- */
   .project-facts {
     margin: 28px 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--strong);
   }
   .project-facts > div {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4px 20px;
+    gap: 6px 20px;
     padding-block: 14px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--strong);
   }
   .project-facts dt {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--subtle);
+    color: var(--strong);
   }
-  .project-facts dd { font-size: 0.9375rem; line-height: 1.55; color: var(--ink); }
+  .project-facts dd { font-size: 0.9375rem; line-height: 1.6; color: inherit; }
+  .project-facts dd strong { font-weight: 700; }
+  .project-card--feature .project-facts dt { color: var(--muted); }
   .project-facts--compact > div { padding-block: 12px; }
 
-  .project-card__links { margin-top: 24px; }
-
-  .project-card--feature {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 36px;
-    margin-bottom: 24px;
-  }
+  /* --- Dua kartu pendukung: asimetri disengaja ---------------------------- */
   .project-pair {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
   }
+  .project-card--lab {
+    background: var(--surface);
+    border-color: var(--surface);
+    color: var(--white);
+  }
+  .project-card--lab .project-card__subtitle,
+  .project-card--lab .body,
+  .project-card--lab .meta-label,
+  .project-card--lab .mono,
+  .project-card--lab .project-preview-note { color: var(--muted); }
+  .project-card--lab .status { border-color: var(--muted); color: var(--white); }
+  .project-card--lab .text-link { border-color: var(--muted); color: var(--white); }
+  .project-card--lab .tag { border-color: var(--muted); color: var(--muted); }
+  .project-card--lab .project-facts dt { color: var(--muted); }
+  .project-card--lab .project-facts > div { border-bottom-color: var(--strong); }
+
+  .project-card--experiments {
+    background: var(--black);
+    border-color: var(--black);
+    color: var(--white);
+  }
+  .project-card--experiments .project-card__subtitle,
+  .project-card--experiments .body,
+  .project-card--experiments .meta-label,
+  .project-card--experiments .mono,
+  .project-card--experiments .project-preview-note { color: var(--muted); }
+  .project-card--experiments .status { border-color: var(--muted); color: var(--white); }
+  .project-card--experiments .tag { border-color: var(--muted); color: var(--muted); }
+  .project-card--experiments .project-facts dt { color: var(--muted); }
+  .project-card--experiments .project-facts > div { border-bottom-color: var(--strong); }
 
   @media (min-width: 900px) {
     .project-card--feature {
       grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
-      align-items: center;
+      align-items: start;
       gap: clamp(40px, 5vw, 72px);
     }
+    .project-flow__interactive { grid-template-columns: 1fr; }
     .project-pair {
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
       align-items: start;
     }
-    /* Asimetri disengaja: kartu kedua turun, bukan grid tiga kartu sama. */
+    /* Asimetri: kartu kedua turun, bukan grid tiga kartu sama. */
     .project-card--offset { margin-top: 72px; }
     .project-facts > div { grid-template-columns: 120px 1fr; }
+  }
+  @media (min-width: 1200px) {
+    .project-flow__interactive { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   }
 </style>

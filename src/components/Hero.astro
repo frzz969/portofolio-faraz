@@ -1,17 +1,33 @@
 ---
-// HERO - copy Faras dipertahankan, dipadatkan jadi intro singkat.
-// Focal point tunggal: headline. Portrait bersifat opsional dan netral.
+// HERO = editorial cover, bukan landing-card. Satu focal point: headline 3 baris.
+// Baris ke-2 tetap satu accent moment (outline), tanpa warna tambahan.
+// Metadata mono adalah struktur, bukan paragraf; grid marks adalah tekstur teknis
+// yang menandakan cover teknis, bukan dekorasi (R-07/R-31).
 ---
 
-<section class="container hero" id="hero">
-  <div class="hero__grid">
+<section class="hero" id="hero">
+  <div class="hero__rules" aria-hidden="true">
+    <span class="hero__rule hero__rule--top"></span>
+    <span class="hero__rule hero__rule--bottom"></span>
+    <span class="hero__cross hero__cross--tl"></span>
+    <span class="hero__cross hero__cross--tr"></span>
+    <span class="hero__cross hero__cross--bl"></span>
+    <span class="hero__cross hero__cross--br"></span>
+  </div>
+
+  <div class="container hero__grid">
     <div class="hero__copy">
-      <p class="eyebrow hero-fade">Technology Enthusiast / AI-Assisted Developer</p>
+      <div class="hero__meta hero-fade">
+        <span class="hero__meta-cell">FFF / PORTFOLIO 2026</span>
+        <span class="hero__meta-cell">AVAILABLE</span>
+        <span class="hero__meta-cell hero__meta-cell--place">Sukoharjo, Jawa Tengah, Indonesia</span>
+        <span class="hero__meta-cell hero__meta-cell--index">01 / 09</span>
+      </div>
 
       <h1 class="h1 hero__headline">
-        <span class="hero-line" style="--i:0">EXPLORING AI.</span>
-        <span class="hero-line hero-line--quiet" style="--i:1">BUILDING IDEAS.</span>
-        <span class="hero-line" style="--i:2">CREATING IMPACT.</span>
+        <span class="hero-line-wrap"><span class="hero-line" style="--i:0">EXPLORING AI.</span></span>
+        <span class="hero-line-wrap"><span class="hero-line hero-line--outline" style="--i:1">BUILDING IDEAS.</span></span>
+        <span class="hero-line-wrap"><span class="hero-line" style="--i:2">CREATING IMPACT.</span></span>
       </h1>
 
       <p class="lead hero-fade">
@@ -21,67 +37,120 @@
       </p>
 
       <div class="hero__actions hero-fade">
-        <a class="btn" href="#projects">View Projects</a>
-        <a class="btn btn--ghost" href="#contact">Contact Me</a>
+        <a class="btn btn--light" href="#projects">View Projects</a>
+        <a class="btn btn--outline-light" href="#contact">Contact Me</a>
       </div>
+
+      <figure class="hero__portrait hero-fade">
+        <div class="hero__portrait-frame">
+          <img
+            src="./portrait-faras.svg"
+            width="800"
+            height="1000"
+            fetchpriority="high"
+            alt="Illustrated monochrome portrait of Faras Fadhil Firdaus. The original artwork is being updated to a neutral monochrome treatment."
+          />
+        </div>
+        <figcaption class="meta-label">Faras Fadhil Firdaus, 2026</figcaption>
+      </figure>
 
       <div class="hero__availability hero-fade">
         <span class="status">Open to remote opportunities and global collaboration</span>
-        <span class="meta-label">Sukoharjo, Jawa Tengah, Indonesia</span>
       </div>
     </div>
 
-    <figure class="hero__portrait hero-fade">
-      <div class="hero__portrait-frame">
-        <img
-          src="./portrait-faras.svg"
-          width="800"
-          height="1000"
-          fetchpriority="high"
-          alt="Illustrated monochrome portrait of Faras Fadhil Firdaus. The original artwork is being updated to a neutral monochrome treatment."
-        />
-      </div>
-      <figcaption class="meta-label">Faras Fadhil Firdaus, 2026</figcaption>
-    </figure>
+    <a class="hero__scroll mono" href="#about">SCROLL ↓</a>
   </div>
 </section>
 
 <style>
+  /* Cover penuh viewport. dvh/svh dipakai supaya chrome mobile tidak memotong
+     konten; teks tidak pernah bergantung pada animasi untuk terlihat. */
   .hero {
-    padding-block: clamp(56px, 9vw, 116px) clamp(64px, 9vw, 120px);
+    background: var(--black);
+    color: var(--white);
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-block: clamp(64px, 9vh, 104px) clamp(72px, 9vh, 104px);
   }
-  .hero__grid {
+  .hero__grid { display: block; position: relative; }
+  .hero__copy { max-width: 1100px; }
+
+  /* Tekstur teknis: dua garis 1px + empat coordinate mark. Bukan grid pattern
+     berulang; hanya mengikat metadata ke headline sebagai satu cover (R-07). */
+  .hero__rules {
+    position: absolute;
+    inset: var(--header-h) max(var(--gutter), calc((100% - var(--page-max)) / 2)) 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .hero__rule {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .hero__rule--top { top: 0; }
+  .hero__rule--bottom { bottom: 0; }
+  .hero__cross {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-color: rgba(255, 255, 255, 0.12);
+    border-style: solid;
+    border-width: 0;
+  }
+  .hero__cross--tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+  .hero__cross--tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+  .hero__cross--bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+  .hero__cross--br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+
+  /* Metadata sebagai grid tipis, bukan paragraf. Semua >=12px dan #A3A3A3
+     (7.94:1 di atas #080808, diukur dengan contrast-check.py). */
+  .hero__meta {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: end;
+    grid-template-columns: 1fr auto;
+    gap: 6px 16px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
-  .hero__copy { max-width: 760px; }
-  .hero__headline { margin-block: 24px 28px; }
-  .hero-line--quiet { color: var(--subtle); }
+  .hero__meta-cell { min-width: 0; }
+  .hero__meta-cell--place { text-transform: none; letter-spacing: 0.06em; }
+  .hero__meta-cell--index { text-align: right; }
+
+  .hero__headline {
+    margin-block: 28px 28px;
+    color: var(--white);
+  }
+  .hero-line-wrap { display: block; }
+  .hero-line { display: block; }
+  /* Signature moment: outline putih di atas deep black. Tanpa glow/gradien. */
+  .hero-line--outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--white);
+  }
+  .hero .lead { color: var(--muted); max-width: 56ch; }
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 36px;
+    margin-top: 32px;
   }
-  .hero__availability {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-top: 40px;
-    padding-top: 22px;
-    border-top: 1px solid var(--border);
-    max-width: 520px;
-  }
-  .hero__portrait { margin: 0; }
+  /* Mobile: portrait turun setelah CTA, tidak mendorong headline. */
+  .hero__portrait { margin: 32px 0 0; max-width: 280px; }
   .hero__portrait-frame {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--panel);
+    border: 1px solid var(--strong);
     aspect-ratio: 4 / 5;
-    max-width: 360px;
-    margin-inline: auto;
     overflow: hidden;
   }
   .hero__portrait-frame img {
@@ -91,22 +160,56 @@
     filter: grayscale(1) contrast(1.06);
   }
   .hero__portrait figcaption {
-    margin-top: 12px;
-    text-align: center;
+    margin-top: 10px;
+    color: var(--muted);
+  }
+  .hero__availability {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    max-width: 520px;
+  }
+  .hero__availability .status { border-color: var(--strong); color: var(--muted); }
+
+  /* Scroll cue: teks mono statis, bukan animasi berulang. */
+  .hero__scroll {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 32px;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+  }
+  .hero__scroll:hover { color: var(--white); }
+
+  @media (min-width: 600px) {
+    .hero__meta { grid-template-columns: repeat(4, auto); justify-content: space-between; }
   }
 
   @media (min-width: 900px) {
-    .hero__grid {
-      grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.75fr);
-      gap: 64px;
+    /* Portrait besar di kanan, keluar dari alur teks supaya headline tidak
+       didorong. Pergerakan pointer hanya lewat CSS custom property (Layout). */
+    .hero__portrait {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: clamp(240px, 26vw, 360px);
+      max-width: none;
+      margin: 0;
+      transform: translate3d(var(--hero-px, 0px), calc(-50% + var(--hero-py, 0px)), 0);
+      will-change: transform;
     }
-    .hero__portrait-frame { margin-inline: 0 0 0 auto; }
+    .hero__copy { padding-right: clamp(280px, 30vw, 400px); }
     .hero__portrait figcaption { text-align: right; }
+    .hero__availability { margin-top: 40px; }
+    .hero__scroll { position: absolute; bottom: -56px; left: 0; margin-top: 0; }
   }
-  @media (max-width: 899px) {
-    .hero__portrait { max-width: 320px; }
-  }
+
   @media (max-width: 420px) {
     .hero__actions .btn { flex: 1 1 100%; }
+    .hero-line--outline { -webkit-text-stroke-width: 1px; }
+    .hero__meta { font-size: 0.75rem; letter-spacing: 0.08em; }
   }
 </style>

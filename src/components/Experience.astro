@@ -1,18 +1,21 @@
 ---
 import { experiences } from '../data/experience';
 
-// EXPERIENCE - vertical timeline. Tanggal sejajar di kiri, progres mengisi
-// saat section masuk viewport (motion.css).
+// EXPERIENCE - timeline editorial di putih. Tanggal mono di kiri, peran dan
+// organisasi di kanan. Garis progresif dan .section-enter dari P3 dipertahankan;
+// state "dibaca" memakai .is-reached yang sudah ditulis IO di Layout. Nama
+// organisasi Inggris dari data dipertahankan apa adanya (R-31).
 const labels: Record<string, string> = {
   'it-support-intern': 'Vocational internship',
+  'poa-bpvp': 'Vocational training',
   pmr: 'Activities & logistics',
   'dewan-ambalan': 'Activities & coordination',
 };
 ---
 
-<section class="section" id="experience">
+<section class="section section--experience" id="experience">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-enter">
       <div>
         <span class="eyebrow">04 / Track record</span>
         <h2 class="h2">Experience</h2>
@@ -20,12 +23,13 @@ const labels: Record<string, string> = {
       <p class="mono section-head__note">Practical roles and organizational involvement</p>
     </div>
 
-    <div class="timeline reveal">
+    <div class="timeline section-enter" style="--stagger:1">
       <span class="timeline__progress" aria-hidden="true"></span>
       {experiences.map((item, index) => (
         <article class="timeline__item" style={`--stagger:${index}`}>
           <span class="timeline__dot" aria-hidden="true"></span>
           <div class="timeline__date">
+            <span class="timeline__ordinal num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <span class="meta-label">{labels[item.id] ?? 'Role'}</span>
             <time class="mono">{item.period}</time>
           </div>
@@ -59,16 +63,37 @@ const labels: Record<string, string> = {
     top: 8px;
     width: 9px;
     height: 9px;
-    background: var(--paper);
-    border: 1px solid var(--ink);
+    background: var(--white);
+    border: 1px solid var(--black);
   }
   .timeline__date {
     display: flex;
     flex-direction: column;
     gap: 6px;
   }
-  .timeline__date .mono { color: var(--subtle); }
-  .timeline__org { color: var(--subtle); margin-top: 4px; }
+  /* Ordinal adalah penanda urutan baca, bukan data baru: angka diambil dari
+     indeks entri yang sudah ada (R-31). */
+  .timeline__ordinal {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .timeline__date .mono { color: var(--strong); }
+  .timeline__org { color: var(--strong); margin-top: 4px; }
+
+  /* Item yang sedang dibaca ditekankan dengan kontras penuh (#080808 di
+     atas #FFFFFF), bukan dengan #FFFFFF yang akan hilang di section putih.
+     .is-reached berasal dari observer yang sudah ada (R-31). */
+  .timeline__item.is-reached .timeline__date .mono,
+  .timeline__item.is-reached .timeline__org,
+  .timeline__item.is-reached .timeline__ordinal { color: var(--black); }
+  .timeline__item.is-reached .timeline__date .meta-label { color: var(--black); }
+  .timeline__item .timeline__date .mono,
+  .timeline__item .timeline__org,
+  .timeline__item .timeline__ordinal {
+    transition: color var(--dur-ui) var(--ease-ui);
+  }
+
   .timeline__bullets {
     margin-top: 16px;
     display: flex;
@@ -87,16 +112,19 @@ const labels: Record<string, string> = {
     top: 0.7em;
     width: 6px;
     height: 1px;
-    background: var(--ink);
+    background: var(--black);
   }
 
   @media (min-width: 768px) {
     .timeline__item {
       grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
-      gap: 32px;
+      gap: clamp(32px, 5vw, 72px);
       padding-left: 36px;
-      padding-bottom: 48px;
+      padding-bottom: 56px;
     }
     .timeline__dot { left: 1px; }
+    /* Kolom tanggal rata kanan: angka dan tanggal menjadi margin editorial,
+       konten tetap satu blok yang mudah diikuti. */
+    .timeline__date { align-items: flex-end; text-align: right; }
   }
 </style>

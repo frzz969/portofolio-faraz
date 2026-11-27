@@ -63,7 +63,7 @@ const navItems = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#F7F7F7" />
+    <meta name="theme-color" content="#080808" />
     <link rel="canonical" href={canonical} />
     <!-- Hanya satu versi halaman yang benar-benar ada (bahasa Inggris).
          hreflang id dihapus: tidak ada halaman /id/ palsu yang bisa ditunjuk. -->
@@ -111,14 +111,14 @@ const navItems = [
 
         <nav class="site-nav" aria-label="Main navigation">
           {navItems.map((item) => (
-            <a class="site-nav__link" href={`#${item.id}`} data-nav={item.id}>{item.label}</a>
+            <a class="site-nav__link" href={`#${item.id}`} data-nav={item.id} data-magnetic>{item.label}</a>
           ))}
         </nav>
 
         <div class="site-header__end">
           <span class="availability">
             <span class="availability__dot" aria-hidden="true"></span>
-            <span>Available for opportunities</span>
+            <span>Open to opportunities</span>
           </span>
           <details class="mobile-nav">
             <summary><span class="mobile-nav__state">Open</span> menu</summary>
@@ -294,22 +294,180 @@ const navItems = [
         };
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Portrait: maks 6px, hanya mouse presisi dan tanpa reduced-motion.
+        // rAF mencegah event pointer menulis style tiap frame.
+        const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+        if (!reduce && finePointer.matches) {
+          const hero = document.getElementById('hero');
+          if (hero) {
+            let frame = 0;
+            let px = 0;
+            let py = 0;
+            const paint = () => {
+              frame = 0;
+              hero.style.setProperty('--hero-px', `${px.toFixed(1)}px`);
+              hero.style.setProperty('--hero-py', `${py.toFixed(1)}px`);
+            };
+            hero.addEventListener('pointermove', (event) => {
+              const box = hero.getBoundingClientRect();
+              px = ((event.clientX - box.left) / box.width - 0.5) * 12;
+              py = ((event.clientY - box.top) / box.height - 0.5) * 12;
+              if (!frame) frame = window.requestAnimationFrame(paint);
+            }, { passive: true });
+            hero.addEventListener('pointerleave', () => {
+              px = 0;
+              py = 0;
+              if (!frame) frame = window.requestAnimationFrame(paint);
+            }, { passive: true });
+          }
+        }
+
+        // --- Scroll experience (PRIORITAS 3) ---------------------------------
+        // Section masuk sekali lalu observer berhenti. Arah/stagger berasal
+        // dari kelas .section-enter di komponen, bukan dari JS.
+        const sectionEntries = Array.from(document.querySelectorAll('.section-enter'));
+        if (!reduce && 'IntersectionObserver' in window && sectionEntries.length) {
+          const sectionObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            });
+          }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+          sectionEntries.forEach((el) => sectionObserver.observe(el));
+          window.setTimeout(() => {
+            sectionEntries.forEach((el) => {
+              if (el.classList.contains('is-visible')) return;
+              const box = el.getBoundingClientRect();
+              if (box.top < window.innerHeight && box.bottom > 0) {
+                el.classList.add('is-visible');
+                sectionObserver.unobserve(el);
+              }
+            });
+          }, 1200);
+        } else {
+          sectionEntries.forEach((el) => el.classList.add('is-visible'));
+        }
+
+        // Progres timeline dan parallax angka About memakai satu scheduler rAF.
+        // Observer hanya menyalakan perhitungan saat elemen relevan terlihat,
+        // jadi tidak ada loop JS terus-menerus di luar viewport.
+        const timeline = document.querySelector('.timeline');
+        const parallaxHost = document.querySelector('[data-parallax-host]');
+        const parallaxTarget = document.querySelector('.about__num');
+        let timelineActive = false;
+        let parallaxActive = false;
+        let fxFrame = 0;
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+        const paintScrollFx = () => {
+          fxFrame = 0;
+          if (timelineActive && timeline) {
+            const box = timeline.getBoundingClientRect();
+            const marker = window.innerHeight * 0.6;
+            const progress = clamp((marker - box.top) / Math.max(box.height, 1), 0, 1);
+            timeline.style.setProperty('--progress', progress.toFixed(3));
+          }
+          if (parallaxActive && parallaxHost && parallaxTarget) {
+            const box = parallaxHost.getBoundingClientRect();
+            const vh = window.innerHeight;
+            const raw = ((vh - box.top) / (vh + box.height)) * 2 - 1;
+            const y = clamp(raw * 12, -12, 12);
+            parallaxHost.style.setProperty('--parallax-y', `${y.toFixed(1)}px`);
+          }
+        };
+        const requestScrollFx = () => {
+          if (!fxFrame) fxFrame = window.requestAnimationFrame(paintScrollFx);
+        };
+
+        if (!reduce && 'IntersectionObserver' in window) {
+          const visibility = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              const active = entry.isIntersecting;
+              if (entry.target === timeline) timelineActive = active;
+              if (entry.target === parallaxHost) {
+                parallaxActive = active && finePointer.matches;
+                if (!parallaxActive) parallaxHost?.style.setProperty('--parallax-y', '0px');
+              }
+            });
+            requestScrollFx();
+          }, { rootMargin: '10% 0px 10% 0px', threshold: 0 });
+          if (timeline) visibility.observe(timeline);
+          if (parallaxHost && parallaxTarget && finePointer.matches) {
+            visibility.observe(parallaxHost);
+          }
+          window.addEventListener('scroll', requestScrollFx, { passive: true });
+          window.addEventListener('resize', requestScrollFx, { passive: true });
+          requestScrollFx();
+        }
+      })();
+    </script>
+
+    <!-- P5: magnetic ringan pada nav desktop. Terpisah dari script utama supaya
+         observer, pointer hero, dan state navexisting tidak tersentuh. -->
+    <script is:inline>
+      (() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        if (reduce || !fine || !document.documentElement.classList.contains('has-motion')) return;
+        const targets = Array.from(document.querySelectorAll('[data-magnetic]'));
+        if (!targets.length) return;
+        let frame = 0;
+        let current = null;
+        let x = 0;
+        let y = 0;
+        const paint = () => {
+          frame = 0;
+          if (!current) return;
+          current.style.setProperty('--mag-x', `${x.toFixed(1)}px`);
+          current.style.setProperty('--mag-y', `${y.toFixed(1)}px`);
+        };
+        const reset = (el) => {
+          el.style.removeProperty('--mag-x');
+          el.style.removeProperty('--mag-y');
+        };
+        targets.forEach((el) => {
+          el.addEventListener('pointermove', (event) => {
+            const box = el.getBoundingClientRect();
+            x = ((event.clientX - box.left) / box.width - 0.5) * 8;
+            y = ((event.clientY - box.top) / box.height - 0.5) * 8;
+            // Maksimal 4px per sumbu.
+            x = Math.max(-4, Math.min(4, x));
+            y = Math.max(-4, Math.min(4, y));
+            current = el;
+            if (!frame) frame = window.requestAnimationFrame(paint);
+          }, { passive: true });
+          el.addEventListener('pointerleave', () => {
+            if (current === el) current = null;
+            reset(el);
+          }, { passive: true });
+          el.addEventListener('blur', () => {
+            if (current === el) current = null;
+            reset(el);
+          });
+        });
       })();
     </script>
 
     <style is:global>
-      /* --- Header sticky minimal ------------------------------------------ */
+      /* --- Header: transparan di atas cover, solid setelah scroll ----------- */
       .site-header {
         position: sticky;
         top: 0;
         z-index: 50;
         width: 100%;
-        background: var(--paper);
+        background: transparent;
         border-bottom: 1px solid transparent;
-        transition: border-color var(--dur-ui) var(--ease-ui),
-                    background-color var(--dur-ui) var(--ease-ui);
+        transition: background-color var(--dur-ui) var(--ease-ui),
+                    border-color var(--dur-ui) var(--ease-ui);
       }
-      .site-header.is-scrolled { border-bottom-color: var(--border); }
+      /* State scroll: permukaan solid tipis + garis 1px. rgba turunan dari
+         #080808, bukan warna baru; transisi 240ms (--dur-ui). */
+      .site-header.is-scrolled {
+        background: rgba(8, 8, 8, 0.92);
+        border-bottom-color: var(--strong);
+      }
       .site-header__inner {
         display: flex;
         align-items: center;
@@ -320,25 +478,30 @@ const navItems = [
       .wordmark {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         min-height: 44px;
         flex-shrink: 0;
       }
       .wordmark__mono {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 30px;
+        padding: 4px 7px;
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: 1rem;
-        letter-spacing: -0.04em;
-        color: var(--white);
-        background: var(--ink);
-        padding: 4px 6px;
+        font-size: 0.9375rem;
+        letter-spacing: -0.05em;
+        color: var(--black);
+        background: var(--white);
       }
       .wordmark__name {
         font-family: var(--font-display);
         font-weight: 600;
         font-size: 0.875rem;
         letter-spacing: -0.015em;
-        color: var(--ink);
+        color: var(--white);
       }
       .site-nav { display: none; align-items: center; gap: 4px; }
       .site-nav__link {
@@ -347,9 +510,11 @@ const navItems = [
         align-items: center;
         min-height: 44px;
         padding-inline: 14px;
-        font-size: 0.8125rem;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
         font-weight: 500;
-        color: var(--subtle);
+        letter-spacing: 0.06em;
+        color: var(--muted);
         transition: color var(--dur-ui) var(--ease-ui);
       }
       .site-nav__link::after {
@@ -359,13 +524,13 @@ const navItems = [
         right: 14px;
         bottom: 10px;
         height: 1px;
-        background: var(--ink);
+        background: var(--white);
         transform: scaleX(0);
         transform-origin: left;
         transition: transform var(--dur-ui) var(--ease-ui);
       }
       .site-nav__link:hover,
-      .site-nav__link.is-active { color: var(--ink); }
+      .site-nav__link.is-active { color: var(--white); }
       .site-nav__link.is-active::after { transform: scaleX(1); }
 
       .site-header__end { display: inline-flex; align-items: center; gap: 12px; }
@@ -375,13 +540,14 @@ const navItems = [
         gap: 8px;
         font-family: var(--font-mono);
         font-size: 0.75rem;
-        letter-spacing: 0.04em;
-        color: var(--subtle);
+        letter-spacing: 0.06em;
+        color: var(--muted);
       }
+      /* Dot menandakan status nyata (tersedia), bukan dekorasi berdenyut. */
       .availability__dot {
         width: 6px;
         height: 6px;
-        background: var(--ink);
+        background: var(--white);
         border-radius: 50%;
       }
       @media (min-width: 768px) { .availability { display: inline-flex; } }
@@ -398,14 +564,16 @@ const navItems = [
         justify-content: center;
         min-height: 44px;
         padding-inline: 14px;
-        border: 1px solid var(--border);
+        border: 1px solid var(--strong);
         list-style: none;
-        font-size: 0.8125rem;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
         font-weight: 600;
-        color: var(--ink);
+        letter-spacing: 0.06em;
+        color: var(--white);
       }
       .mobile-nav > summary::-webkit-details-marker { display: none; }
-      .mobile-nav[open] > summary { background: var(--surface); }
+      .mobile-nav[open] > summary { background: var(--panel); }
       .mobile-nav nav {
         position: absolute;
         top: calc(100% + 8px);
@@ -414,18 +582,22 @@ const navItems = [
         display: flex;
         flex-direction: column;
         padding: 6px;
-        background: var(--paper);
-        border: 1px solid var(--border);
+        background: var(--panel);
+        border: 1px solid var(--strong);
       }
       .mobile-nav nav a {
         display: flex;
         align-items: center;
         min-height: 44px;
         padding-inline: 12px;
-        font-size: 0.875rem;
-        color: var(--ink);
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: var(--white);
       }
       .mobile-nav nav a:hover { background: var(--surface); }
+      /* Fokus keyboard tetap terlihat di atas panel gelap. */
+      .mobile-nav nav a:focus-visible { outline: 2px solid var(--white); outline-offset: -2px; }
+      .site-nav__link:focus-visible { outline-color: var(--white); }
 
       main { display: block; }
     </style>

@@ -1,5 +1,6 @@
 ---
-// FOOTER - bersih, tautan nyata, tanpa badge berlebih.
+// FOOTER - bersih, lanjutan permukaan hitam kontak. Tautan nyata,
+// tanpa badge berlebih, tanpa label warna atau identitas tambahan.
 ---
 
 <footer class="site-footer">
@@ -19,8 +20,8 @@
 
 <style>
   .site-footer {
-    background: var(--paper);
-    border-top: 1px solid var(--border);
+    background: var(--black);
+    border-top: 1px solid var(--strong);
   }
   .site-footer__inner {
     display: flex;
@@ -34,7 +35,21 @@
     align-items: center;
     gap: 14px;
   }
-  .site-footer__id .mono { color: var(--subtle); }
+  .site-footer__id .mono { color: var(--muted); }
+  .site-footer .wordmark__mono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    min-height: 30px;
+    padding: 4px 7px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: -0.05em;
+    color: var(--black);
+    background: var(--white);
+  }
   .site-footer__nav {
     display: flex;
     flex-wrap: wrap;
@@ -44,12 +59,17 @@
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    font-size: 0.8125rem;
-    color: var(--subtle);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
     border-bottom: 1px solid transparent;
     transition: color var(--dur-ui) var(--ease-ui), border-color var(--dur-ui) var(--ease-ui);
   }
-  .site-footer__nav a:hover { color: var(--ink); border-color: var(--ink); }
+  .site-footer__nav a:hover { color: var(--white); border-color: var(--white); }
+  /* Focus harus putih: outline hitam default tidak terlihat di atas #080808. */
+  .site-footer__nav a:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+  .site-footer__nav a:active { color: var(--muted); }
 
   @media (min-width: 768px) {
     .site-footer__inner {

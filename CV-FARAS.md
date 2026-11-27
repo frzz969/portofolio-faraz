@@ -48,7 +48,7 @@ Fresh graduate Teknik Jaringan Komputer dan Telekomunikasi (TJKT), SMKN 1 Sukoha
 
 - **MikroTik Certified Network Associate (MTCNA)** - MikroTik, 2025. Credential ID: [if available] | URL: [if available]
 - **Junior Fiber Optic Cable Jointer** - BNSP, 2026. Credential ID: [if available] | URL: [if available]
-- **Practical Office Advance (POA)** - BPVP Surakarta, 2026. 260 jam, 9 unit kompetensi. Sertifikat BNSP dalam proses penerbitan. Credential ID: [if available] | URL: [if available]
+- **Practical Office Advance (POA)** - BPVP Surakarta, 2026. 33 hari pelatihan kerja setelah lulus sekolah, sertifikat diperoleh setelah pelatihan. Sertifikat BNSP dalam proses penerbitan. Credential ID: [if available] | URL: [if available]
 
 ## PROYEK
 

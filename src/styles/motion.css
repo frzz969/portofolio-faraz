@@ -2,7 +2,7 @@
    motion.css - gerak yang melayani hierarki, bukan wallpaper.
    Dial MOTION 2: stagger saat masuk + transisi UI. Tanpa GSAP/Framer.
    Semua motion non-essential berada di dalam prefers-reduced-motion:no-preference.
-   Durasi 200-400ms, ease-out, satu arah, tanpa loop tak berujung
+   Durasi 200-420ms, ease-out, satu arah, tanpa loop tak berujung
    (kecuali marquee yang memiliki alasan dan bisa dimatikan).
    ========================================================================== */
 
@@ -25,27 +25,32 @@
   }
 }
 
-/* --- Hero: baris demi baris, naik 18px -------------------------------------
+/* --- Hero: clip-path reveal per baris -------------------------------------
    PROGRESSIVE ENHANCEMENT: teks terlihat secara default. Animasi hanya aktif
-   setelah JS menambahkan .has-motion di <html> (artinya JS benar-benar jalan).
-   Kalau JS mati/error/slow, konten tetap terbaca. */
+   setelah JS menambahkan .has-motion di <html>. Tanpa JS / reduced-motion
+   semua baris tampil utuh. Stagger 95ms, durasi 420ms, sekali, tanpa loop. */
 @media (prefers-reduced-motion: no-preference) {
   html.has-motion .hero-line {
     display: block;
     opacity: 0;
-    transform: translateY(20px);
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(24px);
     animation: hero-line-in var(--dur-line) var(--ease-reveal) both;
     animation-delay: calc(90ms + var(--i, 0) * 95ms);
   }
   html.has-motion .hero-fade {
     opacity: 0;
-    transform: translateY(14px);
-    animation: hero-line-in var(--dur-reveal) var(--ease-reveal) both;
-    animation-delay: 400ms;
+    transform: translateY(24px);
+    animation: hero-fade-in var(--dur-reveal) var(--ease-reveal) both;
+    animation-delay: 380ms;
   }
 }
 @keyframes hero-line-in {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(24px); }
+  to   { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0); }
+}
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -101,15 +106,14 @@
   width: 1px;
   height: calc(100% - 12px);
   background: var(--ink);
+  transform-origin: top;
 }
-/* Hanya animasikan progres bila JS motion benar-benar aktif. */
+/* Progres benar-benar bertahap: JS menulis --progress (0..1) dari posisi
+   timeline di viewport, rAF-throttled hanya saat timeline terlihat. Tanpa JS
+   atau dengan reduced-motion, garis tampil penuh (default di atas). */
 @media (prefers-reduced-motion: no-preference) {
   html.has-motion .timeline__progress {
-    height: 0;
-    transition: height 520ms var(--ease-reveal);
-  }
-  html.has-motion .timeline.is-visible .timeline__progress {
-    height: calc(100% - 12px);
+    transform: scaleY(var(--progress, 0));
   }
 
   /* Dot menyala per item saat item itu masuk viewport. --stagger memberi
@@ -132,8 +136,9 @@
               background-color var(--dur-ui) var(--ease-ui);
 }
 @media (hover: hover) {
-  .project-card:hover { border-color: var(--ink); background: var(--surface); }
+  .project-card:hover { border-color: var(--ink); background: var(--panel); }
 }
+.project-card--feature:hover { background: var(--black); }
 .project-card:active { transform: none; }
 
 /* Button hover/active sudah di global.css. Magnetic sengaja tidak dipakai:
@@ -141,6 +146,68 @@
 
 /* State sentuh: feedback tetap ada tanpa hover. */
 a:active, button:active, summary:active { opacity: 0.74; }
+
+/* --- Project showcase: reveal masuk viewport, sekali -----------------------
+   Sama seperti Hero: progresif enhancement. Tanpa JS (.has-motion) atau
+   dengan reduced-motion, semua konten tampil utuh. Stagger 100ms melalui
+   --stagger yang sudah dipakai Layout pada elemen .reveal. clip-path +
+   opacity + translateY(24px), sekali, tanpa loop. */
+@media (prefers-reduced-motion: no-preference) {
+  html.has-motion .project-card--feature,
+  html.has-motion .project-pair .project-card {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(24px);
+    transition: opacity 360ms var(--ease-reveal),
+                clip-path 360ms var(--ease-reveal),
+                transform 360ms var(--ease-reveal);
+    transition-delay: calc(80ms + var(--stagger, 0) * 100ms);
+  }
+  html.has-motion .project-card--feature.is-visible,
+  html.has-motion .project-pair .project-card.is-visible {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+  }
+}
+
+/* --- Section entrance: masuk sekali, lalu observer berhenti ----------------
+   Beda dengan slide: opacity + translateY(24px) + clip-path tipis, arah
+   divariasikan per section (kiri / atas / menyamping). Stagger 100ms lewat
+   --stagger. Elemen terlihat penuh tanpa .has-motion (progressive enhancement). */
+@media (prefers-reduced-motion: no-preference) {
+  html.has-motion .section-enter {
+    opacity: 0;
+    clip-path: inset(0 0 8% 0);
+    transform: translateY(24px);
+    transition: opacity 380ms var(--ease-reveal),
+                clip-path 380ms var(--ease-reveal),
+                transform 380ms var(--ease-reveal);
+    transition-delay: calc(var(--stagger, 0) * 100ms);
+  }
+  html.has-motion .section-enter--left { transform: translate(-12px, 24px); }
+  html.has-motion .section-enter--right { transform: translate(12px, 24px); }
+  html.has-motion .section-enter--across { transform: translate(12px, 0); }
+  html.has-motion .section-enter.is-visible {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: translate(0, 0);
+  }
+  /* Sticky tidak boleh dikunci oleh transform sisa pada elemen yang sama. */
+  html.has-motion .about__quote.section-enter.is-visible { transform: none; }
+}
+
+/* --- Parallax satu elemen: angka raksasa About ----------------------------
+   Hanya pointer presisi + no-preference. JS menulis --parallax-y dari posisi
+   section, dibatasi maksimal 12px. Touch dan reduced-motion tidak pernah
+   mendapat transform ini. */
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (pointer: fine) {
+    html.has-motion .about__num {
+      transform: translateY(var(--parallax-y, 0px));
+    }
+  }
+}
 
 /* --- Reduced motion: matikan motion non-essential sepenuhnya --------------- */
 @media (prefers-reduced-motion: reduce) {
@@ -155,15 +222,45 @@ a:active, button:active, summary:active { opacity: 0.74; }
   .hero-line,
   .hero-fade,
   .cta-line,
-  .reveal {
+  .reveal,
+  .section-enter,
+  .project-card--feature,
+  .project-pair .project-card {
     opacity: 1 !important;
     transform: none !important;
+    clip-path: none !important;
   }
+  .about__num { transform: none !important; }
+  .project-flow__name,
+  .project-flow__arrow,
+  .text-link__arrow { transform: none !important; }
   .marquee-track { animation: none !important; }
-  .timeline__progress { height: calc(100% - 12px) !important; }
+  .timeline__progress { height: calc(100% - 12px) !important; transform: none !important; }
   .timeline__dot { background: var(--ink) !important; }
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none !important;
   }
+}
+
+/* P4: feedback skills tidak bergerak saat motion dimatikan. Konten grup
+   tetap terbuka (atribut open di markup), jadi tidak ada yang tersembunyi. */
+@media (prefers-reduced-motion: reduce) {
+  .skills__item,
+  .skills__toggle::before,
+  .skills__toggle::after {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* P5: underline dan magnetic mati total saat motion tidak diizinkan. Aturan
+   ini additive; guard P1-P4 di atas tidak diubah. */
+@media (prefers-reduced-motion: reduce) {
+  .text-link::after,
+  [data-magnetic] {
+    transform: none !important;
+    transition: none !important;
+  }
+  .text-link:hover { border-bottom-color: var(--border); }
 }

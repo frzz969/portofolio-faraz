@@ -1,7 +1,7 @@
 ---
-// AREAS OF INTEREST - numbered editorial rows, bukan kartu dashboard.
-// Empat judul ringkas tetap dipakai; detail 9 bidang dari src/data/interests.ts
-// dirender sebagai subteks agar tidak ada minat yang hilang saat redesign.
+// AREAS OF INTEREST - numbered editorial rows di permukaan gelap, bukan
+// kartu dashboard. Empat judul ringkas tetap dipakai; detail 9 bidang dari
+// src/data/interests.ts dirender sebagai subteks agar tidak ada yang hilang.
 import { interests } from '../data/interests';
 const areas = [
   'AI & Intelligent Technologies',
@@ -10,13 +10,13 @@ const areas = [
   'Digital Operations & Administration',
 ];
 const detail = interests.areas.join(' · ');
-// Data sumber memakai em dash; UI memakai separator "·" sesuai DESIGN.md.
-const honestyNote = interests.note.replace(/\s*[—–]\s*/g, ' · ');
+// Data sumber memakai em dash; UI memakai separator "·" (R-02).
+const honestyNote = interests.note.replace(/\s*[\u2014\u2013]\s*/g, ' · ');
 ---
 
-<section class="section" id="interests">
+<section class="section section--interests surface-dark" id="interests">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-enter section-enter--across">
       <div>
         <span class="eyebrow">07 / Horizons</span>
         <h2 class="h2">Areas of Interest</h2>
@@ -24,9 +24,9 @@ const honestyNote = interests.note.replace(/\s*[—–]\s*/g, ' · ');
       <p class="mono section-head__note">Interests and exploration, not professional experience</p>
     </div>
 
-    <ol class="interest-list">
+    <ol class="interest-list section-enter section-enter--across" style="--stagger:1">
       {areas.map((area, index) => (
-        <li class="interest-row reveal" style={`--stagger:${index}`}>
+        <li class="interest-row">
           <span class="interest-row__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
           <span class="interest-row__title h3">{area}</span>
           <span class="interest-row__mark" aria-hidden="true"></span>
@@ -43,36 +43,43 @@ const honestyNote = interests.note.replace(/\s*[—–]\s*/g, ' · ');
 </section>
 
 <style>
-  .interest-list { border-top: 1px solid var(--border); }
-  .interest-detail { margin: 20px 0 0; color: var(--subtle); overflow-wrap: anywhere; }
+  .interest-list { border-top: 1px solid var(--strong); }
+  .interest-detail { margin: 20px 0 0; color: var(--muted); overflow-wrap: anywhere; }
   .interest-row {
     display: grid;
-    grid-template-columns: 64px 1fr;
-    align-items: baseline;
+    grid-template-columns: 72px 1fr;
+    align-items: center;
     gap: 8px 20px;
     padding-block: 22px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--strong);
   }
-  .interest-row__num { font-size: clamp(2rem, 5vw, 3.5rem); }
+  /* Angka besar adalah identitas visual: #A3A3A3 di #151515 lolos AA. */
+  .interest-row__num { font-size: clamp(3rem, 6vw, 4.5rem); }
   .interest-row__title { align-self: center; }
   .interest-row__mark {
     display: none;
     width: 24px;
     height: 1px;
-    background: var(--ink);
+    background: var(--white);
     align-self: center;
     justify-self: end;
   }
   .interest-note {
     margin-top: 24px;
-    color: var(--subtle);
+    color: var(--muted);
     max-width: 68ch;
   }
   @media (min-width: 700px) {
     .interest-row {
-      grid-template-columns: 120px 1fr 32px;
+      grid-template-columns: 140px 1fr 32px;
       padding-block: 28px;
     }
     .interest-row__mark { display: block; }
+  }
+  @media (min-width: 900px) {
+    /* Detail catatan sejajar dengan judul, bukan dengan angka: kolom angka
+       tetap menjadi margin editorial, daftar tidak berubah menjadi kartu. */
+    .interest-detail,
+    .interest-note { margin-left: 140px; }
   }
 </style>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Faras Fadhil Firdaus: Portfolio</title>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/><title>Faras Fadhil Firdaus: Portfolio</title>
 <meta name="description" content="Building DEXTRA, bringing the AI Detector for students to life, and running ongoing AI experiments."/>
 <!-- ID description: Membangun DEXTRA, menghidupkan AI Detector Mahasiswa, dan menjalankan eksperimen AI. -->
 <link rel="canonical" href="https://frzz969.github.io/portofolio-faraz/"/>
-<link rel="alternate" hreflang="id" href="./?lang=id" />
-<link rel="alternate" hreflang="en" href="./" />
+<link rel="alternate" hreflang="en" href="https://frzz969.github.io/portofolio-faraz/"/>
+<link rel="alternate" hreflang="x-default" href="https://frzz969.github.io/portofolio-faraz/"/>
 <meta property="og:type" content="profile"/>
 <meta property="og:title" content="Faras Fadhil Firdaus: Portfolio"/>
 <meta property="og:description" content="Building DEXTRA, bringing the AI Detector for students to life, and running ongoing AI experiments."/>
@@ -14,7 +14,7 @@
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="preload" as="font" type="font/woff2" href="./fonts/space-grotesk-latin.woff2" crossorigin />
-<link rel="expect" href="#main" blocking="render"/>
+<link rel="preload" as="font" type="font/woff2" href="./fonts/inter-latin.woff2" crossorigin />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -43,325 +43,494 @@
 }
 </script>
 <!-- GANTI: konfirmasi username GitHub (sameAs) dan slug LinkedIn (sameAs) -->
-<!-- CSS Tailwind sudah di-build dari src/styles/global.css + token Stitch (tanpa CDN). -->
 <style>
-/* Skip link */
-.skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:var(--white);padding:.5rem .75rem;min-height:44px;display:inline-flex;align-items:center}
-.skip-link:focus{left:8px;top:8px}
+/* Dark Technical Editorial x Industrial Monochrome.
+   Palet 6 hex saja: #080808 #151515 #292929 #555555 #A3A3A3 #FFFFFF.
+   R-31: tiap keputusan visual punya alasan. Motif = angka editorial besar +
+   garis 1px + Space Grotesk. Satu accent moment = headline outline di hero. */
+:root{
+  --black:#080808; --surface:#151515; --panel:#292929;
+  --strong:#555555; --muted:#A3A3A3; --white:#FFFFFF;
+  --ink:var(--black); --paper:var(--white); --charcoal:var(--black);
+  --subtle:var(--strong); --border:var(--strong);
+  --font-display:"Space Grotesk Variable","Space Grotesk",sans-serif;
+  --font-body:"Inter Variable",Inter,system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --page-max:1180px; --gutter:20px; --header-h:64px; --section-y:72px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --dur-ui:240ms;
+}
+@media(min-width:768px){:root{--gutter:32px;--header-h:72px;--section-y:104px}}
+@media(min-width:1024px){:root{--gutter:48px}}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter Variable",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%;height:auto}
+body{margin:0;overflow-x:clip;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:1rem;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{max-width:100%}
+img{height:auto;display:block}
 a{color:inherit;text-decoration:none;cursor:pointer}
-button{font:inherit;cursor:pointer}
-h1,h2,h3,h4,p,ul,ol{margin:0}
-ul{list-style:none;padding:0}
-::selection{background:var(--ink);color:var(--bg)}
-.block{display:block}
-.flex{display:flex}
-.grid{display:grid}
+button{cursor:pointer;font:inherit}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+::selection{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.charcoal :focus-visible,.surface-dark :focus-visible{outline-color:var(--white)}
+.container{width:100%;max-width:var(--page-max);margin-inline:auto;padding-inline:var(--gutter)}
+section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:fixed;top:-100px;left:16px;z-index:200;display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;background:var(--ink);color:var(--white);font-size:.875rem;transition:top 150ms var(--ease-out)}
+.skip-link:focus{top:12px}
 
-.group:hover .group-hover\:text-paper{color:var(--white)}
-.group:hover .group-hover\:text-ink{color:var(--ink)}
-.group:hover .group-hover\:bg-ink{background-color:var(--ink)}
-.group:hover .group-hover\:translate-x-1{transform:translateX(4px)}
-.group:hover .group-hover\:decoration-ink{text-decoration-color:var(--ink)}
-.decoration-ink\/40{text-decoration-color:rgba(23,23,23,.4)}
-@media (min-width:640px){.sm\:inline{display:inline}.sm\:inline-flex{display:inline-flex}.sm\:flex-row{flex-direction:row}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:items-center{align-items:center}.sm\:text-left{text-align:left}}
-@media (min-width:768px){.md\:col-span-5{grid-column:span 5 / span 5}.md\:col-span-7{grid-column:span 7 / span 7}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.md\:inline-flex{display:inline-flex}.md\:flex-row{flex-direction:row}.md\:items-baseline{align-items:baseline}.md\:items-center{align-items:center}.md\:text-right{text-align:right}.md\:gap-space-md{gap:1.5rem}}
-@media (min-width:1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:gap-x-12{column-gap:3rem}.lg\:justify-end{justify-content:flex-end}.lg\:p-8{padding:2rem}.lg\:p-10{padding:2.5rem}.lg\:p-12{padding:3rem}.lg\:p-16{padding:4rem}.lg\:pt-14{padding-top:3.5rem}.lg\:pb-28{padding-bottom:7rem}.lg\:py-28{padding-top:7rem;padding-bottom:7rem}.lg\:px-margin{padding-left:1.5rem;padding-right:1.5rem}}
-@media (min-width:1280px){.xl\:flex{display:flex}}
-.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
-.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.space-y-3 > :not([hidden]) ~ :not([hidden]){margin-top:.75rem}
-.space-y-4 > :not([hidden]) ~ :not([hidden]){margin-top:1rem}
-.space-y-6 > :not([hidden]) ~ :not([hidden]){margin-top:1.5rem}
-.space-y-8 > :not([hidden]) ~ :not([hidden]){margin-top:2rem}
-a,button{transition:background-color .2s ease,color .2s ease,transform .2s ease,border-color .2s ease}
-.transition-all{transition:all .25s ease}
-.transition-colors{transition:color .2s ease,background-color .2s ease,border-color .2s ease}
-.transition-shadow{transition:box-shadow .25s ease}
-.transition-transform{transition:transform .25s ease}
-.duration-200{transition-duration:.2s}
-.duration-300{transition-duration:.3s}
-.hover\:text-ink:hover{color:var(--ink)}
-.hover\:text-primary:hover{color:var(--ink)}
-.hover\:text-on-surface:hover{color:var(--ink)}
-.hover\:bg-primary:hover{background-color:var(--ink);color:var(--white)}
-.hover\:bg-surface-container-high:hover{background-color:var(--bg2)}
-.hover\:shadow-md:hover,.hover\:shadow-lg:hover{box-shadow:0 4px 12px rgba(23,23,23,.08)}
-.hover\:-translate-y-1:hover{transform:translateY(-4px)}
-.active\:scale-95:active,.active\:scale-\[0\.98\]\:active{transform:scale(.98)}
-.active\:bg-surface-container-high:active{background-color:var(--bg2)}
-.group-hover\:text-paper{color:var(--white)}
+/* --- Tipografi editorial: angka dan headline sebagai struktur --- */
+.eyebrow{display:block;font-family:var(--font-mono);font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--subtle);line-height:1.5}
+.h1{font-family:var(--font-display);font-weight:700;font-size:clamp(3.5rem,11vw,10rem);line-height:.88;letter-spacing:-.05em}
+.h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:-.04em}
+.h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.375rem,2.6vw,1.875rem);line-height:1.14;letter-spacing:-.025em}
+.h4{font-family:var(--font-display);font-weight:500;font-size:1.125rem;line-height:1.35;letter-spacing:-.015em}
+.lead{font-size:clamp(1rem,1.6vw,1.1875rem);line-height:1.65;color:var(--subtle);max-width:60ch}
+.body{color:var(--subtle);line-height:1.68}
+.mono{font-family:var(--font-mono);font-size:.8125rem;letter-spacing:.03em;line-height:1.6}
+.meta-label{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle)}
+.num{font-family:var(--font-display);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.06em;color:var(--strong);line-height:1}
+.section-head{display:flex;flex-direction:column;gap:20px;margin-bottom:clamp(36px,5vw,64px)}
+@media(min-width:768px){.section-head{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:32px}.section-head .section-head__note{text-align:right;max-width:32ch;flex-shrink:0}}
 
-/* ===== MODERN MONOCHROME × CREATIVE EDITORIAL · token layer ===== */
-:root{
-  --bg:#F7F7F7; --bg2:#EEEEEE; --ink:#171717; --muted:#525252;
-  --muted2:#525252; --border:#D9D9D9; --charcoal:#202020; --white:#FFFFFF;
-  --nav-h:72px;
-}
-html{scroll-behavior:smooth}
-section[id],div[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
-body{overflow-x:hidden}
-a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
-  outline:2px solid var(--ink);outline-offset:3px;border-radius:2px
-}
-a,button{cursor:pointer}
-.btn-wa{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.7rem 1.1rem;background:var(--ink);color:var(--white);text-decoration:none;border-radius:4px;font-weight:600}
-.btn-wa:hover{background:var(--charcoal);transform:translateY(-1px)}
-.btn-wa:active{transform:translateY(0) scale(.98)}
-.contact-lines{margin-top:.75rem;font:.8rem/1.6 ui-monospace,monospace;color:var(--muted2);overflow-wrap:anywhere}
-.proj-meta{margin:.5rem 0 0;font:400 .72rem/1.6 ui-monospace,monospace;letter-spacing:.04em;color:var(--muted2)}
-.proj-meta span{float:right;border-bottom:1px solid var(--border);padding-bottom:1px}
+/* --- Tombol & tautan: inversi penuh, tanpa warna baru (R-31) --- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 24px;border:1px solid var(--ink);border-radius:0;background:var(--ink);color:var(--white);font-family:var(--font-body);font-size:.9375rem;font-weight:600;letter-spacing:.01em;transition:background-color var(--dur-ui) var(--ease-out),color var(--dur-ui) var(--ease-out),border-color var(--dur-ui) var(--ease-out),transform var(--dur-ui) var(--ease-out)}
+.btn:hover{background:var(--paper);border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--border)}
+.btn--ghost:hover{background:var(--panel);border-color:var(--ink);color:var(--ink)}
+.btn--light{background:var(--white);border-color:var(--white);color:var(--black)}
+.btn--light:hover{background:var(--muted);border-color:var(--muted)}
+.btn--outline-light{background:transparent;border-color:var(--muted);color:var(--white)}
+.btn--outline-light:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
+.text-link{display:inline-flex;align-items:center;gap:7px;min-height:44px;font-size:.9375rem;font-weight:600;color:var(--ink);border-bottom:1px solid var(--border);transition:border-color var(--dur-ui) var(--ease-out),gap var(--dur-ui) var(--ease-out)}
+.text-link:hover{border-color:var(--ink);gap:11px}
+.text-link__arrow{transition:transform var(--dur-ui) var(--ease-out)}
+.text-link:hover .text-link__arrow{transform:translate(2px,-2px)}
+.arrow-glyph{font-size:.85em;line-height:1}
 
-/* Sticky minimal navbar with active indicator */
-.site-nav{position:sticky;top:0;z-index:50;background:rgba(247,247,247,.94);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1180px;margin:0 auto;min-height:var(--nav-h);padding:0 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.nav-brand{display:inline-flex;align-items:center;min-height:44px;font-family:"Space Grotesk Variable",sans-serif;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;font-size:.95rem;color:var(--ink)}
-.nav-brand::before{content:"";display:inline-block;width:10px;height:10px;margin-right:.6rem;background:var(--ink)}
-.nav-links{display:none;align-items:center;gap:.25rem}
-.nav-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 .85rem;font-size:.85rem;font-weight:500;color:var(--muted2);position:relative}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a.active{color:var(--ink);font-weight:700}
-.nav-links a.active::after{content:"";position:absolute;left:.85rem;right:.85rem;bottom:10px;height:2px;background:var(--ink)}
-.nav-cta{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border:1px solid var(--ink);border-radius:3px;font-size:.8rem;font-weight:600;color:var(--ink)}
-.nav-cta:hover{background:var(--ink);color:var(--white)}
-.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--ink)}
+/* --- Status jujur: kotak teks, bukan capsule glow --- */
+.status{display:inline-flex;align-items:center;min-height:28px;padding:3px 9px;border:1px solid var(--border);font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--strong);white-space:normal}
+.status--solid{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.status--pending{border-style:dashed}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px 14px}
+.tag{font-family:var(--font-mono);font-size:.8125rem;letter-spacing:.03em;color:var(--strong);padding-block:2px;border-bottom:1px solid var(--border)}
+
+/* --- Header sticky minimal --- */
+.site-header{position:sticky;top:0;z-index:50;width:100%;background:var(--paper);border-bottom:1px solid transparent;transition:border-color var(--dur-ui) var(--ease-out),background-color var(--dur-ui) var(--ease-out)}
+.site-header.is-scrolled{border-bottom-color:var(--border)}
+.site-header__inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:var(--header-h)}
+.wordmark{display:inline-flex;align-items:center;gap:10px;min-height:44px;flex-shrink:0}
+.wordmark__mono{font-family:var(--font-display);font-weight:700;font-size:1rem;letter-spacing:-.04em;color:var(--white);background:var(--ink);padding:4px 6px}
+.wordmark__name{font-family:var(--font-display);font-weight:600;font-size:.875rem;letter-spacing:-.015em;color:var(--ink)}
+.site-nav{display:none;align-items:center;gap:4px}
+.site-nav__link{position:relative;display:inline-flex;align-items:center;min-height:44px;padding-inline:14px;font-size:.8125rem;font-weight:500;color:var(--subtle);transition:color var(--dur-ui) var(--ease-out)}
+.site-nav__link::after{content:"";position:absolute;left:14px;right:14px;bottom:10px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-ui) var(--ease-out)}
+.site-nav__link:hover,.site-nav__link.is-active{color:var(--ink)}
+.site-nav__link.is-active::after{transform:scaleX(1)}
+.site-header__end{display:inline-flex;align-items:center;gap:12px}
+.availability{display:none;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.04em;color:var(--subtle)}
+.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--border);border-radius:0;background:transparent;color:var(--ink)}
 .nav-toggle svg{width:20px;height:20px}
-.mobile-menu{display:none;border-top:1px solid var(--border);padding:.5rem 1.25rem 1rem;background:var(--bg)}
-.mobile-menu.open{display:flex;flex-direction:column}
-.mobile-menu a{display:flex;align-items:center;min-height:44px;border-bottom:1px solid var(--border);font-size:.95rem;font-weight:500;color:var(--muted2)}
-.mobile-menu a.active{color:var(--ink);font-weight:700}
-@media(min-width:1024px){.nav-links{display:flex}.nav-toggle{display:none}.mobile-menu{display:none!important}}
-@media(max-width:1023px){.nav-cta{display:none}}
+.mobile-menu{display:none;flex-direction:column;border-top:1px solid var(--border);padding:.5rem var(--gutter) 1rem;background:var(--paper)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{display:flex;align-items:center;min-height:44px;border-bottom:1px solid var(--border);font-size:.95rem;font-weight:500;color:var(--subtle)}
+.mobile-menu a.is-active{color:var(--ink);font-weight:700}
+@media(min-width:1024px){.site-nav{display:flex}.availability{display:inline-flex}.nav-toggle{display:none}.mobile-menu{display:none!important}}
 
-/* Hero stagger reveal */
-html.has-motion .reveal{opacity:0;transform:translateY(14px)}
-html.has-motion .is-visible .reveal,html.has-motion .reveal.is-visible{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
-html.has-motion .hero .reveal:nth-child(1){transition-delay:.04s}
-html.has-motion .hero .reveal:nth-child(2){transition-delay:.12s}
-html.has-motion .hero .reveal:nth-child(3){transition-delay:.2s}
-html.has-motion .hero .reveal:nth-child(4){transition-delay:.28s}
-html.has-motion .hero .reveal:nth-child(5){transition-delay:.36s}
-html.has-motion .hero .reveal:nth-child(6){transition-delay:.44s}
+/* --- Hero: deep black, headline sangat besar, baris ke-2 outline --- */
+.hero{background:var(--black);color:var(--white);min-height:100svh;display:flex;align-items:center;padding-block:clamp(72px,11vw,132px) clamp(64px,9vw,120px)}
+.hero__grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:end}
+.hero__copy{max-width:920px}
+.hero__index{color:var(--muted)}
+.hero__headline{margin-block:24px 28px}
+.hero-line{display:block}
+.hero-line--outline{color:transparent;-webkit-text-stroke:1.5px #FFFFFF}
+.hero .lead{color:var(--muted)}
+.hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero__availability{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:40px;padding-top:22px;border-top:1px solid var(--muted);max-width:520px}
+.hero__availability .meta-label{color:var(--muted)}
+.hero__portrait{margin:0;max-width:320px}
+.hero__portrait-frame{background:var(--surface);border:1px solid var(--muted);aspect-ratio:4/5;max-width:360px;margin-inline:auto;overflow:hidden}
+.hero__portrait-frame img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06)}
+.hero__portrait figcaption{margin-top:12px;text-align:center}
+@media(min-width:900px){.hero__grid{grid-template-columns:minmax(0,1.65fr) minmax(240px,.75fr);gap:64px}.hero__portrait-frame{margin-inline:0 0 0 auto}.hero__portrait figcaption{text-align:right}}
+@media(max-width:420px){.hero__actions .btn{flex:1 1 100%}}
 
-/* Scroll reveal for sections */
-html.has-motion .scroll-reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
-html.has-motion .scroll-reveal.is-visible{opacity:1;transform:none}
+/* --- Marquee tunggal: latar #151515, separator ·, pause --- */
+.marquee-band{background:var(--surface);border-top:1px solid var(--surface);border-bottom:1px solid var(--surface);overflow:hidden;padding-block:16px;user-select:none}
+.marquee-track{display:flex;width:max-content;gap:0}
+.marquee-group{display:inline-flex}
+.marquee-item{font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,3.5vw,2.5rem);letter-spacing:-.03em;color:var(--white);white-space:nowrap;padding-inline:22px}
+.marquee-sep{font-family:var(--font-display);font-size:.7em;color:var(--muted)}
 
-/* Numbered interest rows */
-.interest-rows{border-top:1px solid var(--border)}
-.interest-row{display:grid;grid-template-columns:56px 1fr;gap:1rem;align-items:baseline;padding:1.15rem .25rem;border-bottom:1px solid var(--border);min-height:56px}
-.interest-row .num{font-family:"Space Grotesk Variable",sans-serif;font-size:1.1rem;font-weight:700;color:var(--ink)}
-.interest-row .label{font-family:"Space Grotesk Variable",sans-serif;font-size:clamp(1rem,1.8vw,1.25rem);font-weight:600;color:var(--ink);line-height:1.25}
-@media(min-width:768px){.interest-row{grid-template-columns:88px 1fr 1fr;gap:1.5rem}.interest-row .note{font-size:.8rem;color:var(--muted2);text-align:right}}
+/* --- Permukaan bersama --- */
+.section{padding-block:var(--section-y);border-top:1px solid var(--border)}
+.section:first-of-type{border-top:0}
+.surface-dark,.charcoal{background:var(--surface);color:var(--white);border-top:1px solid var(--surface)}
+.charcoal{background:var(--black);border-top-color:var(--black)}
+.surface-dark .lead,.surface-dark .body,.surface-dark .meta-label,.surface-dark .eyebrow,.surface-dark .mono,.charcoal .lead,.charcoal .body,.charcoal .meta-label,.charcoal .eyebrow,.charcoal .mono{color:var(--muted)}
+.surface-dark .h2,.surface-dark .h3,.charcoal .h2,.charcoal .h3{color:var(--white)}
+.surface-dark .num,.charcoal .num{color:var(--muted)}
+.surface-dark .status,.surface-dark .tag,.surface-dark .text-link,.charcoal .status,.charcoal .tag,.charcoal .text-link{border-color:var(--muted);color:var(--white)}
+.surface-dark .status--solid,.charcoal .status--solid{background:var(--white);border-color:var(--white);color:var(--black)}
 
-/* Projects asymmetric */
-.projects-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
-@media(min-width:900px){.projects-grid{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}.projects-grid .project-sub{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}}
-.project-card{background:var(--bg);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:box-shadow .25s ease,transform .25s ease}
-.project-card:hover{box-shadow:0 10px 28px rgba(23,23,23,.08);transform:translateY(-2px)}
-.project-card .shot{overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--border)}
-.project-card .shot img{width:100%;height:100%;object-fit:cover;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-.project-card:hover .shot img{transform:scale(1.03)}
-.project-card .arrow{display:inline-flex;transition:transform .25s ease}
-.project-card:hover .arrow{transform:translateX(5px)}
-.flagship .shot{min-height:280px}
-@media(min-width:900px){.flagship .shot{min-height:380px}}
-.shot-label{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem .9rem;font-size:.7rem;font-family:ui-monospace,monospace;color:var(--muted2)}
+/* --- About: angka 01 raksasa --- */
+.about-grid{display:grid;grid-template-columns:1fr;gap:40px}
+.about-quote{position:relative;padding:32px 28px;background:var(--surface);border:1px solid var(--border);color:var(--white)}
+.about-quote .num{position:absolute;top:14px;right:20px;font-size:clamp(3.5rem,8vw,5.5rem);color:var(--muted)}
+.about-quote .lead{color:var(--muted)}
+.about-quote blockquote{position:relative;font-family:var(--font-display);font-size:clamp(1.125rem,2.2vw,1.5rem);font-weight:600;line-height:1.3;letter-spacing:-.025em;max-width:26ch;margin-bottom:24px}
+.about-quote .body{color:var(--muted)}
+.about-text{max-width:62ch}
+.about-text p+p{margin-top:20px}
+@media(min-width:900px){.about-grid{grid-template-columns:minmax(280px,.85fr) minmax(0,1.15fr);gap:clamp(48px,7vw,96px);align-items:start}.about-quote{padding:40px 36px}}
 
-/* Editorial about two columns */
-.about-grid{display:grid;grid-template-columns:1fr;gap:2.5rem}
-@media(min-width:768px){.about-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem}}
-.about-statement{font-family:"Space Grotesk Variable",sans-serif;font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.25;letter-spacing:-.02em;color:var(--ink)}
-.rule{width:56px;height:2px;background:var(--ink);margin:1.25rem 0}
-.editorial-row{display:grid;grid-template-columns:1fr;gap:.35rem;padding:1.25rem 0;border-top:1px solid var(--border)}
-@media(min-width:600px){.editorial-row{grid-template-columns:140px 1fr;gap:1.5rem}}
-.editorial-row .meta{font-family:ui-monospace,monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2)}
+/* --- Domains: numbered editorial rows --- */
+.domain-list{border-top:1px solid var(--border)}
+.domain-row{display:grid;grid-template-columns:1fr;gap:8px 20px;padding-block:22px;border-bottom:1px solid var(--border)}
+.domain-row .num{font-size:clamp(2.5rem,6vw,4rem)}
+@media(min-width:768px){.domain-row{grid-template-columns:88px 1fr 1fr;align-items:baseline}.domain-row .meta-label{text-align:right}}
 
-/* Timeline experience */
-.timeline{position:relative;padding-left:1.75rem;border-left:1px solid var(--border)}
-.timeline-item{position:relative;padding:0 0 2.25rem}
-.timeline-item:last-child{padding-bottom:0}
-.timeline-item::before{content:"";position:absolute;left:-1.95rem;top:.35rem;width:11px;height:11px;border:2px solid var(--ink);background:var(--bg);border-radius:50%}
-.timeline-item .when{font-family:ui-monospace,monospace;font-size:.75rem;color:var(--ink);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.timeline-item ul{margin-top:.85rem;display:grid;gap:.55rem}
-.timeline-item li{position:relative;padding-left:1.25rem;color:var(--muted2);font-size:.95rem;line-height:1.6}
-.timeline-item li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;background:var(--border)}
+/* --- Projects --- */
+.section-head > div > .h2--projects{font-size:clamp(2.5rem,6vw,5rem)}
+.project-card{border:1px solid var(--strong);background:var(--white);padding:clamp(24px,4vw,44px)}
+.project-card__top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px}
+.project-card__title{margin-bottom:6px}
+.project-card__subtitle{color:var(--strong);margin-bottom:20px}
+.project-card__desc{max-width:62ch}
+.project-card--feature{background:var(--black);border-color:var(--black);color:var(--white)}
+.project-card--feature .status{border-color:var(--muted);color:var(--muted)}
+.project-card--feature .project-card__title,.project-card--feature .project-card__subtitle{color:var(--white)}
+.project-card--feature .body,.project-card--feature .meta-label,.project-card--feature .mono,.project-card--feature .project-preview-note{color:var(--muted)}
+.project-card--feature .text-link{border-color:var(--muted);color:var(--white)}
+.project-card--feature .tag{border-color:var(--muted);color:var(--muted)}
+.project-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.project-card--feature .project-grid{grid-template-columns:1fr;gap:32px;margin-top:28px}
+@media(min-width:900px){.project-card--feature .project-grid{grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:clamp(32px,5vw,72px)}.project-pair{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}.project-pair .offset{margin-top:48px}}
+.project-flow{display:flex;flex-direction:column;gap:14px;padding:28px;border:1px solid var(--strong);background:var(--surface);color:var(--white)}
+.project-flow .meta-label,.project-flow__note{color:var(--muted)}
+.project-flow__steps{display:flex;flex-direction:column}
+.project-flow__step{display:grid;grid-template-columns:56px 1fr;align-items:baseline;gap:14px;padding-block:11px;border-top:1px solid var(--strong)}
+.project-flow__step:first-child{border-top:0}
+.project-flow__num{font-size:2rem;color:var(--muted)}
+.project-flow__name{font-family:var(--font-display);font-weight:700;font-size:clamp(1.125rem,2vw,1.375rem);letter-spacing:-.025em;color:var(--white)}
+.project-facts{margin:28px 0;border-top:1px solid var(--strong)}
+.project-facts>div{display:grid;grid-template-columns:1fr;gap:6px 20px;padding-block:16px;border-bottom:1px solid var(--strong)}
+.project-facts dt{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--subtle)}
+.project-card--feature .project-facts dt{color:var(--muted)}
+@media(min-width:768px){.project-facts>div{grid-template-columns:140px 1fr}}
+.project-preview-note{color:var(--subtle)}
+.project-card--feature .project-preview-note{color:var(--muted)}
 
-/* Skills grouped lists, no percentages */
-.skill-groups{display:grid;grid-template-columns:1fr;gap:2rem}
-@media(min-width:640px){.skill-groups{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(min-width:1024px){.skill-groups{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.skill-group h3{font-family:"Space Grotesk Variable",sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:2px solid var(--ink)}
-.skill-group li{padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--muted2)}
+/* --- Experience timeline --- */
+.timeline{border-top:1px solid var(--border)}
+.timeline__item{position:relative;display:grid;grid-template-columns:1fr;gap:14px;padding:0 0 40px 28px}
+.timeline__item:last-child{padding-bottom:0}
+.timeline__dot{position:absolute;left:1px;top:8px;width:9px;height:9px;background:var(--paper);border:1px solid var(--ink)}
+.timeline__date{display:flex;flex-direction:column;gap:6px}
+.timeline__date .mono{color:var(--subtle)}
+.timeline__org{color:var(--strong)}
+.timeline__bullets{display:grid;gap:8px;margin-top:12px}
+@media(min-width:768px){.timeline__item{grid-template-columns:minmax(160px,.4fr) minmax(0,1fr);gap:32px;padding-left:28px}}
 
-/* Monochrome marquee with middot separator */
-.marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);white-space:nowrap}
-.marquee-track{display:inline-flex;gap:2rem;padding:.9rem 0;animation:marquee-scroll 28s linear infinite;font-family:"Space Grotesk Variable",sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
-.marquee-track span{display:inline-flex;gap:2rem}
-.marquee-sep{color:var(--muted)}
-@keyframes marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* --- Education --- */
+.edu-grid{display:grid;grid-template-columns:1fr;gap:40px}
+.edu-formal{border-top:1px solid var(--border);padding-top:24px}
+.edu-school{margin-block:16px 4px}
+.edu-desc{margin-top:20px;max-width:52ch}
+.edu-period{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:28px;padding-top:16px;border-top:1px solid var(--border)}
+.edu-list li{display:grid;grid-template-columns:1fr;gap:12px;padding-block:20px;border-bottom:1px solid var(--border)}
+.edu-item .body{margin-top:6px}
+.edu-footnote{margin-top:20px;color:var(--subtle)}
+@media(min-width:768px){.edu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(48px,7vw,96px)}.edu-list li{grid-template-columns:1fr auto;align-items:start;gap:24px}}
 
-/* Charcoal contact */
-.contact-dark{background:var(--charcoal);color:var(--white);padding:clamp(3rem,7vw,6rem) 1.25rem}
-.contact-dark .kicker{font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:#D9D9D9}
-.contact-dark h2{font-family:"Space Grotesk Variable",sans-serif;font-size:clamp(2.4rem,7vw,5.5rem);line-height:.95;letter-spacing:-.04em;font-weight:700;margin:1.25rem 0 1.5rem}
-.contact-dark p{max-width:42rem;color:#D9D9D9;font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.6}
-.contact-dark a{color:var(--white)}
-.contact-dark .btn-wa{background:var(--white);color:var(--charcoal)}
-.contact-dark .btn-wa:hover{background:var(--bg2)}
-.contact-dark .dark-link{border-bottom:1px solid #525252}
-.contact-dark .dark-link:hover{border-color:var(--white)}
+/* --- Skills --- */
+.skills__grid{display:grid;grid-template-columns:1fr;border-top:1px solid var(--border)}
+.skills__group{position:relative;padding:28px 0 32px;border-bottom:1px solid var(--border)}
+.skills__num{position:absolute;top:24px;right:0;font-size:2.25rem}
+.skills__desc{margin-top:10px;max-width:34ch}
+.skills__list{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px;max-width:48ch}
+.skills__list li{color:var(--ink);border-bottom:1px solid var(--border)}
 
-/* Footer */
-.site-footer{border-top:1px solid var(--border);padding:2rem 1.25rem;background:var(--bg)}
-.footer-inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;font-size:.8rem;color:var(--muted2)}
+/* --- Interests --- */
+.interest-list{border-top:1px solid var(--border)}
+.interest-row{display:grid;grid-template-columns:64px 1fr;align-items:baseline;gap:8px 20px;padding-block:22px;border-bottom:1px solid var(--border)}
+.interest-row .num{font-size:clamp(2rem,5vw,3.5rem)}
+.interest-row__title{align-self:center}
+.interest-detail{margin:20px 0 0;color:var(--subtle);overflow-wrap:anywhere}
+.interest-note{margin-top:16px;color:var(--subtle);overflow-wrap:anywhere}
+
+/* --- Contact: deep black, oversized white --- */
+.contact{padding-block:clamp(72px,11vw,132px) clamp(56px,8vw,96px)}
+.contact__head{max-width:68ch}
+.contact__title{margin-block:20px 28px;font-size:clamp(2.5rem,8vw,7rem);line-height:.9;letter-spacing:-.05em}
+.contact__title .cta-line{color:var(--white)}
+.contact__grid{display:grid;grid-template-columns:1fr;gap:48px;margin-top:clamp(48px,7vw,88px);padding-top:32px;border-top:1px solid var(--panel)}
+.contact__chips{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:16px;color:var(--muted)}
+.contact__chips li{border-bottom:1px solid var(--panel);padding-bottom:2px}
+.contact__links{margin-top:16px;border-top:1px solid var(--panel)}
+.contact__link{display:grid;grid-template-columns:1fr;gap:4px;min-height:56px;padding-block:12px;border-bottom:1px solid var(--panel);transition:padding-left var(--dur-ui) var(--ease-out)}
+.contact__link:hover{padding-left:8px}
+.contact__label{color:var(--muted)}
+.contact__value{font-size:.9375rem;color:var(--white);overflow-wrap:anywhere}
+.contact__copy{margin-top:24px}
+@media(min-width:768px){.contact__grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(48px,6vw,96px)}.contact__link{grid-template-columns:140px 1fr;gap:20px}}
+
+/* --- Footer --- */
+.site-footer{border-top:1px solid var(--border);padding:2rem var(--gutter);background:var(--paper)}
+.footer-inner{max-width:var(--page-max);margin:0 auto;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;font-size:.8rem;color:var(--subtle)}
 .footer-inner a{min-height:44px;display:inline-flex;align-items:center;padding:0 .35rem}
 .footer-inner a:hover{color:var(--ink)}
 
-/* Reduced motion guard */
+/* --- Motion: hanya di bawah has-motion, gate reduced-motion + noscript --- */
+html.has-motion .reveal,html.has-motion .hero-fade,html.has-motion .hero-line,html.has-motion .cta-line{opacity:0;transform:translateY(16px)}
+html.has-motion .reveal.is-visible,html.has-motion .hero.is-visible .reveal,html.has-motion .hero.is-visible .hero-fade,html.has-motion .hero.is-visible .hero-line,html.has-motion .contact.is-reached .cta-line{opacity:1;transform:none;transition:opacity .45s var(--ease-out),transform .45s var(--ease-out)}
+html.has-motion .hero-line[style="--i:0"]{transition-delay:40ms}
+html.has-motion .hero-line[style="--i:1"]{transition-delay:120ms}
+html.has-motion .hero-line[style="--i:2"]{transition-delay:200ms}
+html.has-motion [style="--stagger:0"]{transition-delay:60ms}
+html.has-motion [style="--stagger:1"]{transition-delay:120ms}
+html.has-motion [style="--stagger:2"]{transition-delay:180ms}
+html.has-motion [style="--stagger:3"]{transition-delay:240ms}
+@media(prefers-reduced-motion:no-preference){
+  html.has-motion .marquee-track{animation:marquee-slide 38s linear infinite}
+  .marquee-band:hover .marquee-track,.marquee-band:focus-within .marquee-track{animation-play-state:paused}
+}
+@keyframes marquee-slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto!important}
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal,.scroll-reveal{opacity:1!important;transform:none!important}
-  .marquee-track{animation:none!important}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal,.hero-fade,.hero-line,.cta-line{opacity:1!important;transform:none!important}
 }
 
-</style><noscript><style>.reveal,.scroll-reveal{opacity:1!important;transform:none!important}.marquee-track{animation:none!important}</style></noscript><script>if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("has-motion");}</script></head><body id="top" class="bg-paper text-ink">
+/* --- P5 sinkronisasi: micro-interaction & mobile polish ------------------ */
+.hero__rules{position:absolute;inset:var(--header-h) max(var(--gutter),calc((100% - var(--page-max))/2)) 0;pointer-events:none;overflow:hidden}
+.hero__rule{position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,.12)}
+.hero__rule--top{top:0}.hero__rule--bottom{bottom:0}
+.hero__cross{position:absolute;width:9px;height:9px;background:rgba(255,255,255,.12)}
+.hero__cross--tl{top:0;left:0}.hero__cross--tr{top:0;right:0}
+.hero__cross--bl{bottom:0;left:0}.hero__cross--br{bottom:0;right:0}
+.hero{position:relative}
+.hero-line-wrap{display:block;overflow:hidden}
+.hero__meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.hero__meta-cell--place{flex:1 1 100%}
+.hero__meta-cell--index{margin-left:auto}
+.hero__scroll{display:inline-flex;align-items:center;min-height:44px;margin-top:32px;color:var(--muted);border-bottom:1px solid var(--muted)}
+.hero__scroll:hover{color:var(--white);border-color:var(--white)}
+@media(max-width:899px){.hero__portrait{max-width:280px;margin-inline:auto}}
+@media(min-width:900px){.hero__portrait-frame{margin-inline:0 0 0 auto}}
+
+/* Section entrance P3: sekali masuk viewport, lalu observer berhenti. */
+html.has-motion .section-enter{opacity:0;clip-path:inset(0 0 8% 0);transform:translateY(24px);transition:opacity 380ms var(--ease-out),clip-path 380ms var(--ease-out),transform 380ms var(--ease-out)}
+html.has-motion .section-enter.is-visible{opacity:1;clip-path:inset(0 0 0 0);transform:translate(0,0)}
+html.has-motion [style="--stagger:1"].section-enter{transition-delay:100ms}
+html.has-motion [style="--stagger:2"].section-enter{transition-delay:200ms}
+html.has-motion [style="--stagger:3"].section-enter{transition-delay:300ms}
+
+/* Timeline aktif + progress bertahap P3/P4. */
+.timeline{position:relative}
+.timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.timeline__progress{position:absolute;left:5px;top:6px;width:1px;height:calc(100% - 12px);background:var(--ink);transform-origin:top}
+html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
+.timeline__ordinal{font-size:clamp(2.25rem,4vw,3rem);margin-bottom:4px}
+.timeline__item.is-reached .timeline__date .mono,.timeline__item.is-reached .timeline__org,.timeline__item.is-reached .timeline__ordinal,.timeline__item.is-reached .meta-label{color:var(--black)}
+.timeline__date .mono,.timeline__org,.timeline__ordinal,.meta-label{transition:color var(--dur-ui) var(--ease-out)}
+.timeline__item.is-reached .timeline__bullets li::before{background:var(--black)}
+@media(min-width:768px){.timeline__date{align-items:flex-end;text-align:right}}
+
+/* Skills details P4: native, keyboard accessible, default open. */
+.skills__group{padding:0}
+.skills__summary{display:grid;grid-template-columns:1fr 24px;align-items:end;gap:8px 16px;min-height:44px;padding-block:28px 20px;cursor:pointer;list-style:none}
+.skills__summary::-webkit-details-marker{display:none}
+.skills__summary:focus-visible{outline:2px solid var(--white);outline-offset:-4px}
+.surface-dark .skills__summary{color:var(--white)}
+.skills__num{position:static;grid-column:1;font-size:clamp(3.5rem,7vw,5.5rem);line-height:.9;color:var(--muted)}
+.skills__title{grid-column:1;margin-top:8px;color:var(--white)}
+.skills__toggle{position:relative;grid-column:2;grid-row:1;justify-self:end;align-self:center;width:16px;height:16px}
+.skills__toggle::before,.skills__toggle::after{content:"";position:absolute;background:var(--muted)}
+.skills__toggle::before{left:0;right:0;top:7px;height:1px}
+.skills__toggle::after{top:0;bottom:0;left:7px;width:1px}
+.skills__group[open] .skills__toggle::after{transform:scaleY(0);opacity:0}
+.skills__panel{padding-bottom:32px}
+.skills__list li{color:var(--white)}
+.skills__item{padding-block:2px;transition:transform var(--dur-ui) var(--ease-out),border-color var(--dur-ui) var(--ease-out)}
+.skills__item:active{transform:translateY(2px);border-color:var(--white)}
+@media(hover:hover) and (pointer:fine){.skills__item:hover{transform:translateY(-2px);border-color:var(--white)}}
+.skills__summary,.project-flow__label,a,button,summary{touch-action:manipulation}
+
+/* P5: underline scaleX pada text-link; arrow P2 tidak disentuh. */
+.text-link{position:relative}
+.text-link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-ui) var(--ease-out)}
+.text-link:hover::after,.text-link:focus-visible::after{transform:scaleX(1)}
+.text-link:hover,.text-link:focus-visible{border-bottom-color:transparent}
+.surface-dark .text-link::after,.charcoal .text-link::after{background:var(--white)}
+.btn:focus-visible,summary:focus-visible,.site-footer a:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+.btn--light:active{transform:translateY(1px)}
+.h1,.h2,.h3,.contact__title{overflow-wrap:break-word}
+@media(max-width:419px){.status{white-space:normal;max-width:100%}.hero__actions{flex-wrap:wrap}}
+
+/* Magnetic P5 hanya pointer presisi + no-preference, maks 4px. */
+@media(prefers-reduced-motion:no-preference){
+  @media(hover:hover) and (pointer:fine){
+    html.has-motion [data-magnetic]{transform:translate3d(var(--mag-x,0px),var(--mag-y,0px),0)}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .section-enter,.skills__item,.skills__toggle::before,.skills__toggle::after,.text-link::after,[data-magnetic]{transform:none!important;transition:none!important;opacity:1!important;clip-path:none!important}
+  .timeline__progress{transform:none!important}
+  .text-link:hover{border-bottom-color:var(--border)}
+}
+</style><noscript><style>.reveal,.hero-fade,.hero-line,.cta-line{opacity:1!important;transform:none!important}.marquee-track{animation:none!important}</style></noscript><script>if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("has-motion");}</script></head><body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-nav">
- <div class="nav-inner">
-   <a class="nav-brand" href="#top">Faras Fadhil Firdaus</a>
-   <nav class="nav-links" aria-label="Primary"><a href="#about" data-path="about">About</a><a href="#what-i-do" data-path="what-i-do">What I Do</a><a href="#projects" data-path="projects">Projects</a><a href="#experience" data-path="experience">Experience</a><a href="#skills" data-path="skills">Skills</a><a href="#interests" data-path="interests">Interests</a><a href="#contact" data-path="contact">Contact</a></nav>
-   <a class="nav-cta" href="#contact">Let's Talk</a>
-   <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-   </button>
- </div>
- <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile"><a href="#about" data-path="about">About</a><a href="#what-i-do" data-path="what-i-do">What I Do</a><a href="#projects" data-path="projects">Projects</a><a href="#experience" data-path="experience">Experience</a><a href="#skills" data-path="skills">Skills</a><a href="#interests" data-path="interests">Interests</a><a href="#contact" data-path="contact">Contact</a></nav>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="#top"><span class="wordmark__mono">FFF</span><span class="wordmark__name">Faras Fadhil Firdaus</span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a class="site-nav__link" href="#about" data-magnetic>About</a><a class="site-nav__link" href="#projects" data-magnetic>Projects</a><a class="site-nav__link" href="#experience" data-magnetic>Experience</a><a class="site-nav__link" href="#contact" data-magnetic>Contact</a></nav>
+    <div class="site-header__end">
+      <span class="availability">Open to remote</span>
+      <a class="btn" href="#contact">Let's Talk</a>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile sections"><a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#skills">Skills</a><a href="#interests">Interests</a><a href="#contact">Contact</a></nav>
 </header>
 <main id="main">
-<section id="hero" class="hero" style="max-width:1180px;margin:0 auto;padding:clamp(3rem,8vw,6rem) 1.25rem clamp(4rem,9vw,7rem);display:grid;gap:2.5rem;grid-template-columns:1fr">
- <div>
-   <div class="reveal" style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem"><span style="width:8px;height:8px;background:var(--ink);display:inline-block"></span><span style="font-family:ui-monospace,monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2)">Technology Enthusiast × AI-Assisted Developer</span></div>
-   <h1 style="margin:0 0 1.5rem"><span class="reveal" style="display:block;font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(2rem,7vw,2.4rem);font-weight:700;line-height:1.02;letter-spacing:-.04em">EXPLORING AI.</span><span class="reveal" style="display:block;font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(2rem,7vw,2.4rem);font-weight:700;line-height:1.02;letter-spacing:-.04em">BUILDING IDEAS.</span><span class="reveal" style="display:block;font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(2rem,7vw,2.4rem);font-weight:700;line-height:1.02;letter-spacing:-.04em">CREATING IMPACT.</span></h1>
-   <div class="reveal" style="width:64px;height:2px;background:var(--ink);margin:0 0 1.75rem"></div>
-   <p class="reveal" style="max-width:38rem;color:var(--muted2);font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.65">I studied Computer and Network Engineering and now work with AI tools, software development, language technology, and digital operations. I build small tools, test AI-assisted workflows, and handle administrative systems.</p>
-   <div class="reveal" style="display:grid;gap:.75rem;margin-bottom:2rem"><a class="btn-wa" href="#projects" style="justify-content:center">View Projects <span class="arrow" aria-hidden="true">↗</span></a><a class="btn-wa" href="#contact" style="justify-content:center;background:var(--bg2);color:var(--ink)">Contact Me <span class="arrow" aria-hidden="true">↗</span></a><a href="./cv-faras.pdf" download style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid var(--border);border-radius:4px;color:var(--muted2)">Download CV</a></div>
-   <div class="reveal" style="display:inline-flex;align-items:center;gap:.7rem;padding:.75rem .9rem;border:1px solid var(--border);background:var(--bg2)"><span style="width:8px;height:8px;border-radius:50%;background:var(--ink)"></span><span style="font-size:.8rem;color:var(--muted2)">Sukoharjo, Jawa Tengah, Indonesia · Open to Remote Opportunities &amp; Global Collaboration</span></div>
- </div>
- <figure class="reveal" style="margin:0 0 2rem;border:1px solid var(--border);background:var(--bg2);aspect-ratio:4/3;overflow:hidden"><img src="./portrait-faras.svg" width="800" height="1000" fetchpriority="high" alt="Illustrated monochrome portrait of Faras Fadhil Firdaus on light grey paper." style="width:100%;height:100%;object-fit:cover;filter:grayscale(1)"></figure>
-</section>
-<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Building DEXTRA<span class="marquee-sep" aria-hidden="true"> · </span></span><span>AI-Assisted Development<span class="marquee-sep" aria-hidden="true"> · </span></span><span>Indonesian Language Data<span class="marquee-sep" aria-hidden="true"> · </span></span><span>Open to Collaboration<span class="marquee-sep" aria-hidden="true"> · </span></span><span>Prototype · Research · Operations<span class="marquee-sep" aria-hidden="true"> · </span></span><span>Building DEXTRA<span class="marquee-sep" aria-hidden="true"> · </span></span><span>AI-Assisted Development<span class="marquee-sep" aria-hidden="true"> · </span></span><span>Indonesian Language Data<span class="marquee-sep" aria-hidden="true"> · </span></span><span>Open to Collaboration<span class="marquee-sep" aria-hidden="true"> · </span></span><span>Prototype · Research · Operations<span class="marquee-sep" aria-hidden="true"> · </span></span></div></div>
-<section id="about" style="border-top:1px solid var(--border);padding:clamp(4rem,8vw,7rem) 1.25rem;background:var(--bg2)">
- <div class="about-grid" style="max-width:1180px;margin:0 auto">
-   <div><span style="font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--muted2)">01 / ORIENTATION</span>
-     <h2 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin:.75rem 0 1.75rem">About My Path</h2>
-     <p class="about-statement">Never minimize potential, never exaggerate experience. Build technical competence from the ground up and keep testing what you learn.</p>
-     <div class="rule"></div>
-     <p style="color:var(--muted2);line-height:1.7">I take on practical problems that need analytical thinking, structured systems, and AI tools. I start each one from the fundamentals and check the result against the actual task. I am looking for roles that combine infrastructure work, data evaluation, language processing, and operational problem solving.</p>
-   </div>
-   <div><div class="editorial-row"><span class="meta">2023 – 2026</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.15rem;color:var(--ink);margin-bottom:.35rem">TJKT at SMK Negeri 1 Sukoharjo</h3><p style="color:var(--muted2);line-height:1.65">Studied IT systems, enterprise networking, hardware diagnostics, and troubleshooting under the national vocational curriculum.</p></div></div><div class="editorial-row"><span class="meta">4 Months</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.15rem;color:var(--ink);margin-bottom:.35rem">Field Internship: Soerya Global Komputer</h3><p style="color:var(--muted2);line-height:1.65">Handled daily IT support: computer maintenance, operating system deployment, component-level troubleshooting, and technical documentation.</p></div></div><div class="editorial-row"><span class="meta">Ongoing</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.15rem;color:var(--ink);margin-bottom:.35rem">Independent Exploration &amp; Modern Technologies</h3><p style="color:var(--muted2);line-height:1.65">Learning applied AI, AI-assisted software workflows, Indonesian computational linguistics, model evaluation, and workflow automation.</p></div></div></div>
- </div>
-</section>
-<section id="what-i-do" style="border-top:1px solid var(--border);padding:clamp(4rem,8vw,7rem) 1.25rem">
- <div style="max-width:1180px;margin:0 auto"><span style="font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--muted2)">02 / DOMAINS</span>
- <h2 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin:.75rem 0 2rem">What I Do</h2>
- <div class="editorial-row"><span class="num" style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ink)">01</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.2rem;margin-bottom:.35rem">AI &amp; Intelligent Technologies</h3><p style="color:var(--muted2);line-height:1.65">I use language models, prompts, and agent patterns to sort unstructured information and prototype interfaces.</p></div></div><div class="editorial-row"><span class="num" style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ink)">02</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.2rem;margin-bottom:.35rem">Language &amp; AI Evaluation</h3><p style="color:var(--muted2);line-height:1.65">Exploring Indonesian computational linguistics, grammar rules, dataset quality checks, search result grading, and text evaluation.</p></div></div><div class="editorial-row"><span class="num" style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ink)">03</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.2rem;margin-bottom:.35rem">Digital Operations &amp; Administration</h3><p style="color:var(--muted2);line-height:1.65">I keep records, build spreadsheets, tighten document workflows, and support remote office administration.</p></div></div><div class="editorial-row"><span class="num" style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ink)">04</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.2rem;margin-bottom:.35rem">Software &amp; Automation</h3><p style="color:var(--muted2);line-height:1.65">I build full-stack interfaces, REST services, and scripts, and connect web apps to language-model endpoints and external APIs.</p></div></div></div>
-</section>
-<section id="projects" style="border-top:1px solid var(--border);padding:clamp(4rem,8vw,7rem) 1.25rem;background:var(--bg2)">
- <div style="max-width:1180px;margin:0 auto"><span style="font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--muted2)">03 / ARTIFACTS</span>
- <h2 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin:.75rem 0 2rem">Featured Projects</h2>
- <div class="projects-grid"><article class="project-card flagship">
-  <div class="shot shot-label"><span>DEXTRA / architecture preview</span><span>Authentic product screenshot pending</span></div>
-  <div style="padding:clamp(1.5rem,4vw,3rem)">
-    <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:1rem"><span style="background:var(--ink);color:var(--white);padding:.25rem .55rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Built</span><span style="font-family:ui-monospace,monospace;font-size:.75rem;color:var(--muted2)">Enterprise Architecture</span></div>
-    <h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;margin-bottom:.25rem">DEXTRA</h3>
-    <p style="color:var(--ink);font-size:1.1rem;font-weight:600;margin-bottom:1rem">Governed Enterprise AI Workforce &amp; Operations Platform</p>
-    <p style="color:var(--muted2);line-height:1.7;max-width:44rem;margin-bottom:1rem">An interactive prototype for governed AI operations, not an enterprise production deployment. Four specialists cover Finance, HR, Inventory, and Operations. AI reads, analyzes, and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an audit record. The Policy Validator is a deterministic governance engine, not an AI agent.</p>
-    <p class="proj-meta">Next.js · React · Python · FastAPI · MCP <span>Live demo</span></p>
-    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0"><span style="border:1px solid var(--border);padding:.3rem .55rem;border-radius:3px;font-size:.75rem;color:var(--muted2)">AI Agents</span><span style="border:1px solid var(--border);padding:.3rem .55rem;border-radius:3px;font-size:.75rem;color:var(--muted2)">Next.js</span><span style="border:1px solid var(--border);padding:.3rem .55rem;border-radius:3px;font-size:.75rem;color:var(--muted2)">React</span><span style="border:1px solid var(--border);padding:.3rem .55rem;border-radius:3px;font-size:.75rem;color:var(--muted2)">Python</span><span style="border:1px solid var(--border);padding:.3rem .55rem;border-radius:3px;font-size:.75rem;color:var(--muted2)">FastAPI</span><span style="border:1px solid var(--border);padding:.3rem .55rem;border-radius:3px;font-size:.75rem;color:var(--muted2)">MCP</span><span style="border:1px solid var(--border);padding:.3rem .55rem;border-radius:3px;font-size:.75rem;color:var(--muted2)">System Integration</span></div>
-    <div style="display:flex;flex-wrap:wrap;gap:1.25rem"><a class="group" href="https://dextra-office-agent.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Buka live demo DEXTRA: prototype interaktif dengan empat spesialis dan Policy Validator deterministik" style="display:inline-flex;align-items:center;gap:.4rem;min-height:44px;border-bottom:2px solid var(--ink);font-weight:600">Live demo (prototype / demo interaktif) <span class="arrow">↗</span></a><a class="group" href="./dextra-dashboard.svg" style="display:inline-flex;align-items:center;gap:.4rem;min-height:44px;border-bottom:1px solid var(--border);color:var(--muted2)">View architecture diagram <span class="arrow">↗</span></a></div>
+<section class="hero" id="hero">
+  <div class="hero__rules" aria-hidden="true"><span class="hero__rule hero__rule--top"></span><span class="hero__rule hero__rule--bottom"></span><span class="hero__cross hero__cross--tl"></span><span class="hero__cross hero__cross--tr"></span><span class="hero__cross hero__cross--bl"></span><span class="hero__cross hero__cross--br"></span></div>
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <div class="hero__meta hero-fade"><span class="hero__meta-cell">FFF / PORTFOLIO 2026</span><span class="hero__meta-cell">AVAILABLE</span><span class="hero__meta-cell hero__meta-cell--place">Sukoharjo, Jawa Tengah, Indonesia</span><span class="hero__meta-cell hero__meta-cell--index">01 / 09</span></div>
+      <h1 class="h1 hero__headline"><span class="hero-line-wrap"><span class="hero-line" style="--i:0">EXPLORING AI.</span></span><span class="hero-line-wrap"><span class="hero-line hero-line--outline" style="--i:1">BUILDING IDEAS.</span></span><span class="hero-line-wrap"><span class="hero-line" style="--i:2">CREATING IMPACT.</span></span></h1>
+      <p class="lead hero-fade">Background in Computer and Network Engineering. I work at the intersection of artificial intelligence, software development, language technologies, and digital operations, building practical solutions with AI-assisted workflows.</p>
+      <div class="hero__actions hero-fade"><a class="btn btn--light" href="#projects">View Projects</a><a class="btn btn--outline-light" href="#contact">Contact Me</a></div>
+      <figure class="hero__portrait hero-fade"><div class="hero__portrait-frame"><img src="./portrait-faras.svg" width="800" height="1000" fetchpriority="high" alt="Illustrated monochrome portrait of Faras Fadhil Firdaus. The original artwork is being updated to a neutral monochrome treatment."/></div><figcaption class="meta-label">Faras Fadhil Firdaus, 2026</figcaption></figure>
+      <div class="hero__availability hero-fade"><span class="status">Open to remote opportunities and global collaboration</span></div>
+    </div>
+    <a class="hero__scroll mono" href="#about">SCROLL ↓</a>
   </div>
-</article><div class="project-sub"><article class="project-card">
-  <div class="shot shot-label" style="aspect-ratio:16/9"><span>AI Detector / interface preview</span><span>Authentic product screenshot pending</span></div>
-  <div style="padding:1.75rem"><span style="display:inline-block;background:var(--bg2);border:1px solid var(--border);padding:.25rem .55rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:1rem">Live Demo</span>
-  <h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.5rem;margin-bottom:.25rem">AI Detector Mahasiswa</h3>
-  <p style="color:var(--ink);font-weight:600;margin-bottom:.75rem">Indonesian Academic Writing Analyzer</p>
-  <p style="color:var(--muted2);line-height:1.7;margin-bottom:1rem">A live demo for analyzing Indonesian academic writing. Paste or upload txt, md, pdf, and docx files. It checks 10 language patterns, offers an optional local model around 130MB, and shows a score with highlighted text plus a PDF report, in Indonesian and English. The FAQ is explicit: no detector is 100% accurate, this is <strong>bukan</strong> pengganti Turnitin, and text stays private in the browser.</p>
-  <p class="proj-meta">NLP · Indonesian Language Analysis · AI Evaluation <span>Live</span></p>
-  <a class="group" href="https://ai-detector-mahasiswa.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Buka live demo AI Detector Mahasiswa: indikator skor tidak pasti, bukan vonis akademik" style="display:inline-flex;align-items:center;gap:.4rem;min-height:44px;border-bottom:2px solid var(--ink);font-weight:600;margin:1rem 0">Live demo <span class="arrow">↗</span></a>
-  <p style="font-size:.8rem;color:var(--muted2)">∗ Skor adalah indikator tidak pasti, bukan bukti penggunaan AI atau pelanggaran akademik. Bukan pengganti Turnitin.</p></div>
-</article><article class="project-card">
-  <div class="shot shot-label" style="aspect-ratio:16/9"><span>Experiments / documentation preview</span><span>No public product screenshot</span></div>
-  <div style="padding:1.75rem"><span style="display:inline-block;background:var(--bg2);border:1px solid var(--border);padding:.25rem .55rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:1rem">Ongoing Exploration</span>
-  <h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.5rem;margin-bottom:.25rem">AI &amp; Technical Experiments</h3>
-  <p style="color:var(--ink);font-weight:600;margin-bottom:.75rem">Independent Learning &amp; Exploration</p>
-  <p style="color:var(--muted2);line-height:1.7;margin-bottom:1rem">I run experiments with AI tools, agent workflows, APIs, Model Context Protocol (MCP), and AI-assisted coding. I keep notes on what I learn and the prototypes I make.</p>
-  <p class="proj-meta">AI Tools · MCP · APIs · Workflows <span>Ongoing</span></p>
-  <p style="font-size:.8rem;color:var(--muted2);margin-top:1rem">∗ I update the repository as I try new ideas.</p></div>
-</article></div></div></div>
 </section>
-<section id="experience" style="border-top:1px solid var(--border);padding:clamp(4rem,8vw,7rem) 1.25rem">
- <div style="max-width:1180px;margin:0 auto"><span style="font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--muted2)">04 / TRACK RECORD</span>
- <h2 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin:.75rem 0 2rem">Experience</h2>
- <div class="timeline"><div class="timeline-item"><span class="when">Vocational Internship</span>
- <h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.35rem;color:var(--ink);margin:.35rem 0">IT Support Intern</h3>
- <p style="color:var(--muted2);font-weight:600">Soerya Global Komputer · 4 Months · 2025</p><ul><li>Diagnosed hardware faults, replaced components, and troubleshot PC and laptop boards.</li><li>Installed operating systems, set up drivers and security settings, and configured office software.</li><li>Cleaned dust, reapplied thermal paste, and ran preventive maintenance.</li><li>Wrote intake logs, repair handovers, and diagnostic reports for clients.</li></ul></div><div class="timeline-item"><span class="when">Activities &amp; logistics</span>
- <h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.35rem;color:var(--ink);margin:.35rem 0">Member, Activities Section</h3>
- <p style="color:var(--muted2);font-weight:600">Palang Merah Remaja (PMR) Wira · 2023 – 2025</p><ul><li>Helped plan and run social activities and basic PMR training sessions.</li><li>Prepared equipment lists and supported event rundowns with members from other sections.</li><li>Supported member administration and routine coordination.</li></ul></div><div class="timeline-item"><span class="when">Activities &amp; coordination</span>
- <h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.35rem;color:var(--ink);margin:.35rem 0">Member, Activities Section</h3>
- <p style="color:var(--muted2);font-weight:600">Dewan Ambalan Pramuka · 2023 – 2025</p><ul><li>Assisted with activity scheduling and day-to-day coordination.</li><li>Supported member administration and logistics for organizational activities.</li></ul></div></div></div>
-</section>
-<section id="education" style="border-top:1px solid var(--border);padding:clamp(4rem,8vw,7rem) 1.25rem;background:var(--bg2)">
- <div style="max-width:1180px;margin:0 auto"><span style="font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--muted2)">05 / QUALIFICATIONS</span>
- <h2 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin:.75rem 0 2rem">Education &amp; Certifications</h2>
- <div class="editorial-row"><span class="meta">2023 – 2026</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.15rem;color:var(--ink)">SMK Negeri 1 Sukoharjo</h3><p style="color:var(--muted2)">Computer and Network Engineering (TJKT)</p></div></div>
- <div class="editorial-row"><span class="meta">Issued 2025</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.1rem;color:var(--ink)">MTCNA</h3><p style="color:var(--muted2);font-size:.9rem">MikroTik Certified Network Associate</p></div></div><div class="editorial-row"><span class="meta">Issued 2026</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.1rem;color:var(--ink)">BNSP Junior Fiber Optic Cable Jointer</h3><p style="color:var(--muted2);font-size:.9rem"></p></div></div><div class="editorial-row"><span class="meta">BPVP · 2026</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.1rem;color:var(--ink)">Practical Office Advance</h3><p style="color:var(--muted2);font-size:.9rem">BPVP Surakarta · 260 hours · 9 competency units</p></div></div>
- <div class="editorial-row"><span class="meta">Status</span><div><h3 style="font-family:'Space Grotesk Variable',sans-serif;font-size:1.1rem;color:var(--ink)">BNSP Practical Office Advance</h3><span style="display:inline-block;margin-top:.4rem;border:1px solid var(--border);padding:.25rem .5rem;font-size:.75rem;color:var(--muted2)">In Issuance / Printing Process</span></div></div>
- <p style="font-size:.8rem;color:var(--muted2);margin-top:1.25rem">* I can provide the registry IDs for these certificates on request.</p></div>
-</section>
-<section id="skills" style="border-top:1px solid var(--border);padding:clamp(4rem,8vw,7rem) 1.25rem">
- <div style="max-width:1180px;margin:0 auto"><span style="font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--muted2)">06 / TOOLKIT</span>
- <h2 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin:.75rem 0 2rem">Skills &amp; Technologies</h2>
- <p style="color:var(--muted2);margin-bottom:2rem">Organized by discipline. No subjective percentage bars.</p>
- <div class="skill-groups"><div class="skill-group"><h3>AI & Modern Technologies</h3><ul><li>Prompt Engineering</li><li>Agentic Workflows</li><li>Model Context Protocol</li><li>Ollama / Local LLMs</li><li>Retrieval Pipelines</li><li>AI-Assisted Dev</li></ul></div><div class="skill-group"><h3>Software & Integration</h3><ul><li>Python</li><li>FastAPI</li><li>Next.js & React</li><li>Git / GitHub</li><li>REST & MCP APIs</li><li>Playwright</li></ul></div><div class="skill-group"><h3>IT & Networking</h3><ul><li>MikroTik RouterOS</li><li>IPv4 Subnetting</li><li>Fiber Optic Splicing</li><li>Hardware Repair</li><li>Windows & Linux OS</li><li>Troubleshooting</li></ul></div><div class="skill-group"><h3>Office &amp; Productivity</h3><ul><li>Microsoft Word, Excel, PowerPoint</li><li>Document Formatting &amp; SOP Documentation</li><li>Data Entry &amp; Web Research</li><li>Data Management</li><li>Administrative Support</li></ul></div></div></div>
-</section>
-<section id="interests" style="border-top:1px solid var(--border);padding:clamp(4rem,8vw,7rem) 1.25rem;background:var(--bg2)">
- <div style="max-width:1180px;margin:0 auto"><span style="font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;color:var(--muted2)">07 / HORIZONS</span>
- <h2 style="font-family:'Space Grotesk Variable',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.03em;margin:.75rem 0 1rem">Areas of Interest</h2>
- <p style="color:var(--muted2);margin-bottom:2rem">Minat dan eksplorasi aktif, bukan pengalaman kerja komersial formal.</p>
- <div class="interest-rows"><div class="interest-row"><span class="num">01</span><span class="label">AI &amp; Intelligent Technologies</span></div><div class="interest-row"><span class="num">02</span><span class="label">Language &amp; AI Evaluation</span></div><div class="interest-row"><span class="num">03</span><span class="label">Software &amp; Workflow Automation</span></div><div class="interest-row"><span class="num">04</span><span class="label">Digital Operations &amp; Administration</span></div></div>
-  <p style="font-size:.85rem;color:var(--muted2);line-height:1.7;margin-top:1.25rem">Focus areas: AI Training &amp; Data Evaluation · AI Research Assistance · Indonesian Linguistics &amp; Language Technologies · Search Engine Evaluation · Data Collection &amp; Annotation · Remote Administrative Support · HR &amp; Office Administration · Virtual Assistance · AI Automation &amp; Software Development.</p></div>
-</section>
-<section id="contact" class="contact-dark">
- <div style="max-width:1180px;margin:0 auto">
-  <span class="kicker">08 / INVITATION</span>
-  <h2>OPEN TO<br>NEW POSSIBILITIES.</h2>
-  <p>I am open to AI prototyping work, junior technical operations, and collaborative problem solving. Kirim detail proyeknya lewat email.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin:2rem 0">
-    <a class="btn-wa" href="mailto:farasfirdaus564@gmail.com?subject=Kolaborasi%20Portofolio%20Faras">Email Me <span class="arrow" aria-hidden="true">↗</span></a>
-    <a class="btn-wa" href="https://wa.me/6288238349814?text=Halo%20Faras%2C%20saya%20ingin%20diskusi%20tentang%20kolaborasi%20atau%20proyek." target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">Chat WhatsApp <span class="arrow" aria-hidden="true">↗</span></a>
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head section-enter"><div><span class="eyebrow">02 / Orientation</span><h2 class="h2">A Little About My Journey</h2></div><p class="mono section-head__note">Authenticity / Practical Foundation / Continuous Evolution</p></div>
+    <div class="about-grid">
+      <div class="about-quote reveal"><span class="num" aria-hidden="true">01</span><blockquote>Never minimize potential, never exaggerate experience. Build ground-up technical competence with relentless curiosity.</blockquote><p class="body">I am driven by practical problems where analytical thinking, structured systems, and emerging automated tools intersect. Every endeavor starts with solid fundamentals and disciplined execution.</p></div>
+      <div class="about-text">
+        <p class="lead reveal" style="--stagger:0">I started with hardware, not theory: four months at Soerya Global Komputer fixing PCs and printers, installing systems, and writing down each fix so the next person could repeat it.</p>
+        <p class="body reveal" style="--stagger:1">That habit carried into AI. Today I build with language models, evaluate Indonesian text, and automate workflows, always checking how the system behaves before trusting it.</p>
+        <p class="body reveal" style="--stagger:2">Looking for work where infrastructure, data, and language meet practical problems.</p>
+      </div>
+    </div>
   </div>
-  <p class="contact-lines" style="color:#D9D9D9">+62 882-3834-9814 · <a class="dark-link" href="mailto:farasfirdaus564@gmail.com?subject=Kolaborasi%20Portofolio%20Faras&body=Halo%20Faras%2C%20nama%20saya%20...">farasfirdaus564@gmail.com</a></p>
-  <div style="display:flex;flex-wrap:wrap;gap:1.25rem;margin-top:1.5rem;font-size:.9rem">
-    <a class="dark-link" href="https://github.com/farasfadhil" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
-    <a class="dark-link" href="https://linkedin.com/in/faras-fadhil-firdaus" target="_blank" rel="noopener noreferrer">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a>
-    <a class="dark-link" href="./cv-faras.pdf" download>Download CV <span class="arrow" aria-hidden="true">↗</span></a>
+</section>
+<section class="section" id="domains">
+  <div class="container">
+    <div class="section-head section-enter"><div><span class="eyebrow">03 / Domains</span><h2 class="h2">What I Do</h2></div><p class="mono section-head__note">Practical focus, not commercial experience claims</p></div>
+    <ol class="domain-list"><li class="domain-row"><span class="num" aria-hidden="true">01</span><span class="h3">AI &amp; Intelligent Technologies</span><span class="meta-label">Language models, prompts, agent patterns, prototypes</span></li><li class="domain-row"><span class="num" aria-hidden="true">02</span><span class="h3">Language &amp; AI Evaluation</span><span class="meta-label">Indonesian linguistics, dataset quality, text grading</span></li><li class="domain-row"><span class="num" aria-hidden="true">03</span><span class="h3">Software &amp; Automation</span><span class="meta-label">Full-stack interfaces, REST services, scripts, APIs</span></li><li class="domain-row"><span class="num" aria-hidden="true">04</span><span class="h3">Digital Operations &amp; Administration</span><span class="meta-label">Records, spreadsheets, document workflows, remote support</span></li></ol>
   </div>
-  <p style="font-size:.8rem;margin-top:2rem;color:#525252">Sukoharjo, Jawa Tengah, Indonesia · Remote · WFA · Hybrid · On-site</p>
- </div>
+</section>
+<div class="marquee-band"><div class="marquee-track" aria-hidden="true"><span class="marquee-group"><span class="marquee-item">AI &amp; Technology<span class="marquee-sep"> · </span></span><span class="marquee-item">Digital Operations<span class="marquee-sep"> · </span></span><span class="marquee-item">Creative Development<span class="marquee-sep"> · </span></span><span class="marquee-item">Continuous Learning<span class="marquee-sep"> · </span></span></span><span class="marquee-group"><span class="marquee-item">AI &amp; Technology<span class="marquee-sep"> · </span></span><span class="marquee-item">Digital Operations<span class="marquee-sep"> · </span></span><span class="marquee-item">Creative Development<span class="marquee-sep"> · </span></span><span class="marquee-item">Continuous Learning<span class="marquee-sep"> · </span></span></span></div></div>
+<section class="section" id="projects">
+  <div class="container" id="work">
+    <div class="section-head section-enter"><div><span class="eyebrow">04 / Artifacts</span><h2 class="h2 h2--projects">Selected Projects</h2></div><p class="mono section-head__note">System Prototypes / Research Concepts / Lab Experiments</p><span class="sr-only">Anchor for the projects section</span></div>
+    <article class="project-card project-card--feature reveal">
+      <div class="project-grid">
+        <div class="project-card__info">
+          <div class="project-card__top"><span class="status status--solid">Built</span><span class="meta-label">Enterprise Architecture</span></div>
+          <h3 class="h2 project-card__title">DEXTRA</h3>
+          <p class="h4 project-card__subtitle">Governed Enterprise AI Workforce &amp; Operations Platform</p>
+          <p class="body project-card__desc">An interactive prototype for governed AI operations, not an enterprise production deployment. Four specialists cover Finance, HR, Inventory, and Operations. AI reads, analyzes, and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an audit record. The Policy Validator is a deterministic governance engine, not an AI agent.</p>
+          <p class="mono project-preview-note">No authentic product screenshot yet. This preview is text only.</p>
+          <dl class="project-facts"><div><dt>Problem</dt><dd>Operational work spread across tools without clear authority or a traceable record of execution.</dd></div><div><dt>Contribution</dt><dd>Designed around specialized AI workers, human-defined authority, and approval-based execution.</dd></div><div><dt>Governance</dt><dd>AI reads, analyzes and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an audit record. Four specialists: Finance, HR, Inventory, Operations. The Policy Validator is a deterministic governance engine, not an AI agent.</dd></div><div><dt>Approach</dt><dd>Multi-agent orchestration, MCP integration, deterministic policy validation, and audit trails. Interactive prototype, not a production enterprise deployment.</dd></div></dl>
+          <ul class="tag-list"><li class="sr-only">Technologies used</li><li class="tag">Next.js</li><li class="tag">React</li><li class="tag">Python</li><li class="tag">FastAPI</li><li class="tag">MCP</li><li class="tag">Deterministic Policy Validator</li><li class="tag">Approval-based execution</li><li class="tag">Audit trail</li></ul>
+          <div class="project-card__links"><a class="text-link" href="https://dextra-office-agent.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="DEXTRA: Live demo, interactive prototype (opens in new tab)">Live demo (prototype / demo interaktif) <span class="text-link__arrow arrow-glyph" aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="project-flow">
+          <span class="meta-label">Governance path</span>
+          <ol class="project-flow__steps"><li class="project-flow__step"><span class="project-flow__num num" aria-hidden="true">01</span><span class="project-flow__name">Request</span></li><li class="project-flow__step"><span class="project-flow__num num" aria-hidden="true">02</span><span class="project-flow__name">Analyze</span></li><li class="project-flow__step"><span class="project-flow__num num" aria-hidden="true">03</span><span class="project-flow__name">Recommend</span></li><li class="project-flow__step"><span class="project-flow__num num" aria-hidden="true">04</span><span class="project-flow__name">Approve</span></li><li class="project-flow__step"><span class="project-flow__num num" aria-hidden="true">05</span><span class="project-flow__name">Execute</span></li><li class="project-flow__step"><span class="project-flow__num num" aria-hidden="true">06</span><span class="project-flow__name">Audit</span></li></ol>
+          <p class="mono project-flow__note">AI acts up to recommendation. Writing to data or the outside world needs an approved plan, a human mandate, and an audit record.</p>
+        </div>
+      </div>
+    </article>
+    <div class="project-pair">
+      <article class="project-card project-card--support reveal" style="--stagger:0">
+        <div class="project-card__top"><span class="status status--solid">Live demo</span><span class="meta-label">Research Lab</span></div>
+        <h3 class="h3 project-card__title">AI Detector Mahasiswa</h3>
+        <p class="h4 project-card__subtitle">Indonesian Academic Writing Analyzer</p>
+        <p class="body project-card__desc">A live demo for analyzing Indonesian academic writing. Paste or upload txt, md, pdf, and docx files. It checks 10 language patterns, offers an optional local model around 130MB, and shows a score with highlighted text plus a PDF report, in Indonesian and English. The FAQ is explicit: no detector is 100% accurate, this is <strong>bukan</strong> pengganti Turnitin, and text stays private in the browser.</p>
+        <p class="mono project-preview-note">No authentic product screenshot yet. This preview is text only.</p>
+        <dl class="project-facts"><div><dt>Motivation</dt><dd>Explainable analysis for Indonesian academic writing, not automated penalties.</dd></div><div><dt>Status</dt><dd>Live demo (prototype). It reads pasted or uploaded txt, md, pdf and docx files, checks 10 language patterns, and shows a score with highlighted text plus a PDF report. The score is an uncertain indicator, not proof of AI use or an academic-integrity verdict. No detector is 100% accurate, and this is not a replacement for Turnitin.</dd></div></dl>
+        <ul class="tag-list"><li class="sr-only">Technologies used</li><li class="tag">NLP</li><li class="tag">Indonesian Language Analysis</li><li class="tag">AI Evaluation</li></ul>
+        <div class="project-card__links"><a class="text-link" href="https://ai-detector-mahasiswa.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="AI Detector Mahasiswa: Live demo, score is an uncertain indicator (opens in new tab)">Live demo <span class="text-link__arrow arrow-glyph" aria-hidden="true">↗</span></a></div>
+        <p class="mono" style="margin-top:16px">∗ Skor adalah indikator tidak pasti, bukan bukti penggunaan AI atau pelanggaran akademik. Bukan pengganti Turnitin.</p>
+      </article>
+      <article class="project-card project-card--support offset reveal" style="--stagger:1">
+        <div class="project-card__top"><span class="status">Ongoing exploration</span><span class="meta-label">Experimental</span></div>
+        <h3 class="h3 project-card__title">AI &amp; Technical Experiments</h3>
+        <p class="h4 project-card__subtitle">Independent Learning &amp; Exploration</p>
+        <p class="body project-card__desc">I run experiments with AI tools, agent workflows, APIs, Model Context Protocol (MCP), and AI-assisted coding. I keep notes on what I learn and the prototypes I make.</p>
+        <p class="mono project-preview-note">No public product screenshot. Documented as learning notes.</p>
+        <dl class="project-facts"><div><dt>Contribution</dt><dd>Independent proofs of concept, documented as learning notes.</dd></div><div><dt>Status</dt><dd>Continuously updated, no fixed release date.</dd></div></dl>
+        <ul class="tag-list"><li class="sr-only">Technologies used</li><li class="tag">AI Tools</li><li class="tag">MCP</li><li class="tag">APIs</li><li class="tag">Workflows</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-head section-enter"><div><span class="eyebrow">05 / Track record</span><h2 class="h2">Experience</h2></div><p class="mono section-head__note">Practical roles and organizational involvement</p></div>
+    <div class="timeline section-enter" style="--stagger:1">
+      <span class="timeline__progress" aria-hidden="true"></span>
+      <article class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><div class="timeline__date"><span class="timeline__ordinal num" aria-hidden="true">01</span><span class="meta-label">Vocational internship</span><time class="mono">4 Months · 2025</time></div><div class="timeline__content"><h3 class="h3">IT Support Intern</h3><p class="h4 timeline__org">Soerya Global Komputer</p><ul class="timeline__bullets"><li class="body">Assembled and maintained computers, laptops, and printers, from initial diagnosis through repair.</li><li class="body">Installed operating systems and office applications, and checked hardware and software condition.</li><li class="body">Troubleshot hardware and software issues on PCs, laptops, and printers, escalating cases that needed further handling.</li><li class="body">Diagnosed basic network problems (connectivity, IP addressing, printer sharing) and escalated cases needing further handling.</li><li class="body">Documented technical procedures and troubleshooting steps so others could repeat the work.</li><li class="body">Explained problems and solutions to users in plain language.</li></ul></div></article>
+      <article class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><div class="timeline__date"><span class="timeline__ordinal num" aria-hidden="true">02</span><span class="meta-label">Vocational training</span><time class="mono">2026 · after graduation</time></div><div class="timeline__content"><h3 class="h3">Practical Office Advance (POA) Training</h3><p class="h4 timeline__org">BPVP Surakarta</p><ul class="timeline__bullets"><li class="body">Completed a 33-day vocational training at BPVP Surakarta after graduating from vocational school.</li><li class="body">Practical office skills covered documents, spreadsheets, presentations, data handling, and administrative documentation; the certificate was obtained after the training.</li><li class="body">BNSP certificate is still in the issuance / printing process.</li></ul></div></article>
+      <article class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><div class="timeline__date"><span class="timeline__ordinal num" aria-hidden="true">03</span><span class="meta-label">Activities &amp; logistics</span><time class="mono">2023-2025</time></div><div class="timeline__content"><h3 class="h3">Member, Activities Section</h3><p class="h4 timeline__org">Youth Red Cross (PMR), Wira Unit</p><ul class="timeline__bullets"><li class="body">Helped plan and run social activities and basic Youth Red Cross training sessions.</li><li class="body">Prepared equipment lists and supported event rundowns together with members from other sections.</li><li class="body">Supported member administration and routine coordination.</li></ul></div></article>
+      <article class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><div class="timeline__date"><span class="timeline__ordinal num" aria-hidden="true">04</span><span class="meta-label">Activities &amp; coordination</span><time class="mono">2023-2025</time></div><div class="timeline__content"><h3 class="h3">Member, Activities Section</h3><p class="h4 timeline__org">Scout Ambalan Council</p><ul class="timeline__bullets"><li class="body">Assisted with activity scheduling and day-to-day coordination.</li><li class="body">Supported member administration and logistics for organizational activities.</li></ul></div></article>
+    </div>
+  </div>
+</section>
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-head section-enter"><div><span class="eyebrow">06 / Qualifications</span><h2 class="h2">Education &amp; Certifications</h2></div><p class="mono section-head__note">Formal vocational grounding and validated competencies</p></div>
+    <div class="edu-grid">
+      <div class="edu-formal reveal"><span class="eyebrow">Formal academics</span><h3 class="h3 edu-school">SMK Negeri 1 Sukoharjo</h3><p class="h4">Computer and Network Engineering (TJKT)</p><p class="body edu-desc">Three-year vocational curriculum covering enterprise IP routing, LAN switching, fiber optic splicing, server administration, operating systems, and client hardware engineering.</p><div class="edu-period"><span class="meta-label">Graduation cycle</span><span class="mono">2023 / 2026</span></div></div>
+      <div class="edu-creds"><span class="eyebrow">Professional licenses and credentials</span><ul class="edu-list"><li class="edu-item reveal" style="--stagger:0"><div><h4 class="h4">MikroTik Certified Network Associate (MTCNA)</h4><p class="body">RouterOS configuration, firewall filters, NAT, queue bandwidth management</p></div><span class="status">Issued 2025</span></li><li class="edu-item reveal" style="--stagger:1"><div><h4 class="h4">BNSP Junior Fiber Optic Cable Jointer</h4><p class="body">National professional competency in fusion splicing and OTDR testing</p></div><span class="status">Issued 2026</span></li><li class="edu-item reveal" style="--stagger:2"><div><h4 class="h4">Practical Office Advance</h4><p class="body">BPVP Surakarta · 33-day training after graduation · certificate obtained after the training</p></div><span class="status">BPVP 2026</span></li><li class="edu-item reveal" style="--stagger:3"><div><h4 class="h4">BNSP Practical Office Advance</h4><p class="body">National Vocational Certification Board candidate qualification</p></div><span class="status status--pending">In issuance / printing process</span></li></ul><p class="mono edu-footnote">All credentials verifiable via issuing registry IDs upon inquiry.</p></div>
+    </div>
+  </div>
+</section>
+<section class="section surface-dark" id="skills">
+  <div class="container">
+    <div class="section-head section-enter"><div><span class="eyebrow">07 / Toolkit</span><h2 class="h2">Skills &amp; Technologies</h2></div><p class="mono section-head__note">Organized by discipline. No subjective percentage bars.</p></div>
+    <div class="skills__grid">
+      <details class="skills__group" aria-labelledby="skill-0" open><summary class="skills__summary"><span class="num skills__num" aria-hidden="true">01</span><h3 class="h3 skills__title" id="skill-0">AI &amp; Modern Technologies</h3><span class="skills__toggle" aria-hidden="true"></span></summary><div class="skills__panel"><p class="body skills__desc">Models, assisted execution, and evaluation workflows.</p><ul class="skills__list"><li class="mono skills__item">AI Tools</li><li class="mono skills__item">AI-Assisted Development</li><li class="mono skills__item">Prompt Engineering</li><li class="mono skills__item">AI Agents</li><li class="mono skills__item">MCP</li><li class="mono skills__item">Workflow Automation</li></ul></div></details>
+      <details class="skills__group" aria-labelledby="skill-1" open><summary class="skills__summary"><span class="num skills__num" aria-hidden="true">02</span><h3 class="h3 skills__title" id="skill-1">Software &amp; Integration</h3><span class="skills__toggle" aria-hidden="true"></span></summary><div class="skills__panel"><p class="body skills__desc">Runtimes, frameworks, and deterministic APIs.</p><ul class="skills__list"><li class="mono skills__item">Next.js</li><li class="mono skills__item">React</li><li class="mono skills__item">Python</li><li class="mono skills__item">FastAPI</li><li class="mono skills__item">TypeScript</li><li class="mono skills__item">REST APIs</li><li class="mono skills__item">Playwright</li></ul></div></details>
+      <details class="skills__group" aria-labelledby="skill-2" open><summary class="skills__summary"><span class="num skills__num" aria-hidden="true">03</span><h3 class="h3 skills__title" id="skill-2">IT &amp; Networking</h3><span class="skills__toggle" aria-hidden="true"></span></summary><div class="skills__panel"><p class="body skills__desc">Infrastructure, wiring, and diagnostics.</p><ul class="skills__list"><li class="mono skills__item">Computer Troubleshooting</li><li class="mono skills__item">Computer Hardware</li><li class="mono skills__item">Networking</li><li class="mono skills__item">MikroTik</li><li class="mono skills__item">Fiber Optics</li></ul></div></details>
+      <details class="skills__group" aria-labelledby="skill-3" open><summary class="skills__summary"><span class="num skills__num" aria-hidden="true">04</span><h3 class="h3 skills__title" id="skill-3">Office &amp; Productivity</h3><span class="skills__toggle" aria-hidden="true"></span></summary><div class="skills__panel"><p class="body skills__desc">Structured administration and reporting.</p><ul class="skills__list"><li class="mono skills__item">Microsoft Word, Excel, PowerPoint</li><li class="mono skills__item">Document Formatting &amp; SOP Documentation</li><li class="mono skills__item">Data Entry &amp; Web Research</li><li class="mono skills__item">Data Management</li><li class="mono skills__item">Administrative Support</li></ul></div></details>
+    </div>
+  </div>
+</section>
+<section class="section" id="interests">
+  <div class="container">
+    <div class="section-head section-enter"><div><span class="eyebrow">08 / Horizons</span><h2 class="h2">Areas of Interest</h2></div><p class="mono section-head__note">Interests and exploration, not professional experience</p></div>
+    <ol class="interest-list"><li class="interest-row"><span class="num" aria-hidden="true">01</span><span class="interest-row__title h3">AI &amp; Intelligent Technologies</span></li><li class="interest-row"><span class="num" aria-hidden="true">02</span><span class="interest-row__title h3">Language &amp; AI Evaluation</span></li><li class="interest-row"><span class="num" aria-hidden="true">03</span><span class="interest-row__title h3">Software &amp; Workflow Automation</span></li><li class="interest-row"><span class="num" aria-hidden="true">04</span><span class="interest-row__title h3">Digital Operations &amp; Administration</span></li></ol>
+    <p class="mono interest-detail">AI Training &amp; Data Evaluation · AI Research Assistance · Indonesian Linguistics &amp; Language Technologies · Search Engine Evaluation · Data Collection &amp; Annotation · Remote Administrative Support · HR &amp; Office Administration · Virtual Assistance · AI Automation &amp; Software Development.</p>
+    <p class="mono interest-note">Minat dan eksplorasi aktif, bukan pengalaman kerja komersial formal.</p>
+  </div>
+</section>
+<section class="contact charcoal" id="contact">
+  <div class="container">
+    <div class="contact__head"><span class="eyebrow">08 / Invitation</span><h2 class="h2 contact__title"><span class="cta-line" style="--i:0">LET'S BUILD</span><span class="cta-line" style="--i:1">SOMETHING REAL.</span></h2><p class="lead">I am interested in learning, collaborating, and contributing to meaningful work. AI research, language tasks, remote administration, or technology initiatives. If it is practical and worth doing carefully, I am open to exploring it.</p><a class="btn btn--light contact__primary" href="mailto:farasfirdaus564@gmail.com?subject=Kolaborasi%20Portofolio%20Faras&amp;body=Halo%20Faras%2C%20nama%20saya%20...">Start an email <span class="arrow-glyph" aria-hidden="true">↗</span></a></div>
+    <div class="contact__grid">
+      <div class="contact__arrangements"><span class="meta-label">Work arrangements</span><ul class="contact__chips"><li class="mono">Remote</li><li class="mono">Work from anywhere</li><li class="mono">Hybrid</li><li class="mono">On-site in Indonesia</li></ul></div>
+      <div class="contact__direct"><span class="meta-label">Direct inquiries</span><ul class="contact__links"><li><a class="contact__link" href="mailto:farasfirdaus564@gmail.com?subject=Kolaborasi%20Portofolio%20Faras&amp;body=Halo%20Faras%2C%20nama%20saya%20..."><span class="contact__label mono">Email</span><span class="contact__value">farasfirdaus564@gmail.com</span></a></li><li><a class="contact__link" href="https://wa.me/6288238349814?text=Halo%20Faras%2C%20saya%20ingin%20diskusi%20tentang%20kolaborasi%20atau%20proyek." target="_blank" rel="noopener noreferrer"><span class="contact__label mono">WhatsApp</span><span class="contact__value">+62 882-3834-9814</span></a></li><li><a class="contact__link" href="https://github.com/farasfadhil" target="_blank" rel="noopener noreferrer"><span class="contact__label mono">GitHub</span><span class="contact__value">github.com/farasfadhil</span></a></li><li><a class="contact__link" href="https://linkedin.com/in/faras-fadhil-firdaus" target="_blank" rel="noopener noreferrer"><span class="contact__label mono">LinkedIn</span><span class="contact__value">linkedin.com/in/faras-fadhil-firdaus</span></a></li></ul><button class="btn btn--outline-light contact__copy" id="copyEmailBtn" type="button"><span id="copyBtnText">Copy email address</span></button></div>
+    </div>
+  </div>
 </section>
 </main>
-<footer class="site-footer"><div class="footer-inner">
- <span style="font-family:'Space Grotesk Variable',sans-serif;font-weight:700;color:var(--ink)">FFF · © 2026 Faras Fadhil Firdaus</span>
- <span>Built work, live demos, and experiments, labeled separately</span>
- <div style="display:flex;gap:1rem;flex-wrap:wrap"><a href="#projects">Works</a><a href="#experience">Career</a><a href="#contact">Contact</a></div>
-</div></footer>
+<footer class="site-footer"><div class="container footer-inner"><div class="footer-id"><span class="wordmark__mono">FFF</span><p class="mono">© 2026 Faras Fadhil Firdaus. All rights reserved.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a><a href="#hero">Back to top</a></nav></div></footer>
 <script>
 (function(){
+  var header=document.querySelector('.site-header');
+  if(header){var onScroll=function(){header.classList.toggle('is-scrolled',window.scrollY>8)};onScroll();window.addEventListener('scroll',onScroll,{passive:true});}
   var toggle=document.querySelector('.nav-toggle');
   var menu=document.getElementById('mobile-menu');
   if(toggle&&menu){toggle.addEventListener('click',function(){
@@ -369,31 +538,119 @@ html.has-motion .scroll-reveal.is-visible{opacity:1;transform:none}
     toggle.setAttribute('aria-expanded',open?'true':'false');
   });
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');});});}
-  var revealables=document.querySelectorAll('.reveal,.scroll-reveal');
+  var hero=document.getElementById('hero');
+  var contact=document.getElementById('contact');
+  if(hero)hero.classList.add('is-visible');
+  var copyBtn=document.getElementById('copyEmailBtn');
+  var copyLabel=document.getElementById('copyBtnText');
+  if(copyBtn){copyBtn.addEventListener('click',function(){
+    var email='farasfirdaus564@gmail.com';
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(email).then(function(){if(copyLabel)copyLabel.textContent='Copied to clipboard';},function(){if(copyLabel)copyLabel.textContent=email;});
+    }else if(copyLabel){copyLabel.textContent=email;}
+  });}
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var motion=document.documentElement.classList.contains('has-motion');
-  if(!motion||!('IntersectionObserver' in window)){
+  var revealables=document.querySelectorAll('.reveal');
+  var noObserver = ('IntersectionObserver' in window) === false;
+  var skipMotion = !motion;
+  if(reduce){skipMotion = true;}
+  if(noObserver){skipMotion = true;}
+  if(skipMotion){
     revealables.forEach(function(el){el.classList.add('is-visible');});
+    if(contact)contact.classList.add('is-reached');
   }else{
-    var observer=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target);}});
-    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
-    revealables.forEach(function(el){observer.observe(el);});
-    /* Safety net: elemen yang gagal teramati tampil bertahap, bukan sekaligus. */
+    var revealObserver=new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -6% 0px',threshold:.08});
+    revealables.forEach(function(el){revealObserver.observe(el);});
+    /* Safety net per elemen: yang masuk viewport tapi belum tampil menyala sendiri. */
     window.setTimeout(function(){
-      var pending=Array.prototype.filter.call(revealables,function(el){return !el.classList.contains('is-visible');});
-      pending.forEach(function(el,i){
-        window.setTimeout(function(){el.classList.add('is-visible');},i*70);
+      revealables.forEach(function(el){
+        var box=el.getBoundingClientRect();
+        if(box.top<window.innerHeight*0.9&&box.bottom>0&&!el.classList.contains('is-visible')){el.classList.add('is-visible');}
       });
-    },1200);
+      if(contact&&contact.getBoundingClientRect().top<window.innerHeight){contact.classList.add('is-reached');}
+    },900);
+    var contactObserver=new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(e){if(e.isIntersecting){if(contact)contact.classList.add('is-reached');obs.unobserve(e.target);}});
+    },{threshold:.12});
+    if(contact)contactObserver.observe(contact);
   }
-  var hero=document.getElementById('hero');if(hero)hero.classList.add('is-visible');
-  var links=document.querySelectorAll('.nav-links a,.mobile-menu a');
-  var spy=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){
-      links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id);});
-    }});
-  },{rootMargin:'-25% 0px -70% 0px'});
-  document.querySelectorAll('section[id]').forEach(function(s){spy.observe(s);});
+  /* P3/P5: section masuk sekali + progress timeline bertahap + magnetic. */
+   var sectionEntries=document.querySelectorAll('.section-enter');
+   var timeline=document.querySelector('.timeline');
+   var progress=timeline?timeline.querySelector('.timeline__progress'):null;
+   var timelineActive=false, fxFrame=0;
+   var clamp=function(v,a,b){return Math.min(b,Math.max(a,v));};
+   var paintFx=function(){
+     fxFrame=0;
+     if(timelineActive&&timeline&&progress){
+       var box=timeline.getBoundingClientRect();
+       var p=clamp(((window.innerHeight*0.6)-box.top)/Math.max(box.height,1),0,1);
+       timeline.style.setProperty('--progress',p.toFixed(3));
+     }
+   };
+   var requestFx=function(){if(!fxFrame)fxFrame=window.requestAnimationFrame(paintFx);};
+   if(!reduce&&'IntersectionObserver' in window){
+     var sectionObserver=new IntersectionObserver(function(entries,obs){
+       entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);}});
+     },{rootMargin:'0px 0px -6% 0px',threshold:.08});
+     sectionEntries.forEach(function(el){sectionObserver.observe(el);});
+     window.setTimeout(function(){
+       sectionEntries.forEach(function(el){
+         if(el.classList.contains('is-visible'))return;
+         var box=el.getBoundingClientRect();
+         if(box.top<window.innerHeight&&box.bottom>0){el.classList.add('is-visible');sectionObserver.unobserve(el);}
+       });
+     },1200);
+     var itemObserver=new IntersectionObserver(function(entries,obs){
+       entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-reached');obs.unobserve(e.target);}});
+     },{rootMargin:'0px 0px -20% 0px',threshold:.25});
+     document.querySelectorAll('.timeline__item').forEach(function(el){itemObserver.observe(el);});
+     var vis=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.target===timeline)timelineActive=e.isIntersecting;});requestFx();},{rootMargin:'10% 0px 10% 0px',threshold:0});
+     if(timeline)vis.observe(timeline);
+     window.addEventListener('scroll',requestFx,{passive:true});
+     window.addEventListener('resize',requestFx,{passive:true});
+     requestFx();
+   }else{
+     sectionEntries.forEach(function(el){el.classList.add('is-visible');});
+     document.querySelectorAll('.timeline__item').forEach(function(el){el.classList.add('is-reached');});
+   }
+   /* Magnetic nav desktop, maks 4px, hanya pointer presisi. */
+   if(!reduce&&window.matchMedia('(hover: hover) and (pointer: fine)').matches&&motion){
+     var magFrame=0, magCurrent=null, mx=0, my=0;
+     var magPaint=function(){magFrame=0;if(magCurrent){magCurrent.style.setProperty('--mag-x',mx.toFixed(1)+'px');magCurrent.style.setProperty('--mag-y',my.toFixed(1)+'px');}};
+     document.querySelectorAll('[data-magnetic]').forEach(function(el){
+       el.addEventListener('pointermove',function(ev){
+         var b=el.getBoundingClientRect();
+         mx=clamp(((ev.clientX-b.left)/b.width-.5)*8,-4,4);
+         my=clamp(((ev.clientY-b.top)/b.height-.5)*8,-4,4);
+         magCurrent=el;
+         if(!magFrame)magFrame=window.requestAnimationFrame(magPaint);
+       },{passive:true});
+       var magReset=function(){el.style.removeProperty('--mag-x');el.style.removeProperty('--mag-y');if(magCurrent===el)magCurrent=null;};
+       el.addEventListener('pointerleave',magReset,{passive:true});
+       el.addEventListener('blur',magReset);
+     });
+   }
+   /* Mobile menu: Escape, klik luar, fokus kembali ke toggle. */
+   if(toggle&&menu){
+     var outside=function(ev){if(menu.classList.contains('open')&&!menu.contains(ev.target)&&!toggle.contains(ev.target)){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');}};
+     document.addEventListener('click',outside);
+     document.addEventListener('keydown',function(ev){
+       if(ev.key==='Escape'&&menu.classList.contains('open')){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus();}
+     });
+   }
+   var links=document.querySelectorAll('.site-nav__link,.mobile-menu a');
+  if('IntersectionObserver' in window){
+    var spy=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){
+        links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
+      }});
+    },{rootMargin:'-25% 0px -70% 0px'});
+    document.querySelectorAll('section[id]').forEach(function(s){spy.observe(s);});
+  }
 })();
 </script>
 </body></html>

@@ -1,8 +1,8 @@
 # PRD — Portofolio Faras Fadhil Firdaus
 
-Versi 2.0 · 28 November 2026
+Versi 3.0 · 28 November 2026
 Status: Redesign implementasi berjalan.
-Arah: **Modern Monochrome × Creative Editorial**. Menggantikan arah oxblood/NIGHT SKY sebelumnya.
+Arah: **Dark Technical Editorial × Industrial Monochrome**. Menggantikan arah Modern Monochrome / Creative Editorial (v2.0) dan seluruh arah sebelumnya (oxblood, NIGHT SKY). Keputusan owner bersifat final.
 
 ---
 
@@ -11,16 +11,18 @@ Arah: **Modern Monochrome × Creative Editorial**. Menggantikan arah oxblood/NIG
 Redesign menyeluruh atas portofolio existing di https://frzz969.github.io/portofolio-faraz/.
 Tujuan: personal brand yang profesional, berani, dan kredibel untuk recruiter/klien internasional, dengan satu aturan mutlak: **preview proyek harus screenshot asli dari aplikasi yang benar-benar berjalan**, bukan recreate/mockup/AI image.
 
+Arah visual: **Dark Technical Editorial × Industrial Monochrome**. Monokrom ketat 6 hex, ritme kontras yang disengaja antar section (hero/contact deep black, about/projects/experience putih, marquee/skills dark surface), headline oversized, dan angka section sebagai elemen visual. Satu accent moment: baris headline ke-2 di hero berbentuk outline di atas deep black. Detail lihat `DESIGN.md`.
+
 Prinsip konten: **jangan mengecilkan potensi, jangan membesar-besarkan pengalaman.**
 
 ---
 
 ## 2. Masalah yang Diperbaiki
 
-- Warna NIGHT SKY terlalu biru & low-contrast, terasa "jelek" menurut owner.
-- Pola kartu & alternating background terasa seperti slide PowerPoint.
+- Warna NIGHT SKY / oxblood terlalu berwarna & low-contrast, terasa "jelek" menurut owner.
+- Pola kartu & alternating background terasa seperti slide PowerPoint; diganti ritme kontras yang disengaja dan asimetri editorial.
 - Thumbnail proyek berupa SVG recreate, bukan screenshot asli (melanggar aturan baru).
-- Diperlukan arah editorial monokrom yang lebih dewasa & distinctive.
+- Diperlukan arah editorial monokrom gelap yang lebih dewasa & distinctive, dengan tipografi berani/oversized dan angka sebagai elemen visual.
 
 ---
 
@@ -68,7 +70,7 @@ F. **Experience & Education**: vertical timeline, tanggal akurat, kredensial ses
 
 G. **Skills**: grouped lists, tanpa percentage/progress bar.
 
-H. **Contact**: full-width charcoal `#202020`, teks putih besar, email, LinkedIn, GitHub, WA, CTA understated, footer bersih.
+H. **Contact**: full-width deep black `#080808`, teks putih oversized, email, LinkedIn, GitHub, WA, work arrangements, CTA copy email, footer bersih.
 
 ---
 
@@ -108,8 +110,8 @@ File SVG lama (`dextra-dashboard.svg`, `ai-detector-mockup.svg`, `experiments.sv
 | N1 | First-load | ringan, WebP/AVIF, lazy below-fold |
 | N2 | JS | minimal, tanpa library animasi berat |
 | N3 | CLS | width/height pada semua gambar |
-| N4 | Kontras | WCAG AA, secondary text `#525252` bila perlu |
-| N5 | Warna | HANYA 7 hex monokrom, nol gradien/glow |
+| N4 | Kontras | WCAG AA. Teks sekunder di putih `#555555` (7.46:1); `#A3A3A3` HANYA di atas gelap (7.94:1 di `#080808`, 7.24:1 di `#151515`) |
+| N5 | Warna | HANYA 6 hex monokrom: `#080808` `#151515` `#292929` `#555555` `#A3A3A3` `#FFFFFF`. Nol gradien/glow/blur dekoratif |
 | N6 | Aksesibilitas | semantic HTML, focus-visible, keyboard, reduced-motion |
 | N7 | SEO | JSON-LD ProfilePage/Person, og image, hreflang, canonical |
 | N8 | Responsive | 360/390/768/1366/1440 tanpa overflow |
@@ -122,7 +124,7 @@ File SVG lama (`dextra-dashboard.svg`, `ai-detector-mockup.svg`, `experiments.sv
 - Scroll reveal 16-24px, 200-400ms, ease-out.
 - Project hover zoom ~1.03 + arrow move.
 - Button hover/active; magnetic optional desktop only.
-- Satu marquee monokrom, separator `·`, bisa di-pause.
+- Satu marquee monokrom di strip `#151515`, separator `·` (bukan pipe / em dash), bisa di-pause saat hover/focus.
 - Timeline progression.
 - Smooth anchor + active nav.
 - `prefers-reduced-motion: reduce` mematikan motion.
@@ -176,13 +178,15 @@ Tugas non-trivial (multi-file, paralel, audit mendalam) **wajib** didelegasikan 
 
 ## 11. Definition of Done
 
-1. Monokrom ketat, nol warna lain.
-2. Tipografi Space Grotesk / Inter / JetBrains Mono.
-3. Semua section A–H terimplementasi.
-4. Screenshot proyek asli terpasang (atau limitation dilaporkan jujur).
-5. Status proyek jujur, tanpa klaim berlebih.
-6. Responsive di 5 breakpoint.
-7. Semua link & tombol berfungsi.
-8. Build & type check sukses.
-9. Deployment configuration dipertahankan.
-10. Tidak push/publish tanpa otorisasi eksplisit owner.
+1. Monokrom ketat 6 hex, nol warna lain, nol gradien/glow/blur dekoratif.
+2. Tipografi Space Grotesk / Inter / JetBrains Mono (fallback monospace), mono >= 12px.
+3. Hero deep black dengan headline `clamp(3.5rem,11vw,10rem)` dan baris ke-2 outline sebagai satu signature; angka section oversized; ritme kontras sesuai DESIGN.md.
+4. Semua section A–H terimplementasi.
+5. Screenshot proyek asli terpasang (atau limitation dilaporkan jujur).
+6. Status proyek jujur, tanpa klaim berlebih. DEXTRA prototipe + governance; AI Detector disclaimer; dua link demo berbeda.
+7. Peran organisasi Member, Activities Section 2023-2025 (Youth Red Cross / Scout Ambalan Council), tanpa "leadership"; SMK 2023/2026; BNSP in issuance.
+8. Responsive di 5 breakpoint.
+9. Semua link & tombol berfungsi; motion reduced-motion aman; HTMLParser stack kosong.
+10. Build & type check sukses.
+11. Deployment configuration dipertahankan.
+12. Tidak push/publish tanpa otorisasi eksplisit owner.

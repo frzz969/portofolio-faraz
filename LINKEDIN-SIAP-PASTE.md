@@ -34,7 +34,7 @@ Saya terbuka untuk peran entry-level remote di data entry, web research, search 
 
 ## About, English
 
-IT support fresh graduate in Computer and Network Engineering (TJKT) from SMKN 1 Sukoharjo, 2026, with 4 months of internship experience in hardware and software troubleshooting, OS installation, printer repair, and basic networking. Certified MTCNA (MikroTik) and Junior Fiber Optic Cable Jointer (BNSP). Practical Office Advance (BPVP) is still in the BNSP issuance process.
+IT support fresh graduate in Computer and Network Engineering (TJKT) from SMKN 1 Sukoharjo, 2026, with 4 months of internship experience in hardware and software troubleshooting, OS installation, printer repair, and basic networking. Certified MTCNA (MikroTik) and Junior Fiber Optic Cable Jointer (BNSP). Practical Office Advance (BPVP), a 33-day post-graduation training and obtained the certificate after the training, is still in the BNSP issuance process.
 
 I am interested in AI language evaluation, search evaluation, and remote digital operations. I do not claim paid AI training or annotation work. I show my projects instead. AI Detector Mahasiswa is live at https://ai-detector-mahasiswa.vercel.app and DEXTRA is an interactive demo at https://dextra-office-agent.vercel.app.
 
@@ -111,7 +111,7 @@ MikroTik Certified Network Associate (MTCNA), MikroTik, 2025. Credential ID: [if
 
 Junior Fiber Optic Cable Jointer, BNSP, 2026. Credential ID: [if available]. URL: [if available].
 
-Practical Office Advance (POA), BPVP Surakarta, 2026. Sertifikat BNSP dalam proses penerbitan. Credential ID: [if available]. URL: [if available].
+Practical Office Advance (POA), BPVP Surakarta, 2026. Pelatihan kerja 33 hari setelah lulus sekolah, followed by the certificate obtained after the training. Sertifikat BNSP dalam proses penerbitan. Credential ID: [if available]. URL: [if available].
 
 ## Organizations
 

@@ -1,7 +1,7 @@
 ---
-// HOW I WORK - dulu "What I Do" berbentuk 4 bento cards. Kini disusun sebagai
-// pernyataan editorial pendek. Empat bidang detail ada di Interests (numbered
-// rows), jadi tidak ada pengulangan dan tidak ada bento grid.
+// HOW I WORK - section putih lanjut. Empat bidang detail ada di Interests
+// (numbered rows), jadi tidak ada pengulangan dan tidak ada bento grid.
+// Angka 01-04 ditebalkan sebagai struktur editorial (R-31).
 const notes = [
   'Harnessing foundational models, prompt engineering, agentic patterns, and AI-assisted workflows to structure unstructured information.',
   'Exploring Indonesian computational linguistics, dataset quality verification, and analytical text evaluation.',
@@ -10,29 +10,29 @@ const notes = [
 ];
 ---
 
-<section class="section" id="approach">
+<section class="section section--approach" id="approach">
   <div class="container">
     <div class="approach__grid">
-      <div class="section-head">
+      <div class="section-head section-enter">
         <div>
           <span class="eyebrow">02 / Approach</span>
           <h2 class="h2">How I Work</h2>
         </div>
       </div>
 
-      <div class="approach__body">
-        <p class="lead reveal">
+      <div class="approach__body section-enter" style="--stagger:1">
+        <p class="lead">
           A blend of practical infrastructure capabilities and exploratory technological
           frontiers. I start from the fundamentals, then use the right tools to move faster.
         </p>
-        <ul class="approach__list">
+        <ol class="approach__list">
           {notes.map((note, index) => (
-            <li class="approach__item reveal" style={`--stagger:${index}`}>
-              <span class="approach__index mono">{String(index + 1).padStart(2, '0')}</span>
-              <span>{note}</span>
+            <li class="approach__item">
+              <span class="approach__index num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span class="approach__text">{note}</span>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </div>
   </div>
@@ -47,23 +47,26 @@ const notes = [
   .approach__body { max-width: 68ch; }
   .approach__list {
     margin-top: 32px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--strong);
   }
   .approach__item {
     display: grid;
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: 56px 1fr;
     gap: 16px;
-    padding-block: 18px;
-    border-bottom: 1px solid var(--border);
-    color: var(--subtle);
+    padding-block: 22px;
+    border-bottom: 1px solid var(--strong);
     line-height: 1.6;
   }
-  .approach__index { padding-top: 4px; color: var(--ink); }
+  .approach__index {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+  }
+  .approach__text { color: var(--strong); }
   @media (min-width: 900px) {
     .approach__grid {
       grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
       gap: clamp(40px, 6vw, 88px);
     }
-    .approach__item { grid-template-columns: 56px 1fr; }
+    .approach__item { grid-template-columns: 72px 1fr; }
   }
 </style>

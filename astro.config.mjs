@@ -6,6 +6,7 @@ export default defineConfig({
   // GANTI: konfirmasi username GitHub Pages
   site: 'https://farasfadhil.github.io',
   output: 'static',
+  base: '/portofolio-faraz',
   build: { inlineStylesheets: 'always' },
   vite: { plugins: [tailwindcss()] },
   integrations: [sitemap()],

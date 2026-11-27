@@ -1,0 +1,153 @@
+---
+import { projects } from '../data/projects';
+
+// SECTION 4: FEATURED PROJECTS - struktur visual dari index.html, isi dari src/data/projects.ts.
+const [dextra, detector, experiments] = projects;
+
+const visuals: Record<string, { src: string; width: number; height: number; alt: string; caption: string; badge?: string }> = {
+  dextra: {
+    src: '/dextra-dashboard.svg',
+    width: 1200,
+    height: 675,
+    alt: 'Diagram dashboard DEXTRA: alur eksekusi agen, panel telemetri, dan grafik struktur, dibuat sebagai ilustrasi arsitektur lokal, bukan screenshot produk.',
+    caption: 'DEXTRA Core Agent Orchestration, ilustrasi arsitektur',
+    badge: 'v1.2 Active',
+  },
+  'ai-detector-mahasiswa': {
+    src: '/ai-detector-mockup.svg',
+    width: 1200,
+    height: 675,
+    alt: 'Ilustrasi antarmuka penganalisis tulisan akademik Bahasa Indonesia, bukan tangkapan layar produk pihak ketiga.',
+    caption: 'Ilustrasi antarmuka, live demo tersedia',
+  },
+  'ai-technical-experiments': {
+    src: '/experiments.svg',
+    width: 1200,
+    height: 675,
+    alt: 'Ilustrasi dokumentasi eksperimen teknis: integrasi MCP dengan Python dan FastAPI di terminal.',
+    caption: 'AI / MCP / API experiment documentation',
+  },
+};
+---
+
+<!-- id="work" dipakai CTA hero; id="projects" dipakai nav. Keduanya merujuk section yang sama. -->
+<section class="w-full bg-surface-container-low py-20 lg:py-28" id="work">
+  <div class="max-w-[1180px] mx-auto px-margin-mobile lg:px-margin" id="projects">
+    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-14 gap-4">
+      <div>
+        <span class="text-label-sm font-label-sm text-muted-brass uppercase tracking-widest block mb-2 font-mono">03 / ARTIFACTS</span>
+        <h2 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight">Featured Projects</h2>
+      </div>
+      <p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs md:text-right font-mono">
+        System Prototypes · Research Concepts · Lab Experiments
+      </p>
+    </div>
+    <div class="space-y-8">
+      <div class="card bg-surface-container rounded-xl overflow-hidden shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          <div class="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="px-2.5 py-1 rounded bg-accent-oxblood text-paper font-label-sm text-label-sm font-semibold uppercase tracking-wider">{dextra.status}</span>
+                <span class="text-label-sm font-label-sm text-on-surface-variant font-mono">Enterprise Architecture</span>
+              </div>
+              <h3 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight mb-2">{dextra.title}</h3>
+              <h4 class="font-title-md text-title-md text-accent-oxblood font-medium mb-5">{dextra.subtitle}</h4>
+              <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-8">{dextra.description}</p>
+              <p class="proj-meta">Next.js · React · Python · FastAPI · MCP <span>Live demo</span></p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-2 mb-8">
+                {dextra.focus.map((tag) => (
+                  <span class="px-2.5 py-1 rounded-md bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">{tag}</span>
+                ))}
+              </div>
+              <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+                <a class="inline-flex items-center gap-2 text-label-md font-label-md text-ink hover:text-accent-oxblood transition-colors group" href="https://dextra-office-agent.vercel.app" target="_blank" rel="noopener noreferrer">
+                  <span class="underline underline-offset-4 decoration-accent-oxblood/40 group-hover:decoration-accent-oxblood">Live demo (prototype / demo interaktif) ↗</span>
+                </a>
+                <a class="inline-flex items-center gap-2 text-label-md font-label-md text-ink hover:text-accent-oxblood transition-colors group" href={visuals.dextra.src} target="_blank" rel="noopener noreferrer">
+                  <span class="underline underline-offset-4 decoration-accent-oxblood/40 group-hover:decoration-accent-oxblood">Inspect Architecture Specs</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-5 bg-surface-container-high p-6 lg:p-8 flex items-center justify-center">
+            <div class="w-full h-full min-h-[320px] rounded-lg overflow-hidden relative shadow-sm bg-ink flex flex-col justify-between">
+              <img class="w-full h-full object-cover filter contrast-110" src={visuals.dextra.src} width={visuals.dextra.width} height={visuals.dextra.height} loading="lazy" alt={visuals.dextra.alt} />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/40 pointer-events-none"></div>
+              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-paper text-label-sm font-mono">
+                <span>{visuals.dextra.caption}</span>
+                <span class="px-2 py-0.5 rounded bg-accent-oxblood text-paper font-semibold">{visuals.dextra.badge}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="card bg-surface-container rounded-xl p-8 lg:p-10 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold uppercase tracking-wider font-mono">{detector.status}</span>
+              <span class="text-label-sm font-label-sm text-muted-brass font-mono">Research Lab</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-ink font-semibold mb-1">{detector.title}</h3>
+            <h4 class="font-title-md text-title-md text-accent-oxblood font-medium mb-4">{detector.subtitle}</h4>
+            <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
+              A live demo for analyzing Indonesian academic writing. Paste or upload txt, md, pdf, and docx files. It checks 10 language patterns, offers an optional local model around 130MB, and shows a score with highlighted text plus a PDF report, in Indonesian and English. The FAQ is explicit: no detector is 100% accurate, this is <strong class="text-ink font-medium">bukan</strong> pengganti Turnitin, and text stays private in the browser.
+            </p>
+            <p class="proj-meta">NLP · Indonesian Language Analysis · AI Evaluation <span>Live</span></p>
+            <div class="w-full h-44 rounded-lg bg-surface-container-high relative overflow-hidden mb-6 flex items-center justify-center">
+              <img class="w-full h-full object-cover filter contrast-105" src={visuals['ai-detector-mahasiswa'].src} width={visuals['ai-detector-mahasiswa'].width} height={visuals['ai-detector-mahasiswa'].height} loading="lazy" alt={visuals['ai-detector-mahasiswa'].alt} />
+              <div class="absolute inset-0 bg-ink/20 pointer-events-none"></div>
+              <span class="absolute bottom-3 left-3 text-label-sm font-label-sm font-mono text-paper bg-ink/80 px-2 py-0.5 rounded">{visuals['ai-detector-mahasiswa'].caption}</span>
+            </div>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-2 mb-6">
+              {detector.focus.map((tag) => (
+                <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">{tag}</span>
+              ))}
+            </div>
+            <a class="inline-flex items-center gap-2 text-label-md font-label-md text-accent-oxblood hover:text-ink transition-colors group mb-3" href="https://ai-detector-mahasiswa.vercel.app" target="_blank" rel="noopener noreferrer">
+              <span class="underline underline-offset-4 decoration-accent-oxblood/40 group-hover:decoration-accent-oxblood">Live demo ↗</span>
+            </a>
+            <span class="text-body-sm font-body-sm text-on-surface-variant italic">∗ Explicitly oriented around explainability over automated penalties, bukan pengganti Turnitin.</span>
+          </div>
+        </div>
+
+        <div class="card bg-surface-container rounded-xl p-8 lg:p-10 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold uppercase tracking-wider font-mono">{experiments.status}</span>
+              <span class="text-label-sm font-label-sm text-muted-brass font-mono">Experimental</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-ink font-semibold mb-1">{experiments.title}</h3>
+            <h4 class="font-title-md text-title-md text-accent-oxblood font-medium mb-4">{experiments.subtitle}</h4>
+            <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">{experiments.description}</p>
+            <p class="proj-meta">AI Tools · MCP · APIs · Workflows <span>Ongoing</span></p>
+            <div class="w-full h-44 rounded-lg bg-surface-container-high relative overflow-hidden mb-6 flex items-center justify-center">
+              <img class="w-full h-full object-cover filter contrast-110" src={visuals['ai-technical-experiments'].src} width={visuals['ai-technical-experiments'].width} height={visuals['ai-technical-experiments'].height} loading="lazy" alt={visuals['ai-technical-experiments'].alt} />
+              <div class="absolute inset-0 bg-ink/20 pointer-events-none"></div>
+              <span class="absolute bottom-3 left-3 text-label-sm font-label-sm font-mono text-paper bg-ink/80 px-2 py-0.5 rounded">{visuals['ai-technical-experiments'].caption}</span>
+            </div>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-2 mb-6">
+              {experiments.focus.map((tag) => (
+                <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">{tag}</span>
+              ))}
+            </div>
+            <span class="text-body-sm font-body-sm text-on-surface-variant italic">∗ Continuously updated repository of technical proofs of concept.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.proj-meta{margin:.5rem 0 0;font:400 .72rem/1.6 ui-monospace,monospace;letter-spacing:.04em;color:#8C2F39}
+.proj-meta span{float:right;border-bottom:1px solid #8C2F39;padding-bottom:1px}
+</style>

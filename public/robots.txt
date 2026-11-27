@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://farasfadhil.github.io/sitemap-index.xml

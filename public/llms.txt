@@ -1,0 +1,23 @@
+# Faras Fadhil Firdaus
+
+> Technology enthusiast and AI-assisted developer with a background in Computer and Network Engineering, interested in artificial intelligence, software development, language technologies, and digital operations.
+
+## Areas of Interest
+
+- AI Training & Data Evaluation
+- AI Research Assistance
+- Indonesian Linguistics & Language Technologies
+- Search Engine Evaluation
+- Data Collection & Annotation
+- Remote Administrative Support
+- HR & Office Administration
+- Virtual Assistance
+- AI Automation & Software Development
+
+## Featured Project
+
+- DEXTRA, Governed Enterprise AI Workforce & Operations Platform (status: BUILT)
+
+## CV
+
+- [Download CV (PDF)](https://farasfadhil.github.io/cv-faras.pdf)

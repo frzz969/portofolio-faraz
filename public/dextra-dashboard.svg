@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="DEXTRA enterprise dashboard diagram">
+  <rect width="800" height="520" fill="#F4F1EA"/>
+  <rect x="24" y="24" width="752" height="472" rx="10" fill="#1C1B19"/>
+  <!-- header -->
+  <rect x="24" y="24" width="752" height="56" rx="10" fill="#151413"/>
+  <circle cx="56" cy="52" r="7" fill="#8C2F39"/>
+  <rect x="76" y="45" width="150" height="14" rx="4" fill="#F4F1EA" opacity=".85"/>
+  <rect x="650" y="44" width="94" height="16" rx="8" fill="#8C2F39"/>
+  <!-- sidebar -->
+  <rect x="24" y="80" width="150" height="416" fill="#151413"/>
+  <g fill="#F4F1EA" opacity=".55">
+    <rect x="44" y="110" width="96" height="9" rx="4"/>
+    <rect x="44" y="146" width="74" height="9" rx="4"/>
+    <rect x="44" y="182" width="88" height="9" rx="4"/>
+    <rect x="44" y="218" width="62" height="9" rx="4"/>
+  </g>
+  <rect x="34" y="104" width="130" height="26" rx="5" fill="#8C2F39" opacity=".4"/>
+  <!-- stat cards -->
+  <g>
+    <rect x="196" y="104" width="170" height="82" rx="8" fill="#F4F1EA" opacity=".08"/>
+    <rect x="382" y="104" width="170" height="82" rx="8" fill="#F4F1EA" opacity=".08"/>
+    <rect x="568" y="104" width="180" height="82" rx="8" fill="#F4F1EA" opacity=".08"/>
+    <g fill="#8C2F39">
+      <rect x="212" y="122" width="56" height="8" rx="4"/>
+      <rect x="398" y="122" width="56" height="8" rx="4"/>
+      <rect x="584" y="122" width="56" height="8" rx="4"/>
+    </g>
+    <g fill="#F4F1EA" opacity=".75">
+      <rect x="212" y="146" width="96" height="20" rx="4"/>
+      <rect x="398" y="146" width="80" height="20" rx="4"/>
+      <rect x="584" y="146" width="110" height="20" rx="4"/>
+    </g>
+  </g>
+  <!-- flow chart: node graph -->
+  <rect x="196" y="208" width="388" height="264" rx="8" fill="#F4F1EA" opacity=".05"/>
+  <g stroke="#8C2F39" stroke-width="2.5" fill="none">
+    <path d="M300 268 H390 M390 268 V330 M390 330 H490"/>
+    <path d="M300 388 H390 M390 388 V330"/>
+    <path d="M490 330 H580"/>
+  </g>
+  <g fill="#151413" stroke="#8C2F39" stroke-width="2.5">
+    <rect x="228" y="248" width="72" height="40" rx="8"/>
+    <rect x="228" y="368" width="72" height="40" rx="8"/>
+    <rect x="390" y="310" width="100" height="40" rx="8"/>
+    <rect x="580" y="310" width="0" height="0"/>
+    <rect x="556" y="310" width="72" height="40" rx="8"/>
+  </g>
+  <g fill="#C75B66">
+    <circle cx="264" cy="268" r="5"/>
+    <circle cx="264" cy="388" r="5"/>
+    <circle cx="440" cy="330" r="6"/>
+    <circle cx="592" cy="330" r="5"/>
+  </g>
+  <!-- telemetry graph -->
+  <rect x="600" y="208" width="148" height="264" rx="8" fill="#F4F1EA" opacity=".05"/>
+  <polyline points="612,430 636,390 660,404 684,340 708,360 732,300 736,280" fill="none" stroke="#B08D57" stroke-width="3"/>
+  <g stroke="#F4F1EA" stroke-opacity=".12">
+    <path d="M612 270 H736 M612 330 H736 M612 390 H736"/>
+  </g>
+  <text x="200" y="500" font-family="ui-monospace, monospace" font-size="13" fill="#B08D57">DEXTRA / ORCHESTRATION FLOW — v1.0</text>
+</svg>

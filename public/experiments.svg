@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Terminal log showing MCP and API experiments">
+  <rect width="800" height="420" fill="#151413"/>
+  <!-- window chrome -->
+  <rect x="0" y="0" width="800" height="44" fill="#1C1B19"/>
+  <circle cx="26" cy="22" r="6" fill="#8C2F39"/>
+  <circle cx="48" cy="22" r="6" fill="#B08D57" opacity=".7"/>
+  <circle cx="70" cy="22" r="6" fill="#F4F1EA" opacity=".3"/>
+  <text x="96" y="28" font-family="ui-monospace, monospace" font-size="13" fill="#F4F1EA" opacity=".6">~/experiments/mcp-fastapi — zsh</text>
+  <!-- terminal text -->
+  <g font-family="ui-monospace, monospace" font-size="15">
+    <text x="28" y="84" fill="#B08D57">$ python -m server --transport stdio</text>
+    <text x="28" y="114" fill="#F4F1EA" opacity=".8">[ok] FastAPI listening on :8000</text>
+    <text x="28" y="144" fill="#F4F1EA" opacity=".8">[ok] MCP tools registered: 4</text>
+    <text x="28" y="174" fill="#8C2F39">[run] agent.dispatch(task=eval)</text>
+    <text x="44" y="204" fill="#F4F1EA" opacity=".65">→ policy.validate() ........ pass</text>
+    <text x="44" y="234" fill="#F4F1EA" opacity=".65">→ tool.call(web.search) .... ok</text>
+    <text x="44" y="264" fill="#F4F1EA" opacity=".65">→ audit.append(trace) ..... done</text>
+    <text x="28" y="306" fill="#C75B66">✓ run complete · 3 steps · 0 errors</text>
+    <text x="28" y="350" fill="#B08D57">$ _</text>
+  </g>
+  <!-- subtle scanlines -->
+  <g stroke="#F4F1EA" stroke-opacity=".04">
+    <path d="M0 70 H800 M0 130 H800 M0 190 H800 M0 250 H800 M0 310 H800 M0 370 H800"/>
+  </g>
+</svg>

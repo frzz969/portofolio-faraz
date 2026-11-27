@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+*.log
+tokengithub.txt
+token.txt
+github_token.txt
+.env
+.env.*
+.DS_Store

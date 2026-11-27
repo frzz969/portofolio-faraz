@@ -1,0 +1,376 @@
+---
+import '../styles/global.css';
+import '../styles/motion.css';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Faras Fadhil Firdaus - Technology Enthusiast & AI-Assisted Developer',
+  description = 'Building DEXTRA, bringing the AI Detector for students to life, and running ongoing AI experiments.',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://farasfadhil.github.io').href;
+
+const person = {
+  '@type': 'Person',
+  '@id': `${canonical}#person`,
+  name: 'Faras Fadhil Firdaus',
+  description:
+    'Building DEXTRA, bringing the AI Detector for students to life, and running ongoing AI experiments.',
+  jobTitle: 'Technology Enthusiast & AI-assisted Developer',
+  url: canonical,
+  // GANTI: konfirmasi username GitHub & slug LinkedIn sebelum deploy.
+  sameAs: ['https://github.com/farasfadhil', 'https://linkedin.com/in/faras-fadhil-firdaus'],
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': `${canonical}#profilepage`,
+      url: canonical,
+      name: title,
+      description,
+      mainEntity: { '@id': `${canonical}#person` },
+    },
+    person,
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#F4F1EA" />
+    <!-- ID description: Membangun DEXTRA, menghidupkan AI Detector Mahasiswa, dan menjalankan eksperimen AI. -->
+    <!-- To switch to Indonesian, replace the description string above with the ID version. -->
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="id" href="/?lang=id" />
+    <link rel="alternate" hreflang="en" href="/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
+    <link rel="expect" href="#main" blocking="render" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Faras Fadhil Firdaus" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://farasfadhil.github.io/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Faras Fadhil Firdaus, technology enthusiast dan AI-assisted developer." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://farasfadhil.github.io/og-image.svg" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-paper text-ink font-body-md antialiased selection:bg-accent-oxblood selection:text-paper">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-paper/85 backdrop-blur-md shadow-[0_1px_8px_rgba(28,27,25,0.04)]">
+      <div class="h-20 max-w-[1180px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-sm">
+          <a class="group flex items-center gap-space-sm" href="#about">
+            <span class="font-title-md text-title-md tracking-tight uppercase text-ink group-hover:text-accent-oxblood transition-colors">FARAS FADHIL FIRDAUS</span>
+          </a>
+          <span class="hidden sm:inline-flex items-center px-space-xs py-0.5 rounded text-label-sm font-label-sm uppercase bg-surface-container-high text-muted-brass tracking-wider">ID / 2026</span>
+        </div>
+        <nav class="hidden xl:flex items-center gap-space-xs p-1 bg-surface-container-low rounded-xl" aria-label="Main navigation">
+          <a aria-current="page" class="px-space-md py-1.5 transition-all bg-primary-container text-paper font-medium rounded-lg" href="#about">About</a>
+          <a class="px-space-md py-1.5 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all rounded-lg" href="#what-i-do">What I Do</a>
+          <a class="px-space-md py-1.5 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all rounded-lg" href="#projects">Projects</a>
+          <a class="px-space-md py-1.5 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all rounded-lg" href="#experience">Experience</a>
+          <a class="px-space-md py-1.5 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all rounded-lg" href="#skills">Skills</a>
+          <a class="px-space-md py-1.5 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all rounded-lg" href="#contact">Contact</a>
+        </nav>
+        <div class="flex items-center gap-space-sm">
+          <a class="hidden md:inline-flex items-center justify-center px-space-md py-2 rounded-lg bg-accent-oxblood text-paper font-label-md text-label-md tracking-normal hover:bg-primary transition-all shadow-[0_2px_8px_rgba(140,47,57,0.25)] min-h-[44px]" href="#contact">Get in Touch</a>
+          <details class="mobile-nav" aria-label="Mobile navigation">
+            <summary>Menu</summary>
+            <nav aria-label="Mobile sections">
+              <a href="#about">About</a>
+              <a href="#what-i-do">What I Do</a>
+              <a href="#projects">Projects</a>
+              <a href="#experience">Experience</a>
+              <a href="#education">Education</a>
+              <a href="#skills">Skills</a>
+              <a href="#interests">Interests</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </details>
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0" aria-hidden="true">
+            <svg class="text-on-primary w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#F4F1EA" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="w-full pt-20 bg-paper">
+      <div class="flex flex-col w-full text-ink selection:bg-accent-oxblood selection:text-paper">
+        <slot />
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Stitch design tokens from index.html, mapped to DESIGN.md oxblood palette.
+     Defined globally so the ported class names render without CDN. */
+  :root {
+    --paper: #F4F1EA;
+    --ink: #1C1B19;
+    --accent-oxblood: #8C2F39;
+    --oxblood-deep: #742630;
+    --brass: #B08D57;
+    --surface-container-low: #EFEBE2;
+    --surface-container: #EAE6DC;
+    --surface-container-high: #E3DED2;
+    --surface-container-highest: #DAD4C6;
+    --margin-mobile: 24px;
+    --margin: 48px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #151413;
+      --ink: #F4F1EA;
+      --accent-oxblood: #C75B66;
+      --oxblood-deep: #A9434E;
+      --brass: #C9A227;
+      --surface-container-low: #1D1B19;
+      --surface-container: #23211F;
+      --surface-container-high: #2A2825;
+      --surface-container-highest: #322F2B;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+  }
+  body { background: var(--paper); color: var(--ink); }
+  a, button { cursor: pointer; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--accent-oxblood);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  section[id], div[id] { scroll-margin-top: 6rem; }
+  img { height: auto; }
+
+  .skip-link {
+    position: fixed;
+    top: -100px;
+    left: 16px;
+    z-index: 100;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--accent-oxblood);
+    color: var(--paper);
+    font-size: 0.875rem;
+    transition: top 150ms cubic-bezier(0.2,0,0,1);
+  }
+  .skip-link:focus { top: 16px; }
+
+  /* Color utility tokens */
+  .bg-paper { background-color: var(--paper); }
+  .bg-paper\/85 { background-color: color-mix(in srgb, var(--paper) 85%, transparent); }
+  .bg-paper\/90 { background-color: color-mix(in srgb, var(--paper) 90%, transparent); }
+  .bg-ink { background-color: var(--ink); }
+  .bg-ink\/80 { background-color: color-mix(in srgb, var(--ink) 80%, transparent); }
+  .bg-ink\/20 { background-color: color-mix(in srgb, var(--ink) 20%, transparent); }
+  .bg-accent-oxblood { background-color: var(--accent-oxblood); }
+  .bg-accent-oxblood\/35 { background-color: color-mix(in srgb, var(--accent-oxblood) 35%, transparent); }
+  .bg-muted-brass { background-color: var(--brass); }
+  .bg-surface { background-color: var(--surface-container); }
+  .bg-surface-container-low { background-color: var(--surface-container-low); }
+  .bg-surface-container { background-color: var(--surface-container); }
+  .bg-surface-container-high { background-color: var(--surface-container-high); }
+  .bg-surface-container-highest { background-color: var(--surface-container-highest); }
+  .bg-surface-container-highest\/90 { background-color: color-mix(in srgb, var(--surface-container-highest) 90%, transparent); }
+  .bg-primary, .bg-primary-container { background-color: var(--accent-oxblood); }
+  .bg-secondary-container { background-color: var(--surface-container-high); }
+  .bg-tertiary, .bg-tertiary-container { background-color: var(--accent-oxblood); }
+  .bg-surface-variant { background-color: var(--surface-container-high); }
+
+  .text-ink { color: var(--ink); }
+  .text-paper { color: var(--paper); }
+  .text-paper\/70 { color: color-mix(in srgb, var(--paper) 70%, transparent); }
+  .text-accent-oxblood { color: var(--accent-oxblood); }
+  /* Brass on paper is 2.74:1 and fails AA. Use ink for small text; brass stays decorative only. */
+  .text-muted-brass, .text-muted-brass\/50,
+  .text-on-surface-variant, .text-outline-variant, .text-secondary,
+  .text-tertiary-container, .text-on-tertiary, .text-on-secondary-container,
+  .text-secondary-fixed { color: var(--ink); }
+  .text-on-primary { color: var(--paper); }
+  .selection\:bg-accent-oxblood::selection { background-color: var(--accent-oxblood); color: var(--paper); }
+  .selection\:text-paper::selection { color: var(--paper); }
+
+  /* Typography tokens */
+  .font-display { font-family: "Space Grotesk Variable", sans-serif; }
+  .font-body-md, .font-body-sm, .font-body-lg { font-family: "Inter Variable", system-ui, sans-serif; }
+  .font-label-md, .font-label-sm, .font-title-md { font-family: "Inter Variable", system-ui, sans-serif; }
+  .font-headline-lg, .font-headline-md, .font-headline-sm { font-family: "Space Grotesk Variable", sans-serif; }
+  .text-display, .text-headline-lg-mobile { font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 0.95; }
+  .text-headline-lg { font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.05; }
+  .text-headline-md { font-size: clamp(1.375rem, 3vw, 2rem); line-height: 1.15; }
+  .text-headline-sm { font-size: clamp(1.25rem, 2.5vw, 1.75rem); line-height: 1.2; }
+  .text-title-md { font-size: 1.125rem; line-height: 1.35; }
+  .text-body-lg { font-size: 1.125rem; line-height: 1.7; }
+  .text-body-md { font-size: 1rem; line-height: 1.65; }
+  .text-body-sm { font-size: 0.875rem; line-height: 1.6; }
+  .text-label-md { font-size: 0.875rem; line-height: 1.4; }
+  .text-label-sm { font-size: 0.75rem; line-height: 1.4; }
+
+  /* Spacing tokens (Stitch custom scale) */
+  .px-margin-mobile { padding-inline: var(--margin-mobile); }
+  .lg\:px-margin { padding-inline: var(--margin); }
+  .px-gutter-mobile { padding-inline: 20px; }
+  .gap-space-xs { gap: var(--space-xs); }
+  .gap-space-sm { gap: var(--space-sm); }
+  .gap-space-md { gap: var(--space-md); }
+  .gap-space-lg { gap: var(--space-lg); }
+  .md\:gap-space-md { gap: var(--space-md); }
+  .px-space-xs { padding-inline: var(--space-xs); }
+  .px-space-md { padding-inline: var(--space-md); }
+  .mb-space-xs { margin-bottom: var(--space-xs); }
+  .mb-space-sm { margin-bottom: var(--space-sm); }
+  .mb-space-md { margin-bottom: var(--space-md); }
+  .mb-space-lg { margin-bottom: var(--space-lg); }
+  .mt-space-md { margin-top: var(--space-md); }
+  .mt-space-2xl { margin-top: var(--space-2xl); }
+  .pb-space-lg { padding-bottom: var(--space-lg); }
+  .pb-space-xl { padding-bottom: var(--space-xl); }
+  .pt-space-md { padding-top: var(--space-md); }
+  .py-space-xl { padding-block: var(--space-xl); }
+  .pt-safe, .pb-safe { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+  .xs\:inline-block { display: inline-block; }
+
+  /* Small overrides carried over from the cleaned HTML */
+  .bg-gradient-to-t { background-image: linear-gradient(to top, var(--ink), transparent 60%, color-mix(in srgb, var(--ink) 40%, transparent)); }
+  .from-ink { --tw-gradient-from: var(--ink); }
+  .via-transparent { --tw-gradient-via: transparent; }
+  .to-ink\/40 { --tw-gradient-to: color-mix(in srgb, var(--ink) 40%, transparent); }
+  .from-accent-oxblood\/40 { --tw-gradient-from: color-mix(in srgb, var(--accent-oxblood) 40%, transparent); }
+  .to-transparent { --tw-gradient-to: transparent; }
+  .decoration-accent-oxblood\/40 { text-decoration-color: color-mix(in srgb, var(--accent-oxblood) 40%, transparent); }
+  .group:hover .group-hover\:decoration-accent-oxblood { text-decoration-color: var(--accent-oxblood); }
+  .group:hover .group-hover\:bg-accent-oxblood { background-color: var(--accent-oxblood); }
+  .group:hover .group-hover\:text-paper { color: var(--paper); }
+  .hover\:bg-primary:hover { background-color: var(--oxblood-deep); }
+  .hover\:shadow-md:hover { box-shadow: 0 4px 12px rgba(28,27,25,0.08); }
+  .hover\:shadow-lg:hover { box-shadow: 0 10px 24px rgba(28,27,25,0.12); }
+  .shadow-xs { box-shadow: 0 1px 2px rgba(28,27,25,0.05); }
+
+  /* --- antislop-ui: accent restraint ------------------------------------
+     Accent stays at key moments only: hero headline line, primary buttons,
+     one project status badge, real availability dots. Decorative labels,
+     icons and small tags fall back to ink or brass. */
+  .quiet-accent { color: var(--ink); }
+
+  /* --- antislop-layoutmobile: distinct mobile scale & reflow ------------ */
+  html, body { overflow-x: clip; }
+  body { padding-top: env(safe-area-inset-top); }
+  img { max-width: 100%; }
+  .grid > * { min-width: 0; }
+
+  /* Mobile state (< 640px): compact type, tighter rhythm, smaller gaps. */
+  @media (max-width: 639px) {
+    :root {
+      --margin-mobile: 20px;
+      --space-md: 20px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 40px;
+    }
+    .container-page { padding-inline: 20px; }
+    .py-20 { padding-block: 48px; }
+    .lg\:py-28 { padding-block: 48px; }
+    .mb-14 { margin-bottom: 32px; }
+    .gap-8 { gap: 20px; }
+    .gap-6 { gap: 16px; }
+    .h-20 { height: 64px; }
+    main.pt-20 { padding-top: 64px; }
+    .text-display { font-size: clamp(2.25rem, 9vw, 3.25rem); }
+    .text-headline-lg { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .text-body-lg { font-size: 1rem; }
+  }
+
+  /* Tablet state (640px - 1023px): two columns, medium rhythm. */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .py-20, .lg\:py-28 { padding-block: 64px; }
+    .px-margin-mobile { padding-inline: 32px; }
+  }
+
+  /* Desktop state (>= 1024px) keeps the authored Stitch rhythm. */
+
+  /* --- antislop-layoutmobile: tap targets >= 44px with spacing ---------- */
+  a, button, summary { min-height: 44px; }
+  header a, header summary, footer a { display: inline-flex; align-items: center; }
+  .mobile-nav { position: relative; }
+  .mobile-nav > summary {
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border-radius: 8px;
+    background: var(--surface-container-low);
+    color: var(--ink);
+    font-size: 0.875rem;
+    font-weight: 500;
+    min-width: 64px;
+  }
+  .mobile-nav > summary::-webkit-details-marker { display: none; }
+  .mobile-nav > summary::after { content: " Menu"; }
+  .mobile-nav[open] > summary { background: var(--surface-container-high); }
+  .mobile-nav nav {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: min(280px, calc(100vw - 40px));
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--paper);
+    box-shadow: 0 8px 24px rgba(28,27,25,0.14);
+  }
+  .mobile-nav nav a {
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--ink);
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+  .mobile-nav nav a:hover { background: var(--surface-container-high); }
+  @media (min-width: 1280px) { .mobile-nav { display: none; } }
+  @media (min-width: 640px) { .mobile-nav > summary::after { content: " Menu"; } }
+
+  /* Visible feedback for touch, not hover-only. */
+  a:active, button:active, summary:active { opacity: 0.72; }
+  .card:active { translate: 0 0; }
+
+  /* Decorative dots in the interest list mark no live state: quiet rule. */
+  .interest-mark { width: 12px; height: 2px; border-radius: 0; background: var(--brass); }
+</style>

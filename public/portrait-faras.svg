@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Illustrated portrait of a young Indonesian technology enthusiast in a dark crew-neck shirt">
+  <defs>
+    <!-- Fine editorial grain overlay -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+    </filter>
+    <!-- Soft duotone gradient used inside shapes only (never as a background rect) -->
+    <linearGradient id="oxbloodLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8C2F39"/>
+      <stop offset="1" stop-color="#B08D57" stop-opacity="0.18"/>
+    </linearGradient>
+    <linearGradient id="inkSoft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1C1B19"/>
+      <stop offset="1" stop-color="#1C1B19" stop-opacity="0.75"/>
+    </linearGradient>
+    <clipPath id="bodyClip">
+      <path d="M118 1000 C118 806 210 706 322 676 L478 676 C590 706 682 806 682 1000 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- ===================== SHOULDERS / BODY ===================== -->
+  <g>
+    <!-- Dark crew-neck shirt silhouette -->
+    <path d="M118 1000 C118 806 210 706 322 676 L478 676 C590 706 682 806 682 1000 Z" fill="url(#inkSoft)"/>
+    <!-- Shirt inner tonal panel (editorial duotone structuring) -->
+    <g clip-path="url(#bodyClip)">
+      <path d="M118 1000 C140 850 190 760 300 700 L340 1000 Z" fill="#8C2F39" opacity="0.5"/>
+      <path d="M500 700 C610 760 660 850 682 1000 L560 1000 Z" fill="#8C2F39" opacity="0.28"/>
+      <!-- Brass thin shoulder seam accents -->
+      <path d="M322 690 C250 722 190 790 160 880" fill="none" stroke="#B08D57" stroke-width="2" opacity="0.55"/>
+      <path d="M478 690 C550 722 610 790 640 880" fill="none" stroke="#B08D57" stroke-width="2" opacity="0.55"/>
+    </g>
+    <!-- Crew-neck collar -->
+    <path d="M322 676 C350 706 450 706 478 676 C470 728 440 756 400 756 C360 756 330 728 322 676 Z" fill="#F4F1EA"/>
+    <path d="M322 676 C350 706 450 706 478 676" fill="none" stroke="#B08D57" stroke-width="2" opacity="0.6"/>
+    <!-- Neck -->
+    <path d="M344 590 L344 686 C344 716 456 716 456 686 L456 590 Z" fill="#F4F1EA"/>
+    <path d="M344 590 C372 622 428 622 456 590 L456 628 C428 656 372 656 344 628 Z" fill="#1C1B19" opacity="0.18"/>
+  </g>
+
+  <!-- ===================== HEAD ===================== -->
+  <g>
+    <!-- Ears -->
+    <path d="M262 430 C244 420 236 446 246 472 C252 488 264 494 274 488 L276 442 Z" fill="#F4F1EA"/>
+    <path d="M538 430 C556 420 564 446 554 472 C548 488 536 494 526 488 L524 442 Z" fill="#F4F1EA"/>
+    <path d="M256 448 C250 456 252 470 260 476" fill="none" stroke="#8C2F39" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
+    <path d="M544 448 C550 456 548 470 540 476" fill="none" stroke="#8C2F39" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
+
+    <!-- Face shape -->
+    <path d="M400 150 C316 150 266 214 266 320 C266 392 282 452 320 510 C348 552 372 578 400 578 C428 578 452 552 480 510 C518 452 534 392 534 320 C534 214 484 150 400 150 Z" fill="#F4F1EA"/>
+    <!-- Duotone shadow plane on face (right side) -->
+    <path d="M400 150 C484 150 534 214 534 320 C534 392 518 452 480 510 C452 552 428 578 400 578 Z" fill="url(#oxbloodLight)" opacity="0.55"/>
+    <!-- Jaw / cheek subtle ink shading -->
+    <path d="M320 510 C348 552 372 578 400 578 C428 578 452 552 480 510 C452 538 428 550 400 550 C372 550 348 538 320 510 Z" fill="#1C1B19" opacity="0.12"/>
+    <!-- Thin brass editorial contour line along cheek -->
+    <path d="M286 356 C290 424 306 476 340 520" fill="none" stroke="#B08D57" stroke-width="1.6" opacity="0.5"/>
+
+    <!-- Brows (calm, slightly raised inner ends = thinking) -->
+    <path d="M318 330 C338 318 366 320 380 332" fill="none" stroke="#1C1B19" stroke-width="7" stroke-linecap="round"/>
+    <path d="M420 332 C434 320 462 318 482 330" fill="none" stroke="#1C1B19" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- Eyes: thoughtful, looking slightly off-center -->
+    <path d="M320 362 C336 350 364 350 380 362 C364 374 336 374 320 362 Z" fill="#F4F1EA" stroke="#1C1B19" stroke-width="3"/>
+    <circle cx="352" cy="362" r="7" fill="#1C1B19"/>
+    <path d="M420 362 C436 350 464 350 480 362 C464 374 436 374 420 362 Z" fill="#F4F1EA" stroke="#1C1B19" stroke-width="3"/>
+    <circle cx="450" cy="362" r="7" fill="#1C1B19"/>
+    <!-- Upper lids -->
+    <path d="M320 360 C336 348 364 348 380 360" fill="none" stroke="#1C1B19" stroke-width="4" stroke-linecap="round"/>
+    <path d="M420 360 C436 348 464 348 480 360" fill="none" stroke="#1C1B19" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <path d="M400 372 C394 408 386 436 392 450 C398 462 412 462 418 450" fill="none" stroke="#8C2F39" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+    <path d="M382 458 C392 464 408 464 418 458" fill="none" stroke="#1C1B19" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- Mouth: calm, closed, faint thoughtful asymmetry -->
+    <path d="M366 506 C384 500 416 500 434 508" fill="none" stroke="#8C2F39" stroke-width="4" stroke-linecap="round"/>
+    <path d="M372 514 C388 518 412 518 428 514" fill="none" stroke="#1C1B19" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Hair: neat black, side-parted, editorial shape -->
+    <path d="M400 132 C306 132 254 196 258 288 C262 262 272 240 286 226 C292 254 314 270 342 266 C370 262 386 244 396 224 C408 248 436 258 468 248 C492 240 508 218 514 194 C524 220 532 252 534 292 C540 200 490 132 400 132 Z" fill="#1C1B19"/>
+    <!-- Hair highlight (oxblood duotone sheen, thin) -->
+    <path d="M292 214 C316 176 352 156 396 154 C356 168 326 190 306 224 Z" fill="#8C2F39" opacity="0.65"/>
+    <path d="M446 158 C480 172 504 196 512 226 C498 190 474 170 446 158 Z" fill="#8C2F39" opacity="0.4"/>
+    <!-- Brass hair part line -->
+    <path d="M396 154 C388 182 376 204 356 222" fill="none" stroke="#B08D57" stroke-width="1.4" opacity="0.45"/>
+    <!-- Sideburns -->
+    <path d="M262 288 C262 312 266 334 274 350 C268 326 268 304 272 286 Z" fill="#1C1B19"/>
+    <path d="M538 288 C538 312 534 334 526 350 C532 326 532 304 528 286 Z" fill="#1C1B19"/>
+  </g>
+
+  <!-- ===================== GRAIN OVERLAY ===================== -->
+  <rect x="0" y="0" width="800" height="1000" fill="#F4F1EA" filter="url(#grain)" opacity="0.04" style="mix-blend-mode:overlay"/>
+</svg>

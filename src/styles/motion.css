@@ -1,0 +1,17 @@
+:root{--paper:#F4F1EA;--ink:#1C1B19;--oxblood:#8C2F39;--oxblood-deep:#742630;--brass:#B08D57;--dur-micro:150ms;--dur-ui:180ms;--dur-page:320ms;--ease-ui:cubic-bezier(0.2,0,0,1);--ease-out:cubic-bezier(0.05,0.7,0.1,1)}
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:var(--dur-page);animation-timing-function:var(--ease-out)}
+@supports (animation-timeline:view()){@media (prefers-reduced-motion:no-preference){.reveal-line{animation:oxblood-in linear both;animation-timeline:view();animation-range:entry calc(5% + var(--i,0)*4%) cover 40%}.portrait{animation:portrait-drift linear both;animation-timeline:view();animation-range:cover}}}
+@keyframes oxblood-in{from{clip-path:inset(0 100% 0 0);opacity:.35}to{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes portrait-drift{from{translate:0 6px}to{translate:0 -6px}}
+.card{transition:translate var(--dur-micro) var(--ease-ui),border-color var(--dur-micro) var(--ease-ui)}
+@media (hover:hover){.card:hover{translate:0 -2px;border-color:var(--oxblood)}}
+.btn{background:var(--oxblood);color:var(--paper);transition:background-color var(--dur-ui) var(--ease-ui)}
+@media (hover:hover){.btn:hover{background:var(--oxblood-deep)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Single decorative oxblood stroke near the hero headline. One-shot on load only. */
+.ink-stroke{display:block;width:72px;height:2px;margin-top:14px;background:var(--oxblood);transform-origin:left center;opacity:.9}
+@media (prefers-reduced-motion:no-preference){.ink-stroke{animation:stroke-in 420ms cubic-bezier(0.05,0.7,0.1,1) both}}
+@keyframes stroke-in{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media (prefers-reduced-motion:reduce){.ink-stroke{animation:none}}

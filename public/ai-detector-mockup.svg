@@ -1,32 +1,80 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="AI Detector concept mockup with brass accents">
-  <rect width="800" height="420" fill="#F4F1EA"/>
-  <!-- paper blueprint frame -->
-  <rect x="28" y="28" width="744" height="364" rx="6" fill="none" stroke="#B08D57" stroke-width="2"/>
-  <rect x="40" y="40" width="720" height="340" rx="4" fill="#F4F1EA"/>
-  <text x="64" y="82" font-family="ui-monospace, monospace" font-size="20" font-weight="600" fill="#1C1B19">ANALYSIS / KONSEP</text>
-  <text x="64" y="106" font-family="ui-monospace, monospace" font-size="12" fill="#8C2F39">Indonesian Academic Writing Analyzer — concept</text>
-  <line x1="64" y1="124" x2="736" y2="124" stroke="#B08D57" stroke-width="2"/>
-  <!-- score dial -->
-  <circle cx="180" cy="248" r="72" fill="none" stroke="#1C1B19" stroke-opacity=".12" stroke-width="14"/>
-  <path d="M180 176 A72 72 0 0 1 252 248" fill="none" stroke="#8C2F39" stroke-width="14" stroke-linecap="round"/>
-  <text x="180" y="256" text-anchor="middle" font-family="ui-monospace, monospace" font-size="30" font-weight="600" fill="#1C1B19">0.82</text>
-  <text x="180" y="278" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#8C2F39">PERPLEXITY</text>
-  <!-- heatmap bars -->
-  <g>
-    <rect x="300" y="180" width="400" height="14" rx="4" fill="#1C1B19" opacity=".08"/>
-    <rect x="300" y="180" width="268" height="14" rx="4" fill="#B08D57"/>
-    <rect x="300" y="212" width="400" height="14" rx="4" fill="#1C1B19" opacity=".08"/>
-    <rect x="300" y="212" width="180" height="14" rx="4" fill="#8C2F39"/>
-    <rect x="300" y="244" width="400" height="14" rx="4" fill="#1C1B19" opacity=".08"/>
-    <rect x="300" y="244" width="330" height="14" rx="4" fill="#B08D57"/>
-  </g>
-  <g font-family="ui-monospace, monospace" font-size="11" fill="#1C1B19" opacity=".7">
-    <text x="300" y="174">BURSTINESS</text>
-    <text x="300" y="206">LEXICAL ENTROPY</text>
-    <text x="300" y="238">TOKEN REPETITION</text>
-  </g>
-  <!-- waveform / curve -->
-  <path d="M300 340 Q340 290 380 330 T460 320 T540 330 T620 318 T700 330" fill="none" stroke="#8C2F39" stroke-width="2.5"/>
-  <line x1="300" y1="348" x2="700" y2="348" stroke="#B08D57" stroke-width="1"/>
-  <text x="64" y="356" font-family="ui-monospace, monospace" font-size="11" fill="#8C2F39">PLANNED · KONSEP</text>
+<!-- Thumbnail berdasarkan tampilan asli https://ai-detector-mahasiswa.vercel.app -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="Inter, Segoe UI, Arial, sans-serif">
+  <rect width="1200" height="675" fill="#EAF5FC"/>
+
+  <!-- NAV -->
+  <rect x="0" y="0" width="1200" height="72" fill="#ffffff"/>
+  <line x1="0" y1="72" x2="1200" y2="72" stroke="#CBE4F4" stroke-width="1"/>
+  <circle cx="72" cy="36" r="20" fill="#0E4A6E"/>
+  <path d="M66 31 Q68 28 71 31 M77 31 Q80 28 82 31" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M64 39 Q72 48 80 39" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <circle cx="65" cy="35" r="1.6" fill="#ffffff"/>
+  <circle cx="79" cy="35" r="1.6" fill="#ffffff"/>
+  <text x="102" y="42" font-size="19" font-weight="800" fill="#0B2E4B">Faraz Detector AI</text>
+  <text x="560" y="42" font-size="13" font-weight="600" fill="#0E4A6E">Editor · Hasil · Cara kerja · FAQ</text>
+  <rect x="1000" y="18" width="140" height="36" rx="18" fill="#111111"/>
+  <text x="1070" y="41" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Cek tulisan</text>
+
+  <!-- HERO PANEL -->
+  <rect x="48" y="96" width="1104" height="380" rx="24" fill="#CDE9F9"/>
+  <text x="92" y="160" font-size="34" font-weight="800" fill="#0B2E4B">Youkoso, Faraz Detector AI e.</text>
+  <text x="92" y="204" font-size="34" font-weight="800" fill="#0E4A6E">Hajimemashou, mari kita mulai.</text>
+  <text x="92" y="244" font-size="15" fill="#0B2E4B">Kenali teks buatan AI dari tulisan mahasiswa.</text>
+  <text x="92" y="266" font-size="15" fill="#0B2E4B">Cepat, sederhana, dan langsung di browser.</text>
+
+  <rect x="92" y="290" width="190" height="44" rx="22" fill="#111111"/>
+  <text x="187" y="318" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Cek tulisan sekarang</text>
+  <rect x="294" y="290" width="120" height="44" rx="22" fill="#CDE9F9" stroke="#0E4A6E" stroke-width="1.5"/>
+  <text x="354" y="318" font-size="13" font-weight="700" fill="#0E4A6E" text-anchor="middle">Cara kerja</text>
+
+  <text x="92" y="380" font-size="12.5" font-weight="600" fill="#0E4A6E">✓ Gratis   ✓ Tanpa daftar   ✓ Privat di perangkat</text>
+
+  <!-- RIGHT DEMO PANEL -->
+  <rect x="620" y="124" width="496" height="324" rx="20" fill="#D9EDFA"/>
+  <rect x="648" y="148" width="440" height="276" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
+  <text x="868" y="178" font-size="10.5" font-weight="800" fill="#0E4A6E" text-anchor="middle">COBA LANGSUNG, CONTOH INTERAKTIF</text>
+
+  <rect x="672" y="194" width="102" height="30" rx="8" fill="#111111"/>
+  <text x="723" y="214" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle">Contoh AI</text>
+  <rect x="780" y="194" width="130" height="30" rx="8" fill="#EAF5FC" stroke="#CBE4F4" stroke-width="1"/>
+  <text x="845" y="214" font-size="11.5" font-weight="600" fill="#0E4A6E" text-anchor="middle">Contoh manusia</text>
+
+  <rect x="672" y="238" width="392" height="92" rx="10" fill="#F8FBFE" stroke="#CBE4F4" stroke-width="1"/>
+  <text x="688" y="260" font-size="11" fill="#0E4A6E">Kalendar</text>
+  <rect x="688" y="270" width="356" height="7" rx="3.5" fill="#D9EDFA"/>
+  <rect x="688" y="286" width="300" height="7" rx="3.5" fill="#D9EDFA"/>
+  <rect x="688" y="302" width="330" height="7" rx="3.5" fill="#D9EDFA"/>
+
+  <text x="672" y="370" font-size="48" font-weight="800" fill="#0B2E4B">0%</text>
+  <text x="752" y="366" font-size="12" fill="#64748B">kemungkinan teks AI</text>
+  <rect x="672" y="384" width="392" height="10" rx="5" fill="#EAF5FC"/>
+  <rect x="672" y="384" width="14" height="10" rx="5" fill="#111111"/>
+  <rect x="672" y="406" width="220" height="14" rx="7" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
+  <text x="782" y="416" font-size="10" font-weight="600" fill="#0E4A6E" text-anchor="middle">Buka contoh ini di editor</text>
+
+  <!-- BOTTOM STEPS -->
+  <rect x="48" y="502" width="352" height="132" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
+  <rect x="72" y="526" width="32" height="32" rx="9" fill="#D9EDFA"/>
+  <text x="88" y="548" font-size="15" font-weight="800" fill="#0E4A6E" text-anchor="middle">1</text>
+  <text x="116" y="549" font-size="16" font-weight="700" fill="#0B2E4B">Tempel / upload</text>
+  <text x="72" y="588" font-size="12.5" fill="#0E4A6E">Masukkan teks atau berkas dokumen.</text>
+  <text x="72" y="608" font-size="12.5" fill="#0E4A6E">Tidak perlu akun atau pengaturan.</text>
+
+  <text x="426" y="574" font-size="24" font-weight="700" fill="#0E4A6E">→</text>
+
+  <rect x="454" y="502" width="352" height="132" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
+  <rect x="478" y="526" width="32" height="32" rx="9" fill="#D9EDFA"/>
+  <text x="494" y="548" font-size="15" font-weight="800" fill="#0E4A6E" text-anchor="middle">2</text>
+  <text x="522" y="549" font-size="16" font-weight="700" fill="#0B2E4B">Klik deteksi</text>
+  <text x="478" y="588" font-size="12.5" fill="#0E4A6E">Lihat skor dan bagian yang dicurigai.</text>
+  <text x="478" y="608" font-size="12.5" fill="#0E4A6E">Hasil merah, hijau, atau kuning.</text>
+
+  <text x="832" y="574" font-size="24" font-weight="700" fill="#0E4A6E">→</text>
+
+  <rect x="860" y="502" width="292" height="132" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
+  <rect x="884" y="526" width="32" height="32" rx="9" fill="#D9EDFA"/>
+  <text x="900" y="548" font-size="15" font-weight="800" fill="#0E4A6E" text-anchor="middle">3</text>
+  <text x="928" y="549" font-size="16" font-weight="700" fill="#0B2E4B">Perbaiki &amp; export</text>
+  <text x="884" y="588" font-size="12.5" fill="#0E4A6E">Tulis ulang bagian yang terdeteksi.</text>
+  <text x="884" y="608" font-size="12.5" fill="#0E4A6E">Simpan hasil ke perangkat Anda.</text>
 </svg>

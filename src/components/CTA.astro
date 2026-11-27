@@ -11,8 +11,8 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
     <div class="contact__head">
       <span class="eyebrow">08 / Invitation</span>
       <h2 class="h2 contact__title">
-        <span class="hero-line" style="--i:0">OPEN TO</span>
-        <span class="hero-line" style="--i:1">NEW POSSIBILITIES.</span>
+        <span class="cta-line" style="--i:0">OPEN TO</span>
+        <span class="cta-line" style="--i:1">NEW POSSIBILITIES.</span>
       </h2>
       <p class="lead">
         I am interested in learning, collaborating, and contributing to meaningful work.
@@ -81,8 +81,9 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
 <style>
   .contact { padding-block: clamp(72px, 11vw, 132px) clamp(56px, 8vw, 96px); }
   .contact__head { max-width: 68ch; }
-  .contact__title { margin-block: 20px 28px; }
-  .contact__title .hero-line { color: var(--white); }
+  /* Contact adalah titik akhir: sedikit lebih besar dari H2 biasa. */
+  .contact__title { margin-block: 20px 28px; font-size: clamp(2.125rem, 5.2vw, 3.375rem); }
+  .contact__title .cta-line { color: var(--white); }
   .contact__grid {
     display: grid;
     grid-template-columns: 1fr;

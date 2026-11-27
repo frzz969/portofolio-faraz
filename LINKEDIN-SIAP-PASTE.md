@@ -103,7 +103,7 @@ Aplikasi web live untuk menganalisis tulisan akademik Bahasa Indonesia. Pengguna
 
 ## Education
 
-SMKN 1 Sukoharjo, Teknik Jaringan Komputer dan Telekomunikasi (TJKT), 2022 - 2026.
+SMKN 1 Sukoharjo, Teknik Jaringan Komputer dan Telekomunikasi (TJKT), 2023 - 2026.
 
 ## Licenses and certifications
 
@@ -115,7 +115,7 @@ Practical Office Advance (POA), BPVP Surakarta, 2026. Sertifikat BNSP dalam pros
 
 ## Organizations
 
-Palang Merah Remaja (PMR) Wira, SMKN 1 Sukoharjo, 2022 - 2025. Peran: Anggota, Seksi Kegiatan.
+Palang Merah Remaja (PMR) Wira, SMKN 1 Sukoharjo, 2023 - 2025. Peran: Anggota, Seksi Kegiatan.
 
 - Membantu perencanaan dan pelaksanaan kegiatan sosial serta pelatihan dasar PMR.
 - Menyusun kebutuhan perlengkapan dan membantu kelancaran rundown acara bersama anggota lintas seksi.

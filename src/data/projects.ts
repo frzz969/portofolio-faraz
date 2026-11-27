@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: 'DEXTRA',
     subtitle: 'Governed Enterprise AI Workforce & Operations Platform',
     description:
-      'An AI-powered operations platform designed around specialized AI workers, human-defined authority, and accountable execution. The platform explores multi-agent orchestration, MCP integration, approval-based execution, deterministic policy validation, and audit trails.',
+      'An interactive prototype for exploring AI-assisted operations: specialized AI workers, human-defined authority, and accountable execution. It experiments with multi-agent orchestration, MCP integration, approval-based execution, deterministic policy validation, and audit trails — not a production enterprise system.',
     focus: [
       'AI Agents',
       'Next.js',
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     title: 'AI Detector Mahasiswa',
     subtitle: 'Indonesian Academic Writing Analyzer',
     description:
-      'A live demo for analyzing Indonesian academic writing with NLP. It reads pasted or uploaded txt, md, pdf, and docx files, checks 10 language patterns, and can run an optional local model around 130MB. Results show a score with highlighted text and a PDF report, in Indonesian and English. The FAQ states clearly that no detector is 100% accurate, that this is not a replacement for Turnitin, and that text stays private in the browser.',
+      'A live demo for exploring Indonesian academic writing with NLP. It reads pasted or uploaded txt, md, pdf, and docx files, surfaces 10 language patterns, and can run an optional local model around 130MB. It shows a score with highlighted text and a PDF report, in Indonesian and English. The score is an uncertain indicator — not proof of AI use or academic misconduct. The FAQ also states that no detector is 100% accurate, that this is not a replacement for Turnitin, and that text stays private in the browser.',
     focus: [
       'NLP',
       'Indonesian Language Analysis',

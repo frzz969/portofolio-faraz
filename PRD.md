@@ -130,7 +130,51 @@ File SVG lama (`dextra-dashboard.svg`, `ai-detector-mockup.svg`, `experiments.sv
 
 ---
 
-## 10. Definition of Done
+## 10. Standar Pengerjaan (WAJIB — berlaku untuk semua tugas lanjutan)
+
+Mulai 28 November 2026, standar ini **selalu aktif** untuk setiap perubahan pada repo ini. Owner tidak perlu mengulang instruksi "pakai skill antislop / UI UX promax" lagi — cukup merujuk bab ini.
+
+### 10.1 Skill yang WAJIB dipakai
+Sebelum dan selama mengerjakan tugas apa pun (audit, redesign, perbaikan konten, motion, doc):
+
+- **antislop (core)** — filter utama: hindari hasil AI generik, klaim berlebih, jargon, dan pola template.
+- **antislop-code** — hygiene komentar/kode; hapus komentar generik, simpan yang beralasan.
+- **antislop-copywriting** — untuk semua teks UI: headline, tone, CTA, anti-AI-writing patterns.
+- **antislop-human** — kontras, fokus, keyboard, state, aksesibilitas (`contrast-check.py` wajib dipakai untuk pasangan warna baru).
+- **antislop-layoutmobile** — reflow 360–1440px, grid, overflow, tap target.
+- **antislop-ui** — warna, layout, komponen, motion, performa halaman.
+
+Mode default: **DURING** (bukan setelah selesai). Terapkan saat menulis, bukan sebagai review terakhir.
+
+### 10.2 UI/UX "promax" — keputusan desain
+- Satu focal point per layar; whitespace sebagai struktur; asimetri disengaja, bukan bento grid seragam.
+- Tiap keputusan visual punya alasan satu baris (R-31).
+- Dilarang: bento mosaic, fake terminal, capsule badge berlebih, colored stripe, glow, shadow everywhere, 3 kartu identik, hero screenshot kostum, emoji dekoratif.
+- Jangan menambah animasi/dekorasi hanya agar terlihat "modern". Motion harus punya fungsi.
+
+### 10.3 Aturan konten (integritas)
+- Jangan mengarang pengalaman, jabatan, sertifikasi, kemampuan, metrik, atau fitur produk.
+- Lahir tahun, masa sekolah, peran organisasi, dan status kredensial harus cocok dengan `CV-FARAS.md` & `LINKEDIN-SIAP-PASTE.md` (sumber kebenaran fakta diri). Perubahan fakta hanya dari owner.
+- AI Detector: skor adalah **indikator tidak pasti**, bukan bukti penggunaan AI atau pelanggaran akademik.
+- DEXTRA: prototipe interaktif, **bukan** enterprise production-ready.
+- PMR & Dewan Ambalan: **Anggota, Seksi Kegiatan** — bukan ketua/koordinator/leader.
+
+### 10.4 Delegasi ke sub-agent
+Tugas non-trivial (multi-file, paralel, audit mendalam) **wajib** didelegasikan ke sub-agent dengan:
+- Scope write yang **disjoint** (tidak saling menimpa).
+- Validator yang jelas (build / grep / kontras / XML valid).
+- Skill antislop + UI/UX promax **disertakan di prompt sub-agent**, bukan hanya di prompt utama.
+- Writer tidak boleh commit/push tanpa otorisasi owner.
+
+### 10.5 Urutan kerja & verifikasi
+- Kerjakan bertahap; build & cek diff setelah tiap kelompok perubahan.
+- Pisahkan **static code review** dari **visual verification**. Jangan klaim lulus visual jika tidak ada browser yang benar-benar merender.
+- Environment Android/Termux tidak mendukung Playwright/Chromium — visual verification harus dilaporkan sebagai limitation atau dilakukan owner.
+- Jangan commit/push sebelum lapor hasil dan mendapat persetujuan.
+
+---
+
+## 11. Definition of Done
 
 1. Monokrom ketat, nol warna lain.
 2. Tipografi Space Grotesk / Inter / JetBrains Mono.

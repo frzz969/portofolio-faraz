@@ -40,11 +40,11 @@ export const skillGroups: SkillGroup[] = [
   {
     name: 'Office & Productivity',
     items: [
-      'Microsoft Office',
-      'Document Processing',
+      'Microsoft Word, Excel, PowerPoint',
+      'Document Formatting & SOP Documentation',
+      'Data Entry & Web Research',
       'Data Management',
       'Administrative Support',
-      'Documentation',
     ],
   },
 ];

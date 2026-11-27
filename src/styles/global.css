@@ -58,7 +58,8 @@
   --section-y: 72px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-ui: 220ms;
+  /* --dur-ui dipakai transisi UI ringan; nilai tunggal 240ms (sumber: motion.css). */
+  --dur-ui: 240ms;
 }
 
 @media (min-width: 768px) {
@@ -74,11 +75,8 @@
   }
 }
 
-/* View transition native, tetap dipertahankan. Non-essential, dimatikan
-   saat reduced-motion lewat motion.css. */
-@view-transition {
-  navigation: auto;
-}
+/* View transition hanya didefinisikan sekali, di motion.css, di dalam
+   @media (prefers-reduced-motion: no-preference). */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -112,7 +110,6 @@ ul, ol { padding: 0; list-style: none; }
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
-.charcoal :focus-visible,
 .charcoal :focus-visible {
   outline-color: var(--white);
 }
@@ -256,7 +253,14 @@ ul, ol { padding: 0; list-style: none; }
               border-color var(--dur-ui) var(--ease-out),
               transform var(--dur-ui) var(--ease-out);
 }
-.btn:hover { background: var(--charcoal); border-color: var(--charcoal); }
+/* Inversi penuh: hitam menjadi kertas, teks menjadi tinta. Perubahan
+   state terlihat jelas tanpa warna baru (R-31). */
+.btn:hover {
+  background: var(--paper);
+  border-color: var(--ink);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
 .btn:active { transform: translateY(1px); }
 
 .btn--ghost {
@@ -312,11 +316,11 @@ ul, ol { padding: 0; list-style: none; }
   padding: 3px 9px;
   border: 1px solid var(--border);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--subtle);
-  white-space: nowrap;
+  white-space: normal;
 }
 .status--solid {
   background: var(--ink);
@@ -375,6 +379,11 @@ ul, ol { padding: 0; list-style: none; }
   .marquee-track {
     animation: marquee-slide 34s linear infinite;
   }
+  /* Dekoratif berhenti saat dibaca atau difokuskan. */
+  .marquee-band:hover .marquee-track,
+  .marquee-band:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
 }
 @keyframes marquee-slide {
   from { transform: translateX(0); }
@@ -429,6 +438,23 @@ ul, ol { padding: 0; list-style: none; }
 .skip-link:focus { top: 12px; }
 
 section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+/* Mobile: label kecil dibaca sebagai teks, bukan dekorasi. 11px di desktop
+   dinaikkan ke 12px pada layar sempit; tidak ada yang dipotong. */
+@media (max-width: 767px) {
+  .eyebrow,
+  .meta-label,
+  .tag,
+  .mono,
+  .marquee-item,
+  .marquee-sep {
+    font-size: 0.75rem;
+  }
+  .status { font-size: 0.75rem; letter-spacing: 0.06em; }
+}
+@media (max-width: 420px) {
+  .status { white-space: normal; max-width: 100%; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

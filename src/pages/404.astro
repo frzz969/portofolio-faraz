@@ -2,14 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Page Not Found - Faras Fadhil Firdaus" description="Halaman tidak ditemukan di portofolio Faras Fadhil Firdaus.">
+<Layout
+  title="Page Not Found - Faras Fadhil Firdaus"
+  description="Halaman tidak ditemukan di portofolio Faras Fadhil Firdaus."
+  canonical={new URL(import.meta.env.BASE_URL, 'https://frzz969.github.io').href}
+>
   <section class="container notfound" id="notfound">
     <span class="eyebrow">404 / Not found</span>
     <h1 class="h1 notfound__title">PAGE NOT FOUND.</h1>
     <p class="lead">
       The page you were looking for is not here. You can return to the portfolio homepage.
     </p>
-    <a class="btn notfound__action" href="/">Back to Home</a>
+    <!-- BASE_URL sudah mengandung trailing slash di Astro (/portofolio-faraz/). -->
+    <a class="btn notfound__action" href={import.meta.env.BASE_URL}>Back to Home</a>
   </section>
 </Layout>
 

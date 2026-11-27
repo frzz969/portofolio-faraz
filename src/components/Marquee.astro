@@ -1,6 +1,6 @@
 ---
-// SATU marquee monokrom antar section. Separator memakai "|" dan "·",
-// bukan em dash (R-02). Diulang dua kali agar loop mulus; konten identik.
+// SATU marquee monokrom antar section. Separator memakai "·" sesuai DESIGN.md,
+// bukan pipe atau em dash (R-02). Diulang dua kali agar loop mulus.
 const words = [
   'AI & Technology',
   'Digital Operations',
@@ -9,12 +9,13 @@ const words = [
 ];
 ---
 
-<div class="marquee-band" aria-label="AI & technology, digital operations, creative development, continuous learning">
+<!-- Dekoratif: track aria-hidden, band tidak perlu aria-label. -->
+<div class="marquee-band">
   <div class="marquee-track" aria-hidden="true">
     {[0, 1].map(() => (
       <span class="marquee-group">
         {words.map((word) => (
-          <span class="marquee-item">{word}<span class="marquee-sep"> | </span></span>
+          <span class="marquee-item">{word}<span class="marquee-sep"> · </span></span>
         ))}
       </span>
     ))}

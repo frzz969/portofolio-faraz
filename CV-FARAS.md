@@ -28,7 +28,7 @@ Fresh graduate Teknik Jaringan Komputer dan Telekomunikasi (TJKT), SMKN 1 Sukoha
 
 ## ORGANISASI
 
-**Anggota, Seksi Kegiatan** | Palang Merah Remaja (PMR) Wira, SMKN 1 Sukoharjo | 2022 - 2025
+**Anggota, Seksi Kegiatan** | Palang Merah Remaja (PMR) Wira, SMKN 1 Sukoharjo | 2023 - 2025
 
 - Membantu perencanaan dan pelaksanaan kegiatan sosial serta pelatihan dasar PMR.
 - Menyusun kebutuhan perlengkapan dan membantu kelancaran rundown acara bersama anggota lintas seksi.
@@ -42,7 +42,7 @@ Fresh graduate Teknik Jaringan Komputer dan Telekomunikasi (TJKT), SMKN 1 Sukoha
 
 ## PENDIDIKAN
 
-**SMKN 1 Sukoharjo** - Teknik Jaringan Komputer dan Telekomunikasi (TJKT) | 2022 - 2026
+**SMKN 1 Sukoharjo** - Teknik Jaringan Komputer dan Telekomunikasi (TJKT) | 2023 - 2026
 
 ## SERTIFIKASI
 

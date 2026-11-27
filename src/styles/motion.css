@@ -8,7 +8,7 @@
 
 :root {
   --dur-micro: 170ms;
-  --dur-ui: 240ms;
+  /* --dur-ui didefinisikan sekali di global.css (240ms). */
   --dur-reveal: 360ms;
   --dur-line: 420ms;
   --ease-ui: cubic-bezier(0.2, 0, 0, 1);
@@ -47,6 +47,22 @@
 @keyframes hero-line-in {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CTA: reveal saat section contact masuk viewport ---------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html.has-motion .cta-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity var(--dur-reveal) var(--ease-reveal),
+                transform var(--dur-reveal) var(--ease-reveal);
+    transition-delay: calc(80ms + var(--i, 0) * 90ms);
+  }
+  html.has-motion .contact.is-reached .cta-line {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- Scroll reveal per blok ------------------------------------------------
@@ -95,16 +111,22 @@
   html.has-motion .timeline.is-visible .timeline__progress {
     height: calc(100% - 12px);
   }
+
+  /* Dot menyala per item saat item itu masuk viewport. --stagger memberi
+     jeda kecil antar dot tanpa mengubah urutan baca. */
+  html.has-motion .timeline__dot {
+    background: var(--paper);
+    transition: background-color var(--dur-ui) var(--ease-ui),
+                transform var(--dur-ui) var(--ease-ui);
+    transition-delay: calc(var(--stagger, 0) * 60ms);
+  }
+  html.has-motion .timeline__item.is-reached .timeline__dot {
+    background: var(--ink);
+    transform: scale(1.15);
+  }
 }
 
-/* --- Project hover: zoom screenshot ringan + arah panah -------------------- */
-.project-shot img {
-  transition: transform 420ms var(--ease-reveal), filter var(--dur-ui) var(--ease-ui);
-}
-.project-shot:hover img,
-.project-card:hover .project-shot img {
-  transform: scale(1.03);
-}
+/* --- Project hover: border + arah panah (tanpa screenshot palsu) ----------- */
 .project-card {
   transition: border-color var(--dur-ui) var(--ease-ui),
               background-color var(--dur-ui) var(--ease-ui);
@@ -132,10 +154,16 @@ a:active, button:active, summary:active { opacity: 0.74; }
   }
   .hero-line,
   .hero-fade,
+  .cta-line,
   .reveal {
     opacity: 1 !important;
     transform: none !important;
   }
   .marquee-track { animation: none !important; }
   .timeline__progress { height: calc(100% - 12px) !important; }
+  .timeline__dot { background: var(--ink) !important; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }

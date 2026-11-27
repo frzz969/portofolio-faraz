@@ -6,14 +6,19 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const {
   title = 'Faras Fadhil Firdaus - Technology Enthusiast & AI-Assisted Developer',
   description = 'Building DEXTRA, bringing the AI Detector for students to life, and running ongoing AI experiments.',
+  canonical: canonicalOverride,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://frzz969.github.io').href;
+const site = Astro.site ?? new URL('https://frzz969.github.io');
+// Astro.url.pathname sudah menyertakan base /portofolio-faraz, jadi hasilnya
+// https://frzz969.github.io/portofolio-faraz/ (trailing slash konsisten).
+const canonical = canonicalOverride ?? new URL(Astro.url.pathname, site).href;
 
 const person = {
   '@type': 'Person',
@@ -60,11 +65,16 @@ const navItems = [
     <meta name="description" content={description} />
     <meta name="theme-color" content="#F7F7F7" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="id" href={canonical} />
+    <!-- Hanya satu versi halaman yang benar-benar ada (bahasa Inggris).
+         hreflang id dihapus: tidak ada halaman /id/ palsu yang bisa ditunjuk. -->
     <link rel="alternate" hreflang="en" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preload" as="font" type="font/woff2" href="./fonts/space-grotesk-latin.woff2" crossorigin />
-    <link rel="expect" href="#main" blocking="render" />
+    <!-- Inter dipakai --font-body di seluruh halaman; kedua font utama di-preload. -->
+    <link rel="preload" as="font" type="font/woff2" href="./fonts/inter-latin.woff2" crossorigin />
+    <!-- Hint render-blocking untuk #main sengaja tidak dipakai: menunggu
+         konten utama menunda first paint tanpa manfaat di halaman ini. -->
     <!-- Motion hanya diaktifkan kalau JS benar-benar jalan. Teks default terlihat. -->
     <script is:inline>
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -106,12 +116,12 @@ const navItems = [
         </nav>
 
         <div class="site-header__end">
-          <span class="availability" aria-label="Available for opportunities">
+          <span class="availability">
             <span class="availability__dot" aria-hidden="true"></span>
-            <span>Available</span>
+            <span>Available for opportunities</span>
           </span>
-          <details class="mobile-nav" aria-label="Mobile navigation">
-            <summary aria-label="Open navigation menu">Menu</summary>
+          <details class="mobile-nav">
+            <summary><span class="mobile-nav__state">Open</span> menu</summary>
             <nav aria-label="Mobile sections">
               <a href="#about">About</a>
               <a href="#projects">Projects</a>
@@ -137,48 +147,133 @@ const navItems = [
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // Reveal sekali, lalu berhenti mengamati elemen tersebut.
-        const revealables = document.querySelectorAll('.reveal');
+        const revealables = Array.from(document.querySelectorAll('.reveal'));
+        const markReached = (el) => {
+          el.classList.add('is-visible');
+          el.querySelectorAll('.timeline__item').forEach((item) => {
+            item.classList.add('is-reached');
+          });
+        };
+
+        // Progres timeline mengikuti item, bukan seluruh section sekaligus.
+        const timelineItems = Array.from(document.querySelectorAll('.timeline__item'));
+        if (!reduce && 'IntersectionObserver' in window && timelineItems.length) {
+          const itemObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-reached');
+              obs.unobserve(entry.target);
+            });
+          }, { rootMargin: '0px 0px -20% 0px', threshold: 0.25 });
+          timelineItems.forEach((item) => itemObserver.observe(item));
+          window.setTimeout(() => {
+            timelineItems.forEach((item) => {
+              const box = item.getBoundingClientRect();
+              if (box.top < window.innerHeight && box.bottom > 0) {
+                item.classList.add('is-reached');
+                itemObserver.unobserve(item);
+              }
+            });
+          }, 1200);
+        } else {
+          timelineItems.forEach((item) => item.classList.add('is-reached'));
+        }
+
         if (!reduce && 'IntersectionObserver' in window && revealables.length) {
           const revealObserver = new IntersectionObserver((entries, obs) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                obs.unobserve(entry.target);
-              }
+              if (!entry.isIntersecting) return;
+              markReached(entry.target);
+              obs.unobserve(entry.target);
             });
           }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
           revealables.forEach((el) => revealObserver.observe(el));
-          // Safety net: kalau observer gagal fire di WebView/HP tertentu,
-          // teks tetap tampil. Animasi normal sudah selesai sebelum ini.
+          // Safety net hanya untuk elemen yang SUDAH masuk viewport tapi belum
+          // sempat ditandai observer. Elemen di bawah fold sengaja dibiarkan
+          // supaya animasi reveal-nya tidak hilang (teks tidak pernah hilang
+          // permanen: aturan CSS hanya menyembunyikan saat JS aktif).
           window.setTimeout(() => {
-            revealables.forEach((el) => el.classList.add('is-visible'));
+            revealables.forEach((el) => {
+              if (el.classList.contains('is-visible')) return;
+              const box = el.getBoundingClientRect();
+              if (box.top < window.innerHeight && box.bottom > 0) {
+                markReached(el);
+                revealObserver.unobserve(el);
+              }
+            });
           }, 1200);
         } else {
-          revealables.forEach((el) => el.classList.add('is-visible'));
+          revealables.forEach(markReached);
         }
 
-        // Active nav mengikuti section yang sedang dibaca.
-        const links = Array.from(document.querySelectorAll('[data-nav]));
+        // Baris CTA bukan hero: muncul saat section contact terlihat, bukan
+        // saat halaman dimuat (dulu memakai .hero-line sehingga animasinya
+        // berjalan di atas fold dan selesai sebelum CTA dibaca).
+        const ctaSection = document.querySelector('.contact');
+        const ctaLines = Array.from(document.querySelectorAll('.contact .cta-line'));
+        if (!reduce && 'IntersectionObserver' in window && ctaSection && ctaLines.length) {
+          const ctaObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              ctaSection.classList.add('is-reached');
+              obs.unobserve(entry.target);
+            });
+          }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
+          ctaObserver.observe(ctaSection);
+          window.setTimeout(() => {
+            const box = ctaSection.getBoundingClientRect();
+            if (box.top < window.innerHeight && box.bottom > 0) {
+              ctaSection.classList.add('is-reached');
+              ctaObserver.unobserve(ctaSection);
+            }
+          }, 1200);
+        } else {
+          ctaSection?.classList.add('is-reached');
+        }
+
+        // Active nav: pilih section terdekat garis band, bukan entry terakhir
+        // yang kebetulan dipublish observer saat scroll naik.
+        const links = Array.from(document.querySelectorAll('[data-nav]'));
         const targets = links
           .map((link) => document.getElementById(link.dataset.nav))
           .filter(Boolean);
-        if ('IntersectionObserver' in window && targets.length) {
-          const navObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              links.forEach((link) => {
-                const active = link.dataset.nav === entry.target.id;
-                link.classList.toggle('is-active', active);
-                if (active) link.setAttribute('aria-current', 'true');
-                else link.removeAttribute('aria-current');
-              });
-            });
-          }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-          targets.forEach((target) => navObserver.observe(target));
+        const setActiveNav = () => {
+          const band = window.innerHeight * 0.3;
+          let closest = null;
+          let smallest = Infinity;
+          targets.forEach((target) => {
+            const box = target.getBoundingClientRect();
+            const within = box.top <= band && box.bottom >= band;
+            const gap = within ? 0 : Math.min(
+              Math.abs(box.top - band),
+              Math.abs(box.bottom - band)
+            );
+            if (gap < smallest) {
+              smallest = gap;
+              closest = target;
+            }
+          });
+          links.forEach((link) => {
+            const active = !!closest && link.dataset.nav === closest.id;
+            link.classList.toggle('is-active', active);
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+          });
+        };
+        if (targets.length) {
+          setActiveNav();
+          window.addEventListener('scroll', setActiveNav, { passive: true });
+          window.addEventListener('resize', setActiveNav, { passive: true });
         }
 
-        // Tutup menu mobile setelah memilih tautan.
+        // Tutup menu mobile setelah memilih tautan; label summary mengikuti state.
         const menu = document.querySelector('.mobile-nav');
+        const menuState = menu?.querySelector('.mobile-nav__state');
+        const syncMenuLabel = () => {
+          if (menuState) menuState.textContent = menu?.open ? 'Close' : 'Open';
+        };
+        menu?.addEventListener('toggle', syncMenuLabel);
+        syncMenuLabel();
         menu?.querySelectorAll('a').forEach((a) => {
           a.addEventListener('click', () => { menu.open = false; });
         });
@@ -279,7 +374,7 @@ const navItems = [
         align-items: center;
         gap: 8px;
         font-family: var(--font-mono);
-        font-size: 0.6875rem;
+        font-size: 0.75rem;
         letter-spacing: 0.04em;
         color: var(--subtle);
       }

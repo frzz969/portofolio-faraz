@@ -11,14 +11,9 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.0",
-    "@fontsource-variable/inter": "^5.2.0",
-    "@fontsource-variable/space-grotesk": "^5.2.0",
-    "@tailwindcss/vite": "^4.3.5",
-    "astro": "^5.0.0",
-    "tailwindcss": "^4.3.5"
+    "astro": "^5.0.0"
   },
   "devDependencies": {
-    "@modelcontextprotocol/server-github": "^2025.4.8",
     "typescript": "^5.7.0"
   }
 }

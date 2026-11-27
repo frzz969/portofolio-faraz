@@ -1,12 +1,17 @@
 ---
 // AREAS OF INTEREST - numbered editorial rows, bukan kartu dashboard.
-// Empat bidang sesuai arah PHASE 3. Label jujur: minat, bukan pengalaman kerja.
+// Empat judul ringkas tetap dipakai; detail 9 bidang dari src/data/interests.ts
+// dirender sebagai subteks agar tidak ada minat yang hilang saat redesign.
+import { interests } from '../data/interests';
 const areas = [
   'AI & Intelligent Technologies',
   'Language & AI Evaluation',
-  'Software & Automation',
+  'Software & Workflow Automation',
   'Digital Operations & Administration',
 ];
+const detail = interests.areas.join(' · ');
+// Data sumber memakai em dash; UI memakai separator "·" sesuai DESIGN.md.
+const honestyNote = interests.note.replace(/\s*[—–]\s*/g, ' · ');
 ---
 
 <section class="section" id="interests">
@@ -29,15 +34,17 @@ const areas = [
       ))}
     </ol>
 
+    <p class="interest-detail mono">{detail}</p>
+
     <p class="interest-note mono">
-      These are active learning interests and personal exploration, bukan pengalaman kerja
-      komersial formal.
+      {honestyNote}
     </p>
   </div>
 </section>
 
 <style>
   .interest-list { border-top: 1px solid var(--border); }
+  .interest-detail { margin: 20px 0 0; color: var(--subtle); overflow-wrap: anywhere; }
   .interest-row {
     display: grid;
     grid-template-columns: 64px 1fr;

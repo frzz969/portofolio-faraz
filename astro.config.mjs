@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
@@ -8,6 +7,5 @@ export default defineConfig({
   output: 'static',
   base: '/portofolio-faraz',
   build: { inlineStylesheets: 'always' },
-  vite: { plugins: [tailwindcss()] },
   integrations: [sitemap()],
 });

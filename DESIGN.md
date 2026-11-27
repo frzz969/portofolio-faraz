@@ -87,6 +87,8 @@ Screenshot proyek HARUS berasal dari aplikasi/website asli yang benar-benar berj
 - `public/screenshots/ai-detector.webp` ← screenshot asli `https://ai-detector-mahasiswa.vercel.app`
 - `public/screenshots/experiments.webp` ← bukti nyata eksperimen bila tersedia; jika tidak ada, pakai entri tipografi tanpa screenshot
 
+**Kondisi live (28 Nov 2026):** ketiga file WebP belum tersedia. Sesuai aturan di atas, image frame `<figure>` **tidak dirender** (bukan kotak abu-abu 404). portfolio menampilkan entri tipografi dengan teks jujur: "Authentic product screenshot pending — preview shown as text only." Berlaku sampai owner menyediakan screenshot asli.
+
 **DILARANG Keras:**
 - Menggambar ulang UI proyek dengan HTML/CSS/SVG untuk keperluan preview.
 - Mockup, AI image, screenshot palsu, browser frame dengan UI rekaan.

@@ -40,6 +40,12 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
         <span class="meta-label">Elsewhere</span>
         <ul class="contact__links">
           <li>
+            <a class="contact__link contact__link--email" href={`mailto:${email}`}>
+              <span class="contact__label mono">Email</span>
+              <span class="contact__value">{email}</span>
+            </a>
+          </li>
+          <li>
             <a class="contact__link" href={waLink} target="_blank" rel="noopener noreferrer">
               <span class="contact__label mono">WhatsApp</span>
               <span class="contact__value">{phone}</span>
@@ -164,6 +170,13 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
     font-size: 0.9375rem;
     color: var(--white);
     overflow-wrap: anywhere;
+  }
+  .contact__link--email .contact__value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
   }
   .contact__copy { margin-top: 24px; }
 

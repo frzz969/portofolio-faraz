@@ -143,6 +143,15 @@
     .btn-wa{display:inline-flex;align-items:center;min-height:44px;padding:.7rem 1.1rem;background:#8C2F39;color:#F4F1EA;text-decoration:none;border-radius:2px;font-weight:600}
     .btn-wa:hover{background:#742630}
     .contact-lines{margin-top:.75rem;font:.8rem/1.6 ui-monospace,monospace;color:#1C1B19;overflow-wrap:anywhere}
+    /* Editorial rhythm: satu kertas, bukan slide per section */
+    section { background: transparent !important; }
+    .bg-surface-container-low, .bg-surface-container, .bg-surface-container-high,
+    .bg-surface-container-highest { background: transparent !important; }
+    section + section { border-top: 1px solid rgba(28,27,25,.12); }
+    .card, [class*="bg-surface-container"] { box-shadow: none !important; }
+    [class*="rounded-xl"] { border-radius: 2px !important; }
+    /* Focal point: nomor/teks meta jadi gelap, bukan brass pucat */
+    .text-muted-brass, .text-on-surface-variant { color: #1C1B19 !important; }
   </style>
 </head><body class="bg-paper text-ink font-body-md text-body-md flex flex-col min-h-screen"><a class="skip-link" href="#main">Skip to content</a><header class="fixed top-0 w-full z-50 pt-safe bg-paper/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(28,27,25,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><span class="font-title-md text-title-md tracking-tight font-medium text-ink truncate">F. F. FIRDAUS</span><span class="hidden xs:inline-block text-outline-variant font-body-sm text-body-sm">/</span><div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container"><span class="w-1.5 h-1.5 rounded-full bg-accent-oxblood" aria-hidden="true"></span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-medium">Available</span></div></div><div class="flex items-center gap-space-sm shrink-0"><a aria-label="Jump to about section" href="#about" class="w-11 h-11 flex items-center justify-center rounded-lg text-ink hover:text-accent-oxblood transition-colors"><svg class=" w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#8C2F39" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><svg class="text-on-primary w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#8C2F39" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div></div></div></header><main id="main" class="flex flex-col relative w-full pt-16 pb-20 bg-paper"><div class="flex flex-col w-full text-ink">
 <!-- 1. HERO SECTION -->

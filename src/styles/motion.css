@@ -25,16 +25,19 @@
   }
 }
 
-/* --- Hero: barisdemi baris, naik 18px -------------------------------------- */
+/* --- Hero: baris demi baris, naik 18px -------------------------------------
+   PROGRESSIVE ENHANCEMENT: teks terlihat secara default. Animasi hanya aktif
+   setelah JS menambahkan .has-motion di <html> (artinya JS benar-benar jalan).
+   Kalau JS mati/error/slow, konten tetap terbaca. */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-line {
+  html.has-motion .hero-line {
     display: block;
     opacity: 0;
     transform: translateY(20px);
     animation: hero-line-in var(--dur-line) var(--ease-reveal) both;
     animation-delay: calc(90ms + var(--i, 0) * 95ms);
   }
-  .hero-fade {
+  html.has-motion .hero-fade {
     opacity: 0;
     transform: translateY(14px);
     animation: hero-line-in var(--dur-reveal) var(--ease-reveal) both;
@@ -51,14 +54,14 @@
    .is-visible. Jika JS tidak tersedia, aturan di bawah tidak menyembunyikan
    apa pun (konten tetap tampil). */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal {
+  html.has-motion .reveal {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity var(--dur-reveal) var(--ease-reveal),
                 transform var(--dur-reveal) var(--ease-reveal);
     transition-delay: calc(var(--stagger, 0) * 70ms);
   }
-  .reveal.is-visible {
+  html.has-motion .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -80,11 +83,19 @@
   left: 5px;
   top: 6px;
   width: 1px;
-  height: 0;
+  height: calc(100% - 12px);
   background: var(--ink);
-  transition: height 520ms var(--ease-reveal);
 }
-.timeline.is-visible .timeline__progress { height: calc(100% - 12px); }
+/* Hanya animasikan progres bila JS motion benar-benar aktif. */
+@media (prefers-reduced-motion: no-preference) {
+  html.has-motion .timeline__progress {
+    height: 0;
+    transition: height 520ms var(--ease-reveal);
+  }
+  html.has-motion .timeline.is-visible .timeline__progress {
+    height: calc(100% - 12px);
+  }
+}
 
 /* --- Project hover: zoom screenshot ringan + arah panah -------------------- */
 .project-shot img {

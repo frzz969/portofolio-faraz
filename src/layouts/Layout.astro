@@ -65,6 +65,12 @@ const navItems = [
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preload" as="font" type="font/woff2" href="./fonts/space-grotesk-latin.woff2" crossorigin />
     <link rel="expect" href="#main" blocking="render" />
+    <!-- Motion hanya diaktifkan kalau JS benar-benar jalan. Teks default terlihat. -->
+    <script is:inline>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('has-motion');
+      }
+    </script>
 
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Faras Fadhil Firdaus" />
@@ -142,6 +148,11 @@ const navItems = [
             });
           }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
           revealables.forEach((el) => revealObserver.observe(el));
+          // Safety net: kalau observer gagal fire di WebView/HP tertentu,
+          // teks tetap tampil. Animasi normal sudah selesai sebelum ini.
+          window.setTimeout(() => {
+            revealables.forEach((el) => el.classList.add('is-visible'));
+          }, 1200);
         } else {
           revealables.forEach((el) => el.classList.add('is-visible'));
         }

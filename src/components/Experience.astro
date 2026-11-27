@@ -1,49 +1,101 @@
 ---
 import { experiences } from '../data/experience';
 
-// SECTION 5: EXPERIENCE - isi dari src/data/experience.ts, struktur dari index.html.
+// EXPERIENCE - vertical timeline. Tanggal sejajar di kiri, progres mengisi
+// saat section masuk viewport (motion.css).
 const labels: Record<string, string> = {
-  'it-support-intern': 'VOCATIONAL INTERNSHIP',
-  'pmr-dewan-ambalan': 'LEADERSHIP & LOGISTICS',
+  'it-support-intern': 'Vocational internship',
+  'pmr-dewan-ambalan': 'Leadership and logistics',
 };
 ---
 
-<section class="w-full py-20 lg:py-28" id="experience">
-  <div class="max-w-[1180px] mx-auto px-margin-mobile lg:px-margin">
-    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-14 gap-4">
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-head">
       <div>
-        <span class="text-label-sm font-label-sm text-muted-brass uppercase tracking-widest block mb-2 font-mono">04 / TRACK RECORD</span>
-        <h2 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight">Experience</h2>
+        <span class="eyebrow">04 / Track record</span>
+        <h2 class="h2">Experience</h2>
       </div>
-      <p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs md:text-right font-mono">
-        Verifiable Practical Roles &amp; Organizational Leadership
-      </p>
+      <p class="mono section-head__note">Verifiable practical roles and organizational leadership</p>
     </div>
-    <div class="space-y-6">
-      {experiences.map((item) => (
-        <div class="card bg-surface-container p-8 lg:p-10 rounded-xl shadow-sm">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-label-sm font-label-sm font-mono text-muted-brass uppercase tracking-widest" set:html={labels[item.id]}></span>
-              </div>
-              <h3 class="font-headline-md text-headline-md text-ink font-semibold">{item.role}</h3>
-              <p class="text-title-md font-title-md text-accent-oxblood font-medium">{item.organization}</p>
-            </div>
-            <div class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">
-              {item.period}
-            </div>
+
+    <div class="timeline reveal">
+      <span class="timeline__progress" aria-hidden="true"></span>
+      {experiences.map((item, index) => (
+        <article class="timeline__item" style={`--stagger:${index}`}>
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <div class="timeline__date">
+            <span class="meta-label">{labels[item.id] ?? 'Role'}</span>
+            <time class="mono">{item.period}</time>
           </div>
-          <ul class="space-y-3 max-w-3xl">
-            {item.bullets.map((bullet) => (
-              <li class="flex items-start gap-3 text-body-md font-body-md text-on-surface-variant">
-                <svg class="text-accent-oxblood shrink-0 mt-0.5 w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#3785D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg>
-                <span>{bullet}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div class="timeline__content">
+            <h3 class="h3">{item.role}</h3>
+            <p class="h4 timeline__org">{item.organization}</p>
+            <ul class="timeline__bullets">
+              {item.bullets.map((bullet) => (
+                <li class="body">{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .timeline__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 0 0 40px 28px;
+  }
+  .timeline__item:last-child { padding-bottom: 0; }
+  .timeline__dot {
+    position: absolute;
+    left: 1px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+  }
+  .timeline__date {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .timeline__date .mono { color: var(--subtle); }
+  .timeline__org { color: var(--subtle); margin-top: 4px; }
+  .timeline__bullets {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 68ch;
+  }
+  .timeline__bullets li {
+    position: relative;
+    padding-left: 18px;
+  }
+  .timeline__bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  @media (min-width: 768px) {
+    .timeline__item {
+      grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+      gap: 32px;
+      padding-left: 36px;
+      padding-bottom: 48px;
+    }
+    .timeline__dot { left: 1px; }
+  }
+</style>

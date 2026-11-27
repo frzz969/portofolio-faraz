@@ -1,78 +1,109 @@
 ---
-// SECTION 6: EDUCATION & CERTIFICATIONS - teks persis dari index.html.
+// EDUCATION & CERTIFICATIONS - kredensial akurat. Status "in issuance"
+// dipertahankan apa adanya, tidak diubah jadi "issued".
 const certifications = [
-  {
-    title: 'MikroTik Certified Network Associate (MTCNA)',
-    detail: 'RouterOS configuration, firewall filters, NAT, queue bandwidth management',
-    badge: 'Issued 2025',
-    badgeClass: 'bg-tertiary text-paper',
-  },
-  {
-    title: 'BNSP Junior Fiber Optic Cable Jointer',
-    detail: 'National professional competency in fusion splicing and OTDR testing',
-    badge: 'Issued 2026',
-    badgeClass: 'bg-tertiary text-paper',
-  },
-  {
-    title: 'Practical Office Advance',
-    detail: 'Balai Pelatihan Vokasi dan Produktivitas (BPVP)',
-    badge: 'BPVP · 2026',
-    badgeClass: 'bg-tertiary text-paper',
-  },
-  {
-    title: 'BNSP Practical Office Advance',
-    detail: 'National Vocational Certification Board candidate qualification',
-    badge: 'IN ISSUANCE / PRINTING PROCESS',
-    badgeClass: 'bg-secondary-container text-on-secondary-container font-medium',
-  },
+  { title: 'MikroTik Certified Network Associate (MTCNA)', detail: 'RouterOS configuration, firewall filters, NAT, queue bandwidth management', badge: 'Issued 2025', pending: false },
+  { title: 'BNSP Junior Fiber Optic Cable Jointer', detail: 'National professional competency in fusion splicing and OTDR testing', badge: 'Issued 2026', pending: false },
+  { title: 'Practical Office Advance', detail: 'Balai Pelatihan Vokasi dan Produktivitas (BPVP)', badge: 'BPVP 2026', pending: false },
+  { title: 'BNSP Practical Office Advance', detail: 'National Vocational Certification Board candidate qualification', badge: 'In issuance / printing process', pending: true },
 ];
 ---
 
-<section class="w-full bg-surface-container-low py-20 lg:py-28" id="education">
-  <div class="max-w-[1180px] mx-auto px-margin-mobile lg:px-margin">
-    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-14 gap-4">
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-head">
       <div>
-        <span class="text-label-sm font-label-sm text-muted-brass uppercase tracking-widest block mb-2 font-mono">05 / QUALIFICATIONS</span>
-        <h2 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight">Education &amp; Certifications</h2>
+        <span class="eyebrow">05 / Qualifications</span>
+        <h2 class="h2">Education &amp; Certifications</h2>
       </div>
-      <p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs md:text-right font-mono">
-        Formal Vocational Grounding &amp; Validated Competencies
-      </p>
+      <p class="mono section-head__note">Formal vocational grounding and validated competencies</p>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <div class="lg:col-span-5 bg-surface-container p-8 lg:p-10 rounded-xl shadow-sm flex flex-col justify-between">
-        <div>
-          <span class="text-label-sm font-label-sm text-muted-brass font-mono uppercase tracking-widest block mb-4">FORMAL ACADEMICS</span>
-          <h3 class="font-headline-md text-headline-md text-ink font-semibold mb-2">SMK Negeri 1 Sukoharjo</h3>
-          <p class="text-title-md font-title-md text-accent-oxblood font-medium mb-6">Computer and Network Engineering (TJKT)</p>
-          <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
-            Three-year intensive vocational curriculum covering enterprise IP routing, local area network switching, fiber optic splicing, server administration, operating systems, and client hardware engineering.
-          </p>
-        </div>
-        <div class="pt-6 border-t-0 bg-surface-container-high p-4 rounded-lg flex items-center justify-between font-mono text-label-sm">
-          <span class="text-on-surface-variant">Graduation Cycle:</span>
-          <span class="font-bold text-ink">2022 – 2025</span>
+
+    <div class="edu__grid">
+      <div class="edu__formal reveal">
+        <span class="eyebrow">Formal academics</span>
+        <h3 class="h3 edu__school">SMK Negeri 1 Sukoharjo</h3>
+        <p class="h4">Computer and Network Engineering (TJKT)</p>
+        <p class="body edu__desc">
+          Three-year vocational curriculum covering enterprise IP routing, LAN switching,
+          fiber optic splicing, server administration, operating systems, and client
+          hardware engineering.
+        </p>
+        <div class="edu__period">
+          <span class="meta-label">Graduation cycle</span>
+          <span class="mono">2022 / 2025</span>
         </div>
       </div>
-      <div class="lg:col-span-7 bg-surface-container p-8 lg:p-10 rounded-xl shadow-sm flex flex-col justify-between">
-        <div>
-          <span class="text-label-sm font-label-sm text-muted-brass font-mono uppercase tracking-widest block mb-4">PROFESSIONAL LICENSES &amp; CREDENTIALS</span>
-          <div class="space-y-4">
-            {certifications.map((cert) => (
-              <div class="p-4 bg-surface-container-low rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
-                <div>
-                  <h4 class="font-title-md text-title-md text-ink font-semibold">{cert.title}</h4>
-                  <span class="text-body-sm font-body-sm text-on-surface-variant">{cert.detail}</span>
-                </div>
-                <span class={`px-2.5 py-1 rounded text-label-sm font-label-sm font-mono shrink-0 ${cert.badgeClass}`}>{cert.badge}</span>
+
+      <div class="edu__creds">
+        <span class="eyebrow">Professional licenses and credentials</span>
+        <ul class="edu__list">
+          {certifications.map((cert, index) => (
+            <li class="edu__item reveal" style={`--stagger:${index}`}>
+              <div>
+                <h4 class="h4">{cert.title}</h4>
+                <p class="body">{cert.detail}</p>
               </div>
-            ))}
-          </div>
-        </div>
-        <p class="text-label-sm font-label-sm text-on-surface-variant mt-6 italic">
-          * All credentials verifiable via issuing registry IDs upon inquiry.
+              <span class:list={['status', { 'status--pending': cert.pending }]}>{cert.badge}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mono edu__footnote">
+          All credentials verifiable via issuing registry IDs upon inquiry.
         </p>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .edu__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .edu__formal {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+  .edu__school { margin-block: 16px 4px; }
+  .edu__desc { margin-top: 20px; max-width: 52ch; }
+  .edu__period {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .edu__list {
+    margin-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .edu__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu__item .body { font-size: 0.875rem; margin-top: 4px; }
+  .edu__footnote { margin-top: 20px; color: var(--subtle); }
+
+  @media (min-width: 768px) {
+    .edu__item {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+  }
+  @media (min-width: 900px) {
+    .edu__grid {
+      grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+      gap: clamp(48px, 6vw, 88px);
+    }
+  }
+</style>

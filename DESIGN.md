@@ -1,270 +1,157 @@
-# DESIGN: Portofolio Faras Fadhil Firdaus
+# DESIGN — Portofolio Faras Fadhil Firdaus
 
-Versi: 1.0 · 27 November 2026
-Berpasangan dengan: PRD.md
-Prinsip: jangan mengecilkan potensi, jangan membesar-besarkan pengalaman.
+Versi 2.0 · 28 November 2026
+Arah: **Modern Monochrome × Creative Editorial**
+Menggantikan seluruh arah warna sebelumnya (oxblood, NIGHT SKY). Keputusan owner bersifat final.
 
 ---
 
 ## 1. Arah Visual
 
-Bukan CV panjang. **Personal brand digital professional.**
+Personal brand Faras: technology enthusiast & AI-assisted developer dari Indonesia, open to remote.
 
-Karakter:
-- Modern, clean, minimalis · tapi tidak terasa template AI generik.
-- Editorial + teknis: tipografi besar, whitespace lapang, satu warna aksen.
-- Hangat (paper), bukan dingin (putih bersih + biru neon).
-- Foto monokrom berduotone → menyatu dengan aksen, bukan kotak hitam-putih tempelan.
-- Motion halus & native CSS, bukan efek WebGL.
+Kepribadian visual:
+- Playful tapi profesional.
+- Modern, distinctive, Berani tapi tidak monak-kanak.
+- Minimal tapi tidak membosankan.
+- Clean, confident, seimbang.
+- Cocok untuk recruiter, klien, dan peluang internasional.
 
-Referensi yang dipakai:
-- Abdullah Tariq → layout hero, kartu layanan, featured projects, stats, timeline.
-- Brittany Chiang → urutan CV + aksesibilitas + tag stack per peran.
-- Yorben Vander Sleyen → bento & konsistensi material warna.
-- Korey Wang → section "judgment"/cara berpikir + zero-JS.
-- Lee Robinson / Damián Panes → satu kalimat posisi di hero.
+Prinsip (dari aturan antislop):
+- Satu focal point per layar.
+- Whitespace sebagai struktur, bukan sisa.
+- Satu aksen? TIDAK ada aksen warna. Fokus hierarki lewat ukuran, weight, dan garis.
+- Asimetri editorial disengaja, bukan bento grid seragam.
+- Tiap keputusan punya alasan satu baris (R-31).
 
 ---
 
-## 2. Sistem Warna (FINAL, koreksi 28 Nov 2026)
+## 2. Sistem Warna (FINAL, MONOKROM KETAT)
 
-Owner memutuskan mengganti palet oxblood ke palet **NIGHT SKY**. Keputusan ini menggantikan keputusan sebelumnya, bukan tambahan.
+| Peran | Hex | Alasan (R-31) |
+|---|---|---|
+| Main background | `#F7F7F7` | kertas netral, tidak menyilaukan, netral untuk teks |
+| Secondary background | `#EEEEEE` | satu tingkat lebih gelap, untuk permukaan sekunder |
+| Primary text | `#171717` | kontras maksimal di atas kertas |
+| Secondary text | `#737373` | hierarki sekunder; untuk teks kecil pakai `#525252` agar lolos AA |
+| Borders | `#D9D9D9` | garis tipis sebagai pemisah, menggantikan shadow |
+| Dark sections | `#202020` | section kontak & momen editorial |
+| White | `#FFFFFF` | teks di atas section gelap |
 
-| Peran | Hex | Nama | Penggunaan (alasan R-31) |
-|---|---|---|---|
-| paper | `#CBD8E8` | night sky paper | background utama, lembut dan tidak menyilaukan |
-| surface | `#AEC6E5` | sky surface | kartu & panel, satu tingkat lebih gelap dari paper |
-| ink | `#1E0F75` | deep navy | teks utama & headline, kontras tinggi di atas paper |
-| accent | `#1C1DAB` | electric blue | tombol utama, nav aktif, fokus, duotone portrait |
-| hover | `#3785D8` | sky blue | link & hover, masih satu keluarga biru |
-| highlight | `#C08CE2` | soft violet | angka, badge status, aksesoris tipis |
-| warm | `#E793C6` | dusk pink | MAKSIMAL 1 elemen, stempel/coretan editorial |
-| soft | `#EBB2C3` | blush | latar ilustrasi, bukan teks |
+**DILARANG:** warna apa pun di luar 7 hex ini. Tidak ada oxblood, NIGHT SKY, biru, ungu, pink, emas, neon. Tidak ada `linear-gradient`, `radial-gradient`, glow, blur dekoratif, atau ilustrasi berwarna.
 
-Kenapa palet ini (sesuai penilaian owner):
-- Lebih hidup dan berkarakter dibanding palet oxblood sebelumnya, tanpa kesan "AI generik" versi owner.
--_gradasi_ biru, ungu, dan pink terasa cohesif karena semua diambil dari satu rumpun warna yang sama.
-- Kontras ink `#1E0F75` di paper `#CBD8E8` tinggi, aman untuk teks.
-- Delapan warna dibatasi perannya: tidak boleh semua dipakai sekaligus dalam satu layar.
-
-**Aturan pemakaian (R-29/R-31):**
-- Maksimal 3 warna dominan per layar: paper, ink, accent.
-- Violet & pink hanya aksen, pink maksimal 1 elemen.
-- Jangan menambah warna di luar delapan hex di atas.
-
-### Dark mode
-| Peran | Hex |
-|---|---|
-| paper | `#1E0F75` |
-| ink | `#CBD8E8` |
-| accent | `#3785D8` |
-| highlight | `#E793C6` |
-
-Implementasi: `prefers-color-scheme` + toggle dengan localStorage.
-
-### Tailwind v4 `@theme`
-```css
-@theme {
-  --color-paper:     #CBD8E8;
-  --color-surface:   #AEC6E5;
-  --color-ink:       #1E0F75;
-  --color-accent:    #1C1DAB;
-  --color-hover:     #3785D8;
-  --color-highlight: #C08CE2;
-  --color-warm:      #E793C6;
-  --color-soft:      #EBB2C3;
-  --font-display: "Space Grotesk Variable", sans-serif;
-  --font-sans:    "Inter Variable", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-paper:     #1E0F75;
-    --color-surface:   #1C1DAB;
-    --color-ink:       #CBD8E8;
-    --color-accent:    #3785D8;
-    --color-highlight: #E793C6;
-  }
-}
-```
+### Kontras (diukur dengan contrast-check.py)
+- `#171717` di `#F7F7F7` → PASS
+- `#737373` di `#F7F7F7` → cek; pakai `#525252` untuk teks < 16px bila diperlukan
+- `#FFFFFF` di `#202020` → PASS
 
 ---
 
 ## 3. Tipografi
 
-- **Display / headline:** Space Grotesk Variable · geometris, teknis, cocok untuk "EXPLORING AI."
-- **Body / UI:** Inter Variable · netral, sangat terbaca.
-- WOFF2 latin saja; `font-display: swap`.
-- **Preload HANYA Space Grotesk** (1 `<link>` dengan `crossorigin`). Inter via `@font-face` biasa.
-- Hindari 9 font preload (kesalahan umum). Jangan inline base64 font.
-
-Hierarki:
-- H1 hero: `clamp(2.5rem, 7vw, 5.5rem)`, weight 700, tight leading (0.95), 3 baris dengan baris ke-2/ke-3 accent atau ink tebal.
-- H2 section: `clamp(1.75rem, 4vw, 2.75rem)`.
-- Eyebrow: 0.75rem, uppercase, tracking lebar, brass atau accent.
-- Body: 1rem–1.125rem, line-height 1.65, maksimal ~65 char per baris.
-
----
-
-## 4. Layout & Grid
-
-- Max width: 1180px, margin auto, padding 24px (mobile) → 48px (desktop).
-- 12-kolom grid; kartu bento: kartu 01 (What I Do / DEXTRA) span 6–7, sisanya span 3–6.
-- Mobile: single column, urutan tetap seperti PRD 4.1–4.9.
-- Spacing scale konsisten (4/8/12/16/24/32/48/64/96 px).
-- Whitespace lapang · jangan takut kosong.
-
-### Urutan section
-1. Hero → 2. About → 3. What I Do → 4. Featured Projects → 5. Experience → 6. Education → 7. Skills → 8. Areas of Interest → 9. CTA/Contact → 10. Footer
-
----
-
-## 5. Komponen Kunci
-
-### 5.1 Hero
-- Kiri: eyebrow "TECHNOLOGY ENTHUSIAST × AI-ASSISTED DEVELOPER", H1 3 baris, paragraf 3 kalimat, 2 CTA, status "Based in Indonesia · Open to Remote..."
-- Kanan: foto portrait monokrom duotone.
-- CTA primer: accent background, teks paper. CTA sekunder: outline ink.
-- LCP photo: `fetchpriority="high"`, JANGAN lazy.
-
-### 5.2 Foto duotone (CSS, 0 KB aset tambahan)
-```css
-.portrait {
-  filter: grayscale(1) contrast(1.1);
-  isolation: isolate;
-}
-.portrait::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: var(--color-accent);
-  mix-blend-mode: color;
-  opacity: .55;
-}
-```
-Tambah grain tipis: SVG `feTurbulence` sebagai overlay, `opacity: .04`, `mix-blend-mode: overlay`.
-
-### 5.3 Kartu "What I Do"
-- 4 kartu, nomor `01`–`04` di pojok dengan brass.
-- Kartu 01 lebih besar (bento).
-- Tiap kartu: judul + SATU baris ringkasan + ikon Lucide (tree-shaken) atau inline SVG.
-- Hover: border accent halus, translateY(-2px), transisi <200ms.
-
-### 5.4 Featured Projects
-- DEXTRA: kartu dominan, ilustrasi arsitektur lokal + tag stack + link live demo (prototype / demo interaktif).
-- AI Detector: kartu lebih kecil, ilustrasi antarmuka lokal, badge jelas: `LIVE DEMO` + link live demo.
-- Experiments: kartu dokumentasi, badge `ONGOING EXPLORATION`.
-- Badge status wajib, ini yang menjaga kejujuran konten.
-
-Koreksi status 27 November 2026: AI Detector sebelumnya planned, sekarang LIVE DEMO. DEXTRA tetap BUILT, kini ada link live demo di root. Tidak ada repo GitHub publik untuk DEXTRA, /about = 404.
-
-### 5.5 Experience
-- Timeline vertikal: tanggal | peran/perusahaan | bullet ringkas.
-- Hindari daftar panjang; maksimal 5 bullet per entri.
-
-### 5.6 Education & Certifications
-- Dua kolom: pendidikan (kiri), sertifikasi (kanan) sebagai daftar bersih.
-- Tanda "in issuance" untuk BNSP Practical Office Advance.
-
-### 5.7 Skills
-- **Tag chips**, BUKAN skill bar persentase (persentase = klaim tanpa bukti).
-- 4 grup sesuai PRD 4.7.
-
-### 5.8 Areas of Interest
-- Grid tag kecil, 9 item, intro satu kalimat.
-- Label eksplisit: "minat & arah eksplorasi, bukan pengalaman profesional".
-
-### 5.9 CTA & Footer
-- Headline "OPEN TO NEW POSSIBILITIES." besar.
-- Email/GitHub/LinkedIn dengan ikon; tombol copy-email (JS inline 5 baris atau `mailto:`).
-- Footer: © 2026 Faras Fadhil Firdaus + nav kecil.
-
----
-
-## 6. Motion (CSS Native, JS = 0 KB)
-
-```css
-@view-transition { navigation: auto; }
-
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation: fade-up linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 40%;
-  }
-}
-/* PENTING: animation-timeline HARUS setelah shorthand `animation` */
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-```
-
-Dilarang: GSAP, Framer Motion, WebGL, video background, scroll hijacking.
-
----
-
-## 7. Aset & Gambar
-
-- Format: AVIF → WebP → fallback (picture/srcset).
-- `width` + `height` wajib (CLS).
-- `srcset` dengan descriptor `w` WAJIB disertai `sizes`.
-- Hero: `fetchpriority=high`, tidak lazy. Bawah fold: `loading=lazy`.
-- Portrait: 2 ukuran (640w, 1280w).
-- og-image: 1200×630 PNG/WebP (tidak dimuat di halaman).
-
-### Daftar aset
-| File | Sumber | Status |
+| Peran | Font | Alasan |
 |---|---|---|
-| portrait-640.avif/.webp | Foto Faras | harus disediakan |
-| dextra-dashboard.svg | Ilustrasi arsitektur DEXTRA lokal, bukan screenshot produk asli | sudah tersedia, dipakai |
-| dextra-architecture.svg | Diagram arsitektur DEXTRA | harus dibuat |
-| ai-detector-mockup.svg | Ilustrasi antarmuka buatan sendiri, live demo tersedia | sudah tersedia, dipakai |
-| experiments.svg | Dokumentasi eksperimen sendiri | sudah tersedia, dipakai |
-| operations.webp | Contoh spreadsheet/dokumen latihan | harus disediakan |
-| cv-faras.pdf | CV nyata | harus disediakan, regenerate 27 November 2026 |
+| Headline | **Space Grotesk** | geometris, editorial, berani tanpa berteriak |
+| Body | **Inter** | netral, sangat terbaca, tidak berkarakter berlebih |
+| Label teknis / metadata | **JetBrains Mono** (fallback monospace) | memberi kesan "technical" tanpa warna |
 
-Aset `dextra-dashboard.svg` adalah ilustrasi arsitektur lokal, bukan screenshot produk asli. Gunakan caption "ilustrasi arsitektur", jangan "screenshot produk asli".
-
-**Integritas:** 4 URL `images.openai.com/...` (Dribbble/iF Design/Medium) adalah referensi visual ORANG LAIN · bukan aset produksi, bukan karya Faras. Jangan diklaim sebagai hasil kerja. Jika dipakai sebagai ilustrasi, beri kredit.
+- WOFF2 Space Grotesk & Inter sudah self-hosted di `public/fonts/`, preload HANYA Space Grotesk.
+- Tidak ada Google Fonts CDN.
+- Hierarki besar: headline hero `clamp(2.75rem, 7vw, 6rem)`, line-height ~0.95, tracking negative.
+- expressive typography: campuran weight, ukuran ekstrem, dan whitespace, bukan dekorasi warna.
 
 ---
 
-## 8. SEO & Metadata
+## 4. Layout & Section
 
-- JSON-LD `ProfilePage` dengan `mainEntity: Person` (name, jobTitle, url, image, sameAs GitHub/LinkedIn).
-- `<title>`: "Faras Fadhil Firdaus · Technology Enthusiast & AI-Assisted Developer".
-- Meta description: 1 kalimat ringkas sesuai hero.
-- `og:image` 1200×630 + `og:image:width/height`.
-- `robots.txt` sederhana + `Sitemap: .../sitemap-index.xml`.
-- `llms.txt` ~10 baris: H1 + ringkasan bidang + link ke versi `.md` CV. (Bonus untuk agent; bukan faktor ranking Google.)
+1. **Navbar** sticky minimal: monogram/name, About, Projects, Experience, Contact. Active-section indicator. Mobile nav jelas, 44px tap target.
+2. **Hero** headline besar 2-3 baris, intro singkat, CTA "View Projects" + "Contact Me", availability indicator. Portrait monokrom opsional. Tidak ada elemen dekoratif besar yang mendorong konten ke bawah fold.
+3. **About** editorial two-column. Personal, bukan CV paste.
+4. **Areas of Interest** numbered rows / editorial list. 4 bidang: AI & Intelligent Technologies; Language & AI Evaluation; Software & Automation; Digital Operations & Administration. BUKAN kartu dashboard.
+5. **Selected Projects** asymmetric showcase. DEXTRA primary feature. Tiap proyek: nama, screenshot ASLI, deskripsi, problem/motivation, kontribusi nyata, technical approach, technologies, status, link.
+6. **Experience & Education** vertical timeline, date alignment, status kredensial akurat.
+7. **Skills** grouped lists. TANPA progress bar / percentage.
+8. **Contact** full-width `#202020`, teks `#FFFFFF` besar, email/LinkedIn/GitHub/WA, CTA understated, footer bersih.
 
----
-
-## 9. Responsive
-
-| Breakpoint | Perilaku |
-|---|---|
-| < 640px | single column, H1 ~2.5rem, nav hamburger, kartu stack |
-| 640–1024px | grid 2 kolom untuk kartu, foto di bawah teks |
-| > 1024px | split hero 50/50, bento 12 kolom, sticky nav |
-
-Pastikan: tidak ada horizontal overflow di 375px; tombol min 44×44px; teks kontras.
+### Marquee
+Satu strip typography monokrom antar section. Separator pakai `·` (bukan em dash, R-02):
+`AI & TECHNOLOGY · DIGITAL OPERATIONS · CREATIVE DEVELOPMENT · CONTINUOUS LEARNING`
 
 ---
 
-## 10. Definition of Done (Visual)
+## 5. Project Preview — ATURAN MANDATORY
 
-1. Warna tepat NIGHT SKY (8 hex sesuai Bab 2), maksimal 3 dominan per layar, pink hanya 1 elemen.
-2. Foto monokrom duotone menyatu dengan accent + grain halus.
-3. DEXTRA mendominasi featured projects.
-4. Badge status proyek terlihat jelas.
-5. Skill memakai tag, bukan persentase.
-6. Tidak ada klaim AI research/linguistik sebagai experience.
-7. BNSP Practical Office Advance berstatus "dalam proses terbit".
-8. Motion halus, `prefers-reduced-motion` aktif, JS = 0 KB.
-9. Mobile 375px rapi, tidak overflow.
-10. Semua gambar adalah karya/aset sendiri atau diberi kredit.
+Screenshot proyek HARUS berasal dari aplikasi/website asli yang benar-benar berjalan.
+
+- `public/screenshots/dextra.webp` ← screenshot asli `https://dextra-office-agent.vercel.app`
+- `public/screenshots/ai-detector.webp` ← screenshot asli `https://ai-detector-mahasiswa.vercel.app`
+- `public/screenshots/experiments.webp` ← bukti nyata eksperimen bila tersedia; jika tidak ada, pakai entri tipografi tanpa screenshot
+
+**DILARANG Keras:**
+- Menggambar ulang UI proyek dengan HTML/CSS/SVG untuk keperluan preview.
+- Mockup, AI image, screenshot palsu, browser frame dengan UI rekaan.
+- Menyajikan konsep sebagai produk jadi.
+- Memakai stok image tidak terkait.
+
+Screenshot boleh ditempatkan di dalam frame portofolio, tapi isinya harus autentik & tidak diubah.
+
+Status proyek (jujur):
+- DEXTRA = BUILT, demo interaktif (prototype, bukan production deployment).
+- AI Detector Mahasiswa = LIVE DEMO (prototype interaktif), bukan produk production.
+- AI & Technical Experiments = ONGOING EXPLORATION.
+
+Jangan mengarang fitur, achievement, user, klien, atau metrik.
+
+---
+
+## 6. Motion
+
+- Hero: staggered line reveal (opacity + translateY 16-24px), duration 200-400ms, ease-out.
+- Scroll reveal: fade + translateY 16-24px, stagger related elements, trigger via IntersectionObserver.
+- Project hover: screenshot zoom ringan ~1.03, arrow move, border/background transition halus.
+- Button hover/active halus. Magnetic optional desktop, TIDAK untuk touch.
+- Marquee: satu strip bergerak lambat, monokrom, dapat di-pause.
+- Timeline: progression + reveal saat scroll.
+- Nav: smooth anchor, active indicator, sticky transition.
+- `prefers-reduced-motion: reduce` mematikan semua motion non-essential.
+- Tidak ada scroll hijacking, bounce berlebih, intro panjang, atau animasi yang mengganggu baca/klik.
+
+Stack: Motion/Framer Motion hanya jika kompatibel & ringan; else CSS + IntersectionObserver. JS minimal.
+
+---
+
+## 7. Responsive
+
+Uji: 360px, 390px, 768px, 1366px, 1440px.
+- Tidak ada horizontal overflow.
+- Tidak ada teks bertabrakan / ter-clip.
+- Screenshot menjaga aspect ratio.
+- Nav mobile tidak rusak.
+- Touch target >= 44px.
+
+---
+
+## 8. Performance & Accessibility
+
+- WebP/AVIF untuk screenshot, `loading="lazy"` untuk below-fold, `width`/`height` wajib (CLS).
+- Semantic HTML, `<main>`, landmarks, satu `<h1>`.
+- Keyboard navigation + visible `:focus-visible`.
+- `prefers-reduced-motion`.
+- Tidak ada dependency berlebih.
+
+---
+
+## 9. Definition of Done
+
+1. Hanya 7 hex monokrom, nol warna lain, nol gradien/glow.
+2. Tipografi Space Grotesk / Inter / JetBrains Mono.
+3. Areas of Interest berupa numbered rows.
+4. Projects asymmetric, DEXTRA dominan.
+5. Screenshot proyek 100% asli dari aplikasi berjalan, bukan recreate.
+6. Status proyek jujur.
+7. Experience timeline & skills tanpa percentage.
+8. Contact charcoal dengan teks putih.
+9. Motion halus & reduced-motion aman.
+10. Responsive di 5 breakpoint tanpa overflow.
+11. Semua link & tombol berfungsi.
+12. Build sukses & deployment configuration dipertahankan.

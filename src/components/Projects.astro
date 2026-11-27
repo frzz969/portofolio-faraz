@@ -1,170 +1,263 @@
 ---
 import { projects } from '../data/projects';
 
-// SECTION 4: FEATURED PROJECTS - struktur visual dari index.html, isi dari src/data/projects.ts.
+// SELECTED PROJECTS - asynchronous editorial showcase, DEXTRA sebagai feature utama.
+// Screenshot WebP belum tersedia; wrapper memakai path final + alt jujur.
+// Tidak menggambar ulang SVG, tidak mengarang fitur atau metrik.
 const [dextra, detector, experiments] = projects;
 
-const visuals: Record<string, { src: string; width: number; height: number; alt: string; caption: string; badge?: string }> = {
+const shots = {
   dextra: {
-    src: './dextra-dashboard.svg',
+    src: './screenshots/dextra.webp',
     width: 1200,
     height: 675,
-    alt: 'Diagram dashboard DEXTRA: alur eksekusi agen, panel telemetri, dan grafik struktur, dibuat sebagai ilustrasi arsitektur lokal, bukan screenshot produk.',
-    caption: 'DEXTRA Core Agent Orchestration, ilustrasi arsitektur',
-    badge: 'v1.2 Active',
+    alt: 'Screenshot antarmuka DEXTRA, platform orkestrasi agen AI untuk operasional. Aset screenshot belum tersedia.',
+    caption: 'DEXTRA, primary feature',
   },
-  'ai-detector-mahasiswa': {
-    src: './ai-detector-mockup.svg',
+  detector: {
+    src: './screenshots/ai-detector.webp',
     width: 1200,
     height: 675,
-    alt: 'Ilustrasi antarmuka penganalisis tulisan akademik Bahasa Indonesia, bukan tangkapan layar produk pihak ketiga.',
-    caption: 'Ilustrasi antarmuka, live demo tersedia',
+    alt: 'Screenshot antarmuka AI Detector Mahasiswa untuk analisis tulisan akademik Bahasa Indonesia. Aset screenshot belum tersedia.',
+    caption: 'AI Detector, live demo',
   },
-  'ai-technical-experiments': {
-    src: './experiments.svg',
+  experiments: {
+    src: './screenshots/experiments.webp',
     width: 1200,
     height: 675,
-    alt: 'Ilustrasi dokumentasi eksperimen teknis: integrasi MCP dengan Python dan FastAPI di terminal.',
-    caption: 'AI / MCP / API experiment documentation',
+    alt: 'Screenshot dokumentasi eksperimen teknis AI, MCP, dan integrasi API. Aset screenshot belum tersedia.',
+    caption: 'Experiments, ongoing',
   },
 };
 ---
 
-<!-- id="work" dipakai CTA hero; id="projects" dipakai nav. Keduanya merujuk section yang sama. -->
-<section class="w-full bg-surface-container-low py-20 lg:py-28" id="work">
-  <div class="max-w-[1180px] mx-auto px-margin-mobile lg:px-margin" id="projects">
-    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-14 gap-4">
+<section class="section" id="work">
+  <div class="container" id="projects">
+    <div class="section-head">
       <div>
-        <span class="text-label-sm font-label-sm text-muted-brass uppercase tracking-widest block mb-2 font-mono">03 / ARTIFACTS</span>
-        <h2 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight">Featured Projects</h2>
+        <span class="eyebrow">03 / Artifacts</span>
+        <h2 class="h2">Selected Projects</h2>
       </div>
-      <p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs md:text-right font-mono">
-        System Prototypes · Research Concepts · Lab Experiments
-      </p>
+      <p class="mono section-head__note">System Prototypes / Research Concepts / Lab Experiments</p>
+      <span class="sr-only">Anchor for the projects section</span>
     </div>
-    <div class="space-y-8">
-      <div class="card bg-surface-container rounded-xl overflow-hidden shadow-sm">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
-          <div class="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-3 mb-4">
-                <span class="px-2.5 py-1 rounded bg-accent-oxblood text-paper font-label-sm text-label-sm font-semibold uppercase tracking-wider">{dextra.status}</span>
-                <span class="text-label-sm font-label-sm text-on-surface-variant font-mono">Enterprise Architecture</span>
-              </div>
-              <h3 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight mb-2">{dextra.title}</h3>
-              <h4 class="font-title-md text-title-md text-accent-oxblood font-medium mb-5">{dextra.subtitle}</h4>
-              <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-8">{dextra.description}</p>
-              <p class="proj-meta">Next.js · React · Python · FastAPI · MCP <span>Live demo</span></p>
-            </div>
-            <div>
-              <div class="flex flex-wrap gap-2 mb-8">
-                {dextra.focus.map((tag) => (
-                  <span class="px-2.5 py-1 rounded-md bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">{tag}</span>
-                ))}
-              </div>
-              <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-                <a class="inline-flex items-center gap-2 text-label-md font-label-md text-ink hover:text-accent-oxblood transition-colors group" href="https://dextra-office-agent.vercel.app" target="_blank" rel="noopener noreferrer">
-                  <span class="underline underline-offset-4 decoration-accent-oxblood/40 group-hover:decoration-accent-oxblood">Live demo (prototype / demo interaktif) ↗</span>
-                </a>
-                <a class="inline-flex items-center gap-2 text-label-md font-label-md text-ink hover:text-accent-oxblood transition-colors group" href={visuals.dextra.src} target="_blank" rel="noopener noreferrer">
-                  <span class="underline underline-offset-4 decoration-accent-oxblood/40 group-hover:decoration-accent-oxblood">Inspect Architecture Specs</span>
-                </a>
-              </div>
-            </div>
+
+    <!-- Feature utama: DEXTRA, asimetris (teks kiri, shot kanan). -->
+    <article class="project-card project-card--feature reveal">
+      <div class="project-card__info">
+        <div class="project-card__top">
+          <span class="status status--solid">Built</span>
+          <span class="meta-label">Enterprise Architecture</span>
+        </div>
+        <h3 class="h2 project-card__title">{dextra.title}</h3>
+        <p class="h4 project-card__subtitle">{dextra.subtitle}</p>
+        <p class="body project-card__desc">{dextra.description}</p>
+
+        <dl class="project-facts">
+          <div>
+            <dt>Problem</dt>
+            <dd>Operational work spread across tools without clear authority or a traceable record of execution.</dd>
           </div>
-          <div class="lg:col-span-5 bg-surface-container-high p-6 lg:p-8 flex items-center justify-center">
-            <div class="w-full h-full min-h-[320px] rounded-lg overflow-hidden relative shadow-sm bg-ink flex flex-col justify-between">
-              <img class="w-full h-full object-cover filter contrast-110" src={visuals.dextra.src} width={visuals.dextra.width} height={visuals.dextra.height} loading="lazy" alt={visuals.dextra.alt} />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/40 pointer-events-none"></div>
-              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-paper text-label-sm font-mono">
-                <span>{visuals.dextra.caption}</span>
-                <span class="px-2 py-0.5 rounded bg-stamp-pink text-ink font-semibold">{visuals.dextra.badge}</span>
-              </div>
-            </div>
+          <div>
+            <dt>Contribution</dt>
+            <dd>Designed around specialized AI workers, human-defined authority, and approval-based execution.</dd>
           </div>
+          <div>
+            <dt>Approach</dt>
+            <dd>Multi-agent orchestration, MCP integration, deterministic policy validation, and audit trails.</dd>
+          </div>
+        </dl>
+
+        <div class="tag-list" aria-label="Technologies used">
+          {dextra.focus.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+        <div class="project-card__links">
+          <a class="text-link" href={dextra.liveUrl} target="_blank" rel="noopener noreferrer">
+            Live demo <span class="arrow-glyph" aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="card bg-surface-container rounded-xl p-8 lg:p-10 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-2.5 py-1 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold uppercase tracking-wider font-mono">{detector.status}</span>
-              <span class="text-label-sm font-label-sm text-muted-brass font-mono">Research Lab</span>
-            </div>
-            <h3 class="font-headline-md text-headline-md text-ink font-semibold mb-1">{detector.title}</h3>
-            <h4 class="font-title-md text-title-md text-accent-oxblood font-medium mb-4">{detector.subtitle}</h4>
-            <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
-              A live demo for analyzing Indonesian academic writing. Paste or upload txt, md, pdf, and docx files. It checks 10 language patterns, offers an optional local model around 130MB, and shows a score with highlighted text plus a PDF report, in Indonesian and English. The FAQ is explicit: no detector is 100% accurate, this is <strong class="text-ink font-medium">bukan</strong> pengganti Turnitin, and text stays private in the browser.
-            </p>
-            <p class="proj-meta">NLP · Indonesian Language Analysis · AI Evaluation <span>Live</span></p>
-            <div class="w-full h-44 rounded-lg bg-surface-container-high relative overflow-hidden mb-6 flex items-center justify-center">
-              <img class="w-full h-full object-cover filter contrast-105" src={visuals['ai-detector-mahasiswa'].src} width={visuals['ai-detector-mahasiswa'].width} height={visuals['ai-detector-mahasiswa'].height} loading="lazy" alt={visuals['ai-detector-mahasiswa'].alt} />
-              <div class="absolute inset-0 bg-ink/20 pointer-events-none"></div>
-              <span class="absolute bottom-3 left-3 text-label-sm font-label-sm font-mono text-paper bg-ink/80 px-2 py-0.5 rounded">{visuals['ai-detector-mahasiswa'].caption}</span>
-            </div>
-          </div>
-          <div>
-            <div class="flex flex-wrap gap-2 mb-6">
-              {detector.focus.map((tag) => (
-                <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">{tag}</span>
-              ))}
-            </div>
-            <a class="inline-flex items-center gap-2 text-label-md font-label-md text-accent-oxblood hover:text-ink transition-colors group mb-3" href="https://ai-detector-mahasiswa.vercel.app" target="_blank" rel="noopener noreferrer">
-              <span class="underline underline-offset-4 decoration-accent-oxblood/40 group-hover:decoration-accent-oxblood">Live demo ↗</span>
-            </a>
-            <span class="text-body-sm font-body-sm text-on-surface-variant italic">∗ Explicitly oriented around explainability over automated penalties, bukan pengganti Turnitin.</span>
-          </div>
+      <figure class="project-shot project-shot--feature">
+        <div class="project-shot__frame">
+          <img
+            src={shots.dextra.src}
+            width={shots.dextra.width}
+            height={shots.dextra.height}
+            loading="lazy"
+            alt={shots.dextra.alt}
+          />
         </div>
+        <figcaption class="meta-label">{shots.dextra.caption}</figcaption>
+      </figure>
+    </article>
 
-        <div class="card bg-surface-container rounded-xl p-8 lg:p-10 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold uppercase tracking-wider font-mono">{experiments.status}</span>
-              <span class="text-label-sm font-label-sm text-muted-brass font-mono">Experimental</span>
-            </div>
-            <h3 class="font-headline-md text-headline-md text-ink font-semibold mb-1">{experiments.title}</h3>
-            <h4 class="font-title-md text-title-md text-accent-oxblood font-medium mb-4">{experiments.subtitle}</h4>
-            <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">{experiments.description}</p>
-            <p class="proj-meta">AI Tools · MCP · APIs · Workflows <span>Ongoing</span></p>
-            <div class="w-full h-44 rounded-lg bg-surface-container-high relative overflow-hidden mb-6 flex items-center justify-center">
-              <img class="w-full h-full object-cover filter contrast-110" src={visuals['ai-technical-experiments'].src} width={visuals['ai-technical-experiments'].width} height={visuals['ai-technical-experiments'].height} loading="lazy" alt={visuals['ai-technical-experiments'].alt} />
-              <div class="absolute inset-0 bg-ink/20 pointer-events-none"></div>
-              <span class="absolute bottom-3 left-3 text-label-sm font-label-sm font-mono text-paper bg-ink/80 px-2 py-0.5 rounded">{visuals['ai-technical-experiments'].caption}</span>
-            </div>
-          </div>
-          <div>
-            <div class="flex flex-wrap gap-2 mb-6">
-              {experiments.focus.map((tag) => (
-                <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">{tag}</span>
-              ))}
-            </div>
-            <span class="text-body-sm font-body-sm text-on-surface-variant italic">∗ Continuously updated repository of technical proofs of concept.</span>
-          </div>
+    <!-- Dua pendukung: layout tidak simetris penuh, urutan visual berbeda. -->
+    <div class="project-pair">
+      <article class="project-card project-card--support reveal" style="--stagger:0">
+        <div class="project-card__top">
+          <span class="status status--solid">Live demo</span>
+          <span class="meta-label">Research Lab</span>
         </div>
-      </div>
+        <h3 class="h3 project-card__title">{detector.title}</h3>
+        <p class="h4 project-card__subtitle">{detector.subtitle}</p>
+        <p class="body project-card__desc">{detector.description}</p>
+
+        <figure class="project-shot">
+          <div class="project-shot__frame">
+            <img
+              src={shots.detector.src}
+              width={shots.detector.width}
+              height={shots.detector.height}
+              loading="lazy"
+              alt={shots.detector.alt}
+            />
+          </div>
+          <figcaption class="meta-label">{shots.detector.caption}</figcaption>
+        </figure>
+
+        <dl class="project-facts project-facts--compact">
+          <div>
+            <dt>Motivation</dt>
+            <dd>Explainable analysis for Indonesian academic writing, not automated penalties.</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>Live demo (prototype). No detector is fully accurate, and this is not a replacement for Turnitin.</dd>
+          </div>
+        </dl>
+
+        <div class="tag-list" aria-label="Technologies used">
+          {detector.focus.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+        <div class="project-card__links">
+          <a class="text-link" href={detector.liveUrl} target="_blank" rel="noopener noreferrer">
+            Live demo <span class="arrow-glyph" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="project-card project-card--support project-card--offset reveal" style="--stagger:1">
+        <div class="project-card__top">
+          <span class="status">Ongoing exploration</span>
+          <span class="meta-label">Experimental</span>
+        </div>
+        <h3 class="h3 project-card__title">{experiments.title}</h3>
+        <p class="h4 project-card__subtitle">{experiments.subtitle}</p>
+
+        <figure class="project-shot">
+          <div class="project-shot__frame">
+            <img
+              src={shots.experiments.src}
+              width={shots.experiments.width}
+              height={shots.experiments.height}
+              loading="lazy"
+              alt={shots.experiments.alt}
+            />
+          </div>
+          <figcaption class="meta-label">{shots.experiments.caption}</figcaption>
+        </figure>
+
+        <p class="body project-card__desc">{experiments.description}</p>
+
+        <dl class="project-facts project-facts--compact">
+          <div>
+            <dt>Contribution</dt>
+            <dd>Independent proofs of concept, documented as learning notes.</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>Continuously updated, no fixed release date.</dd>
+          </div>
+        </dl>
+
+        <div class="tag-list" aria-label="Technologies used">
+          {experiments.focus.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
 <style>
-/* Single pink stamp in the whole portfolio (antislop: accent restraint). */
-.bg-stamp-pink{background:#E793C6}
-.proj-meta{margin:.5rem 0 0;font:400 .72rem/1.6 ui-monospace,monospace;letter-spacing:.04em;color:#1C1DAB}
-.proj-meta span{float:right;border-bottom:1px solid #C08CE2;color:#C08CE2;padding-bottom:1px}
-/* Editorial rhythm: satu kertas, bukan slide per section */
-section { background: transparent !important; }
-.bg-surface-container-low, .bg-surface-container, .bg-surface-container-high,
-.bg-surface-container-highest { background: transparent !important; }
-section + section { border-top: 1px solid rgba(30,15,117,.12); }
-.card, [class*="bg-surface-container"] { box-shadow: none !important; }
-[class*="rounded-xl"] { border-radius: 2px !important; }
-/* Focal point: nomor/teks meta jadi gelap, bukan brass pucat */
-.text-muted-brass, .text-on-surface-variant { color: #1E0F75 !important; }
-@media (prefers-color-scheme: dark) {
-  .proj-meta { color: #3785D8; }
-  .proj-meta span { color: #3785D8; border-bottom-color: #3785D8; }
-  .bg-stamp-pink { background: #E793C6; }
-  .text-muted-brass, .text-on-surface-variant { color: #CBD8E8 !important; }
-}
+  .project-card {
+    border: 1px solid var(--border);
+    background: var(--paper);
+    padding: clamp(24px, 4vw, 44px);
+  }
+  .project-card__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .project-card__title { margin-bottom: 6px; }
+  .project-card__subtitle { color: var(--subtle); margin-bottom: 20px; }
+  .project-card__desc { max-width: 62ch; }
+
+  .project-facts {
+    margin: 28px 0;
+    border-top: 1px solid var(--border);
+  }
+  .project-facts > div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px 20px;
+    padding-block: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-facts dt {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+  .project-facts dd { font-size: 0.9375rem; line-height: 1.55; color: var(--ink); }
+  .project-facts--compact > div { padding-block: 12px; }
+
+  .project-card__links { margin-top: 24px; }
+
+  .project-shot { margin: 24px 0 0; }
+  .project-shot__frame {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .project-shot__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .project-shot figcaption { margin-top: 10px; }
+
+  .project-card--feature {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-bottom: 24px;
+  }
+  .project-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 900px) {
+    .project-card--feature {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+      align-items: center;
+      gap: clamp(40px, 5vw, 72px);
+    }
+    .project-shot--feature { margin: 0; }
+    .project-pair {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      align-items: start;
+    }
+    /* Asimetri disengaja: kartu kedua turun, bukan grid tiga kartu sama. */
+    .project-card--offset { margin-top: 72px; }
+    .project-facts > div { grid-template-columns: 120px 1fr; }
+  }
 </style>

@@ -1,17 +1,130 @@
-:root{--paper:#CBD8E8;--ink:#1E0F75;--oxblood:#1C1DAB;--oxblood-deep:#1C1DAB;--brass:#3785D8;--dur-micro:150ms;--dur-ui:180ms;--dur-page:320ms;--ease-ui:cubic-bezier(0.2,0,0,1);--ease-out:cubic-bezier(0.05,0.7,0.1,1)}
-@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
-::view-transition-old(root),::view-transition-new(root){animation-duration:var(--dur-page);animation-timing-function:var(--ease-out)}
-@supports (animation-timeline:view()){@media (prefers-reduced-motion:no-preference){.reveal-line{animation:oxblood-in linear both;animation-timeline:view();animation-range:entry calc(5% + var(--i,0)*4%) cover 40%}.portrait{animation:portrait-drift linear both;animation-timeline:view();animation-range:cover}}}
-@keyframes oxblood-in{from{clip-path:inset(0 100% 0 0);opacity:.35}to{clip-path:inset(0 0 0 0);opacity:1}}
-@keyframes portrait-drift{from{translate:0 6px}to{translate:0 -6px}}
-.card{transition:translate var(--dur-micro) var(--ease-ui),border-color var(--dur-micro) var(--ease-ui)}
-@media (hover:hover){.card:hover{translate:0 -2px;border-color:var(--oxblood)}}
-.btn{background:var(--oxblood);color:var(--paper);transition:background-color var(--dur-ui) var(--ease-ui)}
-@media (hover:hover){.btn:hover{background:var(--oxblood-deep)}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* ==========================================================================
+   motion.css - gerak yang melayani hierarki, bukan wallpaper.
+   Dial MOTION 2: stagger saat masuk + transisi UI. Tanpa GSAP/Framer.
+   Semua motion non-essential berada di dalam prefers-reduced-motion:no-preference.
+   Durasi 200-400ms, ease-out, satu arah, tanpa loop tak berujung
+   (kecuali marquee yang memiliki alasan dan bisa dimatikan).
+   ========================================================================== */
 
-/* Single decorative oxblood stroke near the hero headline. One-shot on load only. */
-.ink-stroke{display:block;width:72px;height:2px;margin-top:14px;background:var(--oxblood);transform-origin:left center;opacity:.9}
-@media (prefers-reduced-motion:no-preference){.ink-stroke{animation:stroke-in 420ms cubic-bezier(0.05,0.7,0.1,1) both}}
-@keyframes stroke-in{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-@media (prefers-reduced-motion:reduce){.ink-stroke{animation:none}}
+:root {
+  --dur-micro: 170ms;
+  --dur-ui: 240ms;
+  --dur-reveal: 360ms;
+  --dur-line: 420ms;
+  --ease-ui: cubic-bezier(0.2, 0, 0, 1);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* View transition halaman: tetap, tapi hanya saat motion diizinkan. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 320ms;
+    animation-timing-function: var(--ease-reveal);
+  }
+}
+
+/* --- Hero: barisdemi baris, naik 18px -------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: hero-line-in var(--dur-line) var(--ease-reveal) both;
+    animation-delay: calc(90ms + var(--i, 0) * 95ms);
+  }
+  .hero-fade {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-line-in var(--dur-reveal) var(--ease-reveal) both;
+    animation-delay: 400ms;
+  }
+}
+@keyframes hero-line-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Scroll reveal per blok ------------------------------------------------
+   .reveal ditambahkan ke elemen; IntersectionObserver di Layout menambahkan
+   .is-visible. Jika JS tidak tersedia, aturan di bawah tidak menyembunyikan
+   apa pun (konten tetap tampil). */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity var(--dur-reveal) var(--ease-reveal),
+                transform var(--dur-reveal) var(--ease-reveal);
+    transition-delay: calc(var(--stagger, 0) * 70ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Progres timeline: garis mengisi saat section terlihat ----------------- */
+.timeline { position: relative; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--border);
+}
+.timeline__progress {
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  width: 1px;
+  height: 0;
+  background: var(--ink);
+  transition: height 520ms var(--ease-reveal);
+}
+.timeline.is-visible .timeline__progress { height: calc(100% - 12px); }
+
+/* --- Project hover: zoom screenshot ringan + arah panah -------------------- */
+.project-shot img {
+  transition: transform 420ms var(--ease-reveal), filter var(--dur-ui) var(--ease-ui);
+}
+.project-shot:hover img,
+.project-card:hover .project-shot img {
+  transform: scale(1.03);
+}
+.project-card {
+  transition: border-color var(--dur-ui) var(--ease-ui),
+              background-color var(--dur-ui) var(--ease-ui);
+}
+@media (hover: hover) {
+  .project-card:hover { border-color: var(--ink); background: var(--surface); }
+}
+.project-card:active { transform: none; }
+
+/* Button hover/active sudah di global.css. Magnetic sengaja tidak dipakai:
+   tidak ada interaksi cursor-dependent di perangkat sentuh. */
+
+/* State sentuh: feedback tetap ada tanpa hover. */
+a:active, button:active, summary:active { opacity: 0.74; }
+
+/* --- Reduced motion: matikan motion non-essential sepenuhnya --------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-line,
+  .hero-fade,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .marquee-track { animation: none !important; }
+  .timeline__progress { height: calc(100% - 12px) !important; }
+}

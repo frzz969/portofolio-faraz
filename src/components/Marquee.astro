@@ -1,0 +1,26 @@
+---
+// SATU marquee monokrom antar section. Separator memakai "|" dan "·",
+// bukan em dash (R-02). Diulang dua kali agar loop mulus; konten identik.
+const words = [
+  'AI & Technology',
+  'Digital Operations',
+  'Creative Development',
+  'Continuous Learning',
+];
+---
+
+<div class="marquee-band" aria-label="AI & technology, digital operations, creative development, continuous learning">
+  <div class="marquee-track" aria-hidden="true">
+    {[0, 1].map(() => (
+      <span class="marquee-group">
+        {words.map((word) => (
+          <span class="marquee-item">{word}<span class="marquee-sep"> | </span></span>
+        ))}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee-group { display: inline-flex; }
+</style>

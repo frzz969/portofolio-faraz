@@ -1,94 +1,80 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Illustrated portrait of a young Indonesian technology enthusiast in a dark crew-neck shirt">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" fill="none" role="img" aria-label="Monochrome editorial head-and-shoulders portrait illustration">
+  <title>Portrait of Faras</title>
+  <desc>Editorial monochrome vector portrait, transparent background, no project UI elements.</desc>
   <defs>
-    <!-- Fine editorial grain overlay -->
     <filter id="grain" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" result="noise"/>
       <feColorMatrix in="noise" type="saturate" values="0"/>
     </filter>
-    <!-- Soft duotone gradient used inside shapes only (never as a background rect) -->
-    <linearGradient id="oxbloodLight" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1C1DAB"/>
-      <stop offset="1" stop-color="#EBB2C3" stop-opacity="0.18"/>
-    </linearGradient>
-    <linearGradient id="inkSoft" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1E0F75"/>
-      <stop offset="1" stop-color="#1E0F75" stop-opacity="0.75"/>
-    </linearGradient>
-    <clipPath id="bodyClip">
-      <path d="M118 1000 C118 806 210 706 322 676 L478 676 C590 706 682 806 682 1000 Z"/>
+    <clipPath id="frameClip">
+      <rect x="0" y="0" width="800" height="1000"/>
     </clipPath>
   </defs>
 
-  <!-- ===================== SHOULDERS / BODY ===================== -->
-  <g>
-    <!-- Dark crew-neck shirt silhouette -->
-    <path d="M118 1000 C118 806 210 706 322 676 L478 676 C590 706 682 806 682 1000 Z" fill="url(#inkSoft)"/>
-    <!-- Shirt inner tonal panel (editorial duotone structuring) -->
-    <g clip-path="url(#bodyClip)">
-      <path d="M118 1000 C140 850 190 760 300 700 L340 1000 Z" fill="#1C1DAB" opacity="0.5"/>
-      <path d="M500 700 C610 760 660 850 682 1000 L560 1000 Z" fill="#1C1DAB" opacity="0.28"/>
-      <!-- Brass thin shoulder seam accents -->
-      <path d="M322 690 C250 722 190 790 160 880" fill="none" stroke="#EBB2C3" stroke-width="2" opacity="0.55"/>
-      <path d="M478 690 C550 722 610 790 640 880" fill="none" stroke="#EBB2C3" stroke-width="2" opacity="0.55"/>
-    </g>
-    <!-- Crew-neck collar -->
-    <path d="M322 676 C350 706 450 706 478 676 C470 728 440 756 400 756 C360 756 330 728 322 676 Z" fill="#CBD8E8"/>
-    <path d="M322 676 C350 706 450 706 478 676" fill="none" stroke="#EBB2C3" stroke-width="2" opacity="0.6"/>
-    <!-- Neck -->
-    <path d="M344 590 L344 686 C344 716 456 716 456 686 L456 590 Z" fill="#CBD8E8"/>
-    <path d="M344 590 C372 622 428 622 456 590 L456 628 C428 656 372 656 344 628 Z" fill="#1E0F75" opacity="0.18"/>
+  <!-- Monochrome editorial portrait, not a project screenshot -->
+  <g clip-path="url(#frameClip)">
+    <!-- shoulders / torso -->
+    <path d="M120 1000 C124 846 206 764 314 738 L486 738 C594 764 676 846 680 1000 Z" fill="#EEEEEE"/>
+    <path d="M120 1000 C124 846 206 764 314 738 L346 752 C250 792 190 872 184 1000 Z" fill="#FFFFFF"/>
+    <path d="M680 1000 C676 846 594 764 486 738 L454 752 C550 792 610 872 616 1000 Z" fill="#202020"/>
+    <path d="M120 1000 C124 846 206 764 314 738 L486 738 C594 764 676 846 680 1000" stroke="#737373" stroke-width="4"/>
+
+    <!-- neck -->
+    <path d="M338 636 L462 636 L470 752 C438 776 362 776 330 752 Z" fill="#EEEEEE"/>
+    <path d="M338 636 L400 664 L400 768 C374 770 350 762 330 752 Z" fill="#FFFFFF"/>
+    <path d="M462 636 L400 664 L400 768 C426 770 450 762 470 752 Z" fill="#202020"/>
+    <path d="M338 636 L462 636" stroke="#737373" stroke-width="4"/>
+
+    <!-- ears -->
+    <path d="M256 472 C236 462 226 486 234 518 C240 546 256 560 272 552 L272 470 Z" fill="#EEEEEE"/>
+    <path d="M544 472 C564 462 574 486 566 518 C560 546 544 560 528 552 L528 470 Z" fill="#EEEEEE"/>
+    <path d="M246 488 C238 492 240 516 248 532" stroke="#737373" stroke-width="5" stroke-linecap="round"/>
+    <path d="M554 488 C562 492 560 516 552 532" stroke="#737373" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- head / face -->
+    <path d="M400 176 C300 176 262 254 262 380 C262 506 316 606 400 640 C484 606 538 506 538 380 C538 254 500 176 400 176 Z" fill="#EEEEEE"/>
+    <path d="M400 176 C300 176 262 254 262 380 C262 506 316 606 400 640 Z" fill="#FFFFFF"/>
+    <path d="M400 176 C500 176 538 254 538 380 C538 506 484 606 400 640 Z" fill="#202020" opacity="0.55"/>
+    <path d="M400 176 C300 176 262 254 262 380 C262 506 316 606 400 640 C484 606 538 506 538 380 C538 254 500 176 400 176 Z" stroke="#737373" stroke-width="4"/>
+
+    <!-- hair -->
+    <path d="M256 392 C242 292 268 196 348 162 C424 130 508 158 536 236 C548 272 548 322 540 364 C528 326 512 302 486 288 C452 312 400 320 350 306 C312 296 282 320 266 362 Z" fill="#202020"/>
+    <path d="M270 350 C284 280 318 230 372 204 C416 184 470 190 504 222 C466 206 420 212 382 232 C334 256 298 300 282 350 Z" fill="#737373" opacity="0.5"/>
+    <path d="M262 380 C262 300 274 240 322 200" stroke="#737373" stroke-width="3" opacity="0.6"/>
+
+    <!-- eyebrows -->
+    <path d="M310 382 C330 370 356 370 376 380" stroke="#202020" stroke-width="9" stroke-linecap="round"/>
+    <path d="M424 380 C444 370 470 370 490 382" stroke="#202020" stroke-width="9" stroke-linecap="round"/>
+
+    <!-- eyes -->
+    <path d="M312 412 C328 398 360 398 376 412 C360 424 328 424 312 412 Z" fill="#F7F7F7" stroke="#737373" stroke-width="3"/>
+    <path d="M424 412 C440 398 472 398 488 412 C472 424 440 424 424 412 Z" fill="#F7F7F7" stroke="#737373" stroke-width="3"/>
+    <circle cx="344" cy="412" r="9" fill="#202020"/>
+    <circle cx="456" cy="412" r="9" fill="#202020"/>
+    <circle cx="347" cy="409" r="3" fill="#FFFFFF"/>
+    <circle cx="459" cy="409" r="3" fill="#FFFFFF"/>
+    <path d="M306 406 C324 392 360 392 382 406" stroke="#737373" stroke-width="3" stroke-linecap="round"/>
+    <path d="M418 406 C440 392 476 392 494 406" stroke="#737373" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- nose -->
+    <path d="M400 420 C394 452 388 476 380 496 C388 506 412 506 422 496" stroke="#737373" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M400 420 C394 452 388 476 380 496 C386 502 398 504 400 504 Z" fill="#FFFFFF" opacity="0.7"/>
+
+    <!-- mouth -->
+    <path d="M358 548 C376 538 424 538 442 548 C424 566 376 566 358 548 Z" fill="#D9D9D9"/>
+    <path d="M358 548 C376 540 424 540 442 548" stroke="#202020" stroke-width="4" stroke-linecap="round"/>
+    <path d="M368 556 C384 562 416 562 432 556" stroke="#737373" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- jaw / cheek contour lines -->
+    <path d="M292 470 C298 522 322 566 356 590" stroke="#737373" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <path d="M508 470 C502 522 478 566 444 590" stroke="#737373" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- collar detail -->
+    <path d="M314 740 L400 812 L486 740" stroke="#737373" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M400 812 L400 1000" stroke="#737373" stroke-width="3" opacity="0.7"/>
+    <path d="M344 758 L400 812 L456 758" stroke="#202020" stroke-width="3" stroke-linejoin="round" opacity="0.5"/>
+
+    <!-- fine grain overlay -->
+    <rect x="0" y="0" width="800" height="1000" filter="url(#grain)" opacity="0.04"/>
   </g>
-
-  <!-- ===================== HEAD ===================== -->
-  <g>
-    <!-- Ears -->
-    <path d="M262 430 C244 420 236 446 246 472 C252 488 264 494 274 488 L276 442 Z" fill="#CBD8E8"/>
-    <path d="M538 430 C556 420 564 446 554 472 C548 488 536 494 526 488 L524 442 Z" fill="#CBD8E8"/>
-    <path d="M256 448 C250 456 252 470 260 476" fill="none" stroke="#1C1DAB" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
-    <path d="M544 448 C550 456 548 470 540 476" fill="none" stroke="#1C1DAB" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
-
-    <!-- Face shape -->
-    <path d="M400 150 C316 150 266 214 266 320 C266 392 282 452 320 510 C348 552 372 578 400 578 C428 578 452 552 480 510 C518 452 534 392 534 320 C534 214 484 150 400 150 Z" fill="#CBD8E8"/>
-    <!-- Duotone shadow plane on face (right side) -->
-    <path d="M400 150 C484 150 534 214 534 320 C534 392 518 452 480 510 C452 552 428 578 400 578 Z" fill="url(#oxbloodLight)" opacity="0.55"/>
-    <!-- Jaw / cheek subtle ink shading -->
-    <path d="M320 510 C348 552 372 578 400 578 C428 578 452 552 480 510 C452 538 428 550 400 550 C372 550 348 538 320 510 Z" fill="#1E0F75" opacity="0.12"/>
-    <!-- Thin brass editorial contour line along cheek -->
-    <path d="M286 356 C290 424 306 476 340 520" fill="none" stroke="#EBB2C3" stroke-width="1.6" opacity="0.5"/>
-
-    <!-- Brows (calm, slightly raised inner ends = thinking) -->
-    <path d="M318 330 C338 318 366 320 380 332" fill="none" stroke="#1E0F75" stroke-width="7" stroke-linecap="round"/>
-    <path d="M420 332 C434 320 462 318 482 330" fill="none" stroke="#1E0F75" stroke-width="7" stroke-linecap="round"/>
-
-    <!-- Eyes: thoughtful, looking slightly off-center -->
-    <path d="M320 362 C336 350 364 350 380 362 C364 374 336 374 320 362 Z" fill="#CBD8E8" stroke="#1E0F75" stroke-width="3"/>
-    <circle cx="352" cy="362" r="7" fill="#1E0F75"/>
-    <path d="M420 362 C436 350 464 350 480 362 C464 374 436 374 420 362 Z" fill="#CBD8E8" stroke="#1E0F75" stroke-width="3"/>
-    <circle cx="450" cy="362" r="7" fill="#1E0F75"/>
-    <!-- Upper lids -->
-    <path d="M320 360 C336 348 364 348 380 360" fill="none" stroke="#1E0F75" stroke-width="4" stroke-linecap="round"/>
-    <path d="M420 360 C436 348 464 348 480 360" fill="none" stroke="#1E0F75" stroke-width="4" stroke-linecap="round"/>
-
-    <!-- Nose -->
-    <path d="M400 372 C394 408 386 436 392 450 C398 462 412 462 418 450" fill="none" stroke="#1C1DAB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-    <path d="M382 458 C392 464 408 464 418 458" fill="none" stroke="#1E0F75" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
-
-    <!-- Mouth: calm, closed, faint thoughtful asymmetry -->
-    <path d="M366 506 C384 500 416 500 434 508" fill="none" stroke="#1C1DAB" stroke-width="4" stroke-linecap="round"/>
-    <path d="M372 514 C388 518 412 518 428 514" fill="none" stroke="#1E0F75" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-
-    <!-- Hair: neat black, side-parted, editorial shape -->
-    <path d="M400 132 C306 132 254 196 258 288 C262 262 272 240 286 226 C292 254 314 270 342 266 C370 262 386 244 396 224 C408 248 436 258 468 248 C492 240 508 218 514 194 C524 220 532 252 534 292 C540 200 490 132 400 132 Z" fill="#1E0F75"/>
-    <!-- Hair highlight (oxblood duotone sheen, thin) -->
-    <path d="M292 214 C316 176 352 156 396 154 C356 168 326 190 306 224 Z" fill="#1C1DAB" opacity="0.65"/>
-    <path d="M446 158 C480 172 504 196 512 226 C498 190 474 170 446 158 Z" fill="#1C1DAB" opacity="0.4"/>
-    <!-- Brass hair part line -->
-    <path d="M396 154 C388 182 376 204 356 222" fill="none" stroke="#E793C6" stroke-width="1.4" opacity="0.45"/>
-    <!-- Sideburns -->
-    <path d="M262 288 C262 312 266 334 274 350 C268 326 268 304 272 286 Z" fill="#1E0F75"/>
-    <path d="M538 288 C538 312 534 334 526 350 C532 326 532 304 528 286 Z" fill="#1E0F75"/>
-  </g>
-
-  <!-- ===================== GRAIN OVERLAY ===================== -->
-  <rect x="0" y="0" width="800" height="1000" fill="#CBD8E8" filter="url(#grain)" opacity="0.04" style="mix-blend-mode:overlay"/>
 </svg>

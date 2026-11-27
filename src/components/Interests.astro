@@ -1,31 +1,71 @@
 ---
-import { interests } from '../data/interests';
-
-// SECTION 8: AREAS OF INTEREST - 9 tag, isi dari src/data/interests.ts.
-// Label jujur: minat & arah eksplorasi, bukan pengalaman profesional.
-const honestLabel = interests.note.replace(/\s+[\u2014-]\s+/, ', ');
+// AREAS OF INTEREST - numbered editorial rows, bukan kartu dashboard.
+// Empat bidang sesuai arah PHASE 3. Label jujur: minat, bukan pengalaman kerja.
+const areas = [
+  'AI & Intelligent Technologies',
+  'Language & AI Evaluation',
+  'Software & Automation',
+  'Digital Operations & Administration',
+];
 ---
 
-<section class="w-full bg-surface-container-low py-20 lg:py-28" id="interests">
-  <div class="max-w-[1180px] mx-auto px-margin-mobile lg:px-margin">
-    <div class="max-w-2xl mb-12">
-      <span class="text-label-sm font-label-sm text-muted-brass uppercase tracking-widest block mb-2 font-mono">07 / HORIZONS</span>
-      <h2 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight mb-4">Areas of Interest</h2>
-      <p class="font-body-lg text-body-lg text-on-surface-variant">
-        I'm continuously exploring opportunities and developing my knowledge in:
-      </p>
+<section class="section" id="interests">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">07 / Horizons</span>
+        <h2 class="h2">Areas of Interest</h2>
+      </div>
+      <p class="mono section-head__note">Interests and exploration, not professional experience</p>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-      {interests.areas.map((area) => (
-        <div class="card p-5 bg-surface-container rounded-xl shadow-xs flex items-center gap-3">
-          <span class="w-2 h-2 shrink-0 interest-mark"></span>
-          <span class="font-title-md text-title-md text-ink">{area}</span>
-        </div>
+
+    <ol class="interest-list">
+      {areas.map((area, index) => (
+        <li class="interest-row reveal" style={`--stagger:${index}`}>
+          <span class="interest-row__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <span class="interest-row__title h3">{area}</span>
+          <span class="interest-row__mark" aria-hidden="true"></span>
+        </li>
       ))}
-    </div>
-    <div class="p-4 bg-surface-container-high rounded-lg text-body-sm font-body-sm text-on-surface-variant flex items-center gap-2">
-      <svg class="text-muted-brass w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#3785D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg>
-      <span>{honestLabel}. Clarification note: items above represent active learning interests and proactive personal exploration, bukan pengalaman kerja komersial formal.</span>
-    </div>
+    </ol>
+
+    <p class="interest-note mono">
+      These are active learning interests and personal exploration, bukan pengalaman kerja
+      komersial formal.
+    </p>
   </div>
 </section>
+
+<style>
+  .interest-list { border-top: 1px solid var(--border); }
+  .interest-row {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: baseline;
+    gap: 8px 20px;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .interest-row__num { font-size: clamp(2rem, 5vw, 3.5rem); }
+  .interest-row__title { align-self: center; }
+  .interest-row__mark {
+    display: none;
+    width: 24px;
+    height: 1px;
+    background: var(--ink);
+    align-self: center;
+    justify-self: end;
+  }
+  .interest-note {
+    margin-top: 24px;
+    color: var(--subtle);
+    max-width: 68ch;
+  }
+  @media (min-width: 700px) {
+    .interest-row {
+      grid-template-columns: 120px 1fr 32px;
+      padding-block: 28px;
+    }
+    .interest-row__mark { display: block; }
+  }
+</style>

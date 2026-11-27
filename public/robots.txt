@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://farasfadhil.github.io/sitemap-index.xml
+Sitemap: https://frzz969.github.io/portofolio-faraz/sitemap-index.xml

@@ -53,6 +53,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
-
-# CATATAN: jika repo ini bukan custom domain, set `base: '/portofolio-faraz/'`
-# di astro.config.mjs (file lain, tidak disentuh di workflow ini).

@@ -1,22 +1,61 @@
 ---
-// FOOTER - dipindahkan dari index.html ke komponen, dipakai Layout.astro.
+// FOOTER - bersih, tautan nyata, tanpa badge berlebih.
 ---
-<footer class="w-full bg-surface-container-low mt-space-2xl">
-  <div class="max-w-[1180px] mx-auto px-margin-mobile lg:px-margin py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
-    <div class="flex flex-col sm:flex-row items-center gap-space-sm md:gap-space-md text-center sm:text-left">
-      <span class="font-headline-sm text-headline-sm tracking-tight text-ink">FFF</span>
-      <span class="hidden sm:inline text-outline-variant font-light">/</span>
-      <span class="text-body-sm font-body-sm text-on-surface-variant">© 2026 Faras Fadhil Firdaus. All rights reserved.</span>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__id">
+      <span class="wordmark__mono">FFF</span>
+      <p class="mono">© 2026 Faras Fadhil Firdaus. All rights reserved.</p>
     </div>
-    <div class="inline-flex items-center gap-2 px-space-md py-1.5 rounded-full bg-surface-container-highest text-tertiary-container text-label-sm font-label-sm">
-      <span class="w-2 h-2 rounded-full bg-accent-oxblood" aria-hidden="true"></span>
-      <span>Available for opportunities</span>
-    </div>
-    <nav class="flex items-center gap-space-md" aria-label="Footer navigation">
-      <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-accent-oxblood transition-colors" href="#projects">Archive</a>
-      <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-accent-oxblood transition-colors" href="#experience">Curriculum</a>
-      <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-accent-oxblood transition-colors" href="#contact">Dispatch</a>
-      <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-accent-oxblood transition-colors" href="#hero">Back to top</a>
+    <nav class="site-footer__nav" aria-label="Footer navigation">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a href="#hero">Back to top</a>
     </nav>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+  }
+  .site-footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding-block: 32px;
+  }
+  .site-footer__id {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .site-footer__id .mono { color: var(--subtle); }
+  .site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+  }
+  .site-footer__nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.8125rem;
+    color: var(--subtle);
+    border-bottom: 1px solid transparent;
+    transition: color var(--dur-ui) var(--ease-ui), border-color var(--dur-ui) var(--ease-ui);
+  }
+  .site-footer__nav a:hover { color: var(--ink); border-color: var(--ink); }
+
+  @media (min-width: 768px) {
+    .site-footer__inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

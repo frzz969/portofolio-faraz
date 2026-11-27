@@ -1,100 +1,69 @@
 ---
-// SECTION 3: WHAT I DO - 4 bento cards, copy persis dari index.html.
+// HOW I WORK - dulu "What I Do" berbentuk 4 bento cards. Kini disusun sebagai
+// pernyataan editorial pendek. Empat bidang detail ada di Interests (numbered
+// rows), jadi tidak ada pengulangan dan tidak ada bento grid.
+const notes = [
+  'Harnessing foundational models, prompt engineering, agentic patterns, and AI-assisted workflows to structure unstructured information.',
+  'Exploring Indonesian computational linguistics, dataset quality verification, and analytical text evaluation.',
+  'Building modular interfaces, REST services, and autonomous scripting with modern web stacks and LLM endpoints.',
+  'Systematic record curation, spreadsheet modeling, and document workflow optimization.',
+];
 ---
-<section class="w-full py-20 lg:py-28" id="what-i-do">
-  <div class="max-w-[1180px] mx-auto px-margin-mobile lg:px-margin">
-    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-14 gap-4">
-      <div>
-        <span class="text-label-sm font-label-sm text-muted-brass uppercase tracking-widest block mb-2 font-mono">02 / DOMAINS</span>
-        <h2 class="font-headline-lg text-headline-lg text-ink font-semibold tracking-tight">What I Do</h2>
-      </div>
-      <p class="text-body-sm font-body-sm text-on-surface-variant max-w-sm md:text-right">
-        A blend of practical infrastructure capabilities and exploratory technological frontiers.
-      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-      <div class="card md:col-span-7 bg-surface-container p-8 rounded-xl shadow-sm flex flex-col justify-between group">
+
+<section class="section" id="approach">
+  <div class="container">
+    <div class="approach__grid">
+      <div class="section-head">
         <div>
-          <div class="flex items-center justify-between mb-6">
-            <span class="font-title-md text-title-md text-number-highlight font-mono font-bold">01</span>
-            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-accent-oxblood group-hover:bg-accent-oxblood group-hover:text-paper quiet-accent transition-colors">
-              <svg class="w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#3785D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 9V4M9.5 13.5 5 17M14.5 13.5 19 17M9 11H5M15 11h4"/></svg>
-            </div>
-          </div>
-          <h3 class="font-headline-md text-headline-md text-ink font-semibold mb-3">AI &amp; Intelligent Technologies</h3>
-          <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
-            Harnessing modern foundational models, prompt engineering, agentic systems, and AI-assisted workflows to accelerate problem solving, structure unstructured information, and prototype novel digital interfaces.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-2 pt-4">
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">LLM Tools</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Agentic Patterns</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Prompt Engineering</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">MCP Protocols</span>
+          <span class="eyebrow">02 / Approach</span>
+          <h2 class="h2">How I Work</h2>
         </div>
       </div>
-      <div class="card md:col-span-5 bg-surface-container p-8 rounded-xl shadow-sm flex flex-col justify-between group">
-        <div>
-          <div class="flex items-center justify-between mb-6">
-            <span class="font-title-md text-title-md text-number-highlight font-mono font-bold">02</span>
-            <span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant uppercase font-mono tracking-wider">Interest · Exploration</span>
-          </div>
-          <h3 class="font-headline-sm text-headline-sm text-ink font-semibold mb-3">Language &amp; AI Evaluation</h3>
-          <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
-            Exploring Indonesian computational linguistics, grammar heuristics, dataset quality verification, search result grading, and analytical text evaluation to refine AI alignment.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-2 pt-4">
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Indonesian NLP</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Data Annotation</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Quality Assessment</span>
-        </div>
-      </div>
-      <div class="card md:col-span-5 bg-surface-container p-8 rounded-xl shadow-sm flex flex-col justify-between group">
-        <div>
-          <div class="flex items-center justify-between mb-6">
-            <span class="font-title-md text-title-md text-number-highlight font-mono font-bold">03</span>
-            <span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant uppercase font-mono tracking-wider">Focus Area</span>
-          </div>
-          <h3 class="font-headline-sm text-headline-sm text-ink font-semibold mb-3">Digital Operations &amp; Administration</h3>
-          <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
-            Systematic operational support, electronic record curation, structured spreadsheet modeling, document workflow optimization, and high-accuracy remote office administration.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-2 pt-4">
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Office Advanced</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">SOP Documentation</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Data Management</span>
-        </div>
-      </div>
-      <div class="card md:col-span-7 bg-surface-container p-8 rounded-xl shadow-sm flex flex-col justify-between group">
-        <div>
-          <div class="flex items-center justify-between mb-6">
-            <span class="font-title-md text-title-md text-number-highlight font-mono font-bold">04</span>
-            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-accent-oxblood group-hover:bg-accent-oxblood group-hover:text-paper quiet-accent transition-colors">
-              <svg class="w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#3785D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
-            </div>
-          </div>
-          <h3 class="font-headline-md text-headline-md text-ink font-semibold mb-3">Software &amp; Automation</h3>
-          <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
-            Building modular fullstack interfaces, RESTful backend microservices, and autonomous scripting bots. Integrating modern web stacks with LLM endpoints and external API services.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-2 pt-4">
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Next.js &amp; React</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">FastAPI Python</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">REST &amp; MCP</span>
-          <span class="px-2.5 py-1 rounded bg-surface-container-high text-ink text-label-sm font-label-sm font-mono">Playwright</span>
-        </div>
+
+      <div class="approach__body">
+        <p class="lead reveal">
+          A blend of practical infrastructure capabilities and exploratory technological
+          frontiers. I start from the fundamentals, then use the right tools to move faster.
+        </p>
+        <ul class="approach__list">
+          {notes.map((note, index) => (
+            <li class="approach__item reveal" style={`--stagger:${index}`}>
+              <span class="approach__index mono">{String(index + 1).padStart(2, '0')}</span>
+              <span>{note}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Section numerals use the purple highlight; accent stays at real actions. */
-  .text-number-highlight { color: #C08CE2; }
-  @media (prefers-color-scheme: dark) {
-    .text-number-highlight { color: #3785D8; }
+  .approach__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .approach__body { max-width: 68ch; }
+  .approach__list {
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .approach__item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--border);
+    color: var(--subtle);
+    line-height: 1.6;
+  }
+  .approach__index { padding-top: 4px; color: var(--ink); }
+  @media (min-width: 900px) {
+    .approach__grid {
+      grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(40px, 6vw, 88px);
+    }
+    .approach__item { grid-template-columns: 56px 1fr; }
   }
 </style>

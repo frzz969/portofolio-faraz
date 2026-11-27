@@ -1,63 +1,112 @@
 ---
-// SECTION 1: HERO - markup and classes ported 1:1 from index.html (Stitch).
+// HERO - copy Faras dipertahankan, dipadatkan jadi intro singkat.
+// Focal point tunggal: headline. Portrait bersifat opsional dan netral.
 ---
-<section id="hero" class="w-full max-w-[1180px] mx-auto px-margin-mobile lg:px-margin pt-6 lg:pt-14 pb-20 lg:pb-28">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-12 items-center">
-    <div class="lg:col-span-7 flex flex-col items-start">
-      <div class="inline-flex items-center gap-2 mb-6">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent-oxblood"></span>
-        <span class="text-label-sm font-label-sm uppercase tracking-widest text-muted-brass">Technology Enthusiast × AI-Assisted Developer</span>
-      </div>
-      <h1 class="font-display text-display tracking-tight text-ink font-semibold flex flex-col leading-[0.92] mb-8">
-        <span class="reveal-line" style="--i:0">EXPLORING AI.</span>
-        <span class="reveal-line text-accent-oxblood" style="--i:1">BUILDING IDEAS.</span>
-        <span class="reveal-line" style="--i:2">CREATING IMPACT.</span>
+
+<section class="container hero" id="hero">
+  <div class="hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow hero-fade">Technology Enthusiast / AI-Assisted Developer</p>
+
+      <h1 class="h1 hero__headline">
+        <span class="hero-line" style="--i:0">EXPLORING AI.</span>
+        <span class="hero-line hero-line--quiet" style="--i:1">BUILDING IDEAS.</span>
+        <span class="hero-line" style="--i:2">CREATING IMPACT.</span>
       </h1>
-      <span class="ink-stroke" aria-hidden="true"></span>
-      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed mb-10">
-        I'm a technology enthusiast with a background in Computer and Network Engineering, interested in artificial intelligence, software development, language technologies, and digital operations. I enjoy experimenting with AI tools, exploring intelligent workflows, analyzing digital information, and building practical solutions with modern technologies. From AI-assisted development to language research and administrative operations, I'm always eager to learn, adapt, and contribute.
+
+      <p class="lead hero-fade">
+        Background in Computer and Network Engineering. I work at the intersection of
+        artificial intelligence, software development, language technologies, and
+        digital operations, building practical solutions with AI-assisted workflows.
       </p>
-      <div class="flex flex-wrap items-center gap-4 mb-8">
-        <a class="btn inline-flex items-center justify-center px-6 py-3.5 bg-accent-oxblood text-paper font-label-md text-label-md rounded-lg shadow-sm min-h-[44px]" href="#work">
-          <span>Explore My Work</span>
-          <svg class="ml-2 w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#CBD8E8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
-        </a>
-        <!-- file: public/cv-faras.pdf -->
-        <a class="inline-flex items-center justify-center px-6 py-3.5 bg-surface-container text-ink font-label-md text-label-md rounded-lg shadow-sm min-h-[44px]" href="./cv-faras.pdf" download>
-          <svg class="mr-2 w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#3785D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h4M9 13h6M9 17h6"/></svg>
-          <span>Download CV</span>
-        </a>
+
+      <div class="hero__actions hero-fade">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn btn--ghost" href="#contact">Contact Me</a>
       </div>
-      <div class="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-surface-container-low shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-accent-oxblood shrink-0" aria-hidden="true"></span>
-        <span class="text-label-sm font-label-sm text-on-surface-variant">Sukoharjo, Jawa Tengah, Indonesia · Open to Remote Opportunities &amp; Global Collaboration</span>
+
+      <div class="hero__availability hero-fade">
+        <span class="status">Open to remote opportunities and global collaboration</span>
+        <span class="meta-label">Sukoharjo, Jawa Tengah, Indonesia</span>
       </div>
     </div>
-    <div class="lg:col-span-5 flex justify-center lg:justify-end">
-      <div class="relative w-full max-w-[420px] aspect-[4/5] bg-surface-container p-3 rounded-xl shadow-md overflow-hidden">
-        <div class="relative w-full h-full rounded-lg overflow-hidden bg-soft-illustration">
-          <img class="portrait w-full h-full object-cover filter grayscale contrast-125" src="./portrait-faras.svg" width="800" height="1000" fetchpriority="high" alt="Illustrated duotone portrait of Faras Fadhil Firdaus in night sky blue and deep indigo." />
-          <div class="absolute inset-0 bg-accent-oxblood/35 mix-blend-multiply pointer-events-none"></div>
-          <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none mix-blend-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <filter id="noiseFilter">
-              <feturbulence basefrequency="0.8" numoctaves="3" stitchtiles="stitch" type="fractalNoise"></feturbulence>
-            </filter>
-            <rect filter="url(#noiseFilter)" height="100%" width="100%"></rect>
-          </svg>
-          <div class="absolute bottom-3 left-3 right-3 p-3 bg-ink/80 backdrop-blur-md rounded-lg flex items-center justify-between text-paper">
-            <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed">Faras portrait: monochrome duotone</span>
-            <span class="text-label-sm font-label-sm text-paper/70 font-mono">2026.ID</span>
-          </div>
-        </div>
+
+    <figure class="hero__portrait hero-fade">
+      <div class="hero__portrait-frame">
+        <img
+          src="./portrait-faras.svg"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+          alt="Illustrated monochrome portrait of Faras Fadhil Firdaus. The original artwork is being updated to a neutral monochrome treatment."
+        />
       </div>
-    </div>
+      <figcaption class="meta-label">Faras Fadhil Firdaus, 2026</figcaption>
+    </figure>
   </div>
 </section>
 
 <style>
-  /* Soft illustration backdrop (non-text surface). */
-  .bg-soft-illustration { background-color: #EBB2C3; }
-  @media (prefers-color-scheme: dark) {
-    .bg-soft-illustration { background-color: #1E0F75; }
+  .hero {
+    padding-block: clamp(56px, 9vw, 116px) clamp(64px, 9vw, 120px);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .hero__copy { max-width: 760px; }
+  .hero__headline { margin-block: 24px 28px; }
+  .hero-line--quiet { color: var(--subtle); }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .hero__availability {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    max-width: 520px;
+  }
+  .hero__portrait { margin: 0; }
+  .hero__portrait-frame {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    aspect-ratio: 4 / 5;
+    max-width: 360px;
+    margin-inline: auto;
+    overflow: hidden;
+  }
+  .hero__portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.06);
+  }
+  .hero__portrait figcaption {
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  @media (min-width: 900px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.75fr);
+      gap: 64px;
+    }
+    .hero__portrait-frame { margin-inline: 0 0 0 auto; }
+    .hero__portrait figcaption { text-align: right; }
+  }
+  @media (max-width: 899px) {
+    .hero__portrait { max-width: 320px; }
+  }
+  @media (max-width: 420px) {
+    .hero__actions .btn { flex: 1 1 100%; }
   }
 </style>

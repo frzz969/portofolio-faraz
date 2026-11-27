@@ -3,17 +3,25 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Page Not Found - Faras Fadhil Firdaus" description="Halaman tidak ditemukan di portofolio Faras Fadhil Firdaus.">
-  <section class="w-full max-w-[1180px] mx-auto px-margin-mobile lg:px-margin py-20 lg:py-28 min-h-[60vh] flex items-center">
-    <div class="bg-surface-container p-8 lg:p-12 rounded-xl shadow-sm max-w-2xl">
-      <span class="text-label-sm font-label-sm text-muted-brass uppercase tracking-widest block mb-2 font-mono">404 / NOT FOUND</span>
-      <h1 class="font-display text-display font-bold tracking-tight text-ink leading-[0.95] mb-6">PAGE NOT FOUND.</h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">
-        The page you were looking for is not here. You can return to the portfolio homepage.
-      </p>
-      <a class="btn inline-flex items-center justify-center px-6 py-3.5 bg-accent-oxblood text-paper font-label-md text-label-md rounded-lg shadow-sm min-h-[44px]" href="/">
-        <span>Back to Home</span>
-        <svg class="ml-2 w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#CBD8E8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
+  <section class="container notfound" id="notfound">
+    <span class="eyebrow">404 / Not found</span>
+    <h1 class="h1 notfound__title">PAGE NOT FOUND.</h1>
+    <p class="lead">
+      The page you were looking for is not here. You can return to the portfolio homepage.
+    </p>
+    <a class="btn notfound__action" href="/">Back to Home</a>
   </section>
 </Layout>
+
+<style>
+  .notfound {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-block: clamp(72px, 12vw, 140px);
+  }
+  .notfound__title { margin-block: 20px 24px; }
+  .notfound__action { margin-top: 32px; }
+</style>

@@ -2,7 +2,7 @@
    Portofolio Faras Fadhil Firdaus - global.css
    Tailwind CSS v4 (CSS-first): @import + @theme, no tailwind.config.js needed.
    REFERENSI: DESIGN.md bab 2 (warna), bab 3 (tipografi), bab 6 (motion);
-              PRD.md bab 7 (stack).
+               PRD.md bab 7 (stack).
    ========================================================================== */
 
 @import "tailwindcss";
@@ -25,12 +25,34 @@
   font-display: swap;
 }
 
-/* --- Bab 2: sistem warna final + token font ------------------------------ */
+/* --- Bab 2: sistem warna final + token font ------------------------------
+   Palet NIGHT SKY (owner). Token lama dipertahankan sebagai alias agar
+   seluruh class Tailwind/komponen yang sudah ada otomatis mengikuti palet. */
 @theme {
-  --color-paper: #F4F1EA;
-  --color-ink: #1C1B19;
-  --color-accent: #8C2F39;
-  --color-brass: #B08D57;
+  --color-paper: #CBD8E8;
+  --color-ink: #1E0F75;
+  --color-accent: #1C1DAB;
+  --color-brass: #1C1DAB;
+
+  /* alias lama -> nilai NIGHT SKY */
+  --color-accent-oxblood: #1C1DAB;
+  --color-surface-container-low: #CBD8E8;
+  --color-surface-container: #AEC6E5;
+  --color-surface-container-high: #AEC6E5;
+  --color-surface-container-highest: #AEC6E5;
+  --color-soft-illustration: #EBB2C3;
+  --color-highlight: #C08CE2;
+  --color-stamp-pink: #E793C6;
+  --color-primary: #1C1DAB;
+  --color-primary-container: #1C1DAB;
+  --color-secondary-container: #AEC6E5;
+  --color-tertiary: #1C1DAB;
+  --color-tertiary-container: #1C1DAB;
+  --color-on-primary: #CBD8E8;
+  --color-on-surface: #1E0F75;
+  --color-on-surface-variant: #1E0F75;
+  --color-muted-brass: #1C1DAB;
+
   --font-display: "Space Grotesk Variable", sans-serif;
   --font-sans: "Inter Variable", system-ui, sans-serif;
 }
@@ -38,10 +60,25 @@
 /* Dark mode mengikuti preferensi sistem (toggle localStorage ada di Layout). */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-paper: #151413;
-    --color-ink: #F4F1EA;
-    --color-accent: #C75B66;
-    --color-brass: #C9A227;
+    --color-paper: #1E0F75;
+    --color-ink: #CBD8E8;
+    --color-accent: #3785D8;
+    --color-brass: #3785D8;
+
+    --color-accent-oxblood: #3785D8;
+    --color-surface-container-low: #1E0F75;
+    --color-surface-container: #1E0F75;
+    --color-surface-container-high: #1E0F75;
+    --color-surface-container-highest: #1E0F75;
+    --color-primary: #3785D8;
+    --color-primary-container: #3785D8;
+    --color-secondary-container: #1E0F75;
+    --color-tertiary: #3785D8;
+    --color-tertiary-container: #3785D8;
+    --color-on-primary: #1E0F75;
+    --color-on-surface: #CBD8E8;
+    --color-on-surface-variant: #CBD8E8;
+    --color-muted-brass: #3785D8;
   }
 }
 

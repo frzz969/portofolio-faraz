@@ -1,4 +1,4 @@
-:root{--paper:#F4F1EA;--ink:#1C1B19;--oxblood:#8C2F39;--oxblood-deep:#742630;--brass:#B08D57;--dur-micro:150ms;--dur-ui:180ms;--dur-page:320ms;--ease-ui:cubic-bezier(0.2,0,0,1);--ease-out:cubic-bezier(0.05,0.7,0.1,1)}
+:root{--paper:#CBD8E8;--ink:#1E0F75;--oxblood:#1C1DAB;--oxblood-deep:#1C1DAB;--brass:#3785D8;--dur-micro:150ms;--dur-ui:180ms;--dur-page:320ms;--ease-ui:cubic-bezier(0.2,0,0,1);--ease-out:cubic-bezier(0.05,0.7,0.1,1)}
 @media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:var(--dur-page);animation-timing-function:var(--ease-out)}
 @supports (animation-timeline:view()){@media (prefers-reduced-motion:no-preference){.reveal-line{animation:oxblood-in linear both;animation-timeline:view();animation-range:entry calc(5% + var(--i,0)*4%) cover 40%}.portrait{animation:portrait-drift linear both;animation-timeline:view();animation-range:cover}}}

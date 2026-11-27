@@ -1,74 +1,74 @@
 <!-- Thumbnail berdasarkan tampilan asli https://ai-detector-mahasiswa.vercel.app -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="Inter, Segoe UI, Arial, sans-serif">
-  <rect width="1200" height="675" fill="#EAF5FC"/>
+  <rect width="1200" height="675" fill="#CBD8E8"/>
 
   <!-- NAV -->
-  <rect x="0" y="0" width="1200" height="72" fill="#ffffff"/>
-  <line x1="0" y1="72" x2="1200" y2="72" stroke="#CBE4F4" stroke-width="1"/>
-  <circle cx="72" cy="36" r="20" fill="#0E4A6E"/>
-  <path d="M66 31 Q68 28 71 31 M77 31 Q80 28 82 31" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-  <path d="M64 39 Q72 48 80 39" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-  <circle cx="65" cy="35" r="1.6" fill="#ffffff"/>
-  <circle cx="79" cy="35" r="1.6" fill="#ffffff"/>
-  <text x="102" y="48" font-size="32" font-weight="800" fill="#0B2E4B">Faraz Detector AI</text>
-  <text x="520" y="48" font-size="30" font-weight="600" fill="#0E4A6E">Editor · Hasil · FAQ</text>
-  <rect x="980" y="16" width="180" height="44" rx="22" fill="#111111"/>
-  <text x="1070" y="46" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle">Cek tulisan</text>
+  <rect x="0" y="0" width="1200" height="72" fill="#CBD8E8"/>
+  <line x1="0" y1="72" x2="1200" y2="72" stroke="#AEC6E5" stroke-width="1"/>
+  <circle cx="72" cy="36" r="20" fill="#1C1DAB"/>
+  <path d="M66 31 Q68 28 71 31 M77 31 Q80 28 82 31" stroke="#CBD8E8" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M64 39 Q72 48 80 39" stroke="#CBD8E8" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <circle cx="65" cy="35" r="1.6" fill="#CBD8E8"/>
+  <circle cx="79" cy="35" r="1.6" fill="#CBD8E8"/>
+  <text x="102" y="48" font-size="32" font-weight="800" fill="#1E0F75">Faraz Detector AI</text>
+  <text x="520" y="48" font-size="30" font-weight="600" fill="#1C1DAB">Editor · Hasil · FAQ</text>
+  <rect x="980" y="16" width="180" height="44" rx="22" fill="#1C1DAB"/>
+  <text x="1070" y="46" font-size="30" font-weight="700" fill="#CBD8E8" text-anchor="middle">Cek tulisan</text>
 
   <!-- HERO PANEL -->
-  <rect x="48" y="96" width="1104" height="380" rx="24" fill="#CDE9F9"/>
-  <text x="92" y="160" font-size="36" font-weight="800" fill="#0B2E4B">Youkoso, Faraz Detector AI e.</text>
-  <text x="92" y="204" font-size="36" font-weight="800" fill="#0E4A6E">Hajimemashou, mari kita mulai.</text>
-  <text x="92" y="248" font-size="30" fill="#0B2E4B">Kenali teks buatan AI dari tulisan mahasiswa.</text>
+  <rect x="48" y="96" width="1104" height="380" rx="24" fill="#AEC6E5"/>
+  <text x="92" y="160" font-size="36" font-weight="800" fill="#1E0F75">Youkoso, Faraz Detector AI e.</text>
+  <text x="92" y="204" font-size="36" font-weight="800" fill="#1C1DAB">Hajimemashou, mari kita mulai.</text>
+  <text x="92" y="248" font-size="30" fill="#1E0F75">Kenali teks buatan AI dari tulisan mahasiswa.</text>
 
-  <rect x="92" y="270" width="300" height="52" rx="26" fill="#111111"/>
-  <text x="242" y="304" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle">Cek tulisan sekarang</text>
-  <rect x="408" y="270" width="180" height="52" rx="26" fill="#CDE9F9" stroke="#0E4A6E" stroke-width="1.5"/>
-  <text x="498" y="304" font-size="30" font-weight="700" fill="#0E4A6E" text-anchor="middle">Cara kerja</text>
+  <rect x="92" y="270" width="300" height="52" rx="26" fill="#1C1DAB"/>
+  <text x="242" y="304" font-size="30" font-weight="700" fill="#CBD8E8" text-anchor="middle">Cek tulisan sekarang</text>
+  <rect x="408" y="270" width="180" height="52" rx="26" fill="#AEC6E5" stroke="#1C1DAB" stroke-width="1.5"/>
+  <text x="498" y="304" font-size="30" font-weight="700" fill="#1C1DAB" text-anchor="middle">Cara kerja</text>
 
-  <text x="92" y="374" font-size="30" font-weight="600" fill="#0E4A6E">Gratis · Tanpa daftar · Privat di perangkat</text>
+  <text x="92" y="374" font-size="30" font-weight="600" fill="#1C1DAB">Gratis · Tanpa daftar · Privat di perangkat</text>
 
   <!-- RIGHT DEMO PANEL -->
-  <rect x="620" y="124" width="496" height="324" rx="20" fill="#D9EDFA"/>
-  <rect x="648" y="148" width="440" height="276" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
-  <text x="868" y="182" font-size="30" font-weight="800" fill="#0E4A6E" text-anchor="middle">Coba langsung</text>
+  <rect x="620" y="124" width="496" height="324" rx="20" fill="#AEC6E5"/>
+  <rect x="648" y="148" width="440" height="276" rx="16" fill="#CBD8E8" stroke="#AEC6E5" stroke-width="1"/>
+  <text x="868" y="182" font-size="30" font-weight="800" fill="#1C1DAB" text-anchor="middle">Coba langsung</text>
 
-  <rect x="672" y="196" width="150" height="40" rx="10" fill="#111111"/>
-  <text x="747" y="224" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle">Contoh AI</text>
-  <rect x="834" y="196" width="230" height="40" rx="10" fill="#EAF5FC" stroke="#CBE4F4" stroke-width="1"/>
-  <text x="949" y="224" font-size="30" font-weight="600" fill="#0E4A6E" text-anchor="middle">Contoh manusia</text>
+  <rect x="672" y="196" width="150" height="40" rx="10" fill="#1C1DAB"/>
+  <text x="747" y="224" font-size="30" font-weight="700" fill="#CBD8E8" text-anchor="middle">Contoh AI</text>
+  <rect x="834" y="196" width="230" height="40" rx="10" fill="#CBD8E8" stroke="#AEC6E5" stroke-width="1"/>
+  <text x="949" y="224" font-size="30" font-weight="600" fill="#1C1DAB" text-anchor="middle">Contoh manusia</text>
 
-  <rect x="672" y="248" width="392" height="106" rx="10" fill="#F8FBFE" stroke="#CBE4F4" stroke-width="1"/>
-  <text x="688" y="290" font-size="32" font-weight="700" fill="#0B2E4B">Skripsi &amp; Bab</text>
-  <text x="688" y="332" font-size="30" fill="#0B2E4B">Cek per bab, daftar pustaka dikecualikan.</text>
+  <rect x="672" y="248" width="392" height="106" rx="10" fill="#CBD8E8" stroke="#AEC6E5" stroke-width="1"/>
+  <text x="688" y="290" font-size="32" font-weight="700" fill="#1E0F75">Skripsi &amp; Bab</text>
+  <text x="688" y="332" font-size="30" fill="#1E0F75">Cek per bab, daftar pustaka dikecualikan.</text>
 
-  <text x="672" y="388" font-size="48" font-weight="800" fill="#0B2E4B">0%</text>
-  <text x="762" y="384" font-size="30" fill="#0E4A6E">kemungkinan teks AI</text>
-  <rect x="672" y="400" width="392" height="10" rx="5" fill="#EAF5FC"/>
-  <rect x="672" y="400" width="14" height="10" rx="5" fill="#111111"/>
-  <rect x="672" y="422" width="300" height="34" rx="17" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
-  <text x="822" y="447" font-size="30" font-weight="600" fill="#0E4A6E" text-anchor="middle">Buka di editor</text>
+  <text x="672" y="388" font-size="48" font-weight="800" fill="#1E0F75">0%</text>
+  <text x="762" y="384" font-size="30" fill="#1C1DAB">kemungkinan teks AI</text>
+  <rect x="672" y="400" width="392" height="10" rx="5" fill="#CBD8E8"/>
+  <rect x="672" y="400" width="14" height="10" rx="5" fill="#1C1DAB"/>
+  <rect x="672" y="422" width="300" height="34" rx="17" fill="#CBD8E8" stroke="#AEC6E5" stroke-width="1"/>
+  <text x="822" y="447" font-size="30" font-weight="600" fill="#1C1DAB" text-anchor="middle">Buka di editor</text>
 
   <!-- BOTTOM STEPS -->
-  <rect x="48" y="502" width="352" height="132" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
-  <rect x="72" y="524" width="40" height="40" rx="10" fill="#D9EDFA"/>
-  <text x="92" y="552" font-size="30" font-weight="800" fill="#0E4A6E" text-anchor="middle">1</text>
-  <text x="124" y="554" font-size="32" font-weight="700" fill="#0B2E4B">Tempel / upload</text>
-  <text x="72" y="606" font-size="30" fill="#0E4A6E">Masukkan teks atau berkas.</text>
+  <rect x="48" y="502" width="352" height="132" rx="16" fill="#CBD8E8" stroke="#AEC6E5" stroke-width="1"/>
+  <rect x="72" y="524" width="40" height="40" rx="10" fill="#AEC6E5"/>
+  <text x="92" y="552" font-size="30" font-weight="800" fill="#1C1DAB" text-anchor="middle">1</text>
+  <text x="124" y="554" font-size="32" font-weight="700" fill="#1E0F75">Tempel / upload</text>
+  <text x="72" y="606" font-size="30" fill="#1C1DAB">Masukkan teks atau berkas.</text>
 
-  <text x="426" y="574" font-size="30" font-weight="700" fill="#0E4A6E">→</text>
+  <text x="426" y="574" font-size="30" font-weight="700" fill="#1C1DAB">→</text>
 
-  <rect x="454" y="502" width="352" height="132" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
-  <rect x="478" y="524" width="40" height="40" rx="10" fill="#D9EDFA"/>
-  <text x="498" y="552" font-size="30" font-weight="800" fill="#0E4A6E" text-anchor="middle">2</text>
-  <text x="530" y="554" font-size="32" font-weight="700" fill="#0B2E4B">Klik deteksi</text>
-  <text x="478" y="606" font-size="30" fill="#0E4A6E">Lihat skor bagian curiga.</text>
+  <rect x="454" y="502" width="352" height="132" rx="16" fill="#CBD8E8" stroke="#AEC6E5" stroke-width="1"/>
+  <rect x="478" y="524" width="40" height="40" rx="10" fill="#AEC6E5"/>
+  <text x="498" y="552" font-size="30" font-weight="800" fill="#1C1DAB" text-anchor="middle">2</text>
+  <text x="530" y="554" font-size="32" font-weight="700" fill="#1E0F75">Klik deteksi</text>
+  <text x="478" y="606" font-size="30" fill="#1C1DAB">Lihat skor bagian curiga.</text>
 
-  <text x="832" y="574" font-size="30" font-weight="700" fill="#0E4A6E">→</text>
+  <text x="832" y="574" font-size="30" font-weight="700" fill="#1C1DAB">→</text>
 
-  <rect x="860" y="502" width="292" height="132" rx="16" fill="#ffffff" stroke="#CBE4F4" stroke-width="1"/>
-  <rect x="884" y="524" width="40" height="40" rx="10" fill="#D9EDFA"/>
-  <text x="904" y="552" font-size="30" font-weight="800" fill="#0E4A6E" text-anchor="middle">3</text>
-  <text x="936" y="554" font-size="32" font-weight="700" fill="#0B2E4B">Perbaiki</text>
-  <text x="884" y="606" font-size="30" fill="#0E4A6E">Tulis ulang &amp; simpan.</text>
+  <rect x="860" y="502" width="292" height="132" rx="16" fill="#CBD8E8" stroke="#AEC6E5" stroke-width="1"/>
+  <rect x="884" y="524" width="40" height="40" rx="10" fill="#AEC6E5"/>
+  <text x="904" y="552" font-size="30" font-weight="800" fill="#1C1DAB" text-anchor="middle">3</text>
+  <text x="936" y="554" font-size="32" font-weight="700" fill="#1E0F75">Perbaiki</text>
+  <text x="884" y="606" font-size="30" fill="#1C1DAB">Tulis ulang &amp; simpan.</text>
 </svg>

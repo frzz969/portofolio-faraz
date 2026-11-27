@@ -26,49 +26,63 @@ Referensi yang dipakai:
 
 ---
 
-## 2. Sistem Warna (FINAL)
+## 2. Sistem Warna (FINAL, koreksi 28 Nov 2026)
 
-| Peran | Hex | Nama | Penggunaan |
+Owner memutuskan mengganti palet oxblood ke palet **NIGHT SKY**. Keputusan ini menggantikan keputusan sebelumnya, bukan tambahan.
+
+| Peran | Hex | Nama | Penggunaan (alasan R-31) |
 |---|---|---|---|
-| paper | `#F4F1EA` | warm paper | background terang |
-| ink | `#1C1B19` | near-black hangat | teks utama, headline |
-| accent | `#8C2F39` | **oxblood / deep burgundy** | SATU aksen: nav aktif, tombol utama, angka highlight, duotone foto |
-| brass | `#B08D57` | muted brass | MAKSIMAL 1 tempat (garis tipis di "judgment"/stats) |
+| paper | `#CBD8E8` | night sky paper | background utama, lembut dan tidak menyilaukan |
+| surface | `#AEC6E5` | sky surface | kartu & panel, satu tingkat lebih gelap dari paper |
+| ink | `#1E0F75` | deep navy | teks utama & headline, kontras tinggi di atas paper |
+| accent | `#1C1DAB` | electric blue | tombol utama, nav aktif, fokus, duotone portrait |
+| hover | `#3785D8` | sky blue | link & hover, masih satu keluarga biru |
+| highlight | `#C08CE2` | soft violet | angka, badge status, aksesoris tipis |
+| warm | `#E793C6` | dusk pink | MAKSIMAL 1 elemen, stempel/coretan editorial |
+| soft | `#EBB2C3` | blush | latar ilustrasi, bukan teks |
 
-Kenapa oxblood:
-- Warna editorial/akademik/korporat kreatif · jarang dipakai AI generator (AI cenderung Indigo/Cyan/Violet/mint).
-- Profesional & fleksibel: enak di light maupun dark.
-- Kontras oxblood di paper ≈ 7:1 → lolos WCAG AA.
-- Terasa premium tanpa efek berlebihan.
+Kenapa palet ini (sesuai penilaian owner):
+- Lebih hidup dan berkarakter dibanding palet oxblood sebelumnya, tanpa kesan "AI generik" versi owner.
+-_gradasi_ biru, ungu, dan pink terasa cohesif karena semua diambil dari satu rumpun warna yang sama.
+- Kontras ink `#1E0F75` di paper `#CBD8E8` tinggi, aman untuk teks.
+- Delapan warna dibatasi perannya: tidak boleh semua dipakai sekaligus dalam satu layar.
 
-**Dilarang:** hijau neon, Indigo `#6366F1`, Cyan `#06B6D4`, Violet `#8B5CF6`, mint `#64FFDA`.
+**Aturan pemakaian (R-29/R-31):**
+- Maksimal 3 warna dominan per layar: paper, ink, accent.
+- Violet & pink hanya aksen, pink maksimal 1 elemen.
+- Jangan menambah warna di luar delapan hex di atas.
 
 ### Dark mode
 | Peran | Hex |
 |---|---|
-| paper | `#151413` |
-| ink | `#F4F1EA` |
-| accent | `#C75B66` |
-| brass | `#C9A227` |
+| paper | `#1E0F75` |
+| ink | `#CBD8E8` |
+| accent | `#3785D8` |
+| highlight | `#E793C6` |
 
 Implementasi: `prefers-color-scheme` + toggle dengan localStorage.
 
 ### Tailwind v4 `@theme`
 ```css
 @theme {
-  --color-paper:  #F4F1EA;
-  --color-ink:    #1C1B19;
-  --color-accent: #8C2F39;
-  --color-brass:  #B08D57;
+  --color-paper:     #CBD8E8;
+  --color-surface:   #AEC6E5;
+  --color-ink:       #1E0F75;
+  --color-accent:    #1C1DAB;
+  --color-hover:     #3785D8;
+  --color-highlight: #C08CE2;
+  --color-warm:      #E793C6;
+  --color-soft:      #EBB2C3;
   --font-display: "Space Grotesk Variable", sans-serif;
   --font-sans:    "Inter Variable", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-paper:  #151413;
-    --color-ink:    #F4F1EA;
-    --color-accent: #C75B66;
-    --color-brass:  #C9A227;
+    --color-paper:     #1E0F75;
+    --color-surface:   #1C1DAB;
+    --color-ink:       #CBD8E8;
+    --color-accent:    #3785D8;
+    --color-highlight: #E793C6;
   }
 }
 ```
@@ -244,7 +258,7 @@ Pastikan: tidak ada horizontal overflow di 375px; tombol min 44×44px; teks kont
 
 ## 10. Definition of Done (Visual)
 
-1. Warna tepat oxblood, bukan hijau/Indigo/Cyan/Violet.
+1. Warna tepat NIGHT SKY (8 hex sesuai Bab 2), maksimal 3 dominan per layar, pink hanya 1 elemen.
 2. Foto monokrom duotone menyatu dengan accent + grain halus.
 3. DEXTRA mendominasi featured projects.
 4. Badge status proyek terlihat jelas.

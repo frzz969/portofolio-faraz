@@ -78,7 +78,7 @@ const visuals: Record<string, { src: string; width: number; height: number; alt:
               <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/40 pointer-events-none"></div>
               <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-paper text-label-sm font-mono">
                 <span>{visuals.dextra.caption}</span>
-                <span class="px-2 py-0.5 rounded bg-accent-oxblood text-paper font-semibold">{visuals.dextra.badge}</span>
+                <span class="px-2 py-0.5 rounded bg-stamp-pink text-ink font-semibold">{visuals.dextra.badge}</span>
               </div>
             </div>
           </div>
@@ -148,15 +148,23 @@ const visuals: Record<string, { src: string; width: number; height: number; alt:
 </section>
 
 <style>
-.proj-meta{margin:.5rem 0 0;font:400 .72rem/1.6 ui-monospace,monospace;letter-spacing:.04em;color:#8C2F39}
-.proj-meta span{float:right;border-bottom:1px solid #8C2F39;padding-bottom:1px}
+/* Single pink stamp in the whole portfolio (antislop: accent restraint). */
+.bg-stamp-pink{background:#E793C6}
+.proj-meta{margin:.5rem 0 0;font:400 .72rem/1.6 ui-monospace,monospace;letter-spacing:.04em;color:#1C1DAB}
+.proj-meta span{float:right;border-bottom:1px solid #C08CE2;color:#C08CE2;padding-bottom:1px}
 /* Editorial rhythm: satu kertas, bukan slide per section */
 section { background: transparent !important; }
 .bg-surface-container-low, .bg-surface-container, .bg-surface-container-high,
 .bg-surface-container-highest { background: transparent !important; }
-section + section { border-top: 1px solid rgba(28,27,25,.12); }
+section + section { border-top: 1px solid rgba(30,15,117,.12); }
 .card, [class*="bg-surface-container"] { box-shadow: none !important; }
 [class*="rounded-xl"] { border-radius: 2px !important; }
 /* Focal point: nomor/teks meta jadi gelap, bukan brass pucat */
-.text-muted-brass, .text-on-surface-variant { color: #1C1B19 !important; }
+.text-muted-brass, .text-on-surface-variant { color: #1E0F75 !important; }
+@media (prefers-color-scheme: dark) {
+  .proj-meta { color: #3785D8; }
+  .proj-meta span { color: #3785D8; border-bottom-color: #3785D8; }
+  .bg-stamp-pink { background: #E793C6; }
+  .text-muted-brass, .text-on-surface-variant { color: #CBD8E8 !important; }
+}
 </style>

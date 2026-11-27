@@ -51,7 +51,7 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#F4F1EA" />
+    <meta name="theme-color" content="#CBD8E8" />
     <!-- ID description: Membangun DEXTRA, menghidupkan AI Detector Mahasiswa, dan menjalankan eksperimen AI. -->
     <!-- To switch to Indonesian, replace the description string above with the ID version. -->
     <link rel="canonical" href={canonical} />
@@ -80,7 +80,7 @@ const jsonLd = {
   <body class="bg-paper text-ink font-body-md antialiased selection:bg-accent-oxblood selection:text-paper">
     <a href="#main" class="skip-link">Skip to content</a>
 
-    <header class="fixed top-0 left-0 w-full z-50 bg-paper/85 backdrop-blur-md shadow-[0_1px_8px_rgba(28,27,25,0.04)]">
+    <header class="fixed top-0 left-0 w-full z-50 bg-paper/85 backdrop-blur-md shadow-[0_1px_8px_rgba(30,15,117,0.04)]">
       <div class="h-20 max-w-[1180px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md">
         <div class="flex items-center gap-space-sm">
           <a class="group flex items-center gap-space-sm" href="#about">
@@ -97,7 +97,7 @@ const jsonLd = {
           <a class="px-space-md py-1.5 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all rounded-lg" href="#contact">Contact</a>
         </nav>
         <div class="flex items-center gap-space-sm">
-          <a class="hidden md:inline-flex items-center justify-center px-space-md py-2 rounded-lg bg-accent-oxblood text-paper font-label-md text-label-md tracking-normal hover:bg-primary transition-all shadow-[0_2px_8px_rgba(140,47,57,0.25)] min-h-[44px]" href="#contact">Get in Touch</a>
+          <a class="hidden md:inline-flex items-center justify-center px-space-md py-2 rounded-lg bg-accent-oxblood text-paper font-label-md text-label-md tracking-normal hover:bg-primary transition-all shadow-[0_2px_8px_rgba(28,29,171,0.25)] min-h-[44px]" href="#contact">Get in Touch</a>
           <details class="mobile-nav" aria-label="Mobile navigation">
             <summary>Menu</summary>
             <nav aria-label="Mobile sections">
@@ -112,7 +112,7 @@ const jsonLd = {
             </nav>
           </details>
           <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0" aria-hidden="true">
-            <svg class="text-on-primary w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#F4F1EA" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <svg class="text-on-primary w-[1em] h-[1em] inline-block shrink-0 align-middle" viewBox="0 0 24 24" fill="none" stroke="#CBD8E8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           </div>
         </div>
       </div>
@@ -129,18 +129,19 @@ const jsonLd = {
 </html>
 
 <style is:global>
-  /* Stitch design tokens from index.html, mapped to DESIGN.md oxblood palette.
+  /* Stitch design tokens from index.html, mapped to the NIGHT SKY palette.
      Defined globally so the ported class names render without CDN. */
   :root {
-    --paper: #F4F1EA;
-    --ink: #1C1B19;
-    --accent-oxblood: #8C2F39;
-    --oxblood-deep: #742630;
-    --brass: #B08D57;
-    --surface-container-low: #EFEBE2;
-    --surface-container: #EAE6DC;
-    --surface-container-high: #E3DED2;
-    --surface-container-highest: #DAD4C6;
+    --paper: #CBD8E8;
+    --ink: #1E0F75;
+    --accent-oxblood: #1C1DAB;
+    --oxblood-deep: #1C1DAB;
+    --brass: #3785D8;
+    --highlight: #C08CE2;
+    --surface-container-low: #CBD8E8;
+    --surface-container: #AEC6E5;
+    --surface-container-high: #AEC6E5;
+    --surface-container-highest: #AEC6E5;
     --margin-mobile: 24px;
     --margin: 48px;
     --space-xs: 8px;
@@ -152,15 +153,16 @@ const jsonLd = {
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper: #151413;
-      --ink: #F4F1EA;
-      --accent-oxblood: #C75B66;
-      --oxblood-deep: #A9434E;
-      --brass: #C9A227;
-      --surface-container-low: #1D1B19;
-      --surface-container: #23211F;
-      --surface-container-high: #2A2825;
-      --surface-container-highest: #322F2B;
+      --paper: #1E0F75;
+      --ink: #CBD8E8;
+      --accent-oxblood: #3785D8;
+      --oxblood-deep: #3785D8;
+      --brass: #3785D8;
+      --highlight: #E793C6;
+      --surface-container-low: #1E0F75;
+      --surface-container: #1E0F75;
+      --surface-container-high: #1E0F75;
+      --surface-container-highest: #1E0F75;
     }
   }
 
@@ -278,9 +280,9 @@ const jsonLd = {
   .group:hover .group-hover\:bg-accent-oxblood { background-color: var(--accent-oxblood); }
   .group:hover .group-hover\:text-paper { color: var(--paper); }
   .hover\:bg-primary:hover { background-color: var(--oxblood-deep); }
-  .hover\:shadow-md:hover { box-shadow: 0 4px 12px rgba(28,27,25,0.08); }
-  .hover\:shadow-lg:hover { box-shadow: 0 10px 24px rgba(28,27,25,0.12); }
-  .shadow-xs { box-shadow: 0 1px 2px rgba(28,27,25,0.05); }
+  .hover\:shadow-md:hover { box-shadow: 0 4px 12px rgba(30,15,117,0.08); }
+  .hover\:shadow-lg:hover { box-shadow: 0 10px 24px rgba(30,15,117,0.12); }
+  .shadow-xs { box-shadow: 0 1px 2px rgba(30,15,117,0.05); }
 
   /* --- antislop-ui: accent restraint ------------------------------------
      Accent stays at key moments only: hero headline line, primary buttons,
@@ -354,7 +356,7 @@ const jsonLd = {
     padding: 12px;
     border-radius: 12px;
     background: var(--paper);
-    box-shadow: 0 8px 24px rgba(28,27,25,0.14);
+    box-shadow: 0 8px 24px rgba(30,15,117,0.14);
   }
   .mobile-nav nav a {
     padding: 10px 12px;
@@ -378,7 +380,7 @@ const jsonLd = {
   section { background: transparent !important; }
   .bg-surface-container-low, .bg-surface-container, .bg-surface-container-high,
   .bg-surface-container-highest { background: transparent !important; }
-  section + section { border-top: 1px solid rgba(28,27,25,.12); }
+  section + section { border-top: 1px solid rgba(30,15,117,.12); }
   .card, [class*="bg-surface-container"] { box-shadow: none !important; }
   [class*="rounded-xl"] { border-radius: 2px !important; }
   .text-muted-brass, .text-on-surface-variant { color: var(--ink) !important; }

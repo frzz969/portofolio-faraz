@@ -151,7 +151,7 @@ AI Training & Data Evaluation · AI Research Assistance · Indonesian Linguistic
 | N2 | JavaScript ke klien | 0 KB (CSS-only motion) |
 | N3 | LCP | < 2,5 s |
 | N4 | CLS | < 0,1 (width/height gambar wajib) |
-| N5 | Kontras | ≥ 4,5:1 (oxblood di paper ≈ 7:1) |
+| N5 | Kontras | ≥ 4,5:1 (ink `#1E0F75` di paper `#CBD8E8`, diukur dengan contrast-check.py) |
 | N6 | Aksesibilitas | skip link, focus-visible, prefers-reduced-motion, alt teks |
 | N7 | SEO | JSON-LD ProfilePage/Person, og:image 1200×630, robots.txt, sitemap |
 | N8 | Browser | Safari 16.4+, Chrome 111+, Firefox 128+ (Tailwind v4 target) |
@@ -225,7 +225,7 @@ Jangan menampilkan gambar orang lain sebagai hasil karya sendiri. Jika tetap mem
 6. Lolos cek HP (width 375px): tidak ada overflow, teks terbaca.
 7. `prefers-reduced-motion` mematikan animasi.
 8. First-load ≤ 180 KB gzip, JS = 0 KB.
-9. Warna mengikuti DESIGN.md (oxblood, bukan hijau/Indigo/Cyan).
+9. Warna mengikuti DESIGN.md Bab 2 (NIGHT SKY: 8 hex, maks 3 dominan per layar, pink 1 elemen).
 10. Tidak ada gambar pihak ketiga yang diklaim sebagai karya sendiri.
 
 ---

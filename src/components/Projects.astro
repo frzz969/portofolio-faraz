@@ -612,7 +612,8 @@ const governanceFlow = [
   .work-shot__frame {
     display: block;
     aspect-ratio: 16 / 9;
-    background: var(--secondary-surface);
+    /* Gradasi bentuk warna: silver -> mist, bukan blok abu-abu polos. */
+    background: linear-gradient(135deg, var(--depth-silver, #DDE1E7) 0%, var(--secondary-surface) 55%, var(--canvas) 100%);
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
@@ -794,14 +795,22 @@ const governanceFlow = [
       gap: clamp(40px, 5vw, 72px);
     }
     .work-flow__interactive { grid-template-columns: minmax(0, 1fr); }
+    /* Katalog vertikal: head -> bukti penuh lebar -> narasi dua kolom.
+       Tidak ada kolom kanan yang kosong menunggu teks kiri selesai. */
     .work-detector {
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      grid-template-areas: 'head shot' 'body shot';
-      align-items: start;
-      column-gap: clamp(32px, 4vw, 56px);
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'head' 'shot' 'body';
+      gap: clamp(20px, 3vw, 32px);
     }
     .work-detector__head { grid-area: head; }
-    .work-detector__body { grid-area: body; }
+    .work-detector__body {
+      grid-area: body;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(24px, 4vw, 56px);
+      align-items: start;
+    }
+    .work-detector__body > .work-detector__desc { grid-column: 1 / -1; }
     .work-shot--wide { grid-area: shot; }
     .work-notes {
       grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);

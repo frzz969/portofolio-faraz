@@ -63,17 +63,17 @@ const navItems = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#F4F5F7" />
+    <meta name="theme-color" content="#F3F7FA" />
     <link rel="canonical" href={canonical} />
     <!-- Hanya satu versi halaman yang benar-benar ada (bahasa Inggris).
          hreflang id dihapus: tidak ada halaman /id/ palsu yang bisa ditunjuk. -->
     <link rel="alternate" hreflang="en" href={canonical} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <!-- Tiga face aktif: display Instrument Serif, body Geist, mono Geist Mono. -->
-    <link rel="preload" as="font" type="font/woff2" href="./fonts/instrument-serif-latin.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="./fonts/geist-latin.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="./fonts/geist-mono-latin.woff2" crossorigin />
+    <!-- Tiga face aktif: display Syne, body Plus Jakarta Sans, mono JetBrains Mono. -->
+    <link rel="preload" as="font" type="font/woff2" href="./fonts/syne-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./fonts/plus-jakarta-sans-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./fonts/jetbrains-mono-latin.woff2" crossorigin />
     <!-- Hint render-blocking untuk #main sengaja tidak dipakai: menunggu
          konten utama menunda first paint tanpa manfaat di halaman ini. -->
     <!-- Motion hanya diaktifkan kalau JS benar-benar jalan. Teks default terlihat. -->

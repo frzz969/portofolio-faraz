@@ -1,85 +1,71 @@
-/* Professional Modern Editorial: fondasi visual (P0).
-   Sumber kebenaran: build Astro (GitHub Pages, base /portofolio-faraz).
+/* Oceanic: fondasi visual warna dan tipografi.
+   Sumber kebenaran: owner prompt + PRD Bab 10/10.1b + DESIGN.md v4.0.
+   Build Astro adalah tampilan utama; index*.html mengikuti arah yang sama.
 
-   Distribusi: 55% #F4F5F7 / 25% #FFFFFF / 15% #191D26 / 5% #365FE8.
-   #E8EBF0 = secondary surface, #DDE1E7 = border, #687180 = secondary
-   (teks besar / non-teks), #525B6B = small text turunan aman AA.
+   Palet: #FFFFFF dominan, #F3F7FA Mist, #202631 Graphite, #596575 Slate,
+   #176D83 Ocean Blue (aksen), #168F91 Sea Teal (aksen terbatas),
+   #DDE1E7 border netral. Satu gradien laut hanya di hero ambient.
 
    Kontras diukur dengan contrast-check.py, bukan dikira:
-     #191D26 / #F4F5F7 = 15.46:1 PASS
-     #525B6B / #F4F5F7 =  6.28:1 PASS
-     #687180 / #F4F5F7 =  4.52:1 PASS (batas; teks kecil pakai #525B6B)
-     #FFFFFF / #191D26 = 16.87:1 PASS
-     #E8EBF0 / #191D26 = 14.11:1 PASS (teks sekunder di section gelap)
-     #365FE8 / #F4F5F7 =  4.86:1 PASS (garis/fokus, bukan blok warna)
+     #202631 / #FFFFFF = 15.18:1 PASS
+     #202631 / #F3F7FA = 14.10:1 PASS
+     #596575 / #FFFFFF =  5.93:1 PASS
+     #596575 / #F3F7FA =  5.50:1 PASS
+     #FFFFFF / #202631 = 15.18:1 PASS
+     #176D83 / #FFFFFF =  5.91:1 PASS (aksen/garis)
+     #168F91 / #F3F7FA =  3.63:1 PASS large / FAIL normal (bukan teks kecil)
+     #0F6E70 / #FFFFFF =  6.03:1 PASS (fallback teal untuk teks normal)
+   Fallback #46505E tidak dipakai: Slate lolos AA tanpa fallback.
 
-   R-31: canvas terang adalah dasar editorial; gelap dipakai hanya sebagai
-   aksis ritme (project feature, contact, footer). Biru hanya garis 1px dan
-   fokus. Tanpa gradien, glow, blur dekoratif, atau shadow berlebih.
+   R-31: biru hanya hairline, fokus, dan status; bukan blok warna. Teal lebih
+   terbatas lagi. Satu focal point per layar; whitespace adalah struktur. */
 
-   Dial (antislop): ENERGY 2 / RHYTHM 3 / MOTION 2. */
-
-/* Display editorial: Instrument Serif (OFL, instrument/instrument-serif).
-   Satu "voice" untuk headline; sans & mono tetap di belakang layar. */
+/* Tiga face self-hosted (OFL, sumber google/fonts, WOFF2 latin). */
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("/fonts/instrument-serif-latin.woff2") format("woff2");
+  font-family: "Syne Variable";
+  src: url("/fonts/syne-latin.woff2") format("woff2");
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-/* Body & UI: Geist (OFL, vercel/geist-font) — technical, rapat, terbaca. */
-@font-face {
-  font-family: "Geist Variable";
-  src: url("/fonts/geist-latin.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400 800;
   font-display: swap;
 }
 @font-face {
-  font-family: "Geist Mono Variable";
-  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+  font-family: "Plus Jakarta Sans Variable";
+  src: url("/fonts/plus-jakarta-sans-latin.woff2") format("woff2");
   font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-}
-/* Fallback existing dipertahankan (tidak dihapus, aman untuk regresi). */
-@font-face {
-  font-family: "Space Grotesk Variable";
-  src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 300 700;
+  font-weight: 400 800;
   font-display: swap;
 }
 @font-face {
-  font-family: "Inter Variable";
-  src: url("/fonts/inter-latin.woff2") format("woff2");
+  font-family: "JetBrains Mono Variable";
+  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400 700;
   font-display: swap;
 }
 
 :root {
-  --canvas: #F4F5F7;
+  --canvas: #F3F7FA;
   --surface: #FFFFFF;
-  --secondary-surface: #E8EBF0;
-  --ink: #191D26;
-  --secondary: #687180;
-  --muted: #525B6B;
-  --accent: #365FE8;
+  --secondary-surface: #F3F7FA;
+  --ink: #202631;
+  --secondary: #596575;
+  --muted: #596575;
+  --accent: #176D83;
+  --accent-2: #168F91;
+  --accent-2-text: #0F6E70; /* fallback teal terukur untuk teks normal */
   --border: #DDE1E7;
 
-  /* Alias komponen yang tidak disentuh dalam P0 tetap merujuk palet baru. */
+  /* Alias komponen yang tidak disentuh tetap merujuk palet baru. */
   --black: var(--ink);
   --paper: var(--canvas);
   --charcoal: var(--ink);
   --panel: var(--secondary-surface);
-  --strong: var(--muted);
+  --strong: var(--secondary);
   --white: #FFFFFF;
 
-  --font-display: "Instrument Serif", "Space Grotesk Variable", Georgia, serif;
-  --font-body: "Geist Variable", "Inter Variable", Inter, system-ui, sans-serif;
-  --font-mono: "Geist Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: "Syne Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --page-max: 1200px;
   --gutter: 20px;
@@ -89,11 +75,11 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-ui: 240ms;
 
-  /* Depth (VISUAL-UPGRADE Bab 2): turunan monokrom dari 7 token inti.
-     L0 base, L1 mist, L2 silver, L3 grain. Tidak ada hex identitas baru. */
+  /* Depth: turunan netral dari palet Oceanic. Gradien laut hanya satu area. */
   --depth-base: var(--canvas);
   --depth-mist: var(--secondary-surface);
   --depth-silver: var(--border);
+  --ocean-gradient: linear-gradient(135deg, var(--canvas) 0%, var(--white) 62%, color-mix(in srgb, var(--accent) 6%, var(--white)) 100%);
   --grain-opacity: 0.03;
   --ambient-duration: 16s;
 
@@ -196,12 +182,12 @@ ul, ol { padding: 0; list-style: none; }
   line-height: 1.5;
 }
 
-/* VISUAL-UPGRADE Bab 3: hero 72-104px desktop, section 40-56px, h3 26-32px.
-   Peran membatasi ukuran; hanya hero yang menyentuh batas atas. */
+/* Ukuran mengikuti peran: hero 64-88, section 40-52, project 28-36,
+   body 16-18, metadata 12-14. Di bawah 600px turun ke 40-52 / 32-38 / 25-30. */
 .h1 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(4.5rem, 7.2vw, 6.5rem);
+  font-size: clamp(4rem, 6.2vw, 5.5rem);
   line-height: 1.02;
   letter-spacing: -0.045em;
   overflow-wrap: normal;
@@ -209,10 +195,12 @@ ul, ol { padding: 0; list-style: none; }
   hyphens: none;
   text-wrap: balance;
 }
+/* Hero.astro menyimpan ukuran sendiri; ini satu-satunya override peran hero. */
+html .h1.hero__headline { font-size: clamp(4rem, 6.2vw, 5.5rem); }
 .h2 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.25rem, 3.6vw, 3.5rem);
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
   line-height: 1.08;
   letter-spacing: -0.035em;
   overflow-wrap: normal;
@@ -223,7 +211,7 @@ ul, ol { padding: 0; list-style: none; }
 .h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.625rem, 2.6vw, 2rem);
+  font-size: clamp(1.75rem, 2.8vw, 2.25rem);
   line-height: 1.18;
   letter-spacing: -0.025em;
 }
@@ -248,7 +236,7 @@ ul, ol { padding: 0; list-style: none; }
 }
 .mono {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: clamp(0.75rem, 0.9vw, 0.875rem);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.03em;
   line-height: 1.6;
@@ -446,12 +434,10 @@ ul, ol { padding: 0; list-style: none; }
   to   { transform: translateX(-50%); }
 }
 
-/* --- Depth system (VISUAL-UPGRADE Bab 2) ---------------------------------
-   Empat layer monokrom: base #F4F5F7, mist #E8EBF0, silver #DDE1E7, grain.
-   Hanya tiga carve-out: hero, satu project feature, contact. Tidak dipakai di
-   About/How I Work/Experience/Skills/Education/Interests. Tanpa blur/glow.
-   R-31: grain memberi alasan tekstur kertas, bukan dekorasi yang menambah
-   warna; kontras teks diukur terhadap layer terangnya (lihat Bab 2). */
+/* --- Depth system ---------------------------------------------------------
+   Layer netral: base Mist, mist Mist, silver border, grain. Satu carve-out
+   gradien laut di hero ambient. About/Experience/Skills/Education/Interests
+   tetap polos. Tanpa blur/glow; kontras diukur terhadap layer terangnya. */
 
 .depth-surface,
 .project-card--feature,
@@ -470,16 +456,16 @@ ul, ol { padding: 0; list-style: none; }
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   background-repeat: repeat;
 }
-/* Turunan L1/L2: radial lembut, dipusatkan di belakang subjek, bukan teks. */
+/* Satu-satunya gradien laut: hero ambient, di belakang potret, bukan teks. */
 .depth-ambient {
   position: absolute;
   z-index: -1;
   pointer-events: none;
   border-radius: 50%;
-  background: radial-gradient(closest-side, var(--depth-silver) 0%, var(--depth-mist) 58%, transparent 100%);
+  background: var(--ocean-gradient);
   opacity: 0.55;
 }
-/* Contact tetap #191D26 polos: hanya grain, tanpa gradient gelap. */
+/* Contact tetap Graphite polos: hanya grain, tanpa gradient gelap. */
 .contact::after { opacity: 0.025; }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -510,9 +496,9 @@ ul, ol { padding: 0; list-style: none; }
 /* Contact = satu-satunya blok gelap besar. Transisi masuk memakai gradasi
    monochrome mist -> charcoal, bukan pemotongan warna mendadak. */
 .charcoal {
-  --muted: #E8EBF0;
+  --muted: #F3F7FA;
   --strong: #DDE1E7;
-  --secondary: #E8EBF0;
+  --secondary: #F3F7FA;
   background: var(--ink);
   color: var(--white);
   border-top: 0;
@@ -593,7 +579,7 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
 
 /* --- Ritme section ------------------------------------------------------- */
 
-.section--about { padding-block: clamp(96px, 12vw, 152px) clamp(88px, 10vw, 136px); }
+.section--about { padding-block: clamp(56px, 7vw, 96px) clamp(72px, 8vw, 112px); }
 .section--approach { padding-block: clamp(56px, 7vw, 88px); }
 .section--experience { padding-block: clamp(80px, 9vw, 120px); }
 .section--education { padding-block: clamp(72px, 8vw, 104px); }
@@ -661,10 +647,12 @@ a, button, summary, label, .work-flow__label { touch-action: manipulation; }
   .status { white-space: normal; max-width: 100%; }
   .hero__actions { flex-wrap: wrap; }
 }
-/* 390px: hero kembali ke 48px seperti baseline; tidak ada overflow. */
+/* Mobile: hero 40-52, section 32-38, project 25-30; tidak ada overflow. */
 @media (max-width: 599px) {
-  .h1 { font-size: clamp(2.5rem, 12vw, 3rem); text-wrap: wrap; }
-  .h2 { font-size: clamp(2rem, 8vw, 2.5rem); }
+  .h1 { font-size: clamp(2.5rem, 11vw, 3.25rem); text-wrap: wrap; }
+  html .h1.hero__headline { font-size: clamp(2.5rem, 11vw, 3.25rem); }
+  .h2 { font-size: clamp(2rem, 8.5vw, 2.375rem); }
+  .h3 { font-size: clamp(1.5625rem, 6.5vw, 1.875rem); }
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -10,8 +10,13 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/react": "^7.1.9",
     "@astrojs/sitemap": "^3.4.0",
-    "astro": "^5.0.0"
+    "astro": "^5.0.0",
+    "lucide-react": "^1.82.0",
+    "motion": "^14.14.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "typescript": "^5.7.0"

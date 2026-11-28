@@ -20,7 +20,7 @@ const labels: Record<string, string> = {
         <span class="eyebrow"><span class="eyebrow__num">04</span> / Experience</span>
         <h2 class="h2">Experience</h2>
       </div>
-      <p class="mono section-head__note">Practical roles and organizational involvement</p>
+      <p class="mono section-head__note"><svg class="section-head__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.354 20H4a2 2 0 01-2-2V8a2 2 0 012-2h16a2 2 0 012 2v3.354" /><path d="M16 11.354V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" /><path d="M16 17h6" /><path d="M19 14v6" /></svg>Practical roles and organizational involvement</p>
     </div>
 
     <div class="timeline section-enter" style="--stagger:1">
@@ -62,6 +62,16 @@ const labels: Record<string, string> = {
     width: 28px;
     height: 1px;
     background: var(--accent);
+  }
+
+  /* Satu ikon penanda topik, searah dengan ikon di Contact. Teks note tetap. */
+  .section-head__icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    vertical-align: -2px;
+    color: var(--accent);
   }
 
   .timeline__item {

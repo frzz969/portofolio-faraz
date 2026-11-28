@@ -485,6 +485,55 @@ html.has-motion .back-to-top{transform:translateY(6px);transition:opacity 180ms 
 html.has-motion .back-to-top.is-visible{transform:translateY(0)}
 .back-to-top:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .back-to-top__arrow{position:relative;width:10px;height:10px;border-top:1px solid var(--ink);border-left:1px solid var(--ink);transform:translateY(2px) rotate(45deg)}
+
+/* Katalog DEXTRA: strip → judul → screenshot penuh → detail dua kolom.
+   Gradasi monochrome silver/mist/graphite; blue hanya garis 1px & fokus. */
+.catalog-feature,.catalog-feature.catalog-feature{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:none;grid-template-rows:none;gap:clamp(20px,3vw,32px);padding:clamp(20px,3vw,40px);background:linear-gradient(155deg,var(--border) 0%,var(--canvas) 38%,var(--secondary-surface) 100%);border:1px solid var(--border);border-radius:12px;color:var(--ink);--muted:var(--ink);--strong:var(--border)}
+.catalog-feature .project-flow{grid-area:auto}
+.catalog-feature .project-screenshot{grid-area:auto}
+.catalog-feature .catalog-head,.catalog-feature .catalog-strip,.catalog-feature .catalog-detail{grid-area:auto;min-width:0}
+.catalog-feature .project-card__title{font-family:var(--font-display);font-weight:700;font-size:clamp(3.5rem,6.2vw,5.5rem);line-height:.92;letter-spacing:-.05em;color:var(--ink);margin-bottom:8px}
+.catalog-feature .project-card__subtitle{color:var(--muted);margin:0;max-width:48ch}
+.catalog-feature .project-card__desc,.catalog-feature .meta-label,.catalog-feature .mono{color:var(--muted)}
+.catalog-feature .text-link{color:var(--ink);border-color:var(--border)}
+.catalog-feature .tag{border-color:var(--border);color:var(--muted)}
+.catalog-feature .project-facts dt{color:var(--muted)}
+.catalog-feature .project-facts dd{color:var(--ink)}
+.catalog-feature .project-facts dd strong{font-weight:700}
+.catalog-num{display:inline-flex;flex-direction:column;font-family:var(--font-display);font-size:clamp(2.5rem,4vw,3.5rem);line-height:.9;letter-spacing:-.06em;color:var(--ink);margin-bottom:8px}
+.catalog-num__rule{display:block;width:36px;height:1px;margin-top:10px;background:var(--accent)}
+.catalog-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:10px 14px;background:linear-gradient(100deg,var(--ink) 0%,rgba(255,255,255,.06) 100%),var(--ink);color:var(--white);border-radius:6px}
+.catalog-strip__label,.catalog-strip__status{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;line-height:1.5}
+.catalog-strip__status{display:inline-flex;align-items:center;gap:8px;color:var(--secondary-surface)}
+.catalog-strip__dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.catalog-shot{margin:0;min-width:0}
+.catalog-shot__trigger{display:block;width:100%;padding:0;border:0;background:none;border-radius:8px;cursor:zoom-in;touch-action:manipulation;text-align:left}
+.catalog-shot__trigger:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.catalog-shot__frame{display:block;aspect-ratio:16/9;background:linear-gradient(135deg,var(--border) 0%,var(--secondary-surface) 55%,var(--canvas) 100%);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.catalog-shot__frame img{width:100%;height:100%;object-fit:cover;display:block}
+.catalog-detail{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start;min-width:0}
+.catalog-gov-col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.catalog-feature .project-flow.catalog-flow,.project-card--feature .catalog-flow{background:linear-gradient(150deg,var(--secondary-surface) 0%,var(--white) 72%);color:var(--ink);border-color:var(--border);--strong:var(--border)}
+.catalog-flow .project-flow__panel{border-color:var(--border);color:var(--secondary);background:var(--white)}
+.catalog-feature .tag-list{margin:0}
+.catalog-feature .project-card__links{margin-top:0}
+.catalog-flow .project-flow__label{border-top-color:var(--border);min-height:44px;align-items:center}
+.catalog-flow .project-flow__step:first-child .project-flow__label{border-top:0}
+.catalog-flow .project-flow__num{color:var(--muted);font-size:1.5rem}
+.catalog-flow .project-flow__name{font-family:var(--font-display);font-weight:600;font-size:1.0625rem;letter-spacing:-.02em;color:var(--ink)}
+.catalog-flow .project-flow__arrow{color:var(--secondary)}
+.catalog-flow .project-flow__input:checked+.project-flow__label .project-flow__name,.catalog-flow .project-flow__input:checked+.project-flow__label .project-flow__num{color:var(--ink)}
+.catalog-flow .project-flow__input:checked+.project-flow__label{border-top-color:var(--border);border-bottom:1px solid var(--accent);padding-inline-start:6px}
+.catalog-flow .project-flow__input:focus-visible+.project-flow__label{outline:2px solid var(--accent);outline-offset:2px}
+.catalog-flow .project-flow__panel-text{color:var(--ink)}
+.catalog-flow .meta-label,.catalog-flow .project-flow__note{color:var(--muted)}
+.catalog-evidence{min-width:0}
+.catalog-evidence .project-facts{margin-top:24px}
+@media(min-width:900px){.catalog-detail{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.catalog-flow .project-flow__interactive{grid-template-columns:minmax(0,1fr)}}
+@media(min-width:1200px){.catalog-flow .project-flow__interactive{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media(max-width:620px){.catalog-feature{padding:18px}.catalog-strip{align-items:flex-start;flex-direction:column}.catalog-shot__frame{aspect-ratio:4/3}.catalog-shot__frame img{object-fit:contain}}
+@media(hover:hover) and (pointer:fine){@media(prefers-reduced-motion:no-preference){.catalog-feature{transition:transform 200ms var(--ease-out)}.catalog-feature:hover{transform:scale(1.002)}}}
+@media(prefers-reduced-motion:reduce){.catalog-feature{transform:none!important;transition:none!important}}
 </style><noscript><style>.reveal,.hero-fade,.hero-line,.cta-line{opacity:1!important;transform:none!important}.marquee-track{animation:none!important}</style></noscript><script>if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("has-motion");}</script></head><body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
@@ -538,29 +587,39 @@ html.has-motion .back-to-top.is-visible{transform:translateY(0)}
 <section class="section" id="projects">
   <div class="container" id="work">
     <div class="section-head section-enter"><div><span class="eyebrow">03 / Selected Work</span><h2 class="h2 h2--projects">Selected Projects</h2></div><p class="mono section-head__note">System Prototypes / Research Concepts / Lab Experiments</p><span class="sr-only">Anchor for the projects section</span></div>
-    <article class="project-card project-card--feature reveal">
-      <header class="project-card__head">
-        <div class="project-card__top"><span class="status">BUILT / LIVE DEMO PROTOTYPE</span><span class="meta-label">Governed Enterprise AI Workforce &amp; Operations Platform</span></div>
-        <h3 class="h3 project-card__title">DEXTRA</h3>
-        <p class="project-card__rule" aria-hidden="true"></p>
-      </header>
-      <div class="project-flow">
-        <span class="meta-label">Governance path / select a step</span>
-        <div class="project-flow__interactive">
-          <fieldset class="project-flow__fieldset"><legend class="sr-only">Governance steps, use arrow keys to select a step</legend><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-0" checked><label class="project-flow__label" for="gov-step-0"><span class="project-flow__num num" aria-hidden="true">01</span><span class="project-flow__name">Request</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-1"><label class="project-flow__label" for="gov-step-1"><span class="project-flow__num num" aria-hidden="true">02</span><span class="project-flow__name">Analyze</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-2"><label class="project-flow__label" for="gov-step-2"><span class="project-flow__num num" aria-hidden="true">03</span><span class="project-flow__name">Recommend</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-3"><label class="project-flow__label" for="gov-step-3"><span class="project-flow__num num" aria-hidden="true">04</span><span class="project-flow__name">Approve</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-4"><label class="project-flow__label" for="gov-step-4"><span class="project-flow__num num" aria-hidden="true">05</span><span class="project-flow__name">Execute</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-5"><label class="project-flow__label" for="gov-step-5"><span class="project-flow__num num" aria-hidden="true">06</span><span class="project-flow__name">Audit</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span></fieldset>
-          <div class="project-flow__panels" aria-live="polite"><p class="project-flow__panel" data-step="0"><span class="meta-label">01 / Request</span><span class="project-flow__panel-text">A request enters the platform: a task, a question, or an operational action from a defined user.</span></p><p class="project-flow__panel" data-step="1"><span class="meta-label">02 / Analyze</span><span class="project-flow__panel-text">Specialized AI workers read the context and supporting data. Four specialists cover Finance, HR, Inventory, and Operations. AI reads and analyzes, nothing is executed here.</span></p><p class="project-flow__panel" data-step="2"><span class="meta-label">03 / Recommend</span><span class="project-flow__panel-text">The workers produce a proposed plan. The recommendation ends at advice: no data is written and no outside system is touched.</span></p><p class="project-flow__panel" data-step="3"><span class="meta-label">04 / Approve</span><span class="project-flow__panel-text">A human reviews the plan. The Policy Validator, a deterministic governance engine (not an AI agent), checks the plan against policy before approval.</span></p><p class="project-flow__panel" data-step="4"><span class="meta-label">05 / Execute</span><span class="project-flow__panel-text">Only after an approved plan and an explicit human mandate may an action change data or the outside world.</span></p><p class="project-flow__panel" data-step="5"><span class="meta-label">06 / Audit</span><span class="project-flow__panel-text">Every action leaves an audit record: what was requested, what was approved, what ran, and who mandated it.</span></p></div>
-        </div>
-        <p class="mono project-flow__note">AI acts up to recommendation. Writing to data or the outside world needs an approved plan, a human mandate, and an audit record.</p>
+    <article class="project-card project-card--feature reveal catalog-feature">
+      <div class="catalog-strip">
+        <span class="catalog-strip__label">Featured project 01 · 2026 · Prototype</span>
+        <span class="catalog-strip__status"><span class="catalog-strip__dot" aria-hidden="true"></span>Interactive prototype</span>
       </div>
-      <div class="project-card__body">
-        <figure class="project-screenshot">
-          <div class="screenshot-frame"><img src="./screenshots/dextra.webp" width="1440" height="900" loading="lazy" alt="Screenshot dashboard DEXTRA asli: Executive Operations Overview dengan metrik workforce, approval queue, dan human authorization."></div>
-          <figcaption class="meta-label">Captured from the live dashboard · 28 Nov 2026</figcaption>
-        </figure>
-        <p class="body project-card__desc">An interactive prototype for governed AI operations, not an enterprise production deployment. Four specialists cover Finance, HR, Inventory, and Operations. AI reads, analyzes, and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an audit record. The Policy Validator is a deterministic governance engine, not an AI agent.</p>
-        <dl class="project-facts"><div><dt>Problem</dt><dd>Operational work spread across tools without clear authority or a traceable record of execution.</dd></div><div><dt>Contribution</dt><dd>Designed around specialized AI workers, human-defined authority, and approval-based execution.</dd></div><div><dt>Governance</dt><dd>AI reads, analyzes and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an <strong>audit record</strong>. Four specialists: Finance, HR, Inventory, Operations. The <strong>Policy Validator</strong> is a deterministic governance engine, not an AI agent. Interactive prototype, not a production enterprise system.</dd></div><div><dt>Stack</dt><dd>Next.js, React, Python, FastAPI, MCP, deterministic policy validation, audit trails.</dd></div></dl>
-        <ul class="tag-list"><li class="sr-only">Technologies used</li><li class="tag">Next.js</li><li class="tag">React</li><li class="tag">Python</li><li class="tag">FastAPI</li><li class="tag">MCP</li><li class="tag">Deterministic Policy Validator</li><li class="tag">Approval-based execution</li><li class="tag">Audit trail</li></ul>
-        <div class="project-card__links"><a class="text-link" href="https://dextra-office-agent.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="DEXTRA: Live demo, interactive prototype (opens in new tab)">Live demo (prototype / demo interaktif) <span class="text-link__arrow arrow-glyph" aria-hidden="true">↗</span></a></div>
+      <div class="catalog-head">
+        <span class="catalog-num" aria-hidden="true">01<span class="catalog-num__rule"></span></span>
+        <h3 class="h3 project-card__title">DEXTRA</h3>
+        <p class="h4 project-card__subtitle">Governed Enterprise AI Workforce &amp; Operations Platform</p>
+      </div>
+      <figure class="project-screenshot catalog-shot">
+        <button class="catalog-shot__trigger" type="button" data-shot-open="dextra.webp" aria-label="Open the original DEXTRA dashboard screenshot in a larger view">
+          <span class="catalog-shot__frame"><img src="./screenshots/dextra.webp" width="1440" height="900" loading="lazy" alt="Screenshot dashboard DEXTRA asli: Executive Operations Overview dengan metrik workforce, approval queue, dan human authorization."></span>
+        </button>
+        <figcaption class="meta-label">Captured from the live dashboard · 28 Nov 2026</figcaption>
+      </figure>
+      <div class="catalog-detail">
+        <div class="catalog-gov-col">
+        <div class="project-flow catalog-flow">
+          <span class="meta-label">Governance path / select a step</span>
+          <div class="project-flow__interactive">
+            <fieldset class="project-flow__fieldset"><legend class="sr-only">Governance steps, use arrow keys to select a step</legend><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-0" checked><label class="project-flow__label" for="gov-step-0"><span class="project-flow__num num" aria-hidden="true">01</span><span class="project-flow__name">Request</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-1"><label class="project-flow__label" for="gov-step-1"><span class="project-flow__num num" aria-hidden="true">02</span><span class="project-flow__name">Analyze</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-2"><label class="project-flow__label" for="gov-step-2"><span class="project-flow__num num" aria-hidden="true">03</span><span class="project-flow__name">Recommend</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-3"><label class="project-flow__label" for="gov-step-3"><span class="project-flow__num num" aria-hidden="true">04</span><span class="project-flow__name">Approve</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-4"><label class="project-flow__label" for="gov-step-4"><span class="project-flow__num num" aria-hidden="true">05</span><span class="project-flow__name">Execute</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span><span class="project-flow__step"><input class="project-flow__input sr-only" type="radio" name="gov-step" id="gov-step-5"><label class="project-flow__label" for="gov-step-5"><span class="project-flow__num num" aria-hidden="true">06</span><span class="project-flow__name">Audit</span><span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span></label></span></fieldset>
+            <div class="project-flow__panels" aria-live="polite"><p class="project-flow__panel" data-step="0"><span class="meta-label">01 / Request</span><span class="project-flow__panel-text">A request enters the platform: a task, a question, or an operational action from a defined user.</span></p><p class="project-flow__panel" data-step="1"><span class="meta-label">02 / Analyze</span><span class="project-flow__panel-text">Specialized AI workers read the context and supporting data. Four specialists cover Finance, HR, Inventory, and Operations. AI reads and analyzes, nothing is executed here.</span></p><p class="project-flow__panel" data-step="2"><span class="meta-label">03 / Recommend</span><span class="project-flow__panel-text">The workers produce a proposed plan. The recommendation ends at advice: no data is written and no outside system is touched.</span></p><p class="project-flow__panel" data-step="3"><span class="meta-label">04 / Approve</span><span class="project-flow__panel-text">A human reviews the plan. The Policy Validator, a deterministic governance engine (not an AI agent), checks the plan against policy before approval.</span></p><p class="project-flow__panel" data-step="4"><span class="meta-label">05 / Execute</span><span class="project-flow__panel-text">Only after an approved plan and an explicit human mandate may an action change data or the outside world.</span></p><p class="project-flow__panel" data-step="5"><span class="meta-label">06 / Audit</span><span class="project-flow__panel-text">Every action leaves an audit record: what was requested, what was approved, what ran, and who mandated it.</span></p></div>
+          </div>
+          <p class="mono project-flow__note">AI acts up to recommendation. Writing to data or the outside world needs an approved plan, a human mandate, and an audit record.</p>
+        </div>
+          <ul class="tag-list"><li class="sr-only">Technologies used</li><li class="tag">Next.js</li><li class="tag">React</li><li class="tag">Python</li><li class="tag">FastAPI</li><li class="tag">MCP</li><li class="tag">Deterministic Policy Validator</li><li class="tag">Approval-based execution</li><li class="tag">Audit trail</li></ul>
+          <div class="project-card__links"><a class="text-link" href="https://dextra-office-agent.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="DEXTRA: Live demo, interactive prototype (opens in new tab)">Live demo (prototype / demo interaktif) <span class="text-link__arrow arrow-glyph" aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="catalog-evidence">
+          <p class="body project-card__desc">An interactive prototype for governed AI operations, not an enterprise production deployment. Four specialists cover Finance, HR, Inventory, and Operations. AI reads, analyzes, and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an audit record. The Policy Validator is a deterministic governance engine, not an AI agent.</p>
+          <dl class="project-facts"><div><dt>Problem</dt><dd>Operational work spread across tools without clear authority or a traceable record of execution.</dd></div><div><dt>Approach</dt><dd>Specialized AI workers, a deterministic policy check, and human approval before any write action.</dd></div><div><dt>Governance</dt><dd>AI reads, analyzes and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an <strong>audit record</strong>. Four specialists: Finance, HR, Inventory, Operations. The <strong>Policy Validator</strong> is a deterministic governance engine, not an AI agent. Interactive prototype, not a production enterprise system.</dd></div><div><dt>Stack</dt><dd>Next.js, React, Python, FastAPI, MCP, deterministic policy validation, audit trails.</dd></div></dl>
+        </div>
       </div>
     </article>
     <div class="project-pair">
@@ -815,4 +874,8 @@ html.has-motion .back-to-top.is-visible{transform:translateY(0)}
   }
 })();
 </script>
+
+<dialog class="catalog-dialog" id="catalogDialog" aria-label="Original project screenshot"><div class="catalog-dialog__inner"><button class="catalog-dialog__close" type="button" data-shot-close aria-label="Close screenshot preview"><span aria-hidden="true"></span></button><img class="catalog-dialog__img" alt="" width="1440" height="900"><p class="catalog-dialog__caption meta-label"></p></div></dialog>
+<style>.catalog-dialog{width:min(940px,calc(100vw - 32px));max-height:calc(100svh - 32px);padding:0;border:1px solid var(--border);border-radius:12px;background:var(--ink);color:var(--white);overscroll-behavior:contain}.catalog-dialog::backdrop{background:rgba(25,29,38,.88)}.catalog-dialog__inner{position:relative;padding:12px}.catalog-dialog__img{display:block;width:100%;height:auto;max-height:calc(100svh - 120px);object-fit:contain;border-radius:8px;background:var(--secondary-surface)}.catalog-dialog__caption{padding-top:10px;color:var(--secondary-surface)}.catalog-dialog__close{position:absolute;top:20px;right:20px;z-index:1;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--border);border-radius:8px;background:var(--ink);color:var(--white);cursor:pointer}.catalog-dialog__close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.catalog-dialog__close span,.catalog-dialog__close span::before{display:block;width:16px;height:1px;background:var(--white)}.catalog-dialog__close span{transform:rotate(45deg)}.catalog-dialog__close span::before{content:"";transform:rotate(-90deg)}</style>
+<script>(function(){var d=document.getElementById("catalogDialog"),img=d&&d.querySelector(".catalog-dialog__img"),cap=d&&d.querySelector(".catalog-dialog__caption"),opener=null;if(!d||!d.showModal)return;document.querySelectorAll("[data-shot-open]").forEach(function(t){t.addEventListener("click",function(){opener=t;img.src="./screenshots/"+t.dataset.shotOpen;img.alt="Screenshot dashboard DEXTRA asli: Executive Operations Overview dengan metrik workforce, approval queue, dan human authorization.";cap.textContent="Captured from the live dashboard · 28 Nov 2026";d.showModal()})});d.querySelector("[data-shot-close]").addEventListener("click",function(){d.close()});d.addEventListener("click",function(e){if(e.target===d)d.close()});d.addEventListener("close",function(){if(opener)opener.focus();opener=null})})()</script>
 </body></html>

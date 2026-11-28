@@ -96,6 +96,12 @@
   --depth-silver: var(--border);
   --grain-opacity: 0.03;
   --ambient-duration: 16s;
+
+  /* Katalog projects: gradasi monochrome untuk permukaan feature, strip,
+     dan governance. Turunan dari 7 token inti, tanpa hex identitas baru. */
+  --depth-card: linear-gradient(155deg, var(--depth-silver) 0%, var(--canvas) 38%, var(--secondary-surface) 100%);
+  --depth-strip: linear-gradient(100deg, var(--ink) 0%, rgba(255, 255, 255, 0.06) 100%), var(--ink);
+  --depth-panel: linear-gradient(150deg, var(--depth-mist) 0%, var(--surface) 72%);
 }
 
 @media (min-width: 768px) {

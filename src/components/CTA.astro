@@ -24,7 +24,7 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
       <!-- SATU CTA primer: email. Tautan lain sengaja secondary. -->
       <a class="btn btn--light contact__primary" href={`mailto:${email}?subject=Kolaborasi%20Portofolio%20Faras&body=Halo%20Faras%2C%20nama%20saya%20...`}>
         Start an email
-        <span class="arrow-glyph" aria-hidden="true">↗</span>
+        <svg class="icon icon--arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
       </a>
     </div>
 
@@ -41,30 +41,31 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
         <ul class="contact__links">
           <li>
             <a class="contact__link contact__link--email" href={`mailto:${email}`}>
-              <span class="contact__label mono">Email</span>
+              <span class="contact__label mono"><svg class="icon contact__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg>Email</span>
               <span class="contact__value">{email}</span>
             </a>
           </li>
           <li>
             <a class="contact__link" href={waLink} target="_blank" rel="noopener noreferrer">
-              <span class="contact__label mono">WhatsApp</span>
+              <span class="contact__label mono"><svg class="icon contact__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" /></svg>WhatsApp</span>
               <span class="contact__value">{phone}</span>
             </a>
           </li>
           <li>
             <a class="contact__link" href="https://github.com/farasfadhil" target="_blank" rel="noopener noreferrer">
-              <span class="contact__label mono">GitHub</span>
+              <span class="contact__label mono"><svg class="icon contact__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2" /><path d="M15 7h2a5 5 0 1 1 0 10h-2" /><line x1="8" x2="16" y1="12" y2="12" /></svg>GitHub</span>
               <span class="contact__value">github.com/farasfadhil</span>
             </a>
           </li>
           <li>
             <a class="contact__link" href="https://linkedin.com/in/faras-fadhil-firdaus" target="_blank" rel="noopener noreferrer">
-              <span class="contact__label mono">LinkedIn</span>
+              <span class="contact__label mono"><svg class="icon contact__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2" /><path d="M15 7h2a5 5 0 1 1 0 10h-2" /><line x1="8" x2="16" y1="12" y2="12" /></svg>LinkedIn</span>
               <span class="contact__value">linkedin.com/in/faras-fadhil-firdaus</span>
             </a>
           </li>
         </ul>
         <button class="btn btn--outline-light contact__copy" id="copyEmailBtn" type="button">
+          <svg class="icon contact__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
           <span id="copyBtnText">Copy email address</span>
         </button>
       </div>
@@ -121,6 +122,26 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
 
   .contact { padding-block: clamp(80px, 11vw, 140px) clamp(56px, 8vw, 88px); }
   .contact__head { max-width: 100%; min-width: 0; }
+
+  /* Ikon Lucide: 16px, mengikuti warna teks. Label tetap berupa teks. */
+  .icon {
+    display: inline-block;
+    flex: none;
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+  }
+  .icon--arrow { width: 18px; height: 18px; }
+  .contact__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .contact__icon { color: var(--muted); }
+  .contact__link:hover .contact__icon,
+  .contact__link:focus-visible .contact__icon { color: var(--white); }
+  .contact__copy .contact__icon { color: var(--ink); }
+  .contact__copy:hover .contact__icon { color: var(--white); }
   /* Headline 32-48px desktop, dua baris disengaja, kata tidak dipecah.
      Floor lebih kecil di 360px menjaga tanpa overflow (R-31). */
   .contact__title {

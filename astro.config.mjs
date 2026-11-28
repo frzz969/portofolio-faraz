@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
@@ -7,5 +8,6 @@ export default defineConfig({
   output: 'static',
   base: '/portofolio-faraz',
   build: { inlineStylesheets: 'always' },
-  integrations: [sitemap()],
+  // React island hanya untuk komponen interaktif; halaman tetap static.
+  integrations: [react(), sitemap()],
 });

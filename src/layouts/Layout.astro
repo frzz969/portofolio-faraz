@@ -746,6 +746,51 @@ const navItems = [
         transform: translateY(2px) rotate(45deg);
       }
 
+      /* --- Halo & magnetic ringan (Magic UI / React Bits technique, CSS-only) ---
+         Satu hairline yang muncul saat hover pada CTA, bukan glow. Gerak hanya
+         dengan pointer presisi + has-motion. Reduced-motion dan touch mematikan
+         keduanya. Komponen tetap memakai teks asli; dekorasi tidak menyimpan info. */
+      .btn::after,
+      .text-link::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border: 1px solid var(--accent);
+        border-radius: inherit;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .text-link::before { inset: -3px -4px; border-radius: 2px; }
+      .btn { position: relative; }
+      @media (prefers-reduced-motion: no-preference) {
+        @media (hover: hover) and (pointer: fine) {
+          html.has-motion .btn::after,
+          html.has-motion .text-link::before {
+            transition: opacity 200ms var(--ease-out);
+          }
+          html.has-motion .btn:hover::after,
+          html.has-motion .btn:focus-visible::after,
+          html.has-motion .text-link:hover::before,
+          html.has-motion .text-link:focus-visible::before { opacity: 0.55; }
+          /* Magnetic sangat kecil: max 3px, mengikuti var(--mag-x/y) yang
+             sudah dihasilkan script nav yang tidak disentuh di sini. */
+          html.has-motion .btn[data-magnetic],
+          html.has-motion .text-link[data-magnetic] {
+            transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0);
+          }
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .btn::after,
+        .text-link::before,
+        .btn[data-magnetic],
+        .text-link[data-magnetic] {
+          opacity: 0 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+
       main { display: block; }
     </style>
   </body>

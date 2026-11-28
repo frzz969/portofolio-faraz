@@ -148,6 +148,26 @@ Sebelum dan selama mengerjakan tugas apa pun (audit, redesign, perbaikan konten,
 
 Mode default: **DURING** (bukan setelah selesai). Terapkan saat menulis, bukan sebagai review terakhir.
 
+#### 10.1b Skill tambahan (terpasang global, 28 Nov 2026)
+
+Skill berikut tersedia di `~/.agents/skills/` (global, bukan per-repo). Pakai **secara kontekstual**, bukan semua sekaligus — pilih yang sesuai tugas:
+
+| Sumber | Skill | Dipakai untuk |
+|---|---|---|
+| **Emil Kowalski** (`emilkowalski/skills`) | `animate`, `choreograph`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `remove-animations`, `animation-vocabulary`, `animation-performance`, `gestures` | Motion yang punya tujuan: easing, durasi, stagger, kapan harus **tidak** beranimasi, audit/kritik animasi yang sudah ada. |
+| **Emil Kowalski** | `emil-design-eng`, `learn-taste`, `break-ui`, `mobile-native`, `ask-emil` | Design engineering & taste; kritik visual; perilaku mobile. |
+| **Vercel** (`vercel-labs/agent-skills`) | `web-design-guidelines`, `vercel-react-best-practices`, `vercel-composition-patterns`, `vercel-optimize`, `vercel-react-view-transitions`, `deploy-to-vercel`, `writing-guidelines` | Audit UI/UX/a11y/performa; praktik frontend; optimasi resource & deploy. (Catatan: repo ini Astro, bukan React — pakai prinsipnya, jangan memaksa pola React.) |
+| **Superpowers** (`obra/superpowers`) | `systematic-debugging`, `verification-before-completion`, `writing-plans`, `executing-plans`, `brainstorming`, `requesting-code-review`, `receiving-code-review`, `test-driven-development`, `dispatching-parallel-agents`, `subagent-driven-development` | Cara kerja: pahami masalah → rencana → implementasi bertahap → verifikasi → review. Cocok untuk tugas multi-file & delegasi sub-agent. |
+| **Matt Pocock** (`mattpocock/skills`) | `code-review`, `codebase-design`, `improve-codebase-architecture`, `diagnosing-bugs`, `implement`, `research`, `retro`, `ask-matt` | Review kode berdasarkan spesifikasi & arsitektur, bukan cuma error browser. |
+
+**Tidak dipasang / tidak dipakai:** Cloudflare Security Audit — atas keputusan owner, tidak masuk stack ini.
+
+**Aturan pemakaian:**
+- Utamakan `verification-before-completion` + `systematic-debugging` sebelum menyatakan tugas selesai.
+- Untuk motion, jangan hanya `animate` — sertakan `review-animations`/`find-animation-opportunities` agar animasi tetap purposeful.
+- Untuk perubahan UI, sertakan `web-design-guidelines` + `antislop-ui`.
+- Jangan menumpuk skill yang tumpang tindih (mis. `brainstorming` + `writing-plans` sekaligus tanpa kebutuhan).
+
 ### 10.2 UI/UX "promax" — keputusan desain
 - Satu focal point per layar; whitespace sebagai struktur; asimetri disengaja, bukan bento grid seragam.
 - Tiap keputusan visual punya alasan satu baris (R-31).

@@ -74,6 +74,50 @@ const governanceFlow = [
         <p class="project-card__rule" aria-hidden="true"></p>
       </header>
 
+      <!-- SIGNATURE: alur governance langsung di bawah judul, bukan di bawah
+           deskripsi. Radio CSS-only; klik/sentuh pada label atau arrow keys
+           pada radio memilih langkah. Panel mengikuti :checked; pembaca layar
+           mendapat label radio plus aria-live="polite" pada panel. -->
+      <div class="project-flow">
+        <span class="meta-label">Governance path / select a step</span>
+
+        <div class="project-flow__interactive">
+          <fieldset class="project-flow__fieldset">
+            <legend class="sr-only">Governance steps, use arrow keys to select a step</legend>
+            {governanceFlow.map((step, index) => (
+              <span class="project-flow__step">
+                <input
+                  class="project-flow__input sr-only"
+                  type="radio"
+                  name="gov-step"
+                  id={`gov-step-${index}`}
+                  checked={index === 0}
+                />
+                <label class="project-flow__label" for={`gov-step-${index}`}>
+                  <span class="project-flow__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="project-flow__name">{step.name}</span>
+                  <span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span>
+                </label>
+              </span>
+            ))}
+          </fieldset>
+
+          <div class="project-flow__panels" aria-live="polite">
+            {governanceFlow.map((step, index) => (
+              <p class="project-flow__panel" data-step={index}>
+                <span class="meta-label">{String(index + 1).padStart(2, '0')} / {step.name}</span>
+                <span class="project-flow__panel-text">{step.detail}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <p class="mono project-flow__note">
+          AI acts up to recommendation. Writing to data or the outside world needs an approved plan,
+          a human mandate, and an audit record.
+        </p>
+      </div>
+
       <div class="project-card__body">
         <figure class="project-screenshot">
           <div class="screenshot-frame">
@@ -132,49 +176,6 @@ const governanceFlow = [
         </div>
       </div>
 
-      <!-- SIGNATURE: alur governance interaktif, CSS-only via radio inputs.
-           Klik/sentuh pada label atau arrow keys pada radio memilih langkah.
-           Panel keterangan mengikuti :checked; pembaca layar membaca label
-           radio yang dipilih, jadi tidak perlu aria-live yang berisik. -->
-      <div class="project-flow">
-        <span class="meta-label">Governance path / select a step</span>
-
-        <div class="project-flow__interactive">
-          <fieldset class="project-flow__fieldset">
-            <legend class="sr-only">Governance steps, use arrow keys to select a step</legend>
-            {governanceFlow.map((step, index) => (
-              <span class="project-flow__step">
-                <input
-                  class="project-flow__input sr-only"
-                  type="radio"
-                  name="gov-step"
-                  id={`gov-step-${index}`}
-                  checked={index === 0}
-                />
-                <label class="project-flow__label" for={`gov-step-${index}`}>
-                  <span class="project-flow__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                  <span class="project-flow__name">{step.name}</span>
-                  <span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span>
-                </label>
-              </span>
-            ))}
-          </fieldset>
-
-          <div class="project-flow__panels" aria-live="polite">
-            {governanceFlow.map((step, index) => (
-              <p class="project-flow__panel" data-step={index}>
-                <span class="meta-label">{String(index + 1).padStart(2, '0')} / {step.name}</span>
-                <span class="project-flow__panel-text">{step.detail}</span>
-              </p>
-            ))}
-          </div>
-        </div>
-
-        <p class="mono project-flow__note">
-          AI acts up to recommendation. Writing to data or the outside world needs an approved plan,
-          a human mandate, and an audit record.
-        </p>
-      </div>
     </article>
 
     <!-- Dua pendukung sengaja tidak simetris: research lab di #151515,
@@ -297,12 +298,18 @@ const governanceFlow = [
     background: var(--black);
     border-color: var(--black);
     color: var(--white);
+    /* Tiga area: judul + alur di kiri, bukti + narasi di kanan. Di layar
+       sempit urutan DOM tetap judul -> alur -> screenshot -> deskripsi. */
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'head' 'flow' 'body';
     gap: 36px;
     margin-bottom: 24px;
     padding: clamp(24px, 5vw, 64px);
   }
+  .project-card--feature .project-card__head { grid-area: head; }
+  .project-card--feature .project-flow { grid-area: flow; }
+  .project-card--feature .project-card__body { grid-area: body; }
   .project-card--feature .status {
     border-color: var(--muted);
     color: var(--white);
@@ -510,9 +517,14 @@ const governanceFlow = [
 
   @media (min-width: 900px) {
     .project-card--feature {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+      /* Kiri: judul lalu alur. Kanan: screenshot + narasi, mulai dari baris
+         pertama supaya sejajar dengan judul (bukan 600px di bawahnya). */
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      grid-template-areas: 'head body' 'flow body';
+      grid-template-rows: auto 1fr;
       align-items: start;
-      gap: clamp(40px, 5vw, 72px);
+      column-gap: clamp(40px, 5vw, 72px);
+      row-gap: 28px;
     }
     .project-flow__interactive { grid-template-columns: 1fr; }
     .project-pair {

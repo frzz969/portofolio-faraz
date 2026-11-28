@@ -527,6 +527,35 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
   outline-offset: 2px;
 }
 
+/* --- Komposisi feature card ------------------------------------------------
+   Judul + alur governance di kiri, bukti visual + narasi di kanan. Urutan
+   DOM: head -> flow -> body, jadi di layar sempit terbaca urut dalam satu
+   kolom tanpa overflow. R-31: satu focal point per kolom; alur mengisi
+   ruang kosong di bawah judul, bukan menunggu di bawah deskripsi. */
+.project-card--feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'head' 'flow' 'body';
+  gap: 36px;
+  min-width: 0;
+}
+.project-card--feature .project-card__head,
+.project-card--feature .project-flow,
+.project-card--feature .project-card__body { min-width: 0; }
+.project-card--feature .project-card__head { grid-area: head; }
+.project-card--feature .project-flow { grid-area: flow; }
+.project-card--feature .project-card__body { grid-area: body; }
+@media (min-width: 900px) {
+  .project-card--feature {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    grid-template-areas: 'head body' 'flow body';
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(40px, 5vw, 72px);
+    row-gap: 28px;
+    align-items: start;
+  }
+}
+
 /* --- Ritme section (PRIORITAS 3) ------------------------------------------
    Whitespace sebagai struktur, bukan kartu seragam. Tiap section punya
    napas berbeda supaya halaman dibaca sebagai alur, bukan deretan slide.

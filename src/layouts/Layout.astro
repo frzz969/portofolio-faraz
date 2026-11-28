@@ -188,10 +188,10 @@ const navItems = [
             });
           }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
           revealables.forEach((el) => revealObserver.observe(el));
-          // Safety net hanya untuk elemen yang SUDAH masuk viewport tapi belum
-          // sempat ditandai observer. Elemen di bawah fold sengaja dibiarkan
-          // supaya animasi reveal-nya tidak hilang (teks tidak pernah hilang
-          // permanen: aturan CSS hanya menyembunyikan saat JS aktif).
+          // Dua level safety: yang sudah masuk viewport menyala lebih awal agar
+          // reveal tetap terasa; sisanya menyala sebelum batas akhir demi
+          // progressive enhancement. Urutan observer didahulukan, jadi elemen
+          // yang terlihat lebih dulu tetap mendapat animasi normal.
           window.setTimeout(() => {
             revealables.forEach((el) => {
               if (el.classList.contains('is-visible')) return;
@@ -202,6 +202,13 @@ const navItems = [
               }
             });
           }, 1200);
+          window.setTimeout(() => {
+            revealables.forEach((el) => {
+              if (el.classList.contains('is-visible')) return;
+              markReached(el);
+              revealObserver.unobserve(el);
+            });
+          }, 2500);
         } else {
           revealables.forEach(markReached);
         }

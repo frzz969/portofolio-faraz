@@ -5,7 +5,7 @@
 const fields = ['AI & Technology', 'Digital Operations', 'Technical Research'];
 ---
 
-<section class="hero" id="hero">
+<section class="hero depth-surface" id="hero">
   <div class="hero__rules" aria-hidden="true">
     <span class="hero__rule hero__rule--top"></span>
     <span class="hero__rule hero__rule--bottom"></span>
@@ -44,6 +44,7 @@ const fields = ['AI & Technology', 'Digital Operations', 'Technical Research'];
     </div>
 
     <figure class="hero__portrait hero-fade--portrait">
+      <span class="hero__ambient depth-ambient depth-ambient--drift" aria-hidden="true"></span>
       <div class="hero__portrait-frame">
         <img
           src="./portrait-faras.svg"
@@ -124,16 +125,18 @@ const fields = ['AI & Technology', 'Digital Operations', 'Technical Research'];
   .hero__meta-cell { min-width: 0; }
   .hero__meta-cell--index { text-align: right; }
 
-  /* 56-88px desktop, tidak memecah kata, turun rapi di 360px. */
+  /* VISUAL-UPGRADE Bab 3: 72-104px desktop, turun ke ~48px di 390px.
+     keep-all + balance: kata tidak pecah di breakpoint mana pun. */
   .hero__headline {
     margin-block: 28px 16px;
     color: var(--ink);
-    font-size: clamp(3.5rem, 6.2vw, 5.5rem);
+    font-size: clamp(4.5rem, 7.2vw, 6.5rem);
     line-height: 1.02;
     letter-spacing: -0.045em;
     overflow-wrap: normal;
     word-break: keep-all;
     hyphens: none;
+    text-wrap: balance;
   }
   .hero-line-wrap { display: block; }
   .hero-line { display: block; }
@@ -160,14 +163,45 @@ const fields = ['AI & Technology', 'Digital Operations', 'Technical Research'];
   }
 
   /* Portrait: frame editorial datar, 1px border, tanpa shadow. Di layar
-     sempit turun di bawah copy; caption melekat pada frame. */
-  .hero__portrait { margin: 32px 0 0; width: min(100%, 240px); min-width: 0; }
+     sempit turun di bawah copy; caption melekat pada frame.
+     R-31: ambient silver hanya di belakang potret, tidak menyentuh teks,
+     supaya subjek tidak tampak mengambang di atas canvas rata. */
+  .hero__portrait {
+    position: relative;
+    margin: 32px 0 0;
+    width: min(100%, 240px);
+    min-width: 0;
+    isolation: isolate;
+  }
+  .hero__ambient {
+    width: 150%;
+    height: 130%;
+    top: -15%;
+    left: -25%;
+    opacity: 0.5;
+  }
   .hero__portrait-frame {
+    position: relative;
     background: var(--secondary-surface);
     border: 1px solid var(--border);
     border-radius: 8px;
     aspect-ratio: 4 / 5;
     overflow: hidden;
+  }
+  /* Satu mask reveal pada frame, bukan pada teks. Delay mengikuti P1
+     --hero-delay-portrait (450ms) sehingga tidak mengubah urutan masuk. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.has-motion .hero__portrait-frame {
+      clip-path: inset(0 0 100% 0);
+      animation: hero-portrait-mask 550ms var(--ease-out) var(--hero-delay-portrait) both;
+    }
+  }
+  @keyframes hero-portrait-mask {
+    from { clip-path: inset(0 0 100% 0); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__portrait-frame { clip-path: none !important; animation: none !important; }
   }
   .hero__portrait-frame img {
     width: 100%;
@@ -241,9 +275,11 @@ const fields = ['AI & Technology', 'Digital Operations', 'Technical Research'];
     }
   }
 
+  @media (max-width: 599px) {
+    .hero__headline { font-size: clamp(2.5rem, 12vw, 3rem); text-wrap: wrap; }
+  }
   @media (max-width: 420px) {
     .hero__actions .btn { flex: 1 1 100%; }
     .hero__meta { font-size: 0.75rem; letter-spacing: 0.08em; }
-    .hero__headline { font-size: clamp(3rem, 13vw, 3.5rem); }
   }
 </style>

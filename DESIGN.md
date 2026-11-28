@@ -6,6 +6,8 @@ Menggantikan versi 3.0 **Dark Technical Editorial × Industrial Monochrome** dan
 
 Standar kerja: **PRD Bab 10** berlaku untuk setiap perubahan, termasuk tugas dokumen. Daftar skill tambahan ada di **PRD Bab 10.1b** (termasuk `code-review`, `codebase-design`, `verification-before-completion`). Mode default DURING.
 
+`VISUAL-UPGRADE.md` v1.0 adalah **supplement** yang meratifikasi pengecualian sempit atas larangan Bab 2: gradient monokrom/silver yang sangat lembut dan noise `feTurbulence` opacity 0.025–0.04 hanya di hero, satu project feature, dan contact. Larangan ungu, neon, glow, blur dekoratif, dan perubahan 7 token inti tetap berlaku penuh.
+
 Reading this as: portofolio personal untuk recruiter, klien remote, dan komunitas teknis, dalam bahasa visual Swiss Editorial yang bertemu modern product design, dial **ENERGY 2 / RHYTHM 3 / MOTION 1**.
 
 ---
@@ -158,7 +160,7 @@ Screenshot proyek HARUS berasal dari aplikasi/website asli yang benar-benar berj
 - `public/screenshots/ai-detector.webp` ← screenshot asli `https://ai-detector-mahasiswa.vercel.app`
 - `public/screenshots/experiments.webp` ← bukti nyata eksperimen bila tersedia; jika tidak ada, pakai entri tipografi tanpa screenshot
 
-**Kondisi live (28 Nov 2026):** ketiga file WebP belum tersedia. Sesuai aturan di atas, image frame `<figure>` **tidak dirender** (bukan kotak abu-abu 404). Portofolio menampilkan entri tipografi dengan teks jujur: "No authentic product screenshot yet. This preview is text only." Berlaku sampai owner menyediakan screenshot asli. Tidak ada tag `<img>` yang merujuk `public/screenshots/*.webp` di HTML statis.
+**Kondisi live (diperbarui 28 Nov 2026):** `public/screenshots/dextra.webp` dan `public/screenshots/ai-detector.webp` **sudah tersedia & terpasang** berdasarkan screenshot asli aplikasi yang berjalan; keduanya tampil melalui `<figure class="project-screenshot">` dengan `<img>` dan `width`/`height` eksplisit di build Astro maupun HTML statis. `experiments.webp` tidak tersedia, sehingga entri AI & Technical Experiments tetap berupa teks jujur tanpa screenshot. Aturan di atas tetap berlaku: tidak ada recreate, mockup, atau AI image sebagai pengganti bukti asli.
 
 **DILARANG Keras:**
 - Menggambar ulang UI proyek dengan HTML/CSS/SVG untuk keperluan preview.

@@ -63,6 +63,14 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-ui: 240ms;
+
+  /* Depth (VISUAL-UPGRADE Bab 2): turunan monokrom dari 7 token inti.
+     L0 base, L1 mist, L2 silver, L3 grain. Tidak ada hex identitas baru. */
+  --depth-base: var(--canvas);
+  --depth-mist: var(--secondary-surface);
+  --depth-silver: var(--border);
+  --grain-opacity: 0.03;
+  --ambient-duration: 16s;
 }
 
 @media (min-width: 768px) {
@@ -157,31 +165,34 @@ ul, ol { padding: 0; list-style: none; }
   line-height: 1.5;
 }
 
-/* Headline tidak semua oversized: hero 56-88px desktop, section 32-48px. */
+/* VISUAL-UPGRADE Bab 3: hero 72-104px desktop, section 40-56px, h3 26-32px.
+   Peran membatasi ukuran; hanya hero yang menyentuh batas atas. */
 .h1 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(3rem, 6.2vw, 5.5rem);
+  font-size: clamp(4.5rem, 7.2vw, 6.5rem);
   line-height: 1.02;
   letter-spacing: -0.045em;
   overflow-wrap: normal;
   word-break: keep-all;
   hyphens: none;
+  text-wrap: balance;
 }
 .h2 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.25rem, 3.6vw, 3.5rem);
   line-height: 1.08;
   letter-spacing: -0.035em;
   overflow-wrap: normal;
   word-break: keep-all;
   hyphens: none;
+  text-wrap: balance;
 }
 .h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+  font-size: clamp(1.625rem, 2.6vw, 2rem);
   line-height: 1.18;
   letter-spacing: -0.025em;
 }
@@ -194,19 +205,20 @@ ul, ol { padding: 0; list-style: none; }
 }
 
 .lead {
-  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
   line-height: 1.6;
   color: var(--muted);
-  max-width: 60ch;
+  max-width: 66ch;
 }
 .body {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
   color: var(--muted);
   line-height: 1.6;
 }
 .mono {
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0.03em;
   line-height: 1.6;
 }
@@ -403,6 +415,57 @@ ul, ol { padding: 0; list-style: none; }
   to   { transform: translateX(-50%); }
 }
 
+/* --- Depth system (VISUAL-UPGRADE Bab 2) ---------------------------------
+   Empat layer monokrom: base #F4F5F7, mist #E8EBF0, silver #DDE1E7, grain.
+   Hanya tiga carve-out: hero, satu project feature, contact. Tidak dipakai di
+   About/How I Work/Experience/Skills/Education/Interests. Tanpa blur/glow.
+   R-31: grain memberi alasan tekstur kertas, bukan dekorasi yang menambah
+   warna; kontras teks diukur terhadap layer terangnya (lihat Bab 2). */
+
+.depth-surface,
+.project-card--feature,
+.contact { position: relative; isolation: isolate; }
+
+.depth-surface::after,
+.project-card--feature::after,
+.contact::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-repeat: repeat;
+}
+/* Turunan L1/L2: radial lembut, dipusatkan di belakang subjek, bukan teks. */
+.depth-ambient {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--depth-silver) 0%, var(--depth-mist) 58%, transparent 100%);
+  opacity: 0.55;
+}
+/* Contact tetap #191D26 polos: hanya grain, tanpa gradient gelap. */
+.contact::after { opacity: 0.025; }
+
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (pointer: fine) {
+    html.has-motion .depth-ambient--drift {
+      animation: ambient-drift var(--ambient-duration) ease-in-out infinite alternate;
+    }
+  }
+}
+@keyframes ambient-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(4px, -4px, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .depth-ambient--drift { animation: none !important; transform: none !important; }
+}
+
 /* --- Permukaan gelap: skills, interests, project feature, contact -------- */
 
 .surface-dark,
@@ -544,6 +607,11 @@ a, button, summary, label, .work-flow__label { touch-action: manipulation; }
 @media (max-width: 419px) {
   .status { white-space: normal; max-width: 100%; }
   .hero__actions { flex-wrap: wrap; }
+}
+/* 390px: hero kembali ke 48px seperti baseline; tidak ada overflow. */
+@media (max-width: 599px) {
+  .h1 { font-size: clamp(2.5rem, 12vw, 3rem); text-wrap: wrap; }
+  .h2 { font-size: clamp(2rem, 8vw, 2.5rem); }
 }
 
 @media (prefers-reduced-motion: no-preference) {

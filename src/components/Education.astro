@@ -2,11 +2,41 @@
 // EDUCATION & CERTIFICATIONS - kredensial akurat. Status "in issuance"
 // dipertahankan apa adanya, tidak diubah jadi "issued". Periode 2023 / 2026
 // dipertahankan utuh. Baris spesifikasi teknis memakai mono.
-const certifications = [
-  { title: 'MikroTik Certified Network Associate (MTCNA)', detail: 'RouterOS configuration, firewall filters, NAT, queue bandwidth management', badge: 'Issued 2025', pending: false },
-  { title: 'BNSP Junior Fiber Optic Cable Jointer', detail: 'National professional competency in fusion splicing and OTDR testing', badge: 'Issued 2026', pending: false },
-  { title: 'Practical Office Advance', detail: 'BPVP Surakarta · 33-day training after graduation · certificate obtained after the training', badge: 'BPVP 2026', pending: false },
-  { title: 'BNSP Practical Office Advance', detail: 'National Vocational Certification Board candidate qualification', badge: 'In issuance / printing process', pending: true },
+// Tidak ada asset sertifikat asli di public/, jadi kredensial ditampilkan
+// sebagai baris teks + garis 1px, bukan gambar dokumen rekaan (R-36, C-5).
+const credentials = [
+  {
+    category: 'Issued certification',
+    title: 'MikroTik Certified Network Associate (MTCNA)',
+    detail: 'RouterOS configuration, firewall filters, NAT, queue bandwidth management',
+    status: 'ISSUED',
+    date: '2025',
+    pending: false,
+  },
+  {
+    category: 'Issued certification',
+    title: 'BNSP Junior Fiber Optic Cable Jointer',
+    detail: 'National professional competency in fusion splicing and OTDR testing',
+    status: 'ISSUED',
+    date: '2026',
+    pending: false,
+  },
+  {
+    category: 'Completed training',
+    title: 'Practical Office Advance',
+    detail: 'BPVP Surakarta · 33-day training after graduation · certificate obtained after the training',
+    status: 'COMPLETED',
+    date: '2026',
+    pending: false,
+  },
+  {
+    category: 'In issuance',
+    title: 'BNSP Practical Office Advance',
+    detail: 'National Vocational Certification Board candidate qualification',
+    status: 'IN ISSUANCE',
+    date: 'Printing process',
+    pending: true,
+  },
 ];
 ---
 
@@ -22,7 +52,7 @@ const certifications = [
 
     <div class="edu__grid section-enter section-enter--right" style="--stagger:1">
       <div class="edu__formal">
-        <span class="eyebrow">Formal academics</span>
+        <span class="eyebrow">Formal Education</span>
         <h3 class="h3 edu__school">SMK Negeri 1 Sukoharjo</h3>
         <p class="h4">Computer and Network Engineering (TJKT)</p>
         <p class="body edu__desc">
@@ -38,17 +68,22 @@ const certifications = [
 
       <div class="edu__creds">
         <span class="eyebrow">Professional licenses and credentials</span>
-        <ul class="edu__list">
-          {certifications.map((cert) => (
-            <li class="edu__item">
-              <div>
-                <h4 class="h4">{cert.title}</h4>
-                <p class="body">{cert.detail}</p>
+        <ol class="edu__list">
+          {credentials.map((cred, index) => (
+            <li class:list={['edu__item', { 'edu__item--pending': cred.pending }]}>
+              <span class="edu__index num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <div class="edu__item-body">
+                <span class="meta-label edu__category">{cred.category}</span>
+                <h4 class="h4 edu__title">{cred.title}</h4>
+                <p class="body edu__detail">{cred.detail}</p>
               </div>
-              <span class:list={['status', { 'status--pending': cert.pending }]}>{cert.badge}</span>
+              <div class="edu__item-status">
+                <span class:list={['edu__badge', { 'edu__badge--pending': cred.pending }]}>{cred.status}</span>
+                <span class="mono edu__date">{cred.date}</span>
+              </div>
             </li>
           ))}
-        </ul>
+        </ol>
         <p class="mono edu__footnote">
           All credentials verifiable via issuing registry IDs upon inquiry.
         </p>
@@ -93,27 +128,72 @@ const certifications = [
     padding-top: 16px;
     border-top: 1px solid var(--strong);
   }
+
+  /* Credential rows: penomoran, kategori, nama, dan status berdiri sendiri
+     di atas rel 1px. Tipografi + garis menggantikan thumbnail sertifikat. */
   .edu__list {
-    margin-top: 20px;
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
     border-top: 1px solid var(--strong);
   }
   .edu__item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 4px 16px;
     padding-block: 18px;
     border-bottom: 1px solid var(--strong);
   }
-  .edu__item .body { font-size: 0.9375rem; margin-top: 4px; }
+  .edu__index {
+    color: var(--accent);
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+  .edu__item-body { min-width: 0; }
+  .edu__category { color: var(--muted); }
+  .edu__title { margin-top: 6px; }
+  .edu__detail { font-size: 0.9375rem; margin-top: 4px; max-width: 52ch; color: var(--muted); }
+  .edu__item-status {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-top: 10px;
+  }
+  /* Badteks netral: border 1px, bukan pill berwarna. Biru 1px hanya untuk
+     status proses (in issuance), sesuai aturan aksen terukur. */
+  .edu__badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .edu__badge--pending {
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+  .edu__date { font-size: 0.6875rem; color: var(--muted); }
   .edu__footnote { margin-top: 20px; color: var(--strong); }
 
   @media (min-width: 768px) {
     .edu__item {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      grid-template-columns: 36px minmax(0, 1fr) auto;
+      align-items: start;
+      column-gap: 20px;
+    }
+    .edu__item-status {
+      grid-column: 3;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      margin-top: 0;
     }
   }
   @media (min-width: 900px) {

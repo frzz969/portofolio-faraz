@@ -6,6 +6,10 @@ const [dextra, detector, experiments] = projects;
 const labelOf = (project: typeof dextra) =>
   (project.liveLabel ?? 'Live demo').replace(/\s*↗\s*$/, '').trim();
 
+// Status ringkas untuk baris pratinjau: memakai teks status yang sudah ada,
+// dipotong sebelum kurungan penjelas supaya baris tetap satu baris.
+const shortLabelOf = (project: typeof dextra) => labelOf(project).split('(')[0].trim();
+
 // Sumber data memakai em dash; yang dirender memakai separator "·" (R-02).
 const clean = (text: string) => text.replace(/\s*[\u2014\u2013]\s*/g, ' · ');
 
@@ -67,7 +71,17 @@ const governanceFlow = [
           <span class="work-strip__status">Interactive prototype</span>
         </div>
 
-        <h3 class="work-feature__title">{dextra.title}</h3>
+        <div class="work-preview-host">
+          <h3 class="work-feature__title">{dextra.title}</h3>
+          <!-- Pratinjau mikro hanya untuk pointer presisi; tautan nyata tetap
+               di work-actions, jadi ini bukan CTA tambahan (R-05). -->
+          <span class="work-preview" aria-hidden="true">
+            <span class="work-preview__rule"></span>
+            <span class="work-preview__text">VIEW LIVE DEMO ↗</span>
+            <span class="work-preview__dot"></span>
+            <span class="work-preview__status">{shortLabelOf(dextra)}</span>
+          </span>
+        </div>
         <p class="work-feature__subtitle">{clean(dextra.subtitle)}</p>
         <span class="work-rule" aria-hidden="true"></span>
 
@@ -128,15 +142,22 @@ const governanceFlow = [
 
       <div class="work-feature__right">
         <figure class="work-shot">
-          <div class="work-shot__frame">
-            <img
-              src={shot('dextra.webp')}
-              width="1440"
-              height="900"
-              loading="lazy"
-              alt="Screenshot dashboard DEXTRA asli: Executive Operations Overview dengan metrik workforce, approval queue, dan human authorization."
-            />
-          </div>
+          <button
+            class="work-shot__trigger"
+            type="button"
+            data-shot-open="dextra.webp"
+            aria-label="Open the original DEXTRA dashboard screenshot in a larger view"
+          >
+            <span class="work-shot__frame">
+              <img
+                src={shot('dextra.webp')}
+                width="1440"
+                height="900"
+                loading="lazy"
+                alt="Screenshot dashboard DEXTRA asli: Executive Operations Overview dengan metrik workforce, approval queue, dan human authorization."
+              />
+            </span>
+          </button>
           <figcaption class="meta-label">Captured from the live dashboard · 28 Nov 2026</figcaption>
         </figure>
 
@@ -188,15 +209,22 @@ const governanceFlow = [
       </div>
 
       <figure class="work-shot work-shot--wide">
-        <div class="work-shot__frame">
-          <img
-            src={shot('ai-detector.webp')}
-            width="1440"
-            height="900"
-            loading="lazy"
-            alt="Screenshot antarmuka AI Detector Mahasiswa asli: editor contoh teks dengan indikator AI 68 persen dan bagian yang ditandai."
-          />
-        </div>
+        <button
+          class="work-shot__trigger"
+          type="button"
+          data-shot-open="ai-detector.webp"
+          aria-label="Open the original AI Detector Mahasiswa screenshot in a larger view"
+        >
+          <span class="work-shot__frame">
+            <img
+              src={shot('ai-detector.webp')}
+              width="1440"
+              height="900"
+              loading="lazy"
+              alt="Screenshot antarmuka AI Detector Mahasiswa asli: editor contoh teks dengan indikator AI 68 persen dan bagian yang ditandai."
+            />
+          </span>
+        </button>
         <figcaption class="meta-label">Captured from the live demo · 28 Nov 2026</figcaption>
       </figure>
 
@@ -261,6 +289,56 @@ const governanceFlow = [
     </div>
   </div>
 </section>
+
+<!-- Lightbox: native dialog. Escape dan focus trap bawaan browser, tanpa library. -->
+<dialog class="shot-dialog" id="shotDialog" aria-label="Original project screenshot">
+  <div class="shot-dialog__inner">
+    <button class="shot-dialog__close" type="button" data-shot-close aria-label="Close screenshot preview">
+      <span aria-hidden="true"></span>
+    </button>
+    <img class="shot-dialog__img" alt="" width="1440" height="900" />
+    <p class="shot-dialog__caption meta-label"></p>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('shotDialog') as HTMLDialogElement | null;
+  const dialogImg = dialog?.querySelector<HTMLImageElement>('.shot-dialog__img');
+  const dialogCaption = dialog?.querySelector<HTMLElement>('.shot-dialog__caption');
+  const shots = {
+    'dextra.webp': {
+      alt: 'Screenshot dashboard DEXTRA asli: Executive Operations Overview dengan metrik workforce, approval queue, dan human authorization.',
+      caption: 'Captured from the live dashboard · 28 Nov 2026',
+    },
+    'ai-detector.webp': {
+      alt: 'Screenshot antarmuka AI Detector Mahasiswa asli: editor contoh teks dengan indikator AI 68 persen dan bagian yang ditandai.',
+      caption: 'Captured from the live demo · 28 Nov 2026',
+    },
+  } as const;
+
+  let opener: HTMLButtonElement | null = null;
+  document.querySelectorAll<HTMLButtonElement>('[data-shot-open]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      if (!dialog || !dialogImg || !dialogCaption || !dialog.showModal) return;
+      const name = trigger.dataset.shotOpen;
+      const data = name ? shots[name as keyof typeof shots] : undefined;
+      if (!data || !name) return;
+      opener = trigger;
+      dialogImg.src = `${import.meta.env.BASE_URL}/screenshots/${name}`;
+      dialogImg.alt = data.alt;
+      dialogCaption.textContent = data.caption;
+      dialog.showModal();
+    });
+  });
+  dialog?.querySelector('[data-shot-close]')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog?.addEventListener('close', () => {
+    opener?.focus();
+    opener = null;
+  });
+</script>
 
 <style>
   /* Permukaan terang; garis 1px dan whitespace yang membentuk ritme. */
@@ -327,6 +405,7 @@ const governanceFlow = [
   }
   .work-strip__status { color: var(--secondary-surface); }
 
+  .work-preview-host { min-width: 0; }
   .work-feature__title {
     font-family: var(--font-display);
     font-weight: 700;
@@ -338,6 +417,46 @@ const governanceFlow = [
     word-break: keep-all;
     color: var(--ink);
     margin-bottom: 12px;
+  }
+
+  /* Hover preview konsep Farline tanpa 3D: satu baris meta yang muncul di
+     bawah judul. Hanya pointer presisi, ≤220ms, tanpa perubahan layout. */
+  .work-preview {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+    min-height: 20px;
+    max-width: 100%;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .work-preview__rule {
+    flex: 0 0 18px;
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .work-preview__text { flex: 0 0 auto; color: var(--ink); }
+  .work-preview__status { overflow: hidden; text-overflow: ellipsis; }
+  .work-preview__dot {
+    width: 3px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 50%;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    @media (prefers-reduced-motion: no-preference) {
+      .work-preview-host:hover .work-preview { opacity: 1; transform: translateY(0); }
+    }
   }
   .work-feature__subtitle {
     font-family: var(--font-display);
@@ -475,9 +594,23 @@ const governanceFlow = [
   }
   .work-flow__note { color: var(--secondary); max-width: 62ch; }
 
-  /* Screenshot asli: 16/9, zoom sangat halus hanya dengan pointer presisi. */
+  /* Screenshot asli: 16/9 penuh, caption sumber di bawah frame, tanpa overlay. */
   .work-shot { margin: 0; min-width: 0; }
+  .work-shot__trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: 0;
+    border-radius: 8px;
+    cursor: zoom-in;
+    touch-action: manipulation;
+    text-align: left;
+  }
+  .work-shot__trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .work-shot__frame {
+    display: block;
     aspect-ratio: 16 / 9;
     background: var(--secondary-surface);
     border: 1px solid var(--border);
@@ -489,17 +622,86 @@ const governanceFlow = [
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 220ms var(--ease-out);
   }
-  /* Zoom sangat halus hanya pada pointer presisi; tidak di reduced-motion. */
-  @media (hover: hover) and (pointer: fine) {
-    @media (prefers-reduced-motion: no-preference) {
-      .section--work .work-shot__frame:hover img { transform: scale(1.02); }
+  /* Image reveal: clip-path dari bawah + 1.02 → 1.0. Hanya saat JS aktif
+     (html.has-motion) dan motion diizinkan; tidak menyentuh motion.css. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.has-motion .work-shot__frame img {
+      clip-path: inset(0 0 100% 0);
+      transform: scale(1.02);
+      transition: clip-path 560ms var(--ease-out), transform 560ms var(--ease-out);
+      transition-delay: calc(var(--stagger, 0) * 80ms);
+    }
+    html.has-motion .reveal.is-visible .work-shot__frame img,
+    html.has-motion .section-enter.is-visible .work-shot__frame img {
+      clip-path: inset(0 0 0 0);
+      transform: scale(1);
     }
   }
   .work-shot figcaption {
     padding-top: 10px;
     color: var(--secondary);
+  }
+
+  /* Lightbox ringan: latar #191D26, tanpa blur/glow/shadow dekoratif. */
+  .shot-dialog {
+    width: min(940px, calc(100vw - 32px));
+    max-height: calc(100svh - 32px);
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--ink);
+    color: var(--white);
+    overscroll-behavior: contain;
+  }
+  .shot-dialog::backdrop { background: rgba(25, 29, 38, 0.88); }
+  .shot-dialog__inner { position: relative; padding: 12px; }
+  .shot-dialog__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: calc(100svh - 120px);
+    object-fit: contain;
+    border-radius: 8px;
+    background: var(--secondary-surface);
+  }
+  .shot-dialog__caption { padding-top: 10px; color: var(--secondary-surface); }
+  .shot-dialog__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--white);
+    cursor: pointer;
+  }
+  .shot-dialog__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .shot-dialog__close span,
+  .shot-dialog__close span::before {
+    display: block;
+    width: 16px;
+    height: 1px;
+    background: var(--white);
+  }
+  .shot-dialog__close span { transform: rotate(45deg); }
+  .shot-dialog__close span::before { content: ""; transform: rotate(-90deg); }
+  @media (prefers-reduced-motion: no-preference) {
+    .shot-dialog[open] { animation: shot-in 200ms var(--ease-out) both; }
+  }
+  @keyframes shot-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shot-dialog[open] { animation: none !important; }
   }
 
   .work-tags {
@@ -625,6 +827,12 @@ const governanceFlow = [
   @media (prefers-reduced-motion: reduce) {
     .work-flow__name,
     .work-link .text-link__arrow,
-    .work-shot__frame img { transform: none !important; transition: none !important; }
+    .work-preview,
+    .work-shot__frame img {
+      transform: none !important;
+      clip-path: none !important;
+      transition: none !important;
+    }
+    .work-preview { display: none; }
   }
 </style>

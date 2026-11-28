@@ -73,7 +73,9 @@
     display: flex;
     align-items: center;
     position: relative;
-    padding-block: clamp(64px, 9vh, 104px) clamp(72px, 9vh, 104px);
+    /* Atas dirapikan: ~32px di desktop dari ~80px sebelumnya. Bawah tetap
+       memberi ruang scroll cue; mobile tidak berubah drastis (R-31). */
+    padding-block: clamp(32px, 6vh, 72px) clamp(72px, 9vh, 104px);
   }
   .hero__grid { display: block; position: relative; }
   .hero__copy { max-width: 1100px; }

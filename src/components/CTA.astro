@@ -105,12 +105,22 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
 
 <style>
   .contact { padding-block: clamp(80px, 11vw, 140px) clamp(56px, 8vw, 88px); }
-  .contact__head { max-width: 20ch; }
-  /* Titik akhir halaman: tipografi paling besar di situs. */
+  /* Head selebar container: headline membentang, lead tetap dibatasi 56ch.
+     Batas 20ch sebelumnya memotong kata per baris (R-31). */
+  .contact__head { max-width: 100%; min-width: 0; }
+  /* Dua baris disengaja, seperti hero. keep-all mencegah "LET'S" dan
+     "SOMETHING" dipecah; floor lebih kecil di 360px menjaga tanpa overflow. */
   .contact__title {
     margin-block: 20px 28px;
-    font-size: clamp(3rem, 8vw, 7rem);
+    font-size: clamp(2.5rem, 6.5vw, 6rem);
     line-height: 0.9;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
+  }
+  .contact__title .cta-line { display: block; }
+  @media (min-width: 600px) {
+    .contact__title { font-size: clamp(3rem, 6.5vw, 6rem); }
   }
   .contact__title .cta-line { color: var(--white); }
   .contact .lead { max-width: 56ch; }
@@ -181,7 +191,6 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
   .contact__copy { margin-top: 24px; }
 
   @media (min-width: 768px) {
-    .contact__head { max-width: 24ch; }
     .contact__grid {
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
       gap: clamp(48px, 6vw, 96px);

@@ -629,6 +629,12 @@ a, button, summary, label, .project-flow__label { touch-action: manipulation; }
 /* Headline tidak meluber di 360px: kata panjang dipecah, bukan di-clip. */
 .h1, .h2, .h3, .contact__title { overflow-wrap: break-word; }
 .hero__headline { hyphens: none; }
+/* Contact: head selebar container supaya headline tidak terpotong per kata;
+   dua baris disengaja dan kata tidak dipecah (R-31). */
+.contact__head { max-width: 100%; min-width: 0; }
+.charcoal .contact__title { word-break: keep-all; overflow-wrap: normal; hyphens: none; }
+/* Cover: spasi atas antara navbar dan metadata dirapikan. */
+.hero { padding-block-start: clamp(32px, 6vh, 72px); }
 /* .meta-label (0.75rem) dan .mono (0.8125rem) sudah >=12px dari aturan P1;
    tidak diturunkan di sini. */
 /* Badge status boleh turun baris di layar sempit (<420px). */

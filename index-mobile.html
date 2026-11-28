@@ -139,7 +139,7 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 @media(min-width:1024px){.site-nav{display:flex}.availability{display:inline-flex}.nav-toggle{display:none}.mobile-menu{display:none!important}}
 
 /* --- Hero: deep black, headline sangat besar, baris ke-2 outline --- */
-.hero{background:var(--black);color:var(--white);min-height:100svh;display:flex;align-items:center;padding-block:clamp(72px,11vw,132px) clamp(64px,9vw,120px)}
+.hero{background:var(--black);color:var(--white);min-height:100svh;display:flex;align-items:center;padding-block:clamp(32px,6vh,72px) clamp(64px,9vw,120px)}
 .hero__grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:end}
 .hero__copy{max-width:920px}
 .hero__index{color:var(--muted)}
@@ -309,9 +309,11 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 
 /* --- Contact: deep black, oversized white --- */
 .contact{padding-block:clamp(72px,11vw,132px) clamp(56px,8vw,96px)}
-.contact__head{max-width:68ch}
-.contact__title{margin-block:20px 28px;font-size:clamp(2.5rem,8vw,7rem);line-height:.9;letter-spacing:-.05em}
+.contact__head{max-width:100%;min-width:0}
+.contact__title{margin-block:20px 28px;font-size:clamp(2.5rem,6.5vw,6rem);line-height:.9;letter-spacing:-.05em;overflow-wrap:normal;word-break:keep-all;hyphens:none}
+.contact__title .cta-line{display:block}
 .contact__title .cta-line{color:var(--white)}
+@media(min-width:600px){.contact__title{font-size:clamp(3rem,6.5vw,6rem)}}
 .contact__grid{display:grid;grid-template-columns:1fr;gap:48px;margin-top:clamp(48px,7vw,88px);padding-top:32px;border-top:1px solid var(--panel)}
 .contact__chips{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:16px;color:var(--muted)}
 .contact__chips li{border-bottom:1px solid var(--panel);padding-bottom:2px}
@@ -415,6 +417,7 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 .btn:focus-visible,summary:focus-visible,.site-footer a:focus-visible{outline:2px solid var(--white);outline-offset:3px}
 .btn--light:active{transform:translateY(1px)}
 .h1,.h2,.h3,.contact__title{overflow-wrap:break-word}
+.charcoal .contact__title{overflow-wrap:normal;word-break:keep-all;hyphens:none}
 @media(max-width:419px){.status{white-space:normal;max-width:100%}.hero__actions{flex-wrap:wrap}}
 
 /* Magnetic P5 hanya pointer presisi + no-preference, maks 4px. */
@@ -497,8 +500,8 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
       </div>
       <div class="project-card__body">
         <figure class="project-screenshot">
-          <div class="screenshot-frame"><img src="./screenshots/dextra.webp" width="1440" height="900" loading="lazy" alt="Screenshot antarmuka DEXTRA asli: halaman landing dengan dashboard overview, empat spesialis AI, dan validator deterministik."></div>
-          <figcaption class="meta-label">Captured from the live prototype · 28 Nov 2026</figcaption>
+          <div class="screenshot-frame"><img src="./screenshots/dextra.webp" width="1440" height="900" loading="lazy" alt="Screenshot dashboard DEXTRA asli: Executive Operations Overview dengan metrik workforce, approval queue, dan human authorization."></div>
+          <figcaption class="meta-label">Captured from the live dashboard · 28 Nov 2026</figcaption>
         </figure>
         <p class="body project-card__desc">An interactive prototype for governed AI operations, not an enterprise production deployment. Four specialists cover Finance, HR, Inventory, and Operations. AI reads, analyzes, and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an audit record. The Policy Validator is a deterministic governance engine, not an AI agent.</p>
         <dl class="project-facts"><div><dt>Problem</dt><dd>Operational work spread across tools without clear authority or a traceable record of execution.</dd></div><div><dt>Contribution</dt><dd>Designed around specialized AI workers, human-defined authority, and approval-based execution.</dd></div><div><dt>Governance</dt><dd>AI reads, analyzes and recommends. Any action that changes data or the outside world requires an approved plan, a human mandate, and an <strong>audit record</strong>. Four specialists: Finance, HR, Inventory, Operations. The <strong>Policy Validator</strong> is a deterministic governance engine, not an AI agent. Interactive prototype, not a production enterprise system.</dd></div><div><dt>Stack</dt><dd>Next.js, React, Python, FastAPI, MCP, deterministic policy validation, audit trails.</dd></div></dl>

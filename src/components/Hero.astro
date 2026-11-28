@@ -130,6 +130,9 @@
   .hero__headline {
     margin-block: 28px 28px;
     color: var(--white);
+    /* Override .h1 global (dipakai 404 juga): hero dibatasi 120px supaya
+       "EXPLORING AI." tetap satu baris di 1366/1440px tanpa memecah kata. */
+    font-size: clamp(3.5rem, 7.5vw, 7.5rem);
     overflow-wrap: normal;
     word-break: keep-all;
     hyphens: none;
@@ -197,14 +200,16 @@
     .hero__portrait {
       position: absolute;
       right: 0;
-      top: 50%;
-      width: clamp(240px, 26vw, 360px);
+      /* Portrait naik dari 50% ke 38% supaya seimbang dengan headline yang
+         kini lebih pendek; tidak mendorong CTA karena tetap absolute. */
+      top: 38%;
+      width: clamp(220px, 24vw, 320px);
       max-width: none;
       margin: 0;
       transform: translate3d(var(--hero-px, 0px), calc(-50% + var(--hero-py, 0px)), 0);
       will-change: transform;
     }
-    .hero__copy { padding-right: clamp(220px, 22vw, 320px); }
+    .hero__copy { padding-right: clamp(200px, 18vw, 260px); }
     .hero__portrait figcaption { text-align: right; }
     .hero__availability { margin-top: 40px; }
     .hero__scroll { position: absolute; bottom: -56px; left: 0; margin-top: 0; }

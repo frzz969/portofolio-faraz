@@ -1,25 +1,18 @@
-# Project screenshots — WAITING FOR REAL CAPTURES
+# Project screenshots
 
-Folder ini sengaja KOSONG dari gambar. Screenshot proyek harus diambil dari aplikasi asli yang benar-benar berjalan.
+Screenshot asli sudah tersedia dan terpasang di portfolio.
 
-## Yang harus disediakan owner
+## Yang tersedia
 
-1. `dextra.webp` — screenshot asli dari https://dextra-office-agent.vercel.app
-2. `ai-detector.webp` — screenshot asli dari https://ai-detector-mahasiswa.vercel.app
-3. `experiments.webp` — bukti nyata eksperimen bila tersedia (opsional)
+| File | Sumber | Capture |
+| --- | --- | --- |
+| `dextra.webp` | https://dextra-office-agent.vercel.app | 28 Nov 2026 |
+| `ai-detector.webp` | https://ai-detector-mahasiswa.vercel.app | 28 Nov 2026 |
 
-## Cara cepat dari HPAndroid
+Keduanya berasal dari PNG yang diambil dari aplikasi yang benar-benar berjalan di Chromium headless, lalu dikonversi ke WebP (1440 × 900, kualitas 80). Isi screenshot tidak digambar ulang dan tidak dipalsukan.
 
-1. Buka URL aplikasi di Chrome.
-2. Tunggu sampai benar-benar termuat.
-3. Ambil screenshot layar (perlu terlihat UI aslinya, bukan halaman kosong / loading).
-4. Simpan ke `/sdcard/Download/screenshots/` dengan nama di atas.
-5. Bilang ke OpenCode "screenshot sudah siap", lalu saya optimasi ke WebP, pasang ke `public/screenshots/`, dan verifikasi.
+`dextra.webp` menampilkan landing DEXTRA dengan tampilan dashboard asli di bagian bawah. `ai-detector.webp` menampilkan editor contoh teks dengan hasil analisis 68% beserta bagian yang ditandai. Angka 68% adalah contoh pada halaman tersebut, bukan metrik produk yang diklaim.
 
-## DILARANG
+## Experimental
 
-- Menggambar ulang UI proyek dengan HTML/CSS/SVG.
-- Memakai AI image / mockup / screenshot Dribbble/iF Design.
-- Menyajikan screenshot palsu sebagai produk jadi.
-
-Jika tidak ada screenshot asli, portfolio akan menampilkan entri tipografi tanpa gambar dan keterbatasan ini dilaporkan.
+Tidak ada screenshot publik untuk `AI & Technical Experiments`, sehingga entri itu sengaja tetap berupa teks. Jangan menggambar ulang UI proyek dengan HTML/CSS/SVG, memakai AI image / mockup / screenshot Dribbble, atau menyajikan screenshot palsu sebagai produk jadi.

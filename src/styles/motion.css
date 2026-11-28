@@ -264,3 +264,22 @@ a:active, button:active, summary:active { opacity: 0.74; }
   }
   .text-link:hover { border-bottom-color: var(--border); }
 }
+
+/* --- Screenshot asli: zoom ringan saat hover pointer presisi ---------------
+   Fungsinya memberi feedback bahwa gambar bisa dibuka lebih besar; tidak
+   berjalan di sentuh, tidak berjalan saat reduced-motion. Fokus keyboard
+   tidak disentuh: frame bukan elemen interaktif dan tidak menutup outline
+   radio/tautan di sekitarnya. */
+.screenshot-frame img { transition: transform 420ms var(--ease-reveal); }
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (pointer: fine) {
+    .screenshot-frame:hover img { transform: scale(1.03); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screenshot-frame img,
+  .screenshot-frame:hover img {
+    transform: none !important;
+    transition: none !important;
+  }
+}

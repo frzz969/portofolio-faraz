@@ -2,7 +2,7 @@
 import { projects } from '../data/projects';
 
 // SELECTED PROJECTS - DEXTRA sebagai case study tipografis, bukan paragraf.
-// Tidak ada screenshot rekaan; preview jujur berupa teks + alur governance.
+// Dua screenshot berasal dari capture asli aplikasi live; Experiments tetap teks.
 const [dextra, detector, experiments] = projects;
 
 // liveLabel berasal dari data; buang panah dekoratif dari accessible name.
@@ -63,7 +63,7 @@ const governanceFlow = [
 
     <!-- FEATURE: DEXTRA sebagai case study satu halaman penuh di #080808.
          Judul oversized, status mono jujur, alur governance interaktif.
-         Tanpa preview UI rekaan; keterbatasan screenshot dinyatakan jujur. -->
+         Screenshot asli dari aplikasi live; frame datar, tanpa dekorasi. -->
     <article class="project-card project-card--feature reveal" style="--stagger:0">
       <header class="project-card__head">
         <div class="project-card__top">
@@ -75,7 +75,18 @@ const governanceFlow = [
       </header>
 
       <div class="project-card__body">
-        <p class="mono project-preview-note">Authentic product screenshot pending · preview shown as text only.</p>
+        <figure class="project-screenshot">
+          <div class="screenshot-frame">
+            <img
+              src="./screenshots/dextra.webp"
+              width="1440"
+              height="900"
+              loading="lazy"
+              alt="Screenshot antarmuka DEXTRA asli: halaman landing dengan dashboard overview, empat spesialis AI, dan validator deterministik."
+            />
+          </div>
+          <figcaption class="meta-label">Captured from the live prototype · 28 Nov 2026</figcaption>
+        </figure>
         <p class="body project-card__desc">{clean(dextra.description)}</p>
 
         <dl class="project-facts">
@@ -176,7 +187,18 @@ const governanceFlow = [
         </div>
         <h3 class="h3 project-card__title">{detector.title}</h3>
         <p class="h4 project-card__subtitle">{detector.subtitle}</p>
-        <p class="mono project-preview-note">Authentic product screenshot pending · preview shown as text only.</p>
+        <figure class="project-screenshot">
+          <div class="screenshot-frame">
+            <img
+              src="./screenshots/ai-detector.webp"
+              width="1440"
+              height="900"
+              loading="lazy"
+              alt="Screenshot antarmuka AI Detector Mahasiswa asli: editor contoh teks dengan indikator AI 68 persen dan bagian yang ditandai."
+            />
+          </div>
+          <figcaption class="meta-label">Captured from the live demo · 28 Nov 2026</figcaption>
+        </figure>
 
         <p class="body project-card__desc">{clean(detector.description)}</p>
 
@@ -310,6 +332,26 @@ const governanceFlow = [
     background: rgba(255, 255, 255, 0.12);
   }
   .project-card__body { min-width: 0; }
+
+  /* Screenshot asli: frame 16/9 datar. Caption mono di bawah gambar,
+     bukan overlay, supaya tidak menutupi bukti visual. */
+  .project-screenshot { margin: 0 0 24px; min-width: 0; }
+  .screenshot-frame {
+    aspect-ratio: 16 / 9;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+  .screenshot-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .project-screenshot figcaption {
+    padding-top: 10px;
+    color: var(--muted);
+  }
 
   /* --- Alur governance: radio CSS-only, keyboard + touch ------------------ */
   .project-flow {

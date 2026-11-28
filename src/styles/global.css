@@ -617,3 +617,26 @@ a, button, summary, label, .project-flow__label { touch-action: manipulation; }
     }
   }
 }
+
+/* --- Screenshot proyek asli (28 Nov 2026) ---------------------------------
+   Frame 16/9, tanpa shadow/glow/border radius. Caption di luar frame supaya
+   gambar tetap penuh. Zoom saat hover di motion.css, bukan di sini. */
+.project-screenshot { margin: 0 0 24px; min-width: 0; }
+.screenshot-frame {
+  aspect-ratio: 16 / 9;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.screenshot-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.project-screenshot figcaption {
+  padding-top: 10px;
+  color: var(--muted);
+}
+.charcoal .project-screenshot figcaption,
+.surface-dark .project-screenshot figcaption { color: var(--muted); }

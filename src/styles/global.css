@@ -19,6 +19,31 @@
 
    Dial (antislop): ENERGY 2 / RHYTHM 3 / MOTION 2. */
 
+/* Display editorial: Instrument Serif (OFL, instrument/instrument-serif).
+   Satu "voice" untuk headline; sans & mono tetap di belakang layar. */
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/instrument-serif-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+/* Body & UI: Geist (OFL, vercel/geist-font) — technical, rapat, terbaca. */
+@font-face {
+  font-family: "Geist Variable";
+  src: url("/fonts/geist-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono Variable";
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+/* Fallback existing dipertahankan (tidak dihapus, aman untuk regresi). */
 @font-face {
   font-family: "Space Grotesk Variable";
   src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
@@ -52,9 +77,9 @@
   --strong: var(--muted);
   --white: #FFFFFF;
 
-  --font-display: "Space Grotesk Variable", "Space Grotesk", sans-serif;
-  --font-body: "Inter Variable", Inter, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: "Instrument Serif", "Space Grotesk Variable", Georgia, serif;
+  --font-body: "Geist Variable", "Inter Variable", Inter, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --page-max: 1200px;
   --gutter: 20px;
@@ -466,34 +491,56 @@ ul, ol { padding: 0; list-style: none; }
   .depth-ambient--drift { animation: none !important; transform: none !important; }
 }
 
-/* --- Permukaan gelap: skills, interests, project feature, contact -------- */
+/* --- Permukaan ------------------------------------------------------------ */
+/* Skills & Interests dibaca di permukaan terang: hitam tidak boleh beruntun
+   sebelum Contact (R-31: kontras dipakai sekali di penutup, bukan per section). */
 
-.surface-dark,
+.surface-dark {
+  background: var(--surface);
+  color: var(--ink);
+  border-top: 1px solid var(--border);
+}
+
+/* Contact = satu-satunya blok gelap besar. Transisi masuk memakai gradasi
+   monochrome mist -> charcoal, bukan pemotongan warna mendadak. */
 .charcoal {
   --muted: #E8EBF0;
   --strong: #DDE1E7;
   --secondary: #E8EBF0;
   background: var(--ink);
   color: var(--white);
-  border-top: 1px solid var(--border);
+  border-top: 0;
+  position: relative;
 }
-.charcoal { background: var(--ink); border-top-color: var(--ink); }
+.charcoal::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: clamp(72px, 9vw, 120px);
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--depth-mist) 0%, var(--ink) 100%);
+  opacity: 0.9;
+}
+.charcoal .eyebrow { color: var(--white); }
 
-.surface-dark .h2,
-.surface-dark .h3,
 .charcoal .h2,
 .charcoal .h3 { color: var(--white); }
-.surface-dark .num,
 .charcoal .num { color: var(--secondary-surface); }
-
-.surface-dark .status,
-.surface-dark .tag,
-.surface-dark .text-link,
 .charcoal .status,
 .charcoal .tag,
 .charcoal .text-link { border-color: var(--border); color: var(--white); }
-.surface-dark .status--solid,
 .charcoal .status--solid { background: var(--white); border-color: var(--white); color: var(--ink); }
+
+/* Skills & Interests di permukaan terang: teks gelap, nomor pakai secondary,
+   garis tetap 1px supaya konsisten dengan section terang lainnya. */
+.surface-dark .h2,
+.surface-dark .h3 { color: var(--ink); }
+.surface-dark .num { color: var(--secondary); }
+.surface-dark .status,
+.surface-dark .tag,
+.surface-dark .text-link { border-color: var(--border); color: var(--ink); }
 
 /* --- Utilitas ------------------------------------------------------------- */
 
@@ -581,7 +628,7 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
 .text-link:focus-visible::after { transform: scaleX(1); }
 .text-link:hover,
 .text-link:focus-visible { border-bottom-color: transparent; }
-.surface-dark .text-link::after,
+.surface-dark .text-link::after { background: var(--accent); }
 .charcoal .text-link::after { background: var(--white); }
 
 .btn:focus-visible,
@@ -591,10 +638,10 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
   outline-offset: 3px;
 }
 .charcoal .btn:focus-visible,
-.surface-dark .btn:focus-visible,
 .charcoal .contact__copy:focus-visible {
   outline-color: var(--white);
 }
+.surface-dark .btn:focus-visible { outline-color: var(--accent); }
 .btn--ghost:active,
 .btn--light:active { transform: translateY(1px); }
 a, button, summary, label, .work-flow__label { touch-action: manipulation; }

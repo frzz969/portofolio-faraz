@@ -70,9 +70,10 @@ const navItems = [
     <link rel="alternate" hreflang="en" href={canonical} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="preload" as="font" type="font/woff2" href="./fonts/space-grotesk-latin.woff2" crossorigin />
-    <!-- Inter dipakai --font-body di seluruh halaman; kedua font utama di-preload. -->
-    <link rel="preload" as="font" type="font/woff2" href="./fonts/inter-latin.woff2" crossorigin />
+    <!-- Tiga face aktif: display Instrument Serif, body Geist, mono Geist Mono. -->
+    <link rel="preload" as="font" type="font/woff2" href="./fonts/instrument-serif-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./fonts/geist-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./fonts/geist-mono-latin.woff2" crossorigin />
     <!-- Hint render-blocking untuk #main sengaja tidak dipakai: menunggu
          konten utama menunda first paint tanpa manfaat di halaman ini. -->
     <!-- Motion hanya diaktifkan kalau JS benar-benar jalan. Teks default terlihat. -->
@@ -269,12 +270,44 @@ const navItems = [
               closest = target;
             }
           });
+          // FLIP marker (technique from hexagoncircle/scrollspy-nav, MIT):
+          // satu hairline biru meluncur ke link aktif, bukan underline statis.
+          const navList = document.querySelector('.site-nav');
+          let marker = navList?.querySelector('.site-nav__marker');
+          if (navList && !marker) {
+            marker = document.createElement('span');
+            marker.className = 'site-nav__marker';
+            marker.setAttribute('aria-hidden', 'true');
+            navList.appendChild(marker);
+          }
+          let previous = links.find((link) => link.classList.contains('is-active'));
           links.forEach((link) => {
             const active = !!closest && link.dataset.nav === closest.id;
             link.classList.toggle('is-active', active);
             if (active) link.setAttribute('aria-current', 'location');
             else link.removeAttribute('aria-current');
           });
+          const current = links.find((link) => link.classList.contains('is-active'));
+          if (marker && current) {
+            const first = previous?.getBoundingClientRect();
+            const last = current.getBoundingClientRect();
+            const deltaX = first ? first.left - last.left : 0;
+            const canMotion = document.documentElement.classList.contains('has-motion')
+              && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              && typeof marker.animate === 'function';
+            marker.style.left = `${last.left - navList.getBoundingClientRect().left}px`;
+            marker.style.width = `${last.width}px`;
+            if (canMotion && deltaX !== 0) {
+              marker.animate(
+                [
+                  { transform: `translateX(${deltaX}px) scaleX(${first.width / Math.max(last.width, 1)})` },
+                  { transform: 'translateX(0) scaleX(1)' },
+                ],
+                { duration: 220, easing: 'cubic-bezier(0.25, 1, 0.5, 1)', fill: 'none' }
+              );
+            }
+            previous = current;
+          }
         };
         if (targets.length) {
           setActiveNav();
@@ -561,7 +594,7 @@ const navItems = [
         letter-spacing: -0.015em;
         color: var(--ink);
       }
-      .site-nav { display: none; align-items: center; gap: 4px; }
+      .site-nav { display: none; align-items: center; gap: 4px; position: relative; }
       .site-nav__link {
         position: relative;
         display: inline-flex;
@@ -589,7 +622,19 @@ const navItems = [
       }
       .site-nav__link:hover,
       .site-nav__link.is-active { color: var(--ink); }
-      .site-nav__link.is-active::after { transform: scaleX(1); }
+      /* FLIP hairline menggantikan ::after statis: satu garis biru yang
+         meluncur antar link aktif (sumber: hexagoncircle/scrollspy-nav, MIT). */
+      .site-nav__link::after { display: none; }
+      .site-nav__marker {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        pointer-events: none;
+        transform-origin: left;
+      }
 
       .site-header__end { display: inline-flex; align-items: center; gap: 12px; }
       .availability {

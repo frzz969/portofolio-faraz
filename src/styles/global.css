@@ -539,7 +539,7 @@ a, button, summary, label, .work-flow__label { touch-action: manipulation; }
 .h1, .h2, .h3 { overflow-wrap: normal; word-break: keep-all; }
 .contact__head { max-width: 100%; min-width: 0; }
 .charcoal .contact__title { word-break: keep-all; overflow-wrap: normal; hyphens: none; }
-.hero { padding-block-start: clamp(32px, 6vh, 72px); }
+/* Padding hero dimiliki Hero.astro; jangan timpa di sini. */
 
 @media (max-width: 419px) {
   .status { white-space: normal; max-width: 100%; }

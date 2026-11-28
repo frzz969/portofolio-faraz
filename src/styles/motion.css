@@ -2,17 +2,30 @@
    motion.css - gerak yang melayani hierarki, bukan wallpaper.
    Dial MOTION 2: stagger saat masuk + transisi UI. Tanpa GSAP/Framer.
    Semua motion non-essential berada di dalam prefers-reduced-motion:no-preference.
-   Durasi 200-420ms, ease-out, satu arah, tanpa loop tak berujung
-   (kecuali marquee yang memiliki alasan dan bisa dimatikan).
+   Entrance hero/section 300-550ms, UI dan hover 170-240ms, ease-out, satu arah,
+   tanpa loop tak berujung (kecuali marquee yang bisa dimatikan).
    ========================================================================== */
 
 :root {
   --dur-micro: 170ms;
   /* --dur-ui didefinisikan sekali di global.css (240ms). */
-  --dur-reveal: 360ms;
-  --dur-line: 420ms;
+  --dur-reveal: 500ms;
+  --dur-line: 300ms;
   --ease-ui: cubic-bezier(0.2, 0, 0, 1);
   --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Urutan hero: tiap elemen selesai paling lambat 1200ms. Angka ini sengaja
+     eksplisit supaya timing bisa diaudit tanpa membaca keyframe satu per satu. */
+  --hero-delay-nav: 0ms;
+  --hero-delay-name: 150ms;
+  --hero-delay-headline: 300ms;
+  --hero-delay-portrait: 450ms;
+  --hero-delay-role: 500ms;
+  --hero-delay-lead: 600ms;
+  --hero-delay-meta: 700ms;
+  --hero-delay-actions: 700ms;
+  --hero-delay-fields: 1000ms;
+  --hero-delay-scroll: 1150ms;
 }
 
 /* View transition halaman: tetap, tapi hanya saat motion diizinkan. */
@@ -25,33 +38,90 @@
   }
 }
 
-/* --- Hero: clip-path reveal per baris -------------------------------------
+/* --- Reading progress: informasi posisi baca, bukan dekorasi ----------------
+   Satu garis 2px di tepi atas viewport, di bawah navbar. Lebar mengikuti
+   --scroll-progress dari scheduler rAF yang sama dengan timeline/parallax.
+   Tidak memakai transisi: progres adalah fungsi langsung dari scroll, dan
+   transisi akan membuat angkanya tertinggal. Tetap tampil saat reduced-motion. */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 49;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* --- Navbar siap dipakai: transisi masuk 200ms, bukan loading overlay ------
+   Default tetap terlihat. Hanya html.has-motion yang boleh menyembunyikan
+   sementara sebelum JS memberi .is-ready di baris pertama eksekusi. */
+html.has-motion .site-header:not(.is-ready) {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+html.has-motion .site-header.is-ready {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Hero: urutan masuk, satu gerak per elemen -----------------------------
    PROGRESSIVE ENHANCEMENT: teks terlihat secara default. Animasi hanya aktif
    setelah JS menambahkan .has-motion di <html>. Tanpa JS / reduced-motion
-   semua baris tampil utuh. Stagger 95ms, durasi 420ms, sekali, tanpa loop. */
+   semua elemen tampil utuh. Baris pertama (nama) 150-450ms, baris kedua
+   (headline) 300-850ms; sisanya bertumpang tindih dan selesai <=1200ms. */
 @media (prefers-reduced-motion: no-preference) {
   html.has-motion .hero-line {
     display: block;
     opacity: 0;
     clip-path: inset(0 0 100% 0);
-    transform: translateY(24px);
-    animation: hero-line-in var(--dur-line) var(--ease-reveal) both;
-    animation-delay: calc(90ms + var(--i, 0) * 95ms);
+    transform: translateY(16px);
+    animation: hero-line-in var(--hero-line-dur, var(--dur-line)) var(--ease-reveal) both;
+    animation-delay: var(--hero-line-delay, var(--hero-delay-name));
+  }
+  html.has-motion .hero-line--headline {
+    --hero-line-delay: var(--hero-delay-headline);
+    --hero-line-dur: 550ms;
   }
   html.has-motion .hero-fade {
     opacity: 0;
-    transform: translateY(24px);
-    animation: hero-fade-in var(--dur-reveal) var(--ease-reveal) both;
-    animation-delay: 380ms;
+    transform: translateY(16px);
+    animation: hero-fade-in var(--hero-fade-dur, var(--dur-reveal)) var(--ease-reveal) both;
+    animation-delay: var(--hero-fade-delay, var(--hero-delay-meta));
+  }
+  /* Portrait memakai transform untuk parallax pointer. Animasi masuknya
+     hanya opacity supaya fill-mode tidak mengunci translate3d dari Hero. */
+  html.has-motion .hero-fade--portrait {
+    opacity: 0;
+    animation: hero-fade-only 550ms var(--ease-reveal) var(--hero-delay-portrait) both;
+  }
+  html.has-motion .hero-fade--role { --hero-fade-delay: var(--hero-delay-role); }
+  html.has-motion .hero-fade--lead { --hero-fade-delay: var(--hero-delay-lead); }
+  html.has-motion .hero-fade--meta { --hero-fade-delay: var(--hero-delay-meta); }
+  html.has-motion .hero-fade--actions { --hero-fade-delay: var(--hero-delay-actions); }
+  html.has-motion .hero-fade--fields {
+    --hero-fade-delay: var(--hero-delay-fields);
+    --hero-fade-dur: 200ms;
+  }
+  html.has-motion .hero-fade--scroll {
+    --hero-fade-delay: var(--hero-delay-scroll);
+    --hero-fade-dur: 50ms;
   }
 }
 @keyframes hero-line-in {
-  from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(24px); }
+  from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(16px); }
   to   { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0); }
 }
 @keyframes hero-fade-in {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-fade-only {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* --- CTA: reveal saat section contact masuk viewport ---------------------- */
@@ -62,7 +132,7 @@
     transform: translateY(18px);
     transition: opacity var(--dur-reveal) var(--ease-reveal),
                 transform var(--dur-reveal) var(--ease-reveal);
-    transition-delay: calc(80ms + var(--i, 0) * 90ms);
+    transition-delay: calc(60ms + var(--i, 0) * 90ms);
   }
   html.has-motion .contact.is-reached .cta-line {
     opacity: 1;
@@ -158,10 +228,10 @@ a:active, button:active, summary:active { opacity: 0.74; }
     opacity: 0;
     clip-path: inset(0 0 100% 0);
     transform: translateY(24px);
-    transition: opacity 360ms var(--ease-reveal),
-                clip-path 360ms var(--ease-reveal),
-                transform 360ms var(--ease-reveal);
-    transition-delay: calc(80ms + var(--stagger, 0) * 100ms);
+    transition: opacity var(--dur-reveal) var(--ease-reveal),
+                clip-path var(--dur-reveal) var(--ease-reveal),
+                transform var(--dur-reveal) var(--ease-reveal);
+    transition-delay: calc(60ms + var(--stagger, 0) * 100ms);
   }
   html.has-motion .project-card--feature.is-visible,
   html.has-motion .project-pair .project-card.is-visible {
@@ -180,10 +250,10 @@ a:active, button:active, summary:active { opacity: 0.74; }
     opacity: 0;
     clip-path: inset(0 0 8% 0);
     transform: translateY(24px);
-    transition: opacity 380ms var(--ease-reveal),
-                clip-path 380ms var(--ease-reveal),
-                transform 380ms var(--ease-reveal);
-    transition-delay: calc(var(--stagger, 0) * 100ms);
+    transition: opacity var(--dur-reveal) var(--ease-reveal),
+                clip-path var(--dur-reveal) var(--ease-reveal),
+                transform var(--dur-reveal) var(--ease-reveal);
+    transition-delay: calc(60ms + var(--stagger, 0) * 100ms);
   }
   html.has-motion .section-enter--left { transform: translate(-12px, 24px); }
   html.has-motion .section-enter--right { transform: translate(12px, 24px); }
@@ -221,6 +291,7 @@ a:active, button:active, summary:active { opacity: 0.74; }
   }
   .hero-line,
   .hero-fade,
+  .hero-line--headline,
   .cta-line,
   .reveal,
   .section-enter,
@@ -229,10 +300,26 @@ a:active, button:active, summary:active { opacity: 0.74; }
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
+    animation: none !important;
   }
+  /* Portrait punya transform komposisi dari Hero (translate3d + -50%).
+     Reduced-motion hanya mematikan animasi masuknya, bukan transform itu. */
+  .hero-fade--portrait {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .site-header,
+  html.has-motion .site-header:not(.is-ready) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  /* Progress bar tetap informasi: hanya animasinya yang dimatikan, bukan
+     skala yang merepresentasikan posisi baca. */
+  .reading-progress { transition: none !important; }
   .about__num { transform: none !important; }
-  .project-flow__name,
-  .project-flow__arrow,
+  .work-flow__name,
+  .work-flow__arrow,
   .text-link__arrow { transform: none !important; }
   .marquee-track { animation: none !important; }
   .timeline__progress { height: calc(100% - 12px) !important; transform: none !important; }
@@ -270,7 +357,7 @@ a:active, button:active, summary:active { opacity: 0.74; }
    berjalan di sentuh, tidak berjalan saat reduced-motion. Fokus keyboard
    tidak disentuh: frame bukan elemen interaktif dan tidak menutup outline
    radio/tautan di sekitarnya. */
-.screenshot-frame img { transition: transform 420ms var(--ease-reveal); }
+.screenshot-frame img { transition: transform 240ms var(--ease-ui); }
 @media (prefers-reduced-motion: no-preference) {
   @media (hover: hover) and (pointer: fine) {
     .screenshot-frame:hover img { transform: scale(1.03); }

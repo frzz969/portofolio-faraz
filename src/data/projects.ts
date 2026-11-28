@@ -8,6 +8,7 @@ export interface Project {
   visualPlaceholder: string;
   liveUrl?: string;
   liveLabel?: string;
+  caseStudyHref?: string;
 }
 
 export const projects: Project[] = [
@@ -29,6 +30,7 @@ export const projects: Project[] = [
     status: 'BUILT',
     liveUrl: 'https://dextra-office-agent.vercel.app',
     liveLabel: 'Live demo (prototype / demo interaktif) ↗',
+    caseStudyHref: `${import.meta.env.BASE_URL}/case-study/dextra`,
     visualPlaceholder:
       'Ilustrasi arsitektur lokal, bukan screenshot produk asli.',
   },
@@ -48,6 +50,7 @@ export const projects: Project[] = [
     status: 'LIVE DEMO',
     liveUrl: 'https://ai-detector-mahasiswa.vercel.app',
     liveLabel: 'Live demo ↗',
+    caseStudyHref: `${import.meta.env.BASE_URL}/case-study/ai-detector`,
     visualPlaceholder:
       'Ilustrasi antarmuka lokal, bukan tangkapan layar produk pihak ketiga.',
   },

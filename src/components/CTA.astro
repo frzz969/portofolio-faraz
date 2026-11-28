@@ -1,5 +1,5 @@
 ---
-// CONTACT - deep black #080808, tipografi putih oversized. SATU CTA primer
+// CONTACT: dark #191D26, lanjutan langsung ke footer. SATU CTA primer
 // (email). Semua tautan lain secondary. Copy email tetap fungsional.
 const email = 'farasfirdaus564@gmail.com';
 const phone = '+62 882-3834-9814';
@@ -10,10 +10,10 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
 <section class="contact charcoal" id="contact">
   <div class="container">
     <div class="contact__head">
-      <span class="eyebrow">08 / Invitation</span>
+      <span class="eyebrow"><span class="eyebrow__num">06</span> / Contact</span>
       <h2 class="h2 contact__title">
-        <span class="cta-line" style="--i:0">LET'S BUILD</span>
-        <span class="cta-line" style="--i:1">SOMETHING REAL.</span>
+        <span class="cta-line" style="--i:0">Have a project or</span>
+        <span class="cta-line" style="--i:1">opportunity in mind?</span>
       </h2>
       <p class="lead">
         I am interested in learning, collaborating, and contributing to meaningful work.
@@ -104,28 +104,36 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
 </script>
 
 <style>
+  /* Nomor putih di dark surface; hairline biru 1px, bukan badge. */
+  .eyebrow__num {
+    position: relative;
+    color: var(--white);
+  }
+  .eyebrow__num::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
   .contact { padding-block: clamp(80px, 11vw, 140px) clamp(56px, 8vw, 88px); }
-  /* Head selebar container: headline membentang, lead tetap dibatasi 56ch.
-     Batas 20ch sebelumnya memotong kata per baris (R-31). */
   .contact__head { max-width: 100%; min-width: 0; }
-  /* Dua baris disengaja, seperti hero. keep-all mencegah "LET'S" dan
-     "SOMETHING" dipecah; floor lebih kecil di 360px menjaga tanpa overflow. */
+  /* Headline 32-48px desktop, dua baris disengaja, kata tidak dipecah.
+     Floor lebih kecil di 360px menjaga tanpa overflow (R-31). */
   .contact__title {
     margin-block: 20px 28px;
-    font-size: clamp(2.5rem, 6.5vw, 6rem);
-    line-height: 0.9;
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    line-height: 1.1;
     overflow-wrap: normal;
     word-break: keep-all;
     hyphens: none;
   }
-  .contact__title .cta-line { display: block; }
-  @media (min-width: 600px) {
-    .contact__title { font-size: clamp(3rem, 6.5vw, 6rem); }
-  }
-  .contact__title .cta-line { color: var(--white); }
-  .contact .lead { max-width: 56ch; }
-  /* Satu CTA primer: invert penuh saat hover/focus, naik 1px. State fokus
-     memakai putih di atas deep black, tanpa warna baru (R-31). */
+  .contact__title .cta-line { display: block; color: var(--white); }
+  .contact .lead { max-width: 60ch; }
+  /* Satu CTA primer: teks gelap di atas putih, fokus putih di dark surface. */
   .contact__primary { margin-top: 32px; }
   .contact__primary:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
   @media (hover: hover) and (pointer: fine) {
@@ -171,7 +179,7 @@ const arrangements = ['Remote', 'Work from anywhere', 'Hybrid', 'On-site in Indo
     min-height: 56px;
     padding-block: 12px;
     border-bottom: 1px solid var(--strong);
-    transition: padding-left var(--dur-ui) var(--ease-ui);
+    transition: padding-left var(--dur-ui) var(--ease-out);
   }
   .contact__link:hover { padding-left: 8px; }
   .contact__link:focus-visible { outline-color: var(--white); }

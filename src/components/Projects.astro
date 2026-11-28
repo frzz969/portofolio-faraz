@@ -1,21 +1,17 @@
 ---
 import { projects } from '../data/projects';
 
-// SELECTED PROJECTS - DEXTRA sebagai case study tipografis, bukan paragraf.
-// Dua screenshot berasal dari capture asli aplikasi live; Experiments tetap teks.
 const [dextra, detector, experiments] = projects;
 
-// liveLabel berasal dari data; buang panah dekoratif dari accessible name.
 const labelOf = (project: typeof dextra) =>
   (project.liveLabel ?? 'Live demo').replace(/\s*↗\s*$/, '').trim();
 
-// Sumber data memakai em dash; tampilan memakai separator "·" (R-02,
-// DESIGN.md). Data tidak diubah, hanya teks yang dirender.
+// Sumber data memakai em dash; yang dirender memakai separator "·" (R-02).
 const clean = (text: string) => text.replace(/\s*[\u2014\u2013]\s*/g, ' · ');
 
-// Alur governance DEXTRA: enam langkah nyata dari deskripsi proyek.
-// Setiap langkah punya keterangan pendek; ditampilkan di panel saat step
-// dipilih lewat radio (klik / sentuh / keyboard arrow keys).
+const shot = (name: string) => `${import.meta.env.BASE_URL}/screenshots/${name}`;
+
+// Enam langkah governance yang benar-benar ada di prototipe DEXTRA.
 const governanceFlow = [
   {
     name: 'Request',
@@ -50,79 +46,91 @@ const governanceFlow = [
 ];
 ---
 
-<section class="section section--projects" id="work">
+<section class="section section--work" id="work">
   <div class="container" id="projects">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">03 / Artifacts</span>
-        <h2 class="h2">Selected Projects</h2>
+    <div class="section-head work-head">
+      <div class="work-head__title">
+        <span class="work-index mono" aria-hidden="true">03</span>
+        <span class="eyebrow">Selected Work</span>
+        <h2 class="h2 work-head__h2">Built to be examined, not just shown</h2>
       </div>
-      <p class="mono section-head__note">System Prototypes / Research Concepts / Lab Experiments</p>
-      <span class="sr-only">Anchor for the projects section</span>
+      <p class="mono section-head__note">Two things I built · one set of notes on what I am still learning</p>
     </div>
 
-    <!-- FEATURE: DEXTRA sebagai case study satu halaman penuh di #080808.
-         Judul oversized, status mono jujur, alur governance interaktif.
-         Screenshot asli dari aplikasi live; frame datar, tanpa dekorasi. -->
-    <article class="project-card project-card--feature reveal" style="--stagger:0">
-      <header class="project-card__head">
-        <div class="project-card__top">
-          <span class="status">BUILT / LIVE DEMO PROTOTYPE</span>
-          <span class="meta-label">Governed Enterprise AI Workforce &amp; Operations Platform</span>
+    <!-- DEXTRA: feature asimetris. Kiri judul, metadata, inti masalah, dan alur
+         governance; kanan screenshot asli dan fakta. Permukaan putih, blok
+         gelap hanya pada strip status. -->
+    <article class="work-feature reveal" style="--stagger:0">
+      <div class="work-feature__left">
+        <div class="work-strip">
+          <span class="work-strip__label">Featured project 01 · 2026 · Prototype</span>
+          <span class="work-strip__status">Interactive prototype</span>
         </div>
-        <h3 class="project-card__title">{dextra.title}</h3>
-        <p class="project-card__rule" aria-hidden="true"></p>
-      </header>
 
-      <!-- SIGNATURE: alur governance langsung di bawah judul, bukan di bawah
-           deskripsi. Radio CSS-only; klik/sentuh pada label atau arrow keys
-           pada radio memilih langkah. Panel mengikuti :checked; pembaca layar
-           mendapat label radio plus aria-live="polite" pada panel. -->
-      <div class="project-flow">
-        <span class="meta-label">Governance path / select a step</span>
+        <h3 class="work-feature__title">{dextra.title}</h3>
+        <p class="work-feature__subtitle">{clean(dextra.subtitle)}</p>
+        <span class="work-rule" aria-hidden="true"></span>
 
-        <div class="project-flow__interactive">
-          <fieldset class="project-flow__fieldset">
-            <legend class="sr-only">Governance steps, use arrow keys to select a step</legend>
-            {governanceFlow.map((step, index) => (
-              <span class="project-flow__step">
-                <input
-                  class="project-flow__input sr-only"
-                  type="radio"
-                  name="gov-step"
-                  id={`gov-step-${index}`}
-                  checked={index === 0}
-                />
-                <label class="project-flow__label" for={`gov-step-${index}`}>
-                  <span class="project-flow__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                  <span class="project-flow__name">{step.name}</span>
-                  <span class="project-flow__arrow arrow-glyph" aria-hidden="true">↗</span>
-                </label>
-              </span>
-            ))}
-          </fieldset>
+        <div class="work-feature__intro">
+          <p class="body work-feature__desc">{clean(dextra.description)}</p>
+          <dl class="work-facts work-facts--intro">
+            <div>
+              <dt>Problem</dt>
+              <dd>Operational work spread across tools without clear authority or a traceable record of execution.</dd>
+            </div>
+            <div>
+              <dt>Approach</dt>
+              <dd>Specialized AI workers, a deterministic policy check, and human approval before any write action.</dd>
+            </div>
+          </dl>
+        </div>
 
-          <div class="project-flow__panels" aria-live="polite">
-            {governanceFlow.map((step, index) => (
-              <p class="project-flow__panel" data-step={index}>
-                <span class="meta-label">{String(index + 1).padStart(2, '0')} / {step.name}</span>
-                <span class="project-flow__panel-text">{step.detail}</span>
-              </p>
-            ))}
+        <!-- Radio CSS-only. Klik, sentuh, dan arrow keys tetap bekerja;
+             panel memakai aria-live="polite" (tidak berubah dari versi awal). -->
+        <div class="work-flow">
+          <span class="meta-label">Governance path · select a step</span>
+          <div class="work-flow__interactive">
+            <fieldset class="work-flow__fieldset">
+              <legend class="sr-only">Governance steps, use arrow keys to select a step</legend>
+              {governanceFlow.map((step, index) => (
+                <span class="work-flow__step">
+                  <input
+                    class="work-flow__input sr-only"
+                    type="radio"
+                    name="gov-step"
+                    id={`gov-step-${index}`}
+                    checked={index === 0}
+                  />
+                  <label class="work-flow__label" for={`gov-step-${index}`}>
+                    <span class="work-flow__num num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                    <span class="work-flow__name">{step.name}</span>
+                    <span class="work-flow__arrow arrow-glyph" aria-hidden="true">↗</span>
+                  </label>
+                </span>
+              ))}
+            </fieldset>
+
+            <div class="work-flow__panels" aria-live="polite">
+              {governanceFlow.map((step, index) => (
+                <p class="work-flow__panel" data-step={index}>
+                  <span class="meta-label">{String(index + 1).padStart(2, '0')} / {step.name}</span>
+                  <span class="work-flow__panel-text">{step.detail}</span>
+                </p>
+              ))}
+            </div>
           </div>
+          <p class="mono work-flow__note">
+            AI acts up to recommendation. Writing to data or the outside world needs an approved plan,
+            a human mandate, and an audit record.
+          </p>
         </div>
-
-        <p class="mono project-flow__note">
-          AI acts up to recommendation. Writing to data or the outside world needs an approved plan,
-          a human mandate, and an audit record.
-        </p>
       </div>
 
-      <div class="project-card__body">
-        <figure class="project-screenshot">
-          <div class="screenshot-frame">
+      <div class="work-feature__right">
+        <figure class="work-shot">
+          <div class="work-shot__frame">
             <img
-              src="./screenshots/dextra.webp"
+              src={shot('dextra.webp')}
               width="1440"
               height="900"
               loading="lazy"
@@ -131,17 +139,8 @@ const governanceFlow = [
           </div>
           <figcaption class="meta-label">Captured from the live dashboard · 28 Nov 2026</figcaption>
         </figure>
-        <p class="body project-card__desc">{clean(dextra.description)}</p>
 
-        <dl class="project-facts">
-          <div>
-            <dt>Problem</dt>
-            <dd>Operational work spread across tools without clear authority or a traceable record of execution.</dd>
-          </div>
-          <div>
-            <dt>Contribution</dt>
-            <dd>Designed around specialized AI workers, human-defined authority, and approval-based execution.</dd>
-          </div>
+        <dl class="work-facts work-facts--feature">
           <div>
             <dt>Governance</dt>
             <dd>
@@ -149,7 +148,7 @@ const governanceFlow = [
               world requires an approved plan and a <strong>human mandate</strong>, then leaves an
               <strong>audit record</strong>. Four specialists: Finance, HR, Inventory, Operations. The
               <strong>Policy Validator</strong> is a deterministic governance engine, not an AI agent.
-              Interactive prototype, not a production enterprise system.
+              This is an interactive prototype, not a production enterprise system.
             </dd>
           </div>
           <div>
@@ -158,14 +157,17 @@ const governanceFlow = [
           </div>
         </dl>
 
-        <ul class="tag-list">
+        <ul class="work-tags">
           <li class="sr-only">Technologies used</li>
-          {dextra.focus.map((tag) => <li class="tag">{tag}</li>)}
+          {dextra.focus.map((tag) => <li class="work-tag">{tag}</li>)}
         </ul>
 
-        <div class="project-card__links">
+        <div class="work-actions">
+          <a class="text-link work-link" href={dextra.caseStudyHref}>
+            Explore case study <span class="text-link__arrow arrow-glyph" aria-hidden="true">↗</span>
+          </a>
           <a
-            class="text-link"
+            class="text-link work-link"
             href={dextra.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -175,59 +177,60 @@ const governanceFlow = [
           </a>
         </div>
       </div>
-
     </article>
 
-    <!-- Dua pendukung sengaja tidak simetris: research lab di #151515,
-         experiments di #080808 dengan offset vertikal. Bukan bento / 3 kartu sama. -->
-    <div class="project-pair">
-      <article class="project-card project-card--support project-card--lab reveal" style="--stagger:1">
-        <div class="project-card__top">
-          <span class="status">LIVE DEMO</span>
-          <span class="meta-label">Research Lab</span>
+    <!-- AI Detector: blok kedua, screenshot penuh, penjelasan jujur. -->
+    <article class="work-detector reveal" style="--stagger:1">
+      <div class="work-detector__head">
+        <span class="eyebrow">Featured project 02 · Live demo</span>
+        <h3 class="work-detector__title">{detector.title}</h3>
+        <p class="work-detector__subtitle">{clean(detector.subtitle)}</p>
+      </div>
+
+      <figure class="work-shot work-shot--wide">
+        <div class="work-shot__frame">
+          <img
+            src={shot('ai-detector.webp')}
+            width="1440"
+            height="900"
+            loading="lazy"
+            alt="Screenshot antarmuka AI Detector Mahasiswa asli: editor contoh teks dengan indikator AI 68 persen dan bagian yang ditandai."
+          />
         </div>
-        <h3 class="h3 project-card__title">{detector.title}</h3>
-        <p class="h4 project-card__subtitle">{detector.subtitle}</p>
-        <figure class="project-screenshot">
-          <div class="screenshot-frame">
-            <img
-              src="./screenshots/ai-detector.webp"
-              width="1440"
-              height="900"
-              loading="lazy"
-              alt="Screenshot antarmuka AI Detector Mahasiswa asli: editor contoh teks dengan indikator AI 68 persen dan bagian yang ditandai."
-            />
-          </div>
-          <figcaption class="meta-label">Captured from the live demo · 28 Nov 2026</figcaption>
-        </figure>
+        <figcaption class="meta-label">Captured from the live demo · 28 Nov 2026</figcaption>
+      </figure>
 
-        <p class="body project-card__desc">{clean(detector.description)}</p>
-
-        <dl class="project-facts project-facts--compact">
+      <div class="work-detector__body">
+        <p class="body work-detector__desc">{clean(detector.description)}</p>
+        <dl class="work-facts work-facts--detector">
           <div>
-            <dt>Motivation</dt>
-            <dd>Explainable analysis for Indonesian academic writing, not automated penalties.</dd>
-          </div>
-          <div>
-            <dt>Status</dt>
+            <dt>What it does</dt>
             <dd>
-              Live demo (prototype). It reads pasted or uploaded txt, md, pdf and docx files,
-              checks 10 language patterns, and shows a score with highlighted text plus a PDF
-              report, in Indonesian and English. Text stays private in the browser. The score is
-              an <strong>uncertain indicator</strong>, <strong>not proof</strong> of AI use or an
-              academic-integrity verdict. No detector is 100% accurate, and this is
-              <strong>not a replacement for Turnitin</strong>.
+              Reads pasted or uploaded txt, md, pdf and docx files, checks 10 language patterns,
+              and shows a score with highlighted text plus a PDF report, in Indonesian and English.
+              Text stays private in the browser.
+            </dd>
+          </div>
+          <div>
+            <dt>What it does not prove</dt>
+            <dd>
+              The score is an <strong>uncertain indicator</strong>, <strong>not proof</strong> of AI
+              use or an academic-integrity verdict. No detector is 100% accurate, and this is
+              <strong>not a replacement for Turnitin</strong>. It is a live prototype, not a
+              production service.
             </dd>
           </div>
         </dl>
-
-        <ul class="tag-list">
+        <ul class="work-tags">
           <li class="sr-only">Technologies used</li>
-          {detector.focus.map((tag) => <li class="tag">{tag}</li>)}
+          {detector.focus.map((tag) => <li class="work-tag">{tag}</li>)}
         </ul>
-        <div class="project-card__links">
+        <div class="work-actions">
+          <a class="text-link work-link" href={detector.caseStudyHref}>
+            Explore case study <span class="text-link__arrow arrow-glyph" aria-hidden="true">↗</span>
+          </a>
           <a
-            class="text-link"
+            class="text-link work-link"
             href={detector.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -236,306 +239,392 @@ const governanceFlow = [
             Live demo <span class="text-link__arrow arrow-glyph" aria-hidden="true">↗</span>
           </a>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="project-card project-card--support project-card--offset project-card--experiments reveal" style="--stagger:2">
-        <div class="project-card__top">
-          <span class="status">ONGOING</span>
-          <span class="meta-label">Field Notes</span>
-        </div>
-        <h3 class="h3 project-card__title">{experiments.title}</h3>
-        <p class="h4 project-card__subtitle">{experiments.subtitle}</p>
-        <p class="mono project-preview-note">No public product screenshot. Documented as learning notes.</p>
-
-        <p class="body project-card__desc">{clean(experiments.description)}</p>
-
-        <dl class="project-facts project-facts--compact">
-          <div>
-            <dt>Contribution</dt>
-            <dd>Independent proofs of concept, documented as learning notes.</dd>
-          </div>
-          <div>
-            <dt>Status</dt>
-            <dd>Continuously updated, no fixed release date.</dd>
-          </div>
-        </dl>
-
-        <ul class="tag-list">
-          <li class="sr-only">Technologies used</li>
-          {experiments.focus.map((tag) => <li class="tag">{tag}</li>)}
+    <!-- Experiments sengaja bukan kartu: catatan pembelajaran, tanpa screenshot. -->
+    <div class="work-notes reveal" style="--stagger:2">
+      <div class="work-notes__head">
+        <span class="eyebrow">Not a finished project · ongoing notes</span>
+        <h3 class="h3 work-notes__title">{experiments.title}</h3>
+      </div>
+      <div class="work-notes__content">
+        <p class="body work-notes__desc">{clean(experiments.description)}</p>
+        <p class="mono work-notes__note">
+          Learning notes and continuous exploration · no public product screenshot · no release date.
+        </p>
+        <ul class="work-tags">
+          <li class="sr-only">Topics</li>
+          {experiments.focus.map((tag) => <li class="work-tag">{tag}</li>)}
         </ul>
-      </article>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* --- Section ------------------------------------------------------------ */
-  .section--projects { border-top-color: var(--surface); }
-
-  .section-head > div > .h2 { font-size: clamp(2.5rem, 6vw, 5rem); }
-
-  /* --- Kartu dasar -------------------------------------------------------- */
-  .project-card {
-    border: 1px solid var(--strong);
-    background: var(--white);
-    padding: clamp(24px, 4vw, 44px);
+  /* Permukaan terang; garis 1px dan whitespace yang membentuk ritme. */
+  .section--work {
+    background: var(--canvas);
+    border-top-color: var(--border);
   }
-  .project-card__top {
+  .work-head {
+    gap: 18px;
+    margin-bottom: clamp(32px, 4vw, 56px);
+  }
+  .work-head__title { min-width: 0; }
+  .work-head__h2 { font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.05; }
+  .work-index {
+    display: block;
+    color: var(--accent);
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  /* Garis tipis biru 1px di bawah angka section, bukan blok warna. */
+  .work-index::after {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 1px;
+    margin-top: 8px;
+    background: var(--accent);
+  }
+  .work-head__note { color: var(--secondary); }
+
+  /* DEXTRA: white surface, radius konsisten 12px, tanpa shadow. */
+  .work-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 56px);
+    padding: clamp(20px, 3vw, 40px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    min-width: 0;
+  }
+  .work-feature__left,
+  .work-feature__right { min-width: 0; }
+
+  .work-strip {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .project-card__title { margin-bottom: 6px; }
-  .project-card__subtitle { color: var(--strong); margin-bottom: 20px; }
-  .project-card__desc { max-width: 62ch; }
-  .project-card__links { margin-top: 24px; }
-
-  /* --- FEATURE: DEXTRA, permukaan deep black ------------------------------ */
-  .project-card--feature {
-    background: var(--black);
-    border-color: var(--black);
+    justify-content: space-between;
+    gap: 8px 16px;
+    padding: 10px 14px;
+    margin-bottom: clamp(20px, 3vw, 32px);
+    background: var(--ink);
     color: var(--white);
-    /* Tiga area: judul + alur di kiri, bukti + narasi di kanan. Di layar
-       sempit urutan DOM tetap judul -> alur -> screenshot -> deskripsi. */
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: 'head' 'flow' 'body';
-    gap: 36px;
-    margin-bottom: 24px;
-    padding: clamp(24px, 5vw, 64px);
+    border-radius: 6px;
   }
-  .project-card--feature .project-card__head { grid-area: head; }
-  .project-card--feature .project-flow { grid-area: flow; }
-  .project-card--feature .project-card__body { grid-area: body; }
-  .project-card--feature .status {
-    border-color: var(--muted);
-    color: var(--white);
-    font-size: 0.8125rem;
-    letter-spacing: 0.06em;
+  .work-strip__label,
+  .work-strip__status {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
   }
-  .project-card--feature .meta-label,
-  .project-card--feature .mono,
-  .project-card--feature .project-preview-note { color: var(--muted); }
-  .project-card--feature .body { color: var(--muted); }
-  .project-card--feature .text-link { border-color: var(--muted); color: var(--white); }
-  .project-card--feature .tag { border-color: var(--muted); color: var(--muted); }
+  .work-strip__status { color: var(--secondary-surface); }
 
-  .project-card__head { min-width: 0; }
-  .project-card--feature .project-card__title {
+  .work-feature__title {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(3rem, 10vw, 7rem);
-    line-height: 0.88;
-    letter-spacing: -0.055em;
-    color: var(--white);
-    /* Judul adalah satu focal point; tidak ada outline/glow. */
+    font-size: clamp(3.5rem, 6.2vw, 5.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    /* Nama pendek: tidak ada pemotongan kata, wrap normal jika perlu. */
+    overflow-wrap: normal;
+    word-break: keep-all;
+    color: var(--ink);
+    margin-bottom: 12px;
   }
-  .project-card__rule {
-    height: 1px;
-    margin-top: 26px;
-    background: rgba(255, 255, 255, 0.12);
+  .work-feature__subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.0625rem, 1.7vw, 1.375rem);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--secondary);
+    max-width: 36ch;
   }
-  .project-card__body { min-width: 0; }
-
-  /* Screenshot asli: frame 16/9 datar. Caption mono di bawah gambar,
-     bukan overlay, supaya tidak menutupi bukti visual. */
-  .project-screenshot { margin: 0 0 24px; min-width: 0; }
-  .screenshot-frame {
-    aspect-ratio: 16 / 9;
-    background: var(--surface);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    overflow: hidden;
-  }
-  .screenshot-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .work-rule {
     display: block;
+    width: 100%;
+    height: 1px;
+    margin-block: clamp(24px, 3vw, 36px);
+    background: var(--border);
   }
-  .project-screenshot figcaption {
-    padding-top: 10px;
-    color: var(--muted);
-  }
+  .work-feature__desc { max-width: 66ch; color: var(--secondary); }
 
-  /* --- Alur governance: radio CSS-only, keyboard + touch ------------------ */
-  .project-flow {
+  .work-facts { margin: 0; }
+  .work-facts > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px 20px;
+    padding-block: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .work-facts dt {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+  .work-facts dd {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  .work-facts dd strong { font-weight: 700; }
+  .work-facts--intro { margin-top: 24px; }
+
+  /* Governance: radio CSS-only, 6 langkah, keyboard + sentuh. */
+  .work-flow {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: clamp(20px, 3vw, 32px);
-    border: 1px solid var(--strong);
+    gap: 14px;
+    margin-top: clamp(24px, 3vw, 36px);
+    padding: clamp(16px, 2vw, 24px);
+    border: 1px solid var(--border);
+    border-radius: 8px;
     background: var(--surface);
-    color: var(--white);
     min-width: 0;
   }
-  .project-flow .meta-label { color: var(--muted); }
-  .project-flow__interactive {
+  .work-flow > .meta-label { color: var(--secondary); }
+  .work-flow__interactive {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
   }
-  .project-flow__fieldset {
+  .work-flow__fieldset {
     border: 0;
     margin: 0;
     padding: 0;
     min-width: 0;
   }
-  .project-flow__step { display: block; }
-
-  /* Label = satu baris editorial. Radio sr-only tetap fokus-able via keyboard;
-     :focus-visible pada input mengirim outline ke label bersebelahan. */
-  .project-flow__label {
+  .work-flow__step { display: block; }
+  .work-flow__label {
     display: grid;
-    grid-template-columns: 48px 1fr auto;
-    align-items: baseline;
-    gap: 12px;
-    min-height: 48px;
-    padding-block: 11px;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding-block: 10px;
+    border-top: 1px solid var(--border);
     cursor: pointer;
+    touch-action: manipulation;
   }
-  .project-flow__step:first-child .project-flow__label { border-top: 0; }
-  .project-flow__num { font-size: 1.75rem; color: var(--muted); }
-  .project-flow__name {
+  .work-flow__step:first-child .work-flow__label { border-top: 0; }
+  .work-flow__num { color: var(--secondary); font-size: 1.5rem; }
+  .work-flow__name {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    letter-spacing: -0.025em;
-    color: var(--white);
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    transition: transform var(--dur-ui) var(--ease-out);
   }
-  .project-flow__arrow { color: var(--muted); opacity: 0; }
+  .work-flow__arrow { color: var(--secondary); opacity: 0; }
 
-  /* :checked = state terpilih. :focus-visible memberi feedback keyboard yang
-     setara dengan klik, tanpa warna baru. */
-  .project-flow__input:checked + .project-flow__label .project-flow__name { color: var(--white); }
-  .project-flow__input:checked + .project-flow__label .project-flow__num { color: var(--white); }
-  .project-flow__input:checked + .project-flow__label .project-flow__arrow { opacity: 1; }
-  .project-flow__input:checked + .project-flow__label {
-    border-top-color: var(--muted);
-    border-bottom: 1px solid var(--muted);
+  /* State aktif: garis biru 1px, bukan pill berwarna. */
+  .work-flow__input:checked + .work-flow__label .work-flow__num,
+  .work-flow__input:checked + .work-flow__label .work-flow__name { color: var(--ink); }
+  .work-flow__input:checked + .work-flow__label {
+    border-bottom: 1px solid var(--accent);
     padding-inline-start: 6px;
   }
-  .project-flow__input:focus-visible + .project-flow__label {
-    outline: 2px solid var(--white);
+  .work-flow__input:checked + .work-flow__label .work-flow__arrow { opacity: 1; }
+  .work-flow__label:active { opacity: 0.74; }
+  /* Menimpa aturan global outline putih agar tetap terlihat di permukaan putih. */
+  .work-flow .work-flow__input:focus-visible + .work-flow__label {
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
+  @media (hover: hover) and (pointer: fine) {
+    .work-flow__label:hover .work-flow__name { transform: translateX(3px); }
+    .work-flow__label:hover .work-flow__arrow { opacity: 1; }
+  }
 
-  /* Panel: semua teks ada di DOM; yang tidak dipilih disembunyikan secara
-     visual tapi masih bisa dibaca pembaca layar lewat aria-live="polite". */
-  .project-flow__panels { min-height: 0; }
-  .project-flow__panel {
+  .work-flow__panels { min-width: 0; }
+  .work-flow__panel {
     display: none;
     flex-direction: column;
     gap: 6px;
     padding: 14px 16px;
-    border: 1px solid var(--strong);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--canvas);
     font-size: 0.9375rem;
     line-height: 1.6;
-    color: var(--muted);
+    color: var(--secondary);
   }
-  .project-flow__panel-text { color: var(--white); }
+  .work-flow__panel-text { color: var(--ink); }
 
-  /* Sibling selector: fieldset berisi input, panels adalah saudara fieldset.
-     Urutan DOM: fieldset -> panels, jadi ~ bekerja. */
-  .project-flow__fieldset:has(#gov-step-0:checked) ~ .project-flow__panels [data-step="0"],
-  .project-flow__fieldset:has(#gov-step-1:checked) ~ .project-flow__panels [data-step="1"],
-  .project-flow__fieldset:has(#gov-step-2:checked) ~ .project-flow__panels [data-step="2"],
-  .project-flow__fieldset:has(#gov-step-3:checked) ~ .project-flow__panels [data-step="3"],
-  .project-flow__fieldset:has(#gov-step-4:checked) ~ .project-flow__panels [data-step="4"],
-  .project-flow__fieldset:has(#gov-step-5:checked) ~ .project-flow__panels [data-step="5"] {
+  /* Urutan DOM: fieldset lalu panels, jadi ~ bekerja. */
+  .work-flow__fieldset:has(#gov-step-0:checked) ~ .work-flow__panels [data-step="0"],
+  .work-flow__fieldset:has(#gov-step-1:checked) ~ .work-flow__panels [data-step="1"],
+  .work-flow__fieldset:has(#gov-step-2:checked) ~ .work-flow__panels [data-step="2"],
+  .work-flow__fieldset:has(#gov-step-3:checked) ~ .work-flow__panels [data-step="3"],
+  .work-flow__fieldset:has(#gov-step-4:checked) ~ .work-flow__panels [data-step="4"],
+  .work-flow__fieldset:has(#gov-step-5:checked) ~ .work-flow__panels [data-step="5"] {
     display: flex;
   }
-  /* Fallback untuk browser tanpa :has(): panel pertama tampil sebagai default. */
   @supports not selector(:has(*)) {
-    .project-flow__panel[data-step="0"] { display: flex; }
+    .work-flow__panel[data-step="0"] { display: flex; }
   }
-  .project-flow__note { color: var(--muted); }
+  .work-flow__note { color: var(--secondary); max-width: 62ch; }
 
-  /* --- Facts -------------------------------------------------------------- */
-  .project-facts {
-    margin: 28px 0;
-    border-top: 1px solid var(--strong);
+  /* Screenshot asli: 16/9, zoom sangat halus hanya dengan pointer presisi. */
+  .work-shot { margin: 0; min-width: 0; }
+  .work-shot__frame {
+    aspect-ratio: 16 / 9;
+    background: var(--secondary-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
   }
-  .project-facts > div {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px 20px;
-    padding-block: 14px;
-    border-bottom: 1px solid var(--strong);
+  .work-shot__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 220ms var(--ease-out);
   }
-  .project-facts dt {
+  /* Zoom sangat halus hanya pada pointer presisi; tidak di reduced-motion. */
+  @media (hover: hover) and (pointer: fine) {
+    @media (prefers-reduced-motion: no-preference) {
+      .section--work .work-shot__frame:hover img { transform: scale(1.02); }
+    }
+  }
+  .work-shot figcaption {
+    padding-top: 10px;
+    color: var(--secondary);
+  }
+
+  .work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .work-tag {
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--strong);
+    line-height: 1.5;
+    color: var(--secondary);
   }
-  .project-facts dd { font-size: 0.9375rem; line-height: 1.6; color: inherit; }
-  .project-facts dd strong { font-weight: 700; }
-  .project-card--feature .project-facts dt { color: var(--muted); }
-  .project-facts--compact > div { padding-block: 12px; }
+  .work-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    margin-top: 24px;
+  }
+  /* Link: underline biru 1px muncul di hover/fokus, panah bergeser 4px. */
+  .work-link { border-bottom-color: var(--border); }
+  .section--work .work-link .text-link__arrow {
+    transition: transform var(--dur-ui) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .section--work .work-link:hover .text-link__arrow { transform: translate(4px, -4px); }
+  }
+  .section--work .work-link:focus-visible .text-link__arrow { transform: translate(4px, -4px); }
 
-  /* --- Dua kartu pendukung: asimetri disengaja ---------------------------- */
-  .project-pair {
+  /* AI Detector: blok kedua, permukaan putih, screenshot penuh. */
+  .work-detector {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .project-card--lab {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(20px, 3vw, 32px);
+    padding: clamp(20px, 3vw, 40px);
+    margin-top: 24px;
     background: var(--surface);
-    border-color: var(--surface);
-    color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    min-width: 0;
   }
-  .project-card--lab .project-card__subtitle,
-  .project-card--lab .body,
-  .project-card--lab .meta-label,
-  .project-card--lab .mono,
-  .project-card--lab .project-preview-note { color: var(--muted); }
-  .project-card--lab .status { border-color: var(--muted); color: var(--white); }
-  .project-card--lab .text-link { border-color: var(--muted); color: var(--white); }
-  .project-card--lab .tag { border-color: var(--muted); color: var(--muted); }
-  .project-card--lab .project-facts dt { color: var(--muted); }
-  .project-card--lab .project-facts > div { border-bottom-color: var(--strong); }
+  .work-detector__head { min-width: 0; }
+  .work-detector__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    margin-top: 8px;
+    overflow-wrap: normal;
+    word-break: keep-all;
+  }
+  .work-detector__subtitle {
+    font-size: 1.0625rem;
+    color: var(--secondary);
+    margin-top: 6px;
+  }
+  .work-detector__desc { max-width: 66ch; color: var(--secondary); }
+  .work-facts--detector { margin-top: 24px; }
 
-  .project-card--experiments {
-    background: var(--black);
-    border-color: var(--black);
-    color: var(--white);
+  /* Experiments: teks editorial, bukan kartu identik, tanpa screenshot. */
+  .work-notes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin-top: clamp(32px, 4vw, 56px);
+    padding-block: clamp(24px, 3vw, 36px);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
-  .project-card--experiments .project-card__subtitle,
-  .project-card--experiments .body,
-  .project-card--experiments .meta-label,
-  .project-card--experiments .mono,
-  .project-card--experiments .project-preview-note { color: var(--muted); }
-  .project-card--experiments .status { border-color: var(--muted); color: var(--white); }
-  .project-card--experiments .tag { border-color: var(--muted); color: var(--muted); }
-  .project-card--experiments .project-facts dt { color: var(--muted); }
-  .project-card--experiments .project-facts > div { border-bottom-color: var(--strong); }
+  .work-notes__title { color: var(--ink); margin-top: 8px; }
+  .work-notes__content { min-width: 0; }
+  .work-notes__desc { max-width: 62ch; color: var(--secondary); }
+  .work-notes__note { margin-top: 14px; color: var(--secondary); }
+
+  @media (min-width: 768px) {
+    .work-feature__right .work-facts > div,
+    .work-facts--detector > div { grid-template-columns: 150px minmax(0, 1fr); }
+  }
 
   @media (min-width: 900px) {
-    .project-card--feature {
-      /* Kiri: judul lalu alur. Kanan: screenshot + narasi, mulai dari baris
-         pertama supaya sejajar dengan judul (bukan 600px di bawahnya). */
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-      grid-template-areas: 'head body' 'flow body';
-      grid-template-rows: auto 1fr;
-      align-items: start;
-      column-gap: clamp(40px, 5vw, 72px);
-      row-gap: 28px;
+    /* Dua kolom asimetris: kiri narasi + alur, kanan bukti + fakta. */
+    .work-feature {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+      gap: clamp(40px, 5vw, 72px);
     }
-    .project-flow__interactive { grid-template-columns: 1fr; }
-    .project-pair {
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    .work-flow__interactive { grid-template-columns: minmax(0, 1fr); }
+    .work-detector {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      grid-template-areas: 'head shot' 'body shot';
       align-items: start;
+      column-gap: clamp(32px, 4vw, 56px);
     }
-    /* Asimetri: kartu kedua turun, bukan grid tiga kartu sama. */
-    .project-card--offset { margin-top: 72px; }
-    .project-facts > div { grid-template-columns: 120px 1fr; }
+    .work-detector__head { grid-area: head; }
+    .work-detector__body { grid-area: body; }
+    .work-shot--wide { grid-area: shot; }
+    .work-notes {
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(24px, 4vw, 56px);
+    }
   }
+
   @media (min-width: 1200px) {
-    .project-flow__interactive { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .work-flow__interactive { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  }
+
+  /* Mobile: satu kolom, gambar proporsional, tidak terpotong sembarangan. */
+  @media (max-width: 620px) {
+    .work-feature,
+    .work-detector { padding: 18px; }
+    .work-feature__title { font-size: clamp(3rem, 12vw, 4.5rem); }
+    .work-strip { align-items: flex-start; flex-direction: column; }
+    .work-shot__frame { aspect-ratio: 4 / 3; }
+    .work-shot__frame img { object-fit: contain; }
+    .work-tags { gap: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-flow__name,
+    .work-link .text-link__arrow,
+    .work-shot__frame img { transform: none !important; transition: none !important; }
   }
 </style>

@@ -3,6 +3,7 @@
 <html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/><title>Faras Fadhil Firdaus: Portfolio</title>
 <meta name="description" content="Building DEXTRA, bringing the AI Detector for students to life, and running ongoing AI experiments."/>
 <!-- ID description: Membangun DEXTRA, menghidupkan AI Detector Mahasiswa, dan menjalankan eksperimen AI. -->
+<meta name="theme-color" content="#F4F5F7"/>
 <link rel="canonical" href="https://frzz969.github.io/portofolio-faraz/"/>
 <link rel="alternate" hreflang="en" href="https://frzz969.github.io/portofolio-faraz/"/>
 <link rel="alternate" hreflang="x-default" href="https://frzz969.github.io/portofolio-faraz/"/>
@@ -45,18 +46,21 @@
 <!-- GANTI: konfirmasi username GitHub (sameAs) dan slug LinkedIn (sameAs) -->
 <style>
 /* Dark Technical Editorial x Industrial Monochrome.
-   Palet 6 hex saja: #080808 #151515 #292929 #555555 #A3A3A3 #FFFFFF.
-   R-31: tiap keputusan visual punya alasan. Motif = angka editorial besar +
-   garis 1px + Space Grotesk. Satu accent moment = headline outline di hero. */
+   Professional Modern Editorial (P0): 55% #F4F5F7 / 25% #FFFFFF /
+   15% #191D26 / 5% #365FE8. #E8EBF0 secondary, #DDE1E7 border,
+   #525B6B small text AA, #687180 secondary (teks besar / non-teks).
+   R-31: satu focal point per layar; biru hanya garis 1px dan fokus. */
 :root{
-  --black:#080808; --surface:#151515; --panel:#292929;
-  --strong:#555555; --muted:#A3A3A3; --white:#FFFFFF;
-  --ink:var(--black); --paper:var(--white); --charcoal:var(--black);
-  --subtle:var(--strong); --border:var(--strong);
+  --canvas:#F4F5F7; --surface:#FFFFFF; --secondary-surface:#E8EBF0;
+  --ink:#191D26; --secondary:#687180; --muted:#525B6B;
+  --accent:#365FE8; --border:#DDE1E7;
+  --black:var(--ink); --paper:var(--canvas); --charcoal:var(--ink);
+  --panel:var(--secondary-surface); --strong:var(--muted);
+  --subtle:var(--muted); --white:#FFFFFF;
   --font-display:"Space Grotesk Variable","Space Grotesk",sans-serif;
   --font-body:"Inter Variable",Inter,system-ui,sans-serif;
   --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --page-max:1180px; --gutter:20px; --header-h:64px; --section-y:72px;
+  --page-max:1200px; --gutter:20px; --header-h:64px; --section-y:72px;
   --ease-out:cubic-bezier(.16,1,.3,1); --dur-ui:240ms;
 }
 @media(min-width:768px){:root{--gutter:32px;--header-h:72px;--section-y:104px}}
@@ -117,20 +121,20 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 .tag{font-family:var(--font-mono);font-size:.8125rem;letter-spacing:.03em;color:var(--strong);padding-block:2px;border-bottom:1px solid var(--border)}
 
 /* --- Header sticky minimal --- */
-.site-header{position:sticky;top:0;z-index:50;width:100%;background:var(--paper);border-bottom:1px solid transparent;transition:border-color var(--dur-ui) var(--ease-out),background-color var(--dur-ui) var(--ease-out)}
-.site-header.is-scrolled{border-bottom-color:var(--border)}
+.site-header{position:sticky;top:0;z-index:50;width:100%;background:transparent;border-bottom:1px solid transparent;transition:background-color var(--dur-ui) var(--ease-out),border-color var(--dur-ui) var(--ease-out)}
+.site-header.is-scrolled{background:var(--white);border-bottom-color:var(--border)}
 .site-header__inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:var(--header-h)}
 .wordmark{display:inline-flex;align-items:center;gap:10px;min-height:44px;flex-shrink:0}
-.wordmark__mono{font-family:var(--font-display);font-weight:700;font-size:1rem;letter-spacing:-.04em;color:var(--white);background:var(--ink);padding:4px 6px}
+.wordmark__mono{font-family:var(--font-display);font-weight:700;font-size:1rem;letter-spacing:-.04em;color:var(--white);background:var(--ink);padding:4px 6px;border-radius:4px}
 .wordmark__name{font-family:var(--font-display);font-weight:600;font-size:.875rem;letter-spacing:-.015em;color:var(--ink)}
 .site-nav{display:none;align-items:center;gap:4px}
 .site-nav__link{position:relative;display:inline-flex;align-items:center;min-height:44px;padding-inline:14px;font-size:.8125rem;font-weight:500;color:var(--subtle);transition:color var(--dur-ui) var(--ease-out)}
-.site-nav__link::after{content:"";position:absolute;left:14px;right:14px;bottom:10px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-ui) var(--ease-out)}
+.site-nav__link::after{content:"";position:absolute;left:14px;right:14px;bottom:10px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-ui) var(--ease-out)}
 .site-nav__link:hover,.site-nav__link.is-active{color:var(--ink)}
 .site-nav__link.is-active::after{transform:scaleX(1)}
 .site-header__end{display:inline-flex;align-items:center;gap:12px}
 .availability{display:none;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.04em;color:var(--subtle)}
-.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--border);border-radius:0;background:transparent;color:var(--ink)}
+.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--ink)}
 .nav-toggle svg{width:20px;height:20px}
 .mobile-menu{display:none;flex-direction:column;border-top:1px solid var(--border);padding:.5rem var(--gutter) 1rem;background:var(--paper)}
 .mobile-menu.open{display:flex}
@@ -138,27 +142,30 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 .mobile-menu a.is-active{color:var(--ink);font-weight:700}
 @media(min-width:1024px){.site-nav{display:flex}.availability{display:inline-flex}.nav-toggle{display:none}.mobile-menu{display:none!important}}
 
-/* --- Hero: deep black, headline sangat besar, baris ke-2 outline --- */
-.hero{background:var(--black);color:var(--white);min-height:100svh;display:flex;align-items:center;padding-block:clamp(32px,6vh,72px) clamp(64px,9vw,120px)}
-.hero__grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:end}
-.hero__copy{max-width:920px}
-.hero__index{color:var(--muted)}
-.hero__headline{overflow-wrap:normal;word-break:keep-all;hyphens:none;margin-block:24px 28px;font-size:clamp(3.5rem,7.5vw,7.5rem)}
+/* --- Hero: cover editorial terang, split, 56-88px desktop --- */
+.hero{background:var(--canvas);color:var(--ink);min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(32px,5vh,56px) clamp(40px,6vh,64px)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1fr);position:relative}
+.hero__copy{position:relative;min-width:0;max-width:1100px}
+.hero__headline{overflow-wrap:normal;word-break:keep-all;hyphens:none;margin-block:28px 16px;font-size:clamp(3.5rem,6.2vw,5.5rem);line-height:1.02;letter-spacing:-.045em;color:var(--ink)}
+.hero-line-wrap{display:block}
 .hero-line{display:block}
-.hero-line--outline{color:transparent;-webkit-text-stroke:1.5px #FFFFFF}
+.hero__role{display:inline-flex;align-items:center;min-height:28px;padding-block:4px;border-top:1px solid var(--accent);font-family:var(--font-mono);font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .hero .lead{color:var(--muted)}
-.hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.hero__availability{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:40px;padding-top:22px;border-top:1px solid var(--muted);max-width:520px}
-.hero__availability .meta-label{color:var(--muted)}
-.hero__portrait{margin:0;max-width:320px}
-.hero__portrait-frame{background:var(--surface);border:1px solid var(--muted);aspect-ratio:4/5;max-width:360px;margin-inline:auto;overflow:hidden}
+.hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero__portrait{margin:32px 0 0;width:min(100%,240px);min-width:0}
+.hero__portrait-frame{background:var(--secondary-surface);border:1px solid var(--border);border-radius:8px;aspect-ratio:4/5;margin-inline:auto;overflow:hidden}
 .hero__portrait-frame img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06)}
-.hero__portrait figcaption{margin-top:12px;text-align:center}
-@media(min-width:900px){.hero__grid{grid-template-columns:minmax(0,1.9fr) minmax(220px,.6fr);gap:64px}.hero__portrait{align-self:start;margin-top:clamp(0px,8vh,72px)}.hero__portrait-frame{margin-inline:0 0 0 auto;max-width:clamp(220px,24vw,320px)}.hero__portrait figcaption{text-align:right}}
-@media(max-width:420px){.hero__actions .btn{flex:1 1 100%}}
+.hero__portrait figcaption{margin-top:8px;font-size:.75rem;letter-spacing:.08em;text-align:left;color:var(--muted)}
+.hero__fields{margin-top:clamp(24px,4vh,40px)}
+.hero__fields-list{display:grid;grid-template-columns:1fr;border-top:1px solid var(--border)}
+.hero__field{display:flex;align-items:center;min-height:44px;padding-block:10px;border-bottom:1px solid var(--border);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+@media(min-width:600px){.hero__fields-list{grid-template-columns:repeat(3,minmax(0,1fr))}.hero__field{padding-inline:16px;border-left:1px solid var(--border)}.hero__field:first-child{padding-left:0;border-left:0}}
+/* Split nyata: portrait di kolom grid, bukan overlay yang menimpa fields. */
+@media(min-width:900px){.hero__grid{grid-template-columns:minmax(0,1fr) minmax(0,260px);column-gap:clamp(40px,5vw,80px);align-items:start}.hero__copy{grid-column:1;grid-row:1}.hero__portrait{grid-column:2;grid-row:1;width:100%;max-width:260px;margin:0;transform:translate3d(var(--hero-px,0px),var(--hero-py,0px),0);will-change:transform}.hero__portrait-frame{margin-inline:0}}
+@media(max-width:420px){.hero__actions .btn{flex:1 1 100%}.hero__headline{font-size:clamp(3rem,13vw,3.5rem)}}
 
-/* --- Marquee tunggal: latar #151515, separator ·, pause --- */
-.marquee-band{background:var(--surface);border-top:1px solid var(--surface);border-bottom:1px solid var(--surface);overflow:hidden;padding-block:16px;user-select:none}
+/* --- Marquee tunggal: latar #191D26, separator ·, pause --- */
+.marquee-band{background:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);overflow:hidden;padding-block:16px;user-select:none}
 .marquee-track{display:flex;width:max-content;gap:0}
 .marquee-group{display:inline-flex}
 .marquee-item{font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,3.5vw,2.5rem);letter-spacing:-.03em;color:var(--white);white-space:nowrap;padding-inline:22px}
@@ -167,13 +174,13 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 /* --- Permukaan bersama --- */
 .section{padding-block:var(--section-y);border-top:1px solid var(--border)}
 .section:first-of-type{border-top:0}
-.surface-dark,.charcoal{background:var(--surface);color:var(--white);border-top:1px solid var(--surface)}
-.charcoal{background:var(--black);border-top-color:var(--black)}
-.surface-dark .lead,.surface-dark .body,.surface-dark .meta-label,.surface-dark .eyebrow,.surface-dark .mono,.charcoal .lead,.charcoal .body,.charcoal .meta-label,.charcoal .eyebrow,.charcoal .mono{color:var(--muted)}
+/* Permukaan gelap: #191D26; turunan #E8EBF0 / #DDE1E7 lolos AA. */
+.surface-dark,.charcoal{--muted:#E8EBF0;--strong:#DDE1E7;--secondary:#E8EBF0;background:var(--ink);color:var(--white);border-top:1px solid var(--border)}
+.charcoal{background:var(--ink);border-top-color:var(--ink)}
 .surface-dark .h2,.surface-dark .h3,.charcoal .h2,.charcoal .h3{color:var(--white)}
-.surface-dark .num,.charcoal .num{color:var(--muted)}
-.surface-dark .status,.surface-dark .tag,.surface-dark .text-link,.charcoal .status,.charcoal .tag,.charcoal .text-link{border-color:var(--muted);color:var(--white)}
-.surface-dark .status--solid,.charcoal .status--solid{background:var(--white);border-color:var(--white);color:var(--black)}
+.surface-dark .num,.charcoal .num{color:var(--secondary-surface)}
+.surface-dark .status,.surface-dark .tag,.surface-dark .text-link,.charcoal .status,.charcoal .tag,.charcoal .text-link{border-color:var(--border);color:var(--white)}
+.surface-dark .status--solid,.charcoal .status--solid{background:var(--white);border-color:var(--white);color:var(--ink)}
 
 /* --- About: angka 01 raksasa --- */
 .about-grid{display:grid;grid-template-columns:1fr;gap:40px}
@@ -246,6 +253,10 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 .project-card--feature .project-grid{grid-template-columns:1fr;gap:32px;margin-top:28px}
 @media(min-width:900px){.project-card--feature .project-grid{grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:clamp(32px,5vw,72px)}.project-pair{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}.project-pair .offset{margin-top:48px}}
 .project-flow{display:flex;flex-direction:column;gap:14px;padding:28px;border:1px solid var(--strong);background:var(--surface);color:var(--white)}
+/* Feature card adalah blok gelap di dalam section terang: turunan gelap
+   di-scope di sini supaya teks sekunder tidak ikut #525B6B (dark-on-dark). */
+.project-card--feature{--muted:#E8EBF0;--strong:#DDE1E7}
+.project-card--feature .project-flow{background:var(--ink)}
 .project-flow .meta-label,.project-flow__note{color:var(--muted)}
 .project-flow__steps{display:flex;flex-direction:column}
 .project-flow__step{display:grid;grid-template-columns:56px 1fr;align-items:baseline;gap:14px;padding-block:11px;border-top:1px solid var(--strong)}
@@ -307,13 +318,11 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 .interest-detail{margin:20px 0 0;color:var(--subtle);overflow-wrap:anywhere}
 .interest-note{margin-top:16px;color:var(--subtle);overflow-wrap:anywhere}
 
-/* --- Contact: deep black, oversized white --- */
-.contact{padding-block:clamp(72px,11vw,132px) clamp(56px,8vw,96px)}
+/* --- Contact: dark #191D26, headline 32-48px desktop --- */
+.contact{padding-block:clamp(80px,11vw,140px) clamp(56px,8vw,88px)}
 .contact__head{max-width:100%;min-width:0}
-.contact__title{margin-block:20px 28px;font-size:clamp(2.5rem,6.5vw,6rem);line-height:.9;letter-spacing:-.05em;overflow-wrap:normal;word-break:keep-all;hyphens:none}
-.contact__title .cta-line{display:block}
-.contact__title .cta-line{color:var(--white)}
-@media(min-width:600px){.contact__title{font-size:clamp(3rem,6.5vw,6rem)}}
+.contact__title{margin-block:20px 28px;font-size:clamp(1.75rem,4vw,3rem);line-height:1.1;letter-spacing:-.035em;overflow-wrap:normal;word-break:keep-all;hyphens:none}
+.contact__title .cta-line{display:block;color:var(--white)}
 .contact__grid{display:grid;grid-template-columns:1fr;gap:48px;margin-top:clamp(48px,7vw,88px);padding-top:32px;border-top:1px solid var(--panel)}
 .contact__chips{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:16px;color:var(--muted)}
 .contact__chips li{border-bottom:1px solid var(--panel);padding-bottom:2px}
@@ -327,10 +336,10 @@ section[id],div[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 @media(min-width:768px){.contact__grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(48px,6vw,96px)}.contact__link{grid-template-columns:140px 1fr;gap:20px}}
 
 /* --- Footer --- */
-.site-footer{border-top:1px solid var(--border);padding:2rem var(--gutter);background:var(--paper)}
+.site-footer{border-top:1px solid var(--border);padding:2rem var(--gutter);background:var(--ink);color:var(--white)}
 .footer-inner{max-width:var(--page-max);margin:0 auto;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;font-size:.8rem;color:var(--subtle)}
 .footer-inner a{min-height:44px;display:inline-flex;align-items:center;padding:0 .35rem}
-.footer-inner a:hover{color:var(--ink)}
+.footer-inner a:hover{color:var(--white);border-bottom:1px solid var(--accent)}
 
 /* --- Motion: hanya di bawah has-motion, gate reduced-motion + noscript --- */
 html.has-motion .reveal,html.has-motion .hero-fade,html.has-motion .hero-line,html.has-motion .cta-line{opacity:0;transform:translateY(16px)}
@@ -355,9 +364,9 @@ html.has-motion [style="--stagger:3"]{transition-delay:240ms}
 
 /* --- P5 sinkronisasi: micro-interaction & mobile polish ------------------ */
 .hero__rules{position:absolute;inset:var(--header-h) max(var(--gutter),calc((100% - var(--page-max))/2)) 0;pointer-events:none;overflow:hidden}
-.hero__rule{position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,.12)}
+.hero__rule{position:absolute;left:0;right:0;height:1px;background:var(--border)}
 .hero__rule--top{top:0}.hero__rule--bottom{bottom:0}
-.hero__cross{position:absolute;width:9px;height:9px;background:rgba(255,255,255,.12)}
+.hero__cross{position:absolute;width:9px;height:9px;background:var(--border)}
 .hero__cross--tl{top:0;left:0}.hero__cross--tr{top:0;right:0}
 .hero__cross--bl{bottom:0;left:0}.hero__cross--br{bottom:0;right:0}
 .hero{position:relative}
@@ -365,10 +374,9 @@ html.has-motion [style="--stagger:3"]{transition-delay:240ms}
 .hero__meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
 .hero__meta-cell--place{flex:1 1 100%}
 .hero__meta-cell--index{margin-left:auto}
-.hero__scroll{display:inline-flex;align-items:center;min-height:44px;margin-top:32px;color:var(--muted);border-bottom:1px solid var(--muted)}
+.hero__scroll{display:inline-flex;align-items:center;min-height:44px;margin-top:16px;color:var(--muted);border-bottom:1px solid var(--muted)}
 .hero__scroll:hover{color:var(--white);border-color:var(--white)}
-@media(max-width:899px){.hero__portrait{max-width:280px;margin-inline:auto}}
-@media(min-width:900px){.hero__portrait-frame{margin-inline:0 0 0 auto}}
+@media(max-width:899px){.hero__portrait{margin-inline:auto}}
 
 /* Section entrance P3: sekali masuk viewport, lalu observer berhenti. */
 html.has-motion .section-enter{opacity:0;clip-path:inset(0 0 8% 0);transform:translateY(24px);transition:opacity 380ms var(--ease-out),clip-path 380ms var(--ease-out),transform 380ms var(--ease-out)}
@@ -410,7 +418,7 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 
 /* P5: underline scaleX pada text-link; arrow P2 tidak disentuh. */
 .text-link{position:relative}
-.text-link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-ui) var(--ease-out)}
+.text-link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-ui) var(--ease-out)}
 .text-link:hover::after,.text-link:focus-visible::after{transform:scaleX(1)}
 .text-link:hover,.text-link:focus-visible{border-bottom-color:transparent}
 .surface-dark .text-link::after,.charcoal .text-link::after{background:var(--white)}
@@ -432,6 +440,15 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
   .timeline__progress{transform:none!important}
   .text-link:hover{border-bottom-color:var(--border)}
 }
+
+/* Back-to-top: 44px target, netral, tanpa shadow/glow. Tanpa has-motion
+   tampil/hilang instan (reduced-motion aman). */
+.back-to-top{position:fixed;right:max(var(--gutter),calc((100vw - var(--page-max))/2));bottom:max(20px,calc(env(safe-area-inset-bottom,0px) + 16px));z-index:40;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;background:var(--white);border:1px solid var(--border);border-radius:8px;color:var(--ink);cursor:pointer;opacity:0;visibility:hidden;pointer-events:none}
+.back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto}
+html.has-motion .back-to-top{transform:translateY(6px);transition:opacity 180ms var(--ease-out),transform 180ms var(--ease-out)}
+html.has-motion .back-to-top.is-visible{transform:translateY(0)}
+.back-to-top:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.back-to-top__arrow{position:relative;width:10px;height:10px;border-top:1px solid var(--ink);border-left:1px solid var(--ink);transform:translateY(2px) rotate(45deg)}
 </style><noscript><style>.reveal,.hero-fade,.hero-line,.cta-line{opacity:1!important;transform:none!important}.marquee-track{animation:none!important}</style></noscript><script>if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("has-motion");}</script></head><body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
@@ -451,19 +468,20 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
   <div class="hero__rules" aria-hidden="true"><span class="hero__rule hero__rule--top"></span><span class="hero__rule hero__rule--bottom"></span><span class="hero__cross hero__cross--tl"></span><span class="hero__cross hero__cross--tr"></span><span class="hero__cross hero__cross--bl"></span><span class="hero__cross hero__cross--br"></span></div>
   <div class="container hero__grid">
     <div class="hero__copy">
-      <div class="hero__meta hero-fade"><span class="hero__meta-cell">FFF / PORTFOLIO 2026</span><span class="hero__meta-cell">AVAILABLE</span><span class="hero__meta-cell hero__meta-cell--place">Sukoharjo, Jawa Tengah, Indonesia</span><span class="hero__meta-cell hero__meta-cell--index">01 / 09</span></div>
-      <h1 class="h1 hero__headline"><span class="hero-line-wrap"><span class="hero-line" style="--i:0">EXPLORING AI.</span></span><span class="hero-line-wrap"><span class="hero-line hero-line--outline" style="--i:1">BUILDING IDEAS.</span></span><span class="hero-line-wrap"><span class="hero-line" style="--i:2">CREATING IMPACT.</span></span></h1>
-      <p class="lead hero-fade">Background in Computer and Network Engineering. I work at the intersection of artificial intelligence, software development, language technologies, and digital operations, building practical solutions with AI-assisted workflows.</p>
-      <div class="hero__actions hero-fade"><a class="btn btn--light" href="#projects">View Projects</a><a class="btn btn--outline-light" href="#contact">Contact Me</a></div>
-      <figure class="hero__portrait hero-fade"><div class="hero__portrait-frame"><img src="./portrait-faras.svg" width="800" height="1000" fetchpriority="high" alt="Illustrated monochrome portrait of Faras Fadhil Firdaus. The original artwork is being updated to a neutral monochrome treatment."/></div><figcaption class="meta-label">Faras Fadhil Firdaus, 2026</figcaption></figure>
-      <div class="hero__availability hero-fade"><span class="status">Open to remote opportunities and global collaboration</span></div>
+      <div class="hero__meta hero-fade"><span class="hero__meta-cell">FFF / PORTFOLIO 2026</span><span class="hero__meta-cell hero__meta-cell--index">01 / Introduction</span></div>
+      <h1 class="h1 hero__headline"><span class="hero-line-wrap"><span class="hero-line" style="--i:0">Faras Fadhil</span></span><span class="hero-line-wrap"><span class="hero-line" style="--i:1">Firdaus</span></span></h1>
+      <p class="hero__role hero-fade">AI &amp; Digital Operations Enthusiast</p>
+      <p class="lead hero-fade">Background in Computer and Network Engineering. I explore practical uses of AI, language technologies, and structured digital operations through prototypes and ongoing research.</p>
+      <div class="hero__actions hero-fade"><a class="btn" href="#projects">Explore My Work</a><a class="btn btn--ghost" href="#contact">Get in Touch</a></div>
+      <a class="hero__scroll mono" href="#about">SCROLL ↓</a>
     </div>
-    <a class="hero__scroll mono" href="#about">SCROLL ↓</a>
+    <figure class="hero__portrait hero-fade"><div class="hero__portrait-frame"><img src="./portrait-faras.svg" width="800" height="1000" fetchpriority="high" alt="Monochrome editorial portrait of Faras Fadhil Firdaus."/></div><figcaption class="meta-label">Faras Fadhil Firdaus, 2026</figcaption></figure>
   </div>
+  <div class="container hero__fields hero-fade"><ul class="hero__fields-list"><li class="hero__field mono">AI &amp; Technology</li><li class="hero__field mono">Digital Operations</li><li class="hero__field mono">Technical Research</li></ul></div>
 </section>
 <section class="section" id="about">
   <div class="container">
-    <div class="section-head section-enter"><div><span class="eyebrow">02 / Orientation</span><h2 class="h2">A Little About My Journey</h2></div><p class="mono section-head__note">Authenticity / Practical Foundation / Continuous Evolution</p></div>
+    <div class="section-head section-enter"><div><span class="eyebrow">02 / Background</span><h2 class="h2">A Little About My Journey</h2></div><p class="mono section-head__note">Authenticity / Practical Foundation / Continuous Evolution</p></div>
     <div class="about-grid">
       <div class="about-quote reveal"><span class="num" aria-hidden="true">01</span><blockquote>Never minimize potential, never exaggerate experience. Build ground-up technical competence with relentless curiosity.</blockquote><p class="body">I am driven by practical problems where analytical thinking, structured systems, and emerging automated tools intersect. Every endeavor starts with solid fundamentals and disciplined execution.</p></div>
       <div class="about-text">
@@ -476,14 +494,14 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 </section>
 <section class="section" id="domains">
   <div class="container">
-    <div class="section-head section-enter"><div><span class="eyebrow">03 / Domains</span><h2 class="h2">What I Do</h2></div><p class="mono section-head__note">Practical focus, not commercial experience claims</p></div>
+    <div class="section-head section-enter"><div><span class="eyebrow">02 / Background</span><h2 class="h2">What I Do</h2></div><p class="mono section-head__note">Practical focus, not commercial experience claims</p></div>
     <ol class="domain-list"><li class="domain-row"><span class="num" aria-hidden="true">01</span><span class="h3">AI &amp; Intelligent Technologies</span><span class="meta-label">Language models, prompts, agent patterns, prototypes</span></li><li class="domain-row"><span class="num" aria-hidden="true">02</span><span class="h3">Language &amp; AI Evaluation</span><span class="meta-label">Indonesian linguistics, dataset quality, text grading</span></li><li class="domain-row"><span class="num" aria-hidden="true">03</span><span class="h3">Software &amp; Automation</span><span class="meta-label">Full-stack interfaces, REST services, scripts, APIs</span></li><li class="domain-row"><span class="num" aria-hidden="true">04</span><span class="h3">Digital Operations &amp; Administration</span><span class="meta-label">Records, spreadsheets, document workflows, remote support</span></li></ol>
   </div>
 </section>
 <div class="marquee-band"><div class="marquee-track" aria-hidden="true"><span class="marquee-group"><span class="marquee-item">AI &amp; Technology<span class="marquee-sep"> · </span></span><span class="marquee-item">Digital Operations<span class="marquee-sep"> · </span></span><span class="marquee-item">Creative Development<span class="marquee-sep"> · </span></span><span class="marquee-item">Continuous Learning<span class="marquee-sep"> · </span></span></span><span class="marquee-group"><span class="marquee-item">AI &amp; Technology<span class="marquee-sep"> · </span></span><span class="marquee-item">Digital Operations<span class="marquee-sep"> · </span></span><span class="marquee-item">Creative Development<span class="marquee-sep"> · </span></span><span class="marquee-item">Continuous Learning<span class="marquee-sep"> · </span></span></span></div></div>
 <section class="section" id="projects">
   <div class="container" id="work">
-    <div class="section-head section-enter"><div><span class="eyebrow">04 / Artifacts</span><h2 class="h2 h2--projects">Selected Projects</h2></div><p class="mono section-head__note">System Prototypes / Research Concepts / Lab Experiments</p><span class="sr-only">Anchor for the projects section</span></div>
+    <div class="section-head section-enter"><div><span class="eyebrow">03 / Selected Work</span><h2 class="h2 h2--projects">Selected Projects</h2></div><p class="mono section-head__note">System Prototypes / Research Concepts / Lab Experiments</p><span class="sr-only">Anchor for the projects section</span></div>
     <article class="project-card project-card--feature reveal">
       <header class="project-card__head">
         <div class="project-card__top"><span class="status">BUILT / LIVE DEMO PROTOTYPE</span><span class="meta-label">Governed Enterprise AI Workforce &amp; Operations Platform</span></div>
@@ -538,7 +556,7 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 </section>
 <section class="section" id="experience">
   <div class="container">
-    <div class="section-head section-enter"><div><span class="eyebrow">05 / Track record</span><h2 class="h2">Experience</h2></div><p class="mono section-head__note">Practical roles and organizational involvement</p></div>
+    <div class="section-head section-enter"><div><span class="eyebrow">04 / Experience</span><h2 class="h2">Experience</h2></div><p class="mono section-head__note">Practical roles and organizational involvement</p></div>
     <div class="timeline section-enter" style="--stagger:1">
       <span class="timeline__progress" aria-hidden="true"></span>
       <article class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><div class="timeline__date"><span class="timeline__ordinal num" aria-hidden="true">01</span><span class="meta-label">Vocational internship</span><time class="mono">4 Months · 2025</time></div><div class="timeline__content"><h3 class="h3">IT Support Intern</h3><p class="h4 timeline__org">Soerya Global Komputer</p><ul class="timeline__bullets"><li class="body">Assembled and maintained computers, laptops, and printers, from initial diagnosis through repair.</li><li class="body">Installed operating systems and office applications, and checked hardware and software condition.</li><li class="body">Troubleshot hardware and software issues on PCs, laptops, and printers, escalating cases that needed further handling.</li><li class="body">Diagnosed basic network problems (connectivity, IP addressing, printer sharing) and escalated cases needing further handling.</li><li class="body">Documented technical procedures and troubleshooting steps so others could repeat the work.</li><li class="body">Explained problems and solutions to users in plain language.</li></ul></div></article>
@@ -550,7 +568,7 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 </section>
 <section class="section" id="education">
   <div class="container">
-    <div class="section-head section-enter"><div><span class="eyebrow">06 / Qualifications</span><h2 class="h2">Education &amp; Certifications</h2></div><p class="mono section-head__note">Formal vocational grounding and validated competencies</p></div>
+    <div class="section-head section-enter"><div><span class="eyebrow">05 / Capabilities</span><h2 class="h2">Education &amp; Certifications</h2></div><p class="mono section-head__note">Formal vocational grounding and validated competencies</p></div>
     <div class="edu-grid">
       <div class="edu-formal reveal"><span class="eyebrow">Formal academics</span><h3 class="h3 edu-school">SMK Negeri 1 Sukoharjo</h3><p class="h4">Computer and Network Engineering (TJKT)</p><p class="body edu-desc">Three-year vocational curriculum covering enterprise IP routing, LAN switching, fiber optic splicing, server administration, operating systems, and client hardware engineering.</p><div class="edu-period"><span class="meta-label">Graduation cycle</span><span class="mono">2023 / 2026</span></div></div>
       <div class="edu-creds"><span class="eyebrow">Professional licenses and credentials</span><ul class="edu-list"><li class="edu-item reveal" style="--stagger:0"><div><h4 class="h4">MikroTik Certified Network Associate (MTCNA)</h4><p class="body">RouterOS configuration, firewall filters, NAT, queue bandwidth management</p></div><span class="status">Issued 2025</span></li><li class="edu-item reveal" style="--stagger:1"><div><h4 class="h4">BNSP Junior Fiber Optic Cable Jointer</h4><p class="body">National professional competency in fusion splicing and OTDR testing</p></div><span class="status">Issued 2026</span></li><li class="edu-item reveal" style="--stagger:2"><div><h4 class="h4">Practical Office Advance</h4><p class="body">BPVP Surakarta · 33-day training after graduation · certificate obtained after the training</p></div><span class="status">BPVP 2026</span></li><li class="edu-item reveal" style="--stagger:3"><div><h4 class="h4">BNSP Practical Office Advance</h4><p class="body">National Vocational Certification Board candidate qualification</p></div><span class="status status--pending">In issuance / printing process</span></li></ul><p class="mono edu-footnote">All credentials verifiable via issuing registry IDs upon inquiry.</p></div>
@@ -559,7 +577,7 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 </section>
 <section class="section surface-dark" id="skills">
   <div class="container">
-    <div class="section-head section-enter"><div><span class="eyebrow">07 / Toolkit</span><h2 class="h2">Skills &amp; Technologies</h2></div><p class="mono section-head__note">Organized by discipline. No subjective percentage bars.</p></div>
+    <div class="section-head section-enter"><div><span class="eyebrow">05 / Capabilities</span><h2 class="h2">Skills &amp; Technologies</h2></div><p class="mono section-head__note">Organized by discipline. No subjective percentage bars.</p></div>
     <div class="skills__grid">
       <details class="skills__group" aria-labelledby="skill-0" open><summary class="skills__summary"><span class="num skills__num" aria-hidden="true">01</span><h3 class="h3 skills__title" id="skill-0">AI &amp; Modern Technologies</h3><span class="skills__toggle" aria-hidden="true"></span></summary><div class="skills__panel"><p class="body skills__desc">Models, assisted execution, and evaluation workflows.</p><ul class="skills__list"><li class="mono skills__item">AI Tools</li><li class="mono skills__item">AI-Assisted Development</li><li class="mono skills__item">Prompt Engineering</li><li class="mono skills__item">AI Agents</li><li class="mono skills__item">MCP</li><li class="mono skills__item">Workflow Automation</li></ul></div></details>
       <details class="skills__group" aria-labelledby="skill-1" open><summary class="skills__summary"><span class="num skills__num" aria-hidden="true">02</span><h3 class="h3 skills__title" id="skill-1">Software &amp; Integration</h3><span class="skills__toggle" aria-hidden="true"></span></summary><div class="skills__panel"><p class="body skills__desc">Runtimes, frameworks, and deterministic APIs.</p><ul class="skills__list"><li class="mono skills__item">Next.js</li><li class="mono skills__item">React</li><li class="mono skills__item">Python</li><li class="mono skills__item">FastAPI</li><li class="mono skills__item">TypeScript</li><li class="mono skills__item">REST APIs</li><li class="mono skills__item">Playwright</li></ul></div></details>
@@ -570,7 +588,7 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 </section>
 <section class="section" id="interests">
   <div class="container">
-    <div class="section-head section-enter"><div><span class="eyebrow">08 / Horizons</span><h2 class="h2">Areas of Interest</h2></div><p class="mono section-head__note">Interests and exploration, not professional experience</p></div>
+    <div class="section-head section-enter"><div><span class="eyebrow">Horizons</span><h2 class="h2">Areas of Interest</h2></div><p class="mono section-head__note">Interests and exploration, not professional experience</p></div>
     <ol class="interest-list"><li class="interest-row"><span class="num" aria-hidden="true">01</span><span class="interest-row__title h3">AI &amp; Intelligent Technologies</span></li><li class="interest-row"><span class="num" aria-hidden="true">02</span><span class="interest-row__title h3">Language &amp; AI Evaluation</span></li><li class="interest-row"><span class="num" aria-hidden="true">03</span><span class="interest-row__title h3">Software &amp; Workflow Automation</span></li><li class="interest-row"><span class="num" aria-hidden="true">04</span><span class="interest-row__title h3">Digital Operations &amp; Administration</span></li></ol>
     <p class="mono interest-detail">AI Training &amp; Data Evaluation · AI Research Assistance · Indonesian Linguistics &amp; Language Technologies · Search Engine Evaluation · Data Collection &amp; Annotation · Remote Administrative Support · HR &amp; Office Administration · Virtual Assistance · AI Automation &amp; Software Development.</p>
     <p class="mono interest-note">Minat dan eksplorasi aktif, bukan pengalaman kerja komersial formal.</p>
@@ -578,7 +596,7 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 </section>
 <section class="contact charcoal" id="contact">
   <div class="container">
-    <div class="contact__head"><span class="eyebrow">08 / Invitation</span><h2 class="h2 contact__title"><span class="cta-line" style="--i:0">LET'S BUILD</span><span class="cta-line" style="--i:1">SOMETHING REAL.</span></h2><p class="lead">I am interested in learning, collaborating, and contributing to meaningful work. AI research, language tasks, remote administration, or technology initiatives. If it is practical and worth doing carefully, I am open to exploring it.</p><a class="btn btn--light contact__primary" href="mailto:farasfirdaus564@gmail.com?subject=Kolaborasi%20Portofolio%20Faras&amp;body=Halo%20Faras%2C%20nama%20saya%20...">Start an email <span class="arrow-glyph" aria-hidden="true">↗</span></a></div>
+    <div class="contact__head"><span class="eyebrow">06 / Contact</span><h2 class="h2 contact__title"><span class="cta-line" style="--i:0">Have a project or</span><span class="cta-line" style="--i:1">opportunity in mind?</span></h2><p class="lead">I am interested in learning, collaborating, and contributing to meaningful work. AI research, language tasks, remote administration, or technology initiatives. If it is practical and worth doing carefully, I am open to exploring it.</p><a class="btn btn--light contact__primary" href="mailto:farasfirdaus564@gmail.com?subject=Kolaborasi%20Portofolio%20Faras&amp;body=Halo%20Faras%2C%20nama%20saya%20...">Start an email <span class="arrow-glyph" aria-hidden="true">↗</span></a></div>
     <div class="contact__grid">
       <div class="contact__arrangements"><span class="meta-label">Work arrangements</span><ul class="contact__chips"><li class="mono">Remote</li><li class="mono">Work from anywhere</li><li class="mono">Hybrid</li><li class="mono">On-site in Indonesia</li></ul></div>
       <div class="contact__direct"><span class="meta-label">Direct inquiries</span><ul class="contact__links"><li><a class="contact__link contact__link--email" href="mailto:farasfirdaus564@gmail.com?subject=Kolaborasi%20Portofolio%20Faras&amp;body=Halo%20Faras%2C%20nama%20saya%20..."><span class="contact__label mono">Email</span><span class="contact__value">farasfirdaus564@gmail.com</span></a></li><li><a class="contact__link" href="https://wa.me/6288238349814?text=Halo%20Faras%2C%20saya%20ingin%20diskusi%20tentang%20kolaborasi%20atau%20proyek." target="_blank" rel="noopener noreferrer"><span class="contact__label mono">WhatsApp</span><span class="contact__value">+62 882-3834-9814</span></a></li><li><a class="contact__link" href="https://github.com/farasfadhil" target="_blank" rel="noopener noreferrer"><span class="contact__label mono">GitHub</span><span class="contact__value">github.com/farasfadhil</span></a></li><li><a class="contact__link" href="https://linkedin.com/in/faras-fadhil-firdaus" target="_blank" rel="noopener noreferrer"><span class="contact__label mono">LinkedIn</span><span class="contact__value">linkedin.com/in/faras-fadhil-firdaus</span></a></li></ul><button class="btn btn--outline-light contact__copy" id="copyEmailBtn" type="button"><span id="copyBtnText">Copy email address</span></button></div>
@@ -587,10 +605,37 @@ html.has-motion .timeline__progress{transform:scaleY(var(--progress,0))}
 </section>
 </main>
 <footer class="site-footer"><div class="container footer-inner"><div class="footer-id"><span class="wordmark__mono">FFF</span><p class="mono">© 2026 Faras Fadhil Firdaus. All rights reserved.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a><a href="#hero">Back to top</a></nav></div></footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" title="Back to top"><span class="back-to-top__arrow" aria-hidden="true"></span></button>
 <script>
 (function(){
   var header=document.querySelector('.site-header');
   if(header){var onScroll=function(){header.classList.toggle('is-scrolled',window.scrollY>8)};onScroll();window.addEventListener('scroll',onScroll,{passive:true});}
+  /* Back-to-top: satu scheduler rAF, tanpa loop aktif. Hilang saat CTA/footer
+     terlihat supaya tidak menimpa keduanya. */
+  var toTop=document.getElementById('backToTop');
+  var ctaCopy=document.getElementById('copyEmailBtn');
+  var footerEl=document.querySelector('.site-footer');
+  var topFrame=0;
+  var paintTop=function(){
+    topFrame=0;
+    if(!toTop)return;
+    var vh=window.innerHeight;
+    var overlaps=[ctaCopy,footerEl].some(function(el){
+      if(!el)return false;
+      var box=el.getBoundingClientRect();
+      return box.top<vh&&box.bottom>0;
+    });
+    toTop.classList.toggle('is-visible',window.scrollY>600&&!overlaps);
+  };
+  var requestTop=function(){if(!topFrame)topFrame=window.requestAnimationFrame(paintTop);};
+  window.addEventListener('scroll',requestTop,{passive:true});
+  window.addEventListener('resize',requestTop,{passive:true});
+  requestTop();
+  if(toTop)toTop.addEventListener('click',function(){
+    var quiet=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0,behavior:quiet?'auto':'smooth'});
+    var mark=document.querySelector('.wordmark');if(mark&&mark.focus){try{mark.focus({preventScroll:true});}catch(e){mark.focus();}}
+  });
   var toggle=document.querySelector('.nav-toggle');
   var menu=document.getElementById('mobile-menu');
   if(toggle&&menu){toggle.addEventListener('click',function(){

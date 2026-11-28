@@ -1,8 +1,12 @@
 # DESIGN — Portofolio Faras Fadhil Firdaus
 
-Versi 3.0 · 28 November 2026
-Arah: **Dark Technical Editorial × Industrial Monochrome**
-Menggantikan arah Modern Monochrome / Creative Editorial (versi 2.0) dan seluruh arah lebih lama (oxblood, NIGHT SKY). Keputusan owner bersifat final. Sumber kebenaran tampilan: build Astro di `src/`; `index.html` dan `index-mobile.html` adalah artefak statis yang mengikuti arah yang sama.
+Versi 4.0 · 28 November 2026
+Arah: **Professional Modern Editorial**
+Menggantikan versi 3.0 **Dark Technical Editorial × Industrial Monochrome** dan seluruh arah lebih lama (Modern Monochrome / Creative Editorial, oxblood, NIGHT SKY). Keputusan owner bersifat final. Sumber kebenaran tampilan: build Astro di `src/`; `index.html` dan `index-mobile.html` adalah artefak statis yang mengikuti arah yang sama.
+
+Standar kerja: **PRD Bab 10** berlaku untuk setiap perubahan, termasuk tugas dokumen. Daftar skill tambahan ada di **PRD Bab 10.1b** (termasuk `code-review`, `codebase-design`, `verification-before-completion`). Mode default DURING.
+
+Reading this as: portofolio personal untuk recruiter, klien remote, dan komunitas teknis, dalam bahasa visual Swiss Editorial yang bertemu modern product design, dial **ENERGY 2 / RHYTHM 3 / MOTION 1**.
 
 ---
 
@@ -10,98 +14,139 @@ Menggantikan arah Modern Monochrome / Creative Editorial (versi 2.0) dan seluruh
 
 Personal brand Faras: technology enthusiast & AI-assisted developer dari Indonesia, open to remote.
 
+Komposisi arah:
+- **70% professional editorial**: hierarki jelas, whitespace sebagai struktur, bukti kerja di pusat halaman.
+- **20% modern product design**: permukaan bersih, komponen terukur, status yang jujur.
+- **10% technical futuristic details**: garis tipis, metadata mono, penomoran section.
+
+Keyword yang dipakai: Swiss Editorial, Modern Professional Portfolio, Product-Centric, Technical Minimalism.
+
+Yang **bukan** arah ini:
+- Bukan full dark brutalist, bukan putih polos template CV.
+- Bukan slide presentasi, bukan SaaS landing page.
+- Bukan eksperimen seni.
+
 Kepribadian visual:
-- Technical, editorial, industrial. Berani lewat skala, bukan warna.
-- Monokrom ketat. Kontras dipakai sebagai ritme, bukan dekorasi.
+- Profesional, tenang, dan spesifik. Berani lewat hierarki dan ritme, bukan lewat kebisingan.
 - Satu focal point per layar. Asimetri disengaja, bukan bento grid seragam.
-- Tipografi berani dan oversized: angka section adalah elemen visual, bukan label kecil.
+- Dark dipakai strategis sebagai penutup dan titik berat, bukan sebagai default semua section.
 - Cocok untuk recruiter, klien, dan peluang internasional.
 
 Prinsip (dari aturan antislop, R-31):
 - Tiap keputusan visual punya alasan satu baris.
 - Whitespace sebagai struktur, bukan sisa.
-- Nol aksen warna. Hierarki lewat ukuran, weight, garis 1px, dan inversi hitam/putih.
-- Satu accent moment: baris headline ke-2 di hero berbentuk outline (`-webkit-text-stroke: 1.5px #FFFFFF`, `color: transparent`) di atas deep black.
-- Dilarang: gradien, blur dekoratif, glow, shadow everywhere, emoji dekoratif, bento mosaic, fake terminal, capsule badge berlebih, colored stripe tanpa fungsi.
+- Satu aksen biru yang dipakai secara terukur di garis tipis, fokus, dan status. Aksen itu punya peran, bukan sekadar konsesi visual.
+- Fokus pada bukti: dua screenshot asli, case study, kredensial yang bisa dicek.
+
+Dilarang:
+- Cream, beige, brown, neon, gradient, glow, blur dekoratif, shadow berlebih.
+- Radius 24px untuk semua elemen; pakai 8–16px sesuai peran.
+- Skill percentage tanpa dasar, semua konten berbentuk card, animasi di tiap paragraf.
+- Efek 3D berat, scroll hijacking, loading screen panjang, custom cursor besar, video autoplay besar.
+- Parallax di semua section, marquee di setiap section.
+- `text-stroke outline` sebagai signature hero. Itu bagian dari arah lama dan tidak dipakai lagi.
 
 ### Ritme kontras antar section
 
-Section berganti permukaan secara disengaja, bukan sekadar alternating background:
+Section berganti komposisi secara disengaja, bukan sekadar alternating background. Permukaan mengikuti peran konten:
 
-| Section | Permukaan | Alasan (R-31) |
-|---|---|---|
-| Hero | `#080808` deep black | Focal point tunggal: headline oversized putih + satu baris outline |
-| About | `#FFFFFF` putih | Narasi personal dibaca pada kertas netral; angka `01` raksasa jadi penanda |
-| What I Do | `#FFFFFF` putih | Daftar bernomor, garis 1px sebagai pemisah |
-| Marquee | `#151515` dark surface | Strip pemisah satu-satunya antar narasi dan bukti kerja |
-| Projects | `#FFFFFF` putih | DEXTRA feature berpermukaan deep black di dalamnya, jadi satu titik berat |
-| Experience / Education | `#FFFFFF` putih | Kronologi dan kredensial dibaca tanpa gangguan |
-| Skills | `#151515` dark surface | Toolkit dibaca sebagai blok teknis terpisah |
-| Interests | `#FFFFFF` putih | Minat ditutup dengan daftar editorial ringan |
-| Contact | `#080808` deep black | Penutup deep black, teks putih oversized |
+| Section | Permukaan | Komposisi | Alasan (R-31) |
+|---|---|---|---|
+| Hero | `#F4F5F7` split light editorial | Headline 56–88px, narasi pendek, potret monokram | Focal point tunggal; terang membuat nama dan headline terbaca sebagai identitas, bukan posters gelap |
+| About | `#F4F5F7` | Dua kolom asimetris + milestone | Narasi personal dibaca pada kertas netral; milestone memberi bukti tanpa angka raksasa |
+| How I Work | `#FFFFFF` | 4-stage workflow `01 Research · 02 Analyze · 03 Build · 04 Validate`, garis biru tipis, detail expandable | Proses dibaca sebagai urutan kerja nyata, bukan kartu dekoratif |
+| Projects | `#F4F5F7` dominan, dark hanya aksen | Pusat bukti: 2 screenshot asli + case study, asymmetric | Bukti kerja adalah alasan portofolio ada; DEXTRA mendapat satu titik berat gelap |
+| Experience | `#FFFFFF` | Timeline vertikal profesional | Riwayat kerja dipisah dari kegiatan organisasi supaya tidak saling melemahkan |
+| Education | `#FFFFFF` | Credential gallery | Sertifikat dibaca sebagai objek resmi, bukan daftar teks padat |
+| Skills | `#F4F5F7` | Two-column directory, praktik vs sedang belajar, tanpa percentage | Daftar kemampuan jujur lebih kredibel daripada angka buatan |
+| Interests | `#F4F5F7` | Editorial ringan | Minat menutup narasi tanpa menyaingi bukti kerja |
+| Contact | `#191D26` dark restrained | Email + LinkedIn + GitHub + WhatsApp | Penutup gelap memberi berat dan memusatkan cara menghubungi |
+
+Signature yang diulang di seluruh halaman: penomoran section editorial, garis biru tipis (`#365FE8`), metadata terstruktur berhuruf kecil kapital, dan status statis `OPEN TO OPPORTUNITIES`. Status ini dinyatakan jujur sebagai teks tetap, bukan live indicator.
+
+Dial: **ENERGY 2 / RHYTHM 3 / MOTION 1**. RHYTHM 3 berarti komposisi tiap section berbeda secara nyata. MOTION 1 berarti gerak hanya untuk membimbing perhatian.
 
 ---
 
-## 2. Sistem Warna (FINAL, MONOKROM KETAT, 6 HEX)
+## 2. Sistem Warna (FINAL, 7 TOKEN)
 
-| Peran | Hex | Alasan (R-31) |
-|---|---|---|
-| Deep black | `#080808` | Hero & contact; kontras maksimal untuk headline putih |
-| Dark surface | `#151515` | Marquee, skills, panel feature; gelap tapi masih terpisah dari deep black |
-| Panel gray | `#292929` | Garis panel dan chip di atas deep black |
-| Strong gray | `#555555` | Teks sekunder di atas putih (7.46:1 PASS); border |
-| Muted gray | `#A3A3A3` | Teks sekunder HANYA di atas gelap (7.94:1 di `#080808`, 7.24:1 di `#151515`) |
-| Pure white | `#FFFFFF` | Teks di atas permukaan gelap; latar section terang |
+| Peran | Hex | Distribusi | Alasan (R-31) |
+|---|---|---|---|
+| Main canvas | `#F4F5F7` | 55% | Permukaan kerja default; cukup terang untuk teks gelap, cukup dingin untuk kesan editorial modern |
+| Surface | `#FFFFFF` | 25% | Memisahkan blok proses, timeline, dan kredensial tanpa garis tebal |
+| Secondary surface | `#E8EBF0` | dalam 25% surface | Nested block dan latar metadata; tidak untuk teks sekunder kecil |
+| Primary text & dark section | `#191D26` | 15% | Teks utama di terang, sekaligus penutup Contact; gelap terarah, bukan hitam pekat |
+| Secondary text | `#687180` | dalam 15% teks | Teks pendukung di atas `#F4F5F7` dan `#FFFFFF` |
+| Border | `#DDE1E7` | garis | Pemisah 1px dan garis workflow; menggantikan shadow dekoratif |
+| Accent blue | `#365FE8` | 5% | Garis tipis, fokus, dan status. Satu-satunya warna saturasi penuh |
 
-Turunan `rgba(255,255,255,.08)` dipakai untuk hover halus di atas gelap. Tidak ada hex lain.
+Turunan transparan diperbolehkan untuk hover halus, misalnya `rgba(25,29,38,.06)` di terang dan `rgba(255,255,255,.08)` di gelap. Tidak ada hex aktif selain tujuh token di atas.
 
-**DILARANG:** warna apa pun di luar 6 hex ini. Tidak ada oxblood, NIGHT SKY, biru, ungu, pink, emas, neon. Tidak ada `linear-gradient`, `radial-gradient`, glow, blur dekoratif, atau ilustrasi berwarna.
+**Dilarang:** cream, beige, brown, neon, ungu, pink, emas, `linear-gradient`, `radial-gradient`, glow, dan blur dekoratif.
 
 ### Kontras (diukur dengan `contrast-check.py`, bukan dikira)
 
-- `#FFFFFF` / `#080808` = 20.03:1 · PASS
-- `#A3A3A3` / `#080808` = 7.94:1 · PASS
-- `#A3A3A3` / `#151515` = 7.24:1 · PASS
-- `#555555` / `#FFFFFF` = 7.46:1 · PASS
-- `#FFFFFF` / `#151515` = 18.26:1 · PASS
-- `#FFFFFF` / `#292929` = 14.55:1 · PASS
-- `#A3A3A3` / `#FFFFFF` = 2.52:1 · GAGAL, maka `#A3A3A3` tidak pernah dipakai sebagai teks di atas putih.
+Diukur 28 November 2026 memakai `.agents/skills/antislop-human/contrast-check.py` dari lokasi skill global:
 
-Teks sekunder di section putih memakai `#555555`. Teks sekunder di section gelap memakai `#A3A3A3`.
+| Pasangan (teks pada latar) | Rasio | Normal 4.5:1 | Large 3.0:1 |
+|---|---|---|---|
+| `#191D26` / `#F4F5F7` | 15.46:1 | PASS | PASS |
+| `#191D26` / `#FFFFFF` | 16.87:1 | PASS | PASS |
+| `#687180` / `#F4F5F7` | 4.52:1 | PASS | PASS |
+| `#687180` / `#FFFFFF` | 4.93:1 | PASS | PASS |
+| `#FFFFFF` / `#191D26` | 16.87:1 | PASS | PASS |
+| `#365FE8` / `#FFFFFF` | 5.30:1 | PASS | PASS |
+
+Catatan penting untuk implementasi: `#687180` lolos AA dengan margin tipis di atas `#F4F5F7` (4.52:1) dan `#FFFFFF` (4.93:1), tapi **gagal** di atas `#E8EBF0` (4.12:1). Maka:
+- `#687180` hanya untuk teks sekunder di atas `#F4F5F7` dan `#FFFFFF`, dan hanya untuk ukuran normal ke atas.
+- **Fallback `#525B6B` wajib untuk teks kecil di atas permukaan terang**, termasuk di atas `#E8EBF0`. Terukur 6.28:1 di `#F4F5F7`, 6.85:1 di `#FFFFFF`, dan 5.73:1 di `#E8EBF0`. Semua PASS.
+- `#E8EBF0` dipakai sebagai latar blok, bukan sebagai latar teks sekunder berwarna `#687180`.
+- Pasangan baru di luar tabel ini **wajib diukur ulang saat implementasi** dengan tool yang sama (PRD §10.1).
+
+Fokus dan garis biru memakai `#365FE8`. Di atas `#191D26`, kontras fokus harus diukur ulang bila dipakai sebagai teks, bukan garis.
 
 ---
 
-## 3. Tipografi
+## 3. Tipografi & Spacing
 
 | Peran | Font | Alasan |
 |---|---|---|
-| Headline | **Space Grotesk** | geometris, editorial, berani tanpa berteriak |
-| Body | **Inter** | netral, sangat terbaca, tidak berkarakter berlebih |
-| Label teknis / metadata | **JetBrains Mono** (fallback `ui-monospace`) | memberi kesan technical tanpa warna |
+| Display selected | **Space Grotesk** | Karakter geometris dan editorial; dipakai di nama dan headline pilihan, bukan di semua elemen |
+| Body | **Inter** (Manrope / Plus Jakarta Sans sebagai alternatif) | Netral dan sangat terbaca untuk narasi profesional |
+| Metadata / teknis | Font monospace (JetBrains Mono bila tersedia, fallback `ui-monospace`) | Menandai data, status, dan penomoran tanpa menambah warna |
 
-- WOFF2 Space Grotesk & Inter sudah self-hosted di `public/fonts/`, preload HANYA Space Grotesk. Tidak ada Google Fonts CDN.
-- Mono minimal 12px (`0.75rem` = 12px untuk label, `0.8125rem` = 13px untuk metadata).
-- Hero headline: `clamp(3.5rem, 11vw, 10rem)`, line-height `0.88`, letter-spacing `-0.05em`.
-- Baris ke-2 hero: `-webkit-text-stroke: 1.5px #FFFFFF; color: transparent`, satu-satunya accent moment.
-- Subheadline: `clamp(2rem, 5vw, 3.5rem)`. Angka section: `clamp(2rem, 5vw, 3.5rem)` atau lebih besar, `tabular-nums`, letter-spacing `-0.06em`.
-- expressive typography: campuran weight, ukuran ekstrem, dan whitespace, bukan dekorasi warna.
-- Mobile: headline turun satu langkah (`clamp(2.75rem, 12vw, 4rem)`) di bawah 600px supaya tidak overflow di 360px.
+WOFF2 Space Grotesk & Inter sudah self-hosted di `public/fonts/`, preload HANYA Space Grotesk. Tidak ada Google Fonts CDN.
+
+Hierarki:
+- Hero: 56–88px desktop, responsif, `clamp`-nya dijaga supaya kata tidak pecah. Ini bukan 160px oversized.
+- Section heading: 32–48px.
+- Body: 15–17px, line-height 1.6, panjang baris maksimal 55–70ch.
+- Metadata: small uppercase dengan tracking terukur, bukan extreme letter-spacing.
+- Tidak semua heading oversized. Hedakan ukuran mengikuti peran, bukan ambisi dekoratif.
+
+Spacing & bentuk:
+- Skala 4/8px. Gunakan kelipatan 4px untuk gap dan kelipatan 8px untuk padding blok.
+- Container maksimal 1120–1200px.
+- Radius 8–16px, disesuaikan per komponen. Tidak ada radius seragam 24px.
+- Tombol 44–48px tinggi, memenuhi tap target.
+- Garis 1px `#DDE1E7` sebagai pemisah utama. Shadow hanya untuk elevasi yang benar-benar punya alasan.
+
+Motion mengikuti Bab 6. Responsive mengikuti Bab 7. Keduanya tunduk pada PRD Bab 10.
 
 ---
 
 ## 4. Layout & Section
 
-1. **Header** sticky minimal: wordmark `FFF`, About, What I Do, Projects, Experience, Education, Skills, Interests, Contact. Active indicator 1px. Mobile menu jelas, 44px tap target.
-2. **Hero** deep black, `min-height:100svh`. Headline 3 baris sangat besar; baris ke-2 outline. Intro singkat, CTA View Projects / Contact Me / Download CV, availability + lokasi. Potret monokrom opsional, di mobile turun setelah CTA.
-3. **About** editorial dua kolom. Angka `01` raksasa sebagai elemen visual. Narasi personal ringkas, bukan CV paste (riwayat ada di Experience/Education).
-4. **What I Do** 4 numbered rows, bukan kartu dashboard: AI & Intelligent Technologies; Language & AI Evaluation; Software & Automation; Digital Operations & Administration.
-5. **Marquee** satu strip `#151515`, separator `·`, dapat di-pause saat hover/focus.
-6. **Projects** asymmetric showcase. DEXTRA primary feature dengan permukaan deep black, judul besar, dan alur governance bernomor `Request → Analyze → Recommend → Approve → Execute → Audit` (angka 01-06 adalah urutan langkah, bukan metrik). Dua proyek pendukung tidak simetris penuh.
-7. **Experience** vertical timeline. Peran organisasi: **Member, Activities Section** di **Youth Red Cross (PMR), Wira Unit** dan **Scout Ambalan Council**, keduanya 2023-2025.
-8. **Education & Certifications** kredensial akurat, siklus `2023 / 2026`, BNSP in issuance dipertahankan.
-9. **Skills** dark surface, grouped lists, angka urutan besar, TANPA progress bar / percentage.
-10. **Interests** numbered editorial rows + subteks bidang, bukan kartu dashboard.
-11. **Contact** deep black `#080808`, teks `#FFFFFF` oversized, email/WA/GitHub/LinkedIn, work arrangements, CTA copy email, footer bersih.
+1. **Header** sticky minimal: wordmark `FFF`, About, How I Work, Projects, Experience, Education, Skills, Contact. Active indicator 1px biru. Mobile menu jelas, 44px tap target.
+2. **Hero** split light editorial: headline 56–88px desktop, narasi pendek, potret monokram, CTA View Projects / Contact Me / Download CV, status `OPEN TO OPPORTUNITIES` statis + lokasi. Di mobile potret turun setelah CTA.
+3. **About** dua kolom asimetris + milestone. Narasi personal ringkas, bukan CV paste (riwayat ada di Experience/Education).
+4. **How I Work** 4-stage workflow `01 Research · 02 Analyze · 03 Build · 04 Validate`, garis biru tipis, detail expandable. Bukan tiga kartu identik.
+5. **Projects** pusat bukti: 2 screenshot asli + case study, asymmetric. DEXTRA feature dengan satu aksen dark. Dua proyek pendukung tidak simetris penuh.
+6. **Experience** timeline vertikal profesional, dipisah dari organizational involvement. Peran organisasi: **Member, Activities Section** di **Youth Red Cross (PMR), Wira Unit** dan **Scout Ambalan Council**, keduanya `2023 – 2025`. Tanpa "Leadership".
+7. **Education** credential gallery: MTCNA & Junior Fiber Optic issued, Practical Office Advance training selesai, BNSP masih in issuance, POA 33 hari pasca lulus di BPVP Surakarta. Siklus `2023 / 2026`. Tanpa DPET, 260 jam, atau 9 unit.
+8. **Skills** two-column directory tanpa percentage. Dibedakan antara yang dipraktikkan dan yang sedang belajar.
+9. **Interests** editorial ringan, bukan kartu dashboard.
+10. **Contact** dark restrained closing di `#191D26`: email + LinkedIn + GitHub + WhatsApp, work arrangements, CTA copy email, footer bersih.
 
 ---
 
@@ -124,9 +169,9 @@ Screenshot proyek HARUS berasal dari aplikasi/website asli yang benar-benar berj
 Screenshot boleh ditempatkan di dalam frame portofolio, tapi isinya harus autentik & tidak diubah.
 
 Status proyek (jujur):
-- DEXTRA = BUILT, demo interaktif (prototype, bukan production deployment). Mandat manusia, approval-based execution, Policy Validator deterministik, dan audit record adalah inti governance.
+- DEXTRA = BUILT, demo interaktif (prototipe interaktif, bukan production deployment). Mandat manusia, approval-based execution, Policy Validator deterministik, dan audit record adalah inti governance.
 - AI Detector Mahasiswa = LIVE DEMO (prototype interaktif), bukan produk production. Skor adalah indikator tidak pasti, bukan bukti penggunaan AI atau pelanggaran akademik, bukan pengganti Turnitin.
-- AI & Technical Experiments = ONGOING EXPLORATION.
+- AI & Technical Experiments = ONGOING EXPLORATION, bukan proyek selesai.
 
 Jangan mengarang fitur, achievement, user, klien, atau metrik. Dua link demo berbeda harus tetap berbeda.
 
@@ -134,53 +179,69 @@ Jangan mengarang fitur, achievement, user, klien, atau metrik. Dua link demo ber
 
 ## 6. Motion
 
-- Hero staggered line reveal (opacity + translateY 16px), 40/120/200ms, ease-out.
-- Scroll reveal: fade + translateY 16px, stagger related elements, trigger via IntersectionObserver.
-- Project hover: perubahan border/background, bukan zoom dekoratif berlebih.
-- Button hover/active: inversi penuh hitam/putih, terlihat jelas tanpa warna baru.
-- Marquee: satu strip bergerak lambat, monokrom, berhenti saat hover/focus.
-- Nav: active indicator, sticky transition, smooth anchor.
-- `prefers-reduced-motion: reduce` mematikan semua motion non-essential.
-- Motion hanya aktif di bawah gate `html.has-motion` (JS menambah kelas hanya bila reduced-motion tidak aktif). Safety timeout per elemen menyalakan elemen yang masuk viewport tapi belum teramati observer. `<noscript>` menyalakan semua konten.
-- Tidak ada scroll hijacking, bounce berlebih, intro panjang, atau animasi yang mengganggu baca/klik.
+Prinsip: purposeful dan restrained. Gerak membimbing perhatian, bukan mengisi halaman.
+
+- Hero sequential reveal: navbar 0–200ms, nama 150–450ms, headline 300–850ms, portrait 450–1000ms, CTA/metadata 700–1200ms.
+- Text clipping pada reveal, bukan opacity-only di semua elemen.
+- Section entrance 450–600ms.
+- Hover 180–250ms. Stagger 60–100ms untuk elemen yang memang berhubungan.
+- Parallax sangat ringan dan opsional, tidak di semua section.
+- Project hover: perubahan border/background tipis, bukan zoom dekoratif berlebih.
+- Marquee: maksimal satu strip, dapat di-pause saat hover/focus. Tidak di setiap section.
+- `prefers-reduced-motion: reduce` wajib mematikan gerak non-essential.
+- Disable pointer effects di perangkat touch. Tanpa WebGL berat, tanpa scroll hijacking.
+- Motion aktif di bawah gate `html.has-motion` (JS menambah kelas hanya bila reduced-motion tidak aktif). Safety timeout per elemen menyalakan elemen yang masuk viewport tapi belum teramati observer. `<noscript>` menyalakan semua konten.
+- Tidak ada animasi di tiap paragraf, loading screen panjang, atau custom cursor besar.
 - Visual verification tidak diklaim lulus tanpa browser yang benar-benar merender (PRD §10.5).
 
 ---
 
 ## 7. Responsive
 
-Uji: 360px, 390px, 768px, 1366px, 1440px.
+Uji: 360px, 390px, 768px, 1024px, 1366px, 1440px.
+- Desktop 1440: split hero dan whitespace yang lapang.
+- 1024 tablet: stack dari split menjadi satu kolom yang masih berirama.
+- 390 mobile: single column, CTA mudah ditemukan tanpa scroll berkali-kali.
 - Tidak ada horizontal overflow; `overflow-x: clip` sebagai penjaga.
-- Mobile adalah keadaan layout tersendiri, bukan desktop yang diperkecil: grid satu kolom, headline turun satu langkah di bawah 600px, potret 4/3 setelah CTA.
-- Tidak ada teks bertabrakan / ter-clip.
-- Nav mobile tidak rusak; tap target >= 44px.
-- Section memakai `100svh`, bukan `100vh`, supaya tidak memotong konten di browser mobile.
+- Headline tidak memecah kata di breakpoint mana pun.
+- Tap target minimal 44px. Teks tidak bertabrakan atau ter-clip.
+- Nav mobile tidak rusak. Section memakai `100svh`, bukan `100vh`, supaya tidak memotong konten di browser mobile.
 
 ---
 
 ## 8. Performance & Accessibility
 
 - WebP/AVIF untuk screenshot, `loading="lazy"` untuk below-fold, `width`/`height` wajib (CLS), `fetchpriority="high"` untuk elemen hero.
-- Semantic HTML, `<main>`, landmarks, satu `<h1>`.
-- Keyboard navigation + visible `:focus-visible`; di permukaan gelap outline warna putih.
+- Semantic HTML, `<main>`, landmarks, satu `<h1>`, urutan heading tidak loncat.
+- Keyboard navigation + visible `:focus-visible`; garis fokus biru `#365FE8` di terang, diukur ulang di atas `#191D26`.
 - `prefers-reduced-motion` + `noscript` fallback.
-- Teks sekunder memenuhi WCAG AA pada latar masing-masing (lihat tabel kontras).
+- Semua teks memenuhi WCAG AA pada latar masing-masing (lihat tabel kontras Bab 2). `#687180` tidak dipakai di atas `#E8EBF0`; teks kecil memakai `#525B6B`.
 - Tidak ada dependency berlebih.
 
 ---
 
 ## 9. Definition of Done
 
-1. Hanya 6 hex monokrom, nol warna lain, nol gradien/glow/blur dekoratif.
-2. Tipografi Space Grotesk / Inter / JetBrains Mono (fallback monospace), mono >= 12px.
-3. Hero deep black dengan headline `clamp(3.5rem,11vw,10rem)` dan baris ke-2 outline sebagai satu signature.
-4. Angka section berukuran besar sebagai elemen visual.
-5. Ritme kontras mengikuti tabel di Bab 1 (bukan alternating background polos).
-6. Marquee tunggal `#151515`, separator `·`, dapat di-pause.
-7. Screenshot proyek 100% asli dari aplikasi berjalan, bukan recreate; bila belum ada, entri tipografi jujur.
-8. Status proyek jujur; DEXTRA prototipe; AI Detector disclaimer utuh; dua link demo berbeda.
-9. Peran organisasi: Member, Activities Section, 2023-2025; nama Inggris sesuai arahan owner.
-10. Kredensial akurat, BNSP in issuance dipertahankan, SMK 2023/2026.
-11. Motion halus & reduced-motion aman; static review dan visual verification dibedakan.
-12. Responsive di 5 breakpoint tanpa overflow; semua link & tombol berfungsi.
-13. PRD Bab 10 standar pengerjaan tetap berlaku; build sukses & deployment configuration dipertahankan.
+1. Arah terbaca sebagai Professional Modern Editorial: 70/20/10, bukan dark brutalist, bukan template CV putih polos.
+2. Tujuh token warna aktif dipakai sesuai distribusi. Tidak ada cream/beige/brown, neon, gradient, glow, blur dekoratif, atau shadow berlebih.
+3. Tipografi Space Grotesk / Inter (atau Manrope / Plus Jakarta Sans) / mono metadata, hero 56–88px tidak memecah kata, body 15–17px line-height 1.6, maksimal 55–70ch.
+4. Spacing 4/8px, container 1120–1200px, radius 8–16px, tombol 44–48px.
+5. Ritme section mengikuti tabel Bab 1: komposisi berbeda, dark hanya di Contact dan satu aksen di Projects.
+6. Signature hadir: penomoran editorial, garis biru tipis, metadata terstruktur, status statis `OPEN TO OPPORTUNITIES`.
+7. Dua screenshot asli terpasang bila tersedia; bila belum, entri tipografi jujur. Tidak ada recreate/mockup/AI image.
+8. Status proyek jujur; DEXTRA prototipe + governance; AI Detector indikator tidak pasti; Experiments bukan proyek selesai; dua link demo berbeda.
+9. How I Work = 4 stage yang ditentukan; Skills tanpa percentage; Experience dipisah dari organizational involvement.
+10. Peran organisasi Member, Activities Section, `2023 – 2025`, nama Inggris sesuai arahan owner, tanpa "Leadership". Kredensial akurat: SMK `2023 / 2026`, BNSP in issuance, POA 33 hari pasca lulus, tanpa DPET/260 jam/9 unit.
+11. Motion sequential di hero, entrance 450–600ms, hover 180–250ms, reduced-motion wajib, pointer effects mati di touch.
+12. Responsive di 1440/1024/390 tanpa overflow, tap target >= 44px, link & tombol berfungsi.
+13. PRD Bab 10 dan 10.1b tetap menjadi standar kerja; build sukses & deployment configuration dipertahankan.
+14. Pasangan warna baru diukur dengan `contrast-check.py` sebelum dipakai, bukan dikira.
+
+---
+
+## Catatan perubahan v3.0 → v4.0
+
+- Arah lama **Dark Technical Editorial × Industrial Monochrome** diganti. Yang ikut ditinggalkan: monokrom ketat, nol aksen warna, 6 hex, deep black `#080808` sebagai default, deep black hero, `#151515` marquee/skills, `#292929`, `#555555`, `#A3A3A3`, dan `text-stroke outline` di baris ke-2 hero.
+- Hex lama di atas hanya tercatat di catatan ini sebagai riwayat. Bukan warna aktif.
+- Palet baru: `#F4F5F7`, `#FFFFFF`, `#E8EBF0`, `#191D26`, `#687180`, `#DDE1E7`, `#365FE8`, dengan fallback `#525B6B` untuk teks kecil di terang.
+- Konten faktual tidak berubah. Perubahan hanya pada arah visual, komposisi section, tipografi, spacing, dan motion.

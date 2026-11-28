@@ -1,0 +1,277 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/projects';
+
+const detector = projects[1];
+const shot = `${import.meta.env.BASE_URL}/screenshots/ai-detector.webp`;
+const home = `${import.meta.env.BASE_URL}/#work`;
+---
+
+<Layout
+  title="AI Detector Mahasiswa case study · Faras Fadhil Firdaus"
+  description="How the AI Detector Mahasiswa live prototype analyzes Indonesian academic writing, and why its score stays an uncertain indicator."
+  canonical={new URL('case-study/ai-detector', Astro.site ?? 'https://frzz969.github.io').href}
+>
+  <article class="section section--case">
+    <div class="container case">
+      <header class="case__head">
+        <a class="case__back mono" href={home}>← Back to selected work</a>
+        <span class="case__index mono" aria-hidden="true">03 / Selected Work</span>
+        <span class="case__eyebrow eyebrow">Case study · live demo · prototype</span>
+        <h1 class="case__title">{detector.title}</h1>
+        <p class="case__subtitle">Indonesian Academic Writing Analyzer</p>
+        <p class="case__lead lead">
+          A live demo for exploring Indonesian academic writing with NLP. It shows where language
+          patterns repeat or shift, and keeps the result framed as an uncertain indicator rather
+          than a verdict.
+        </p>
+        <div class="case__strip">
+          <span>Status · live interactive demo, not a production service</span>
+          <a class="case__strip-link" href={detector.liveUrl} target="_blank" rel="noopener noreferrer">
+            Live demo ↗
+          </a>
+        </div>
+      </header>
+
+      <section class="case__section" aria-labelledby="case-problem">
+        <span class="case__number num" aria-hidden="true">01</span>
+        <div class="case__content">
+          <h2 id="case-problem" class="case__h2 h3">The Problem</h2>
+          <p class="body">
+            Students writing in Indonesian get little explanatory feedback on the shape of their
+            prose. A single number without context invites the wrong conclusion: that a score is a
+            judgment about a person or about academic integrity.
+          </p>
+        </div>
+      </section>
+
+      <section class="case__section" aria-labelledby="case-approach">
+        <span class="case__number num" aria-hidden="true">02</span>
+        <div class="case__content">
+          <h2 id="case-approach" class="case__h2 h3">The Approach</h2>
+          <p class="body">
+            Look at language quality, repetition and coherence across ten writing patterns, then show
+            the reader which parts of the text shaped the result. Highlighted text and a PDF report
+            make the analysis inspectable, in Indonesian and English.
+          </p>
+          <p class="body case__small">
+            The score is an <strong>uncertain indicator</strong>. It is <strong>not proof</strong> of
+            AI use or academic misconduct, no detector is 100% accurate, and this is
+            <strong>not a replacement for Turnitin</strong>.
+          </p>
+        </div>
+      </section>
+
+      <section class="case__section" aria-labelledby="case-architecture">
+        <span class="case__number num" aria-hidden="true">03</span>
+        <div class="case__content">
+          <h2 id="case-architecture" class="case__h2 h3">Architecture</h2>
+          <p class="body">
+            The demo keeps the analysis close to the text. A reader pastes text or uploads a file;
+            the interface surfaces the patterns it found; the optional local model can run in the
+            browser. The report is generated from the same result shown on screen.
+          </p>
+          <ol class="case__flow">
+            <li><span class="mono">Input</span> Paste text or upload txt, md, pdf or docx.</li>
+            <li><span class="mono">Analysis</span> Check ten language patterns, including repetition and coherence.</li>
+            <li><span class="mono">Result</span> Show a score plus the text passages behind it.</li>
+            <li><span class="mono">Report</span> Export the same result as a PDF.</li>
+            <li><span class="mono">Privacy</span> Text stays private in the browser; the optional model runs locally.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="case__section" aria-labelledby="case-implementation">
+        <span class="case__number num" aria-hidden="true">04</span>
+        <div class="case__content">
+          <h2 id="case-implementation" class="case__h2 h3">Implementation</h2>
+          <p class="body">
+            A live prototype built around NLP and text classification for Indonesian academic
+            writing. It accepts txt, md, pdf and docx, checks ten language patterns, highlights the
+            relevant passages, and exports a PDF report. An optional local model around 130MB can
+            run in the browser.
+          </p>
+          <p class="body case__small">
+            Prototype limits: this is an exploratory analyzer, not a plagiarism service and not a
+            production academic-integrity product. It makes no accuracy claim.
+          </p>
+          <ul class="case__tags">
+            {detector.focus.map((tag) => <li class="case__tag">{tag}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section class="case__section" aria-labelledby="case-evidence">
+        <span class="case__number num" aria-hidden="true">05</span>
+        <div class="case__content">
+          <h2 id="case-evidence" class="case__h2 h3">Evidence</h2>
+          <figure class="case__figure">
+            <div class="case__frame">
+              <img
+                src={shot}
+                width="1440"
+                height="900"
+                loading="lazy"
+                alt="Screenshot antarmuka AI Detector Mahasiswa asli: editor contoh teks dengan indikator AI 68 persen dan bagian yang ditandai."
+              />
+            </div>
+            <figcaption class="meta-label">
+              Captured from the live demo at ai-detector-mahasiswa.vercel.app · 28 Nov 2026
+            </figcaption>
+          </figure>
+          <p class="body case__small">
+            <a class="case__inline-link" href={detector.liveUrl} target="_blank" rel="noopener noreferrer">Try the live demo ↗</a>
+            to inspect the analysis yourself. The screenshot above is the captured interface, not a recreation.
+          </p>
+        </div>
+      </section>
+
+      <footer class="case__footer">
+        <a class="text-link" href={home}>Back to selected work <span aria-hidden="true">↗</span></a>
+      </footer>
+    </div>
+  </article>
+
+  <style>
+    .section--case { background: var(--canvas); border-top: 0; }
+    .case { max-width: 980px; min-width: 0; }
+    .case__head { min-width: 0; margin-bottom: clamp(36px, 5vw, 64px); }
+    .case__back {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--secondary);
+    }
+    .case__back:hover { color: var(--accent); }
+    .case__index {
+      display: block;
+      color: var(--accent);
+      margin-top: 20px;
+    }
+    .case__index::after {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 1px;
+      margin-top: 8px;
+      background: var(--accent);
+    }
+    .case__eyebrow { margin-top: 14px; }
+    .case__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      margin-top: 12px;
+      overflow-wrap: normal;
+      word-break: keep-all;
+    }
+    .case__subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      color: var(--secondary);
+      margin-top: 10px;
+    }
+    .case__lead { margin-top: 24px; max-width: 66ch; }
+    .case__strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+      margin-top: 28px;
+      padding: 12px 16px;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+    .case__strip-link { color: var(--white); min-height: 44px; display: inline-flex; align-items: center; }
+    .case__strip-link:hover { color: var(--secondary-surface); }
+
+    .case__section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      padding-block: clamp(28px, 4vw, 44px);
+      border-top: 1px solid var(--border);
+    }
+    .case__section:first-of-type { border-top: 0; }
+    .case__number { font-size: 2rem; color: var(--accent); }
+    .case__content { min-width: 0; }
+    .case__h2 { margin-bottom: 14px; }
+    .case__content .body { max-width: 66ch; color: var(--secondary); }
+    .case__small { margin-top: 12px; font-size: 0.9375rem; }
+    .case__content .body strong { color: var(--ink); font-weight: 700; }
+
+    .case__flow {
+      counter-reset: step;
+      margin-top: 20px;
+      max-width: 66ch;
+    }
+    .case__flow li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 12px;
+      padding-block: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .case__flow li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+    .case__flow li .mono { font-weight: 600; }
+
+    .case__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .case__tag {
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--secondary);
+    }
+
+    .case__figure { margin: 20px 0 0; min-width: 0; }
+    .case__frame {
+      aspect-ratio: 16 / 9;
+      background: var(--secondary-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .case__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .case__figure figcaption { padding-top: 10px; color: var(--secondary); }
+    .case__inline-link { color: var(--accent); border-bottom: 1px solid var(--accent); }
+
+    .case__footer {
+      margin-top: clamp(36px, 5vw, 64px);
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .case__section {
+        grid-template-columns: 80px minmax(0, 1fr);
+        gap: 24px;
+      }
+    }
+    @media (max-width: 620px) {
+      .case__title { font-size: clamp(2.5rem, 11vw, 3.75rem); }
+      .case__frame { aspect-ratio: 4 / 3; }
+      .case__frame img { object-fit: contain; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case__section *, .case__frame img { transition: none !important; transform: none !important; }
+    }
+  </style>
+</Layout>

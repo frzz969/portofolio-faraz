@@ -63,7 +63,7 @@ const navItems = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#080808" />
+    <meta name="theme-color" content="#F4F5F7" />
     <link rel="canonical" href={canonical} />
     <!-- Hanya satu versi halaman yang benar-benar ada (bahasa Inggris).
          hreflang id dihapus: tidak ada halaman /id/ palsu yang bisa ditunjuk. -->
@@ -101,6 +101,7 @@ const navItems = [
 
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
+    <div class="reading-progress" aria-hidden="true"></div>
 
     <header class="site-header" id="siteHeader">
       <div class="container site-header__inner">
@@ -141,6 +142,14 @@ const navItems = [
     </main>
 
     <Footer />
+
+    <!-- Back-to-top: tombol kecil di pojok kanan bawah, muncul setelah hero.
+         Footer/CTA memang sudah punya tautan "Back to top"; tombol ini hanya
+         jalan pintas saat membaca, dan disembunyikan saat CTA/footer terlihat
+         supaya tidak menimpa keduanya (R-31). -->
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" title="Back to top">
+      <span class="back-to-top__arrow" aria-hidden="true"></span>
+    </button>
 
     <script is:inline>
       (() => {
@@ -294,10 +303,15 @@ const navItems = [
           }
         });
 
-        // Sticky header: garis bawah muncul setelah halaman digulir.
+        // Header: siap dipakai segera setelah script ini jalan, lalu berubah
+        // compact setelah scroll 8px. is-ready bukan loading overlay; tanpa JS
+        // header tetap terlihat karena opacity default ada di CSS.
         const header = document.getElementById('siteHeader');
+        header?.classList.add('is-ready');
         const onScroll = () => {
-          header?.classList.toggle('is-scrolled', window.scrollY > 8);
+          const scrolled = window.scrollY > 8;
+          header?.classList.toggle('is-scrolled', scrolled);
+          header?.classList.toggle('is-compact', scrolled);
         };
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
@@ -357,12 +371,16 @@ const navItems = [
           sectionEntries.forEach((el) => el.classList.add('is-visible'));
         }
 
-        // Progres timeline dan parallax angka About memakai satu scheduler rAF.
-        // Observer hanya menyalakan perhitungan saat elemen relevan terlihat,
-        // jadi tidak ada loop JS terus-menerus di luar viewport.
+        // Progress bar, timeline, dan parallax memakai satu scheduler rAF.
+        // Observer menyalakan timeline/parallax hanya saat elemen terlihat;
+        // progress bar dihitung langsung dari event scroll, bukan loop aktif.
         const timeline = document.querySelector('.timeline');
         const parallaxHost = document.querySelector('[data-parallax-host]');
         const parallaxTarget = document.querySelector('.about__num');
+        const progressBar = document.querySelector('.reading-progress');
+        const backToTop = document.getElementById('backToTop');
+        const ctaCopy = document.getElementById('copyEmailBtn');
+        const footer = document.querySelector('.site-footer');
         let timelineActive = false;
         let parallaxActive = false;
         let fxFrame = 0;
@@ -370,6 +388,12 @@ const navItems = [
         const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
         const paintScrollFx = () => {
           fxFrame = 0;
+          // Progres baca adalah informasi, jadi dihitung walau reduced-motion.
+          if (progressBar) {
+            const travel = document.documentElement.scrollHeight - window.innerHeight;
+            const value = travel > 0 ? clamp(window.scrollY / travel, 0, 1) : 0;
+            progressBar.style.setProperty('--scroll-progress', value.toFixed(4));
+          }
           if (timelineActive && timeline) {
             const box = timeline.getBoundingClientRect();
             const marker = window.innerHeight * 0.6;
@@ -382,6 +406,19 @@ const navItems = [
             const raw = ((vh - box.top) / (vh + box.height)) * 2 - 1;
             const y = clamp(raw * 12, -12, 12);
             parallaxHost.style.setProperty('--parallax-y', `${y.toFixed(1)}px`);
+          }
+          // Jalan pintas muncul setelah hero dan menghilang lagi di dekatnya.
+          // Saat CTA/footer terlihat, tombol disembunyikan supaya tidak
+          // menimpa kedua area itu (R-31). Memakai scheduler yang sama, tanpa
+          // loop atau scroll listener baru.
+          if (backToTop) {
+            const vh = window.innerHeight;
+            const overlaps = [ctaCopy, footer].some((el) => {
+              if (!el) return false;
+              const box = el.getBoundingClientRect();
+              return box.top < vh && box.bottom > 0;
+            });
+            backToTop.classList.toggle('is-visible', window.scrollY > 600 && !overlaps);
           }
         };
         const requestScrollFx = () => {
@@ -404,10 +441,17 @@ const navItems = [
           if (parallaxHost && parallaxTarget && finePointer.matches) {
             visibility.observe(parallaxHost);
           }
-          window.addEventListener('scroll', requestScrollFx, { passive: true });
-          window.addEventListener('resize', requestScrollFx, { passive: true });
-          requestScrollFx();
         }
+        // Satu scheduler rAF untuk semua efek scroll, termasuk progress bar.
+        // Tetap aktif saat reduced-motion karena progress bar adalah informasi.
+        window.addEventListener('scroll', requestScrollFx, { passive: true });
+        window.addEventListener('resize', requestScrollFx, { passive: true });
+        requestScrollFx();
+
+        backToTop?.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+          document.querySelector('.wordmark')?.focus({ preventScroll: true });
+        });
       })();
     </script>
 
@@ -458,22 +502,23 @@ const navItems = [
     </script>
 
     <style is:global>
-      /* --- Header: transparan di atas cover, solid setelah scroll ----------- */
+      /* --- Header: transparan di atas cover terang, putih solid + border
+         #DDE1E7 setelah scroll. Teks gelap; satu garis biru menandai active. */
       .site-header {
         position: sticky;
         top: 0;
         z-index: 50;
         width: 100%;
-        background: var(--black);
-        border-bottom: 1px solid var(--strong);
-        transition: background-color var(--dur-ui) var(--ease-ui),
-                    border-color var(--dur-ui) var(--ease-ui);
+        background: transparent;
+        border-bottom: 1px solid transparent;
+        transition: background-color var(--dur-ui) var(--ease-out),
+                    border-color var(--dur-ui) var(--ease-out),
+                    opacity 200ms var(--ease-out),
+                    transform 200ms var(--ease-out);
       }
-      /* Header selalu deep black: transparan di atas hero justru memperlihatkan
-         body putih di Termux/Chrome render, jadi permukaan solid dipakai dari
-         awal. State scroll hanya menguatkan garis bawah (feedback halus). */
       .site-header.is-scrolled {
-        border-bottom-color: var(--muted);
+        background: var(--white);
+        border-bottom-color: var(--border);
       }
       .site-header__inner {
         display: flex;
@@ -481,6 +526,11 @@ const navItems = [
         justify-content: space-between;
         gap: 16px;
         min-height: var(--header-h);
+        transition: min-height 180ms var(--ease-out);
+      }
+      /* Compact mengecilkan tinggi header 8px tanpa mengubah warna/token. */
+      .site-header.is-compact .site-header__inner {
+        min-height: calc(var(--header-h) - 8px);
       }
       .wordmark {
         display: inline-flex;
@@ -496,19 +546,20 @@ const navItems = [
         min-width: 38px;
         min-height: 30px;
         padding: 4px 7px;
+        border-radius: 4px;
         font-family: var(--font-display);
         font-weight: 700;
         font-size: 0.9375rem;
         letter-spacing: -0.05em;
-        color: var(--black);
-        background: var(--white);
+        color: var(--white);
+        background: var(--ink);
       }
       .wordmark__name {
         font-family: var(--font-display);
         font-weight: 600;
         font-size: 0.875rem;
         letter-spacing: -0.015em;
-        color: var(--white);
+        color: var(--ink);
       }
       .site-nav { display: none; align-items: center; gap: 4px; }
       .site-nav__link {
@@ -522,7 +573,7 @@ const navItems = [
         font-weight: 500;
         letter-spacing: 0.06em;
         color: var(--muted);
-        transition: color var(--dur-ui) var(--ease-ui);
+        transition: color var(--dur-ui) var(--ease-out);
       }
       .site-nav__link::after {
         content: "";
@@ -531,13 +582,13 @@ const navItems = [
         right: 14px;
         bottom: 10px;
         height: 1px;
-        background: var(--white);
+        background: var(--accent);
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform var(--dur-ui) var(--ease-ui);
+        transition: transform var(--dur-ui) var(--ease-out);
       }
       .site-nav__link:hover,
-      .site-nav__link.is-active { color: var(--white); }
+      .site-nav__link.is-active { color: var(--ink); }
       .site-nav__link.is-active::after { transform: scaleX(1); }
 
       .site-header__end { display: inline-flex; align-items: center; gap: 12px; }
@@ -554,7 +605,7 @@ const navItems = [
       .availability__dot {
         width: 6px;
         height: 6px;
-        background: var(--white);
+        background: var(--accent);
         border-radius: 50%;
       }
       @media (min-width: 768px) { .availability { display: inline-flex; } }
@@ -571,16 +622,17 @@ const navItems = [
         justify-content: center;
         min-height: 44px;
         padding-inline: 14px;
-        border: 1px solid var(--strong);
+        border: 1px solid var(--border);
+        border-radius: 8px;
         list-style: none;
         font-family: var(--font-mono);
         font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.06em;
-        color: var(--white);
+        color: var(--ink);
       }
       .mobile-nav > summary::-webkit-details-marker { display: none; }
-      .mobile-nav[open] > summary { background: var(--panel); }
+      .mobile-nav[open] > summary { background: var(--secondary-surface); }
       .mobile-nav nav {
         position: absolute;
         top: calc(100% + 8px);
@@ -589,22 +641,65 @@ const navItems = [
         display: flex;
         flex-direction: column;
         padding: 6px;
-        background: var(--panel);
-        border: 1px solid var(--strong);
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 8px;
       }
       .mobile-nav nav a {
         display: flex;
         align-items: center;
         min-height: 44px;
         padding-inline: 12px;
+        border-radius: 4px;
         font-family: var(--font-mono);
         font-size: 0.8125rem;
-        color: var(--white);
+        color: var(--ink);
       }
-      .mobile-nav nav a:hover { background: var(--surface); }
-      /* Fokus keyboard tetap terlihat di atas panel gelap. */
-      .mobile-nav nav a:focus-visible { outline: 2px solid var(--white); outline-offset: -2px; }
-      .site-nav__link:focus-visible { outline-color: var(--white); }
+      .mobile-nav nav a:hover { background: var(--secondary-surface); }
+      .mobile-nav nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+      .site-nav__link:focus-visible { outline-color: var(--accent); }
+
+      /* Back-to-top: 44px tap target, netral, tanpa shadow/glow. Animasi
+         hanya saat has-motion; reduced-motion memakai switch opacity instan. */
+      .back-to-top {
+        position: fixed;
+        right: max(var(--gutter), calc((100vw - var(--page-max)) / 2));
+        bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) + 16px));
+        z-index: 40;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--ink);
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .back-to-top.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      html.has-motion .back-to-top {
+        transform: translateY(6px);
+        transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+      }
+      html.has-motion .back-to-top.is-visible { transform: translateY(0); }
+      .back-to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      .back-to-top__arrow {
+        position: relative;
+        width: 10px;
+        height: 10px;
+        border-top: 1px solid var(--ink);
+        border-left: 1px solid var(--ink);
+        transform: translateY(2px) rotate(45deg);
+      }
 
       main { display: block; }
     </style>

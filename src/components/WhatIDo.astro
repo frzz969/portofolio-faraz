@@ -15,7 +15,7 @@ const notes = [
     <div class="approach__grid">
       <div class="section-head section-enter">
         <div>
-          <span class="eyebrow">02 / Approach</span>
+          <span class="eyebrow"><span class="eyebrow__num">02</span> / Background</span>
           <h2 class="h2">How I Work</h2>
         </div>
       </div>
@@ -39,6 +39,21 @@ const notes = [
 </section>
 
 <style>
+  /* Hairline biru 1px mengikuti pola penanda section Projects. */
+  .eyebrow__num {
+    position: relative;
+    color: var(--accent);
+  }
+  .eyebrow__num::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
   .approach__grid {
     display: grid;
     grid-template-columns: 1fr;

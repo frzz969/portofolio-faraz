@@ -14,7 +14,7 @@ const certifications = [
   <div class="container">
     <div class="section-head section-enter section-enter--right">
       <div>
-        <span class="eyebrow">05 / Qualifications</span>
+        <span class="eyebrow"><span class="eyebrow__num">05</span> / Capabilities</span>
         <h2 class="h2">Education &amp; Certifications</h2>
       </div>
       <p class="mono section-head__note">Formal vocational grounding and validated competencies</p>
@@ -58,6 +58,21 @@ const certifications = [
 </section>
 
 <style>
+  /* Sama seperti Projects: nomor biru kecil + hairline 1px. */
+  .eyebrow__num {
+    position: relative;
+    color: var(--accent);
+  }
+  .eyebrow__num::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
   .edu__grid {
     display: grid;
     grid-template-columns: 1fr;

@@ -1,13 +1,13 @@
 ---
 // ABOUT - section putih. Copy personal 3 kalimat dari owner dipertahankan
-// utuh. Kiri: angka '01' raksasa + quote; kanan: narasi. Garis 1px #555555.
+// utuh. Kiri: angka '02' raksasa + quote; kanan: narasi. Garis 1px var(--border).
 ---
 
 <section class="section section--about" id="about" data-parallax-host>
   <div class="container">
     <div class="section-head section-enter section-enter--left">
       <div>
-        <span class="eyebrow">01 / Orientation</span>
+        <span class="eyebrow"><span class="eyebrow__num">02</span> / Background</span>
         <h2 class="h2">A Little About My Journey</h2>
       </div>
       <p class="mono section-head__note">Authenticity / Practical Foundation / Continuous Evolution</p>
@@ -15,7 +15,7 @@
 
     <div class="about__grid">
       <div class="about__quote section-enter section-enter--left">
-        <span class="num about__num" aria-hidden="true">01</span>
+        <span class="num about__num" aria-hidden="true">02</span>
         <blockquote>
           Never minimize potential, never exaggerate experience. Build ground-up technical
           competence with relentless curiosity.
@@ -47,6 +47,22 @@
 </section>
 
 <style>
+  /* Nomor section memakai signature Projects: biru sebagai hairline 1px,
+     bukan badge. Teks label tetap mono netral (R-31). */
+  .eyebrow__num {
+    position: relative;
+    color: var(--accent);
+  }
+  .eyebrow__num::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
   .about__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -59,7 +75,7 @@
     border-top: 1px solid var(--strong);
     border-bottom: 1px solid var(--strong);
   }
-  /* Angka adalah elemen visual, bukan label: #555555 di putih (7.46:1). */
+  /* Angka adalah elemen visual, bukan label; kontras via var(--muted). */
   .about__num {
     display: block;
     position: relative;

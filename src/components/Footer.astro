@@ -1,5 +1,5 @@
 ---
-// FOOTER - bersih, lanjutan permukaan hitam kontak. Tautan nyata,
+// FOOTER: lanjutan langsung permukaan #191D26 dari contact. Tautan nyata,
 // tanpa badge berlebih, tanpa label warna atau identitas tambahan.
 ---
 
@@ -20,8 +20,9 @@
 
 <style>
   .site-footer {
-    background: var(--black);
-    border-top: 1px solid var(--strong);
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    color: var(--white);
   }
   .site-footer__inner {
     display: flex;
@@ -47,8 +48,9 @@
     font-weight: 700;
     font-size: 0.9375rem;
     letter-spacing: -0.05em;
-    color: var(--black);
+    color: var(--ink);
     background: var(--white);
+    border-radius: 4px;
   }
   .site-footer__nav {
     display: flex;
@@ -64,10 +66,10 @@
     letter-spacing: 0.06em;
     color: var(--muted);
     border-bottom: 1px solid transparent;
-    transition: color var(--dur-ui) var(--ease-ui), border-color var(--dur-ui) var(--ease-ui);
+    transition: color var(--dur-ui) var(--ease-out), border-color var(--dur-ui) var(--ease-out);
   }
-  .site-footer__nav a:hover { color: var(--white); border-color: var(--white); }
-  /* Focus harus putih: outline hitam default tidak terlihat di atas #080808. */
+  .site-footer__nav a:hover { color: var(--white); border-color: var(--accent); }
+  /* Fokus putih: kontras di atas #191D26 (16.87:1, diukur). */
   .site-footer__nav a:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
   .site-footer__nav a:active { color: var(--muted); }
 

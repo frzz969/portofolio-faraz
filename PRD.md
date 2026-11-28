@@ -1,8 +1,8 @@
 # PRD — Portofolio Faras Fadhil Firdaus
 
-Versi 3.0 · 28 November 2026
+Versi 4.0 · 28 November 2026
 Status: Redesign implementasi berjalan.
-Arah: **Dark Technical Editorial × Industrial Monochrome**. Menggantikan arah Modern Monochrome / Creative Editorial (v2.0) dan seluruh arah sebelumnya (oxblood, NIGHT SKY). Keputusan owner bersifat final.
+Arah: **Professional Modern Editorial**. Menggantikan arah Dark Technical Editorial × Industrial Monochrome (v3.0), Modern Monochrome / Creative Editorial (v2.0), dan seluruh arah sebelumnya (oxblood, NIGHT SKY). Keputusan owner bersifat final. Detail lihat `DESIGN.md` v4.0.
 
 ---
 
@@ -11,7 +11,7 @@ Arah: **Dark Technical Editorial × Industrial Monochrome**. Menggantikan arah M
 Redesign menyeluruh atas portofolio existing di https://frzz969.github.io/portofolio-faraz/.
 Tujuan: personal brand yang profesional, berani, dan kredibel untuk recruiter/klien internasional, dengan satu aturan mutlak: **preview proyek harus screenshot asli dari aplikasi yang benar-benar berjalan**, bukan recreate/mockup/AI image.
 
-Arah visual: **Dark Technical Editorial × Industrial Monochrome**. Monokrom ketat 6 hex, ritme kontras yang disengaja antar section (hero/contact deep black, about/projects/experience putih, marquee/skills dark surface), headline oversized, dan angka section sebagai elemen visual. Satu accent moment: baris headline ke-2 di hero berbentuk outline di atas deep black. Detail lihat `DESIGN.md`.
+Arah visual: **Professional Modern Editorial**, 70% professional editorial, 20% modern product design, 10% technical futuristic details. Palet 7 token dengan kanvas `#F4F5F7`, surface `#FFFFFF`, teks utama sekaligus dark section `#191D26`, dan satu aksen biru `#365FE8` untuk garis tipis, fokus, dan status. Dark dipakai strategis di Contact dan satu aksen Projects, bukan default semua section. Hero split light editorial dengan headline 56–88px dan potret monokram, bukan headline oversized ber-outline. Komposisi section tidak seragam. Detail lihat `DESIGN.md`.
 
 Prinsip konten: **jangan mengecilkan potensi, jangan membesar-besarkan pengalaman.**
 
@@ -20,9 +20,10 @@ Prinsip konten: **jangan mengecilkan potensi, jangan membesar-besarkan pengalama
 ## 2. Masalah yang Diperbaiki
 
 - Warna NIGHT SKY / oxblood terlalu berwarna & low-contrast, terasa "jelek" menurut owner.
-- Pola kartu & alternating background terasa seperti slide PowerPoint; diganti ritme kontras yang disengaja dan asimetri editorial.
+- Pola kartu & alternating background terasa seperti slide PowerPoint; diganti komposisi section yang tidak seragam dan asimetri editorial.
+- Arah v3.0 terlalu gelap dan monokrom ketat; seluruh halaman berpermukaan deep black terasa berat. Diganti arah Professional Modern Editorial yang profesional, terbaca, dan tetap punya satu titik gelap strategis.
 - Thumbnail proyek berupa SVG recreate, bukan screenshot asli (melanggar aturan baru).
-- Diperlukan arah editorial monokrom gelap yang lebih dewasa & distinctive, dengan tipografi berani/oversized dan angka sebagai elemen visual.
+- Diperlukan arah editorial yang dewasa dan kredibel, dengan hierarki jelas, projects sebagai pusat bukti, dan detail teknis yang terukur.
 
 ---
 
@@ -51,7 +52,7 @@ Prinsip konten: **jangan mengecilkan potensi, jangan membesar-besarkan pengalama
 
 A. **Navbar**: sticky minimal, monogram/name, About, Projects, Experience, Contact, active indicator, mobile nav.
 
-B. **Hero**: headline besar, intro singkat, CTA View Projects + Contact Me, availability indicator, portrait monokrom opsional.
+B. **Hero**: split light editorial, headline 56–88px desktop responsif tanpa memecah kata, intro singkat, CTA View Projects + Contact Me, status statis `OPEN TO OPPORTUNITIES`, portrait monokram opsional.
 
 C. **About**: editorial two-column, personal, teknis + praktis, bukan CV paste.
 
@@ -70,7 +71,7 @@ F. **Experience & Education**: vertical timeline, tanggal akurat, kredensial ses
 
 G. **Skills**: grouped lists, tanpa percentage/progress bar.
 
-H. **Contact**: full-width deep black `#080808`, teks putih oversized, email, LinkedIn, GitHub, WA, work arrangements, CTA copy email, footer bersih.
+H. **Contact**: dark restrained closing di `#191D26`, teks terang dengan hierarki jelas (bukan oversized), email, LinkedIn, GitHub, WA, work arrangements, CTA copy email, footer bersih.
 
 ---
 
@@ -110,8 +111,8 @@ File SVG lama (`dextra-dashboard.svg`, `ai-detector-mockup.svg`, `experiments.sv
 | N1 | First-load | ringan, WebP/AVIF, lazy below-fold |
 | N2 | JS | minimal, tanpa library animasi berat |
 | N3 | CLS | width/height pada semua gambar |
-| N4 | Kontras | WCAG AA. Teks sekunder di putih `#555555` (7.46:1); `#A3A3A3` HANYA di atas gelap (7.94:1 di `#080808`, 7.24:1 di `#151515`) |
-| N5 | Warna | HANYA 6 hex monokrom: `#080808` `#151515` `#292929` `#555555` `#A3A3A3` `#FFFFFF`. Nol gradien/glow/blur dekoratif |
+| N4 | Kontras | WCAG AA, diukur dengan `contrast-check.py`. `#191D26`/`#F4F5F7` 15.46:1, `#191D26`/`#FFFFFF` 16.87:1, `#687180`/`#F4F5F7` 4.52:1, `#687180`/`#FFFFFF` 4.93:1, `#FFFFFF`/`#191D26` 16.87:1, `#365FE8`/`#FFFFFF` 5.30:1. `#687180` GAGAL di `#E8EBF0` (4.12:1), maka fallback `#525B6B` wajib untuk teks kecil di terang. Pasangan baru wajib diukur ulang saat implementasi. |
+| N5 | Warna | 7 token: `#F4F5F7` `#FFFFFF` `#E8EBF0` `#191D26` `#687180` `#DDE1E7` `#365FE8` (+ fallback teks kecil `#525B6B`). Dilarang cream/beige/brown, neon, gradien, glow, blur dekoratif, shadow berlebih |
 | N6 | Aksesibilitas | semantic HTML, focus-visible, keyboard, reduced-motion |
 | N7 | SEO | JSON-LD ProfilePage/Person, og image, hreflang, canonical |
 | N8 | Responsive | 360/390/768/1366/1440 tanpa overflow |
@@ -120,15 +121,14 @@ File SVG lama (`dextra-dashboard.svg`, `ai-detector-mockup.svg`, `experiments.sv
 
 ## 9. Motion
 
-- Hero staggered line reveal.
-- Scroll reveal 16-24px, 200-400ms, ease-out.
-- Project hover zoom ~1.03 + arrow move.
-- Button hover/active; magnetic optional desktop only.
-- Satu marquee monokrom di strip `#151515`, separator `·` (bukan pipe / em dash), bisa di-pause saat hover/focus.
-- Timeline progression.
+- Purposeful dan restrained. Hero sequential reveal: navbar 0–200ms, nama 150–450ms, headline 300–850ms, portrait 450–1000ms, CTA/metadata 700–1200ms, dengan text clipping.
+- Section entrance 450–600ms; hover 180–250ms; stagger 60–100ms.
+- Project hover: perubahan border/background tipis, bukan zoom dekoratif.
+- Maksimal satu marquee, dapat di-pause saat hover/focus. Tidak di setiap section.
+- Parallax sangat ringan dan opsional, tidak di semua section.
 - Smooth anchor + active nav.
-- `prefers-reduced-motion: reduce` mematikan motion.
-- Tidak ada scroll hijacking, bounce, intro panjang.
+- `prefers-reduced-motion: reduce` wajib; pointer effects dimatikan di touch.
+- Tidak ada scroll hijacking, loading screen panjang, custom cursor besar, video autoplay besar, WebGL berat, atau animasi di tiap paragraf.
 
 ---
 
@@ -198,9 +198,9 @@ Tugas non-trivial (multi-file, paralel, audit mendalam) **wajib** didelegasikan 
 
 ## 11. Definition of Done
 
-1. Monokrom ketat 6 hex, nol warna lain, nol gradien/glow/blur dekoratif.
-2. Tipografi Space Grotesk / Inter / JetBrains Mono (fallback monospace), mono >= 12px.
-3. Hero deep black dengan headline `clamp(3.5rem,11vw,10rem)` dan baris ke-2 outline sebagai satu signature; angka section oversized; ritme kontras sesuai DESIGN.md.
+1. Arah Professional Modern Editorial, 7 token warna aktif, tanpa cream/beige/brown, neon, gradien, glow, blur dekoratif, atau shadow berlebih.
+2. Tipografi Space Grotesk / Inter (alternatif Manrope / Plus Jakarta Sans) / mono metadata; hero 56–88px tidak memecah kata, section heading 32–48px, body 15–17px line-height 1.6 maksimal 55–70ch.
+3. Hero split light editorial dengan potret monokram; dark hanya di Contact dan satu aksen Projects; signature berupa penomoran editorial, garis biru tipis, metadata terstruktur, status statis `OPEN TO OPPORTUNITIES`.
 4. Semua section A–H terimplementasi.
 5. Screenshot proyek asli terpasang (atau limitation dilaporkan jujur).
 6. Status proyek jujur, tanpa klaim berlebih. DEXTRA prototipe + governance; AI Detector disclaimer; dua link demo berbeda.

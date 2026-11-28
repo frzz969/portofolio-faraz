@@ -17,7 +17,7 @@ const labels: Record<string, string> = {
   <div class="container">
     <div class="section-head section-enter">
       <div>
-        <span class="eyebrow">04 / Track record</span>
+        <span class="eyebrow"><span class="eyebrow__num">04</span> / Experience</span>
         <h2 class="h2">Experience</h2>
       </div>
       <p class="mono section-head__note">Practical roles and organizational involvement</p>
@@ -49,6 +49,21 @@ const labels: Record<string, string> = {
 </section>
 
 <style>
+  /* Penanda section: hairline biru 1px, bukan badge (R-31). */
+  .eyebrow__num {
+    position: relative;
+    color: var(--accent);
+  }
+  .eyebrow__num::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
   .timeline__item {
     position: relative;
     display: grid;
@@ -81,8 +96,8 @@ const labels: Record<string, string> = {
   .timeline__date .mono { color: var(--strong); }
   .timeline__org { color: var(--strong); margin-top: 4px; }
 
-  /* Item yang sedang dibaca ditekankan dengan kontras penuh (#080808 di
-     atas #FFFFFF), bukan dengan #FFFFFF yang akan hilang di section putih.
+  /* Item yang sedang dibaca ditekankan dengan kontras penuh (--ink di
+     atas permukaan terang), bukan dengan putih yang akan hilang.
      .is-reached berasal dari observer yang sudah ada (R-31). */
   .timeline__item.is-reached .timeline__date .mono,
   .timeline__item.is-reached .timeline__org,

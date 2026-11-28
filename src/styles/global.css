@@ -1,30 +1,24 @@
-/* ==========================================================================
-   Portofolio Faras Fadhil Firdaus - global.css
-   Arah: Dark Technical Editorial x Industrial Monochrome.
+/* Professional Modern Editorial: fondasi visual (P0).
    Sumber kebenaran: build Astro (GitHub Pages, base /portofolio-faraz).
 
-   Palet final, monokrom ketat, 6 hex saja, tanpa gradien:
-     #080808 deep black   #151515 dark surface   #292929 panel gray
-     #555555 strong gray  #A3A3A3 muted gray    #FFFFFF pure white
-   Turunan rgba dari hex di atas dipakai untuk border halus dan sekunder
-   gelap. Tidak ada hex lain yang muncul di source.
+   Distribusi: 55% #F4F5F7 / 25% #FFFFFF / 15% #191D26 / 5% #365FE8.
+   #E8EBF0 = secondary surface, #DDE1E7 = border, #687180 = secondary
+   (teks besar / non-teks), #525B6B = small text turunan aman AA.
 
-   Kontras (diuji dengan contrast-check.py, bukan dikira):
-     #FFFFFF / #080808 = 20.03:1  PASS
-     #A3A3A3 / #080808 =  7.94:1  PASS
-     #A3A3A3 / #151515 =  7.24:1  PASS
-     #555555 / #FFFFFF =  7.46:1  PASS
-     #A3A3A3 / #FFFFFF =  2.52:1  GAGAL -> tidak dipakai sebagai teks di putih.
-   Teks sekunder di section putih memakai #555555.
+   Kontras diukur dengan contrast-check.py, bukan dikira:
+     #191D26 / #F4F5F7 = 15.46:1 PASS
+     #525B6B / #F4F5F7 =  6.28:1 PASS
+     #687180 / #F4F5F7 =  4.52:1 PASS (batas; teks kecil pakai #525B6B)
+     #FFFFFF / #191D26 = 16.87:1 PASS
+     #E8EBF0 / #191D26 = 14.11:1 PASS (teks sekunder di section gelap)
+     #365FE8 / #F4F5F7 =  4.86:1 PASS (garis/fokus, bukan blok warna)
 
-   Tiga dial (antislop): ENERGY 3 / RHYTHM 3 / MOTION 2.
-   Motif identitas: nomor editorial berskala besar + aturan horizontal
-   satu piksel + tipografi Space Grotesk. Satu focal point per layar.
-   Satu accent moment: baris headline outline di atas deep black.
-   ========================================================================== */
+   R-31: canvas terang adalah dasar editorial; gelap dipakai hanya sebagai
+   aksis ritme (project feature, contact, footer). Biru hanya garis 1px dan
+   fokus. Tanpa gradien, glow, blur dekoratif, atau shadow berlebih.
 
-/* Font self-host dari public/fonts. Tanpa CDN. JetBrains Mono memakai
-   fallback ui-monospace (tidak ada aset mono lokal, tidak ada CDN). */
+   Dial (antislop): ENERGY 2 / RHYTHM 3 / MOTION 2. */
+
 @font-face {
   font-family: "Space Grotesk Variable";
   src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
@@ -41,31 +35,33 @@
 }
 
 :root {
-  --black: #080808;
-  --surface: #151515;
-  --panel: #292929;
-  --strong: #555555;
-  --muted: #A3A3A3;
-  --white: #FFFFFF;
+  --canvas: #F4F5F7;
+  --surface: #FFFFFF;
+  --secondary-surface: #E8EBF0;
+  --ink: #191D26;
+  --secondary: #687180;
+  --muted: #525B6B;
+  --accent: #365FE8;
+  --border: #DDE1E7;
 
-  /* Alias semantik dipakai komponen; tetap merujuk 6 hex di atas. */
-  --ink: var(--black);
-  --paper: var(--white);
-  --charcoal: var(--black);
-  --subtle: var(--strong);
-  --border: var(--strong);
+  /* Alias komponen yang tidak disentuh dalam P0 tetap merujuk palet baru. */
+  --black: var(--ink);
+  --paper: var(--canvas);
+  --charcoal: var(--ink);
+  --panel: var(--secondary-surface);
+  --strong: var(--muted);
+  --white: #FFFFFF;
 
   --font-display: "Space Grotesk Variable", "Space Grotesk", sans-serif;
   --font-body: "Inter Variable", Inter, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --page-max: 1180px;
+  --page-max: 1200px;
   --gutter: 20px;
   --header-h: 64px;
   --section-y: 72px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  /* --dur-ui dipakai transisi UI ringan; nilai tunggal 240ms (sumber: motion.css). */
   --dur-ui: 240ms;
 }
 
@@ -82,9 +78,6 @@
   }
 }
 
-/* View transition hanya didefinisikan sekali, di motion.css, di dalam
-   @media (prefers-reduced-motion: no-preference). */
-
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -95,11 +88,11 @@ html {
 body {
   margin: 0;
   overflow-x: clip;
-  background: var(--paper);
+  background: var(--canvas);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -111,14 +104,14 @@ button { cursor: pointer; font: inherit; }
 h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 
-::selection { background: var(--ink); color: var(--paper); }
+::selection { background: var(--ink); color: var(--white); }
 
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
-.charcoal :focus-visible,
-.surface-dark :focus-visible {
+.surface-dark :focus-visible,
+.charcoal :focus-visible {
   outline-color: var(--white);
 }
 
@@ -137,7 +130,13 @@ ul, ol { padding: 0; list-style: none; }
 }
 .section:first-of-type { border-top: 0; }
 
-/* Rules antar section: garis 1px, bukan blok warna berselang-seling. */
+/* Section umum: putih atau secondary surface. Ritme berasal dari garis 1px
+   dan whitespace, bukan blok warna berselang-seling. */
+.section--about,
+.section--education,
+.section--experience,
+.section--approach { background: var(--surface); }
+
 .section-divider {
   border: 0;
   border-top: 1px solid var(--border);
@@ -154,32 +153,36 @@ ul, ol { padding: 0; list-style: none; }
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--subtle);
+  color: var(--muted);
   line-height: 1.5;
 }
 
-/* Headline cover: clamp(3.5rem, 11vw, 10rem) dipertahankan, 80-120px
-   tercapai di rentang desktop menengah (~730-1090px). Line-height dan
-   tracking dirapikan supaya 3 baris tetap satu blok editorial. */
+/* Headline tidak semua oversized: hero 56-88px desktop, section 32-48px. */
 .h1 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(3.5rem, 11vw, 10rem);
-  line-height: 0.86;
-  letter-spacing: -0.055em;
+  font-size: clamp(3rem, 6.2vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 .h2 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 .h3 {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.375rem, 2.6vw, 1.875rem);
-  line-height: 1.14;
+  line-height: 1.18;
   letter-spacing: -0.025em;
 }
 .h4 {
@@ -191,14 +194,15 @@ ul, ol { padding: 0; list-style: none; }
 }
 
 .lead {
-  font-size: clamp(1rem, 1.6vw, 1.1875rem);
-  line-height: 1.65;
-  color: var(--subtle);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  line-height: 1.6;
+  color: var(--muted);
   max-width: 60ch;
 }
 .body {
-  color: var(--subtle);
-  line-height: 1.68;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
 }
 .mono {
   font-family: var(--font-mono);
@@ -211,16 +215,14 @@ ul, ol { padding: 0; list-style: none; }
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--subtle);
+  color: var(--muted);
 }
-/* Angka adalah elemen visual, bukan sekadar label. Warna mengikuti latar:
-   #555555 di putih, #A3A3A3 di gelap. */
 .num {
   font-family: var(--font-display);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.06em;
-  color: var(--strong);
+  color: var(--secondary);
   line-height: 1;
 }
 
@@ -254,7 +256,7 @@ ul, ol { padding: 0; list-style: none; }
   min-height: 48px;
   padding: 12px 24px;
   border: 1px solid var(--ink);
-  border-radius: 0;
+  border-radius: 8px;
   background: var(--ink);
   color: var(--white);
   font-family: var(--font-body);
@@ -266,10 +268,8 @@ ul, ol { padding: 0; list-style: none; }
               border-color var(--dur-ui) var(--ease-out),
               transform var(--dur-ui) var(--ease-out);
 }
-/* Inversi penuh: hitam menjadi putih, teks menjadi hitam. Perubahan state
-   terlihat jelas tanpa warna baru (R-31). */
 .btn:hover {
-  background: var(--paper);
+  background: var(--surface);
   border-color: var(--ink);
   color: var(--ink);
   transform: translateY(-1px);
@@ -282,7 +282,7 @@ ul, ol { padding: 0; list-style: none; }
   border-color: var(--border);
 }
 .btn--ghost:hover {
-  background: var(--panel);
+  background: var(--secondary-surface);
   border-color: var(--ink);
   color: var(--ink);
 }
@@ -290,18 +290,18 @@ ul, ol { padding: 0; list-style: none; }
 .btn--light {
   background: var(--white);
   border-color: var(--white);
-  color: var(--black);
+  color: var(--ink);
 }
-.btn--light:hover { background: var(--muted); border-color: var(--muted); }
+.btn--light:hover { background: var(--secondary-surface); border-color: var(--secondary-surface); }
 
 .btn--outline-light {
   background: transparent;
-  border-color: var(--muted);
-  color: var(--white);
+  border-color: var(--border);
+  color: var(--ink);
 }
 .btn--outline-light:hover {
-  border-color: var(--white);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--ink);
+  background: var(--surface);
 }
 
 .text-link {
@@ -315,12 +315,10 @@ ul, ol { padding: 0; list-style: none; }
   border-bottom: 1px solid var(--border);
   transition: border-color var(--dur-ui) var(--ease-out), gap var(--dur-ui) var(--ease-out);
 }
-.text-link:hover { border-color: var(--ink); gap: 11px; }
+.text-link:hover { border-color: var(--accent); gap: 11px; }
 .text-link__arrow { transition: transform var(--dur-ui) var(--ease-out); }
 .text-link:hover .text-link__arrow { transform: translate(2px, -2px); }
 
-/* Panah hanya di dua tautan yang benar-benar keluar situs. Bukan hiasan
-   pada semua tombol (R-08). */
 .arrow-glyph { font-size: 0.85em; line-height: 1; }
 
 /* --- Status jujur: kotak teks, bukan capsule glow ------------------------ */
@@ -331,11 +329,12 @@ ul, ol { padding: 0; list-style: none; }
   min-height: 28px;
   padding: 3px 9px;
   border: 1px solid var(--border);
+  border-radius: 4px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--strong);
+  color: var(--muted);
   white-space: normal;
 }
 .status--solid {
@@ -347,7 +346,6 @@ ul, ol { padding: 0; list-style: none; }
   border-style: dashed;
 }
 
-/* Daftar tag teknis, bukan progress bar / persentase. */
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -357,7 +355,7 @@ ul, ol { padding: 0; list-style: none; }
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   letter-spacing: 0.03em;
-  color: var(--strong);
+  color: var(--muted);
   padding-block: 2px;
   border-bottom: 1px solid var(--border);
 }
@@ -365,9 +363,9 @@ ul, ol { padding: 0; list-style: none; }
 /* --- Marquee monokrom tunggal -------------------------------------------- */
 
 .marquee-band {
-  background: var(--surface);
-  border-top: 1px solid var(--surface);
-  border-bottom: 1px solid var(--surface);
+  background: var(--ink);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
   overflow: hidden;
   padding-block: 16px;
   user-select: none;
@@ -389,13 +387,12 @@ ul, ol { padding: 0; list-style: none; }
 .marquee-sep {
   font-family: var(--font-display);
   font-size: 0.7em;
-  color: var(--muted);
+  color: var(--secondary-surface);
 }
 @media (prefers-reduced-motion: no-preference) {
   .marquee-track {
     animation: marquee-slide 38s linear infinite;
   }
-  /* Dekoratif berhenti saat dibaca atau difokuskan. */
   .marquee-band:hover .marquee-track,
   .marquee-band:focus-within .marquee-track {
     animation-play-state: paused;
@@ -406,44 +403,34 @@ ul, ol { padding: 0; list-style: none; }
   to   { transform: translateX(-50%); }
 }
 
-/* --- Permukaan gelap: skills, interests, projects feature, contact -------- */
+/* --- Permukaan gelap: skills, interests, project feature, contact -------- */
 
 .surface-dark,
 .charcoal {
-  background: var(--surface);
+  --muted: #E8EBF0;
+  --strong: #DDE1E7;
+  --secondary: #E8EBF0;
+  background: var(--ink);
   color: var(--white);
-  border-top: 1px solid var(--surface);
+  border-top: 1px solid var(--border);
 }
-.charcoal { background: var(--black); border-top-color: var(--black); }
+.charcoal { background: var(--ink); border-top-color: var(--ink); }
 
-.surface-dark .lead,
-.surface-dark .body,
-.surface-dark .meta-label,
-.surface-dark .eyebrow,
-.surface-dark .mono,
-.charcoal .lead,
-.charcoal .body,
-.charcoal .meta-label,
-.charcoal .eyebrow,
-.charcoal .mono {
-  /* #A3A3A3 lolos AA di atas #151515 (7.24:1) dan #080808 (7.94:1). */
-  color: var(--muted);
-}
 .surface-dark .h2,
 .surface-dark .h3,
 .charcoal .h2,
 .charcoal .h3 { color: var(--white); }
 .surface-dark .num,
-.charcoal .num { color: var(--muted); }
+.charcoal .num { color: var(--secondary-surface); }
 
 .surface-dark .status,
 .surface-dark .tag,
 .surface-dark .text-link,
 .charcoal .status,
 .charcoal .tag,
-.charcoal .text-link { border-color: var(--muted); color: var(--white); }
+.charcoal .text-link { border-color: var(--border); color: var(--white); }
 .surface-dark .status--solid,
-.charcoal .status--solid { background: var(--white); border-color: var(--white); color: var(--black); }
+.charcoal .status--solid { background: var(--white); border-color: var(--white); color: var(--ink); }
 
 /* --- Utilitas ------------------------------------------------------------- */
 
@@ -484,90 +471,18 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
   }
 }
 
-/* --- Project showcase (PRIORITAS 2) --------------------------------------
-   Aturan tambahan untuk case study tipografis. Tidak menghapus aturan Hero
-   di atas. Semua warna masih 6 hex + rgba(255,255,255,.12) untuk garis.
-   Feature penuh lebar di #080808; dua pendukung di #151515 / #080808
-   dengan offset, bukan bento. Tidak ada preview UI rekaan. */
+/* --- Project showcase ---------------------------------------------------- */
+/* Layout & motion alur governance dimiliki Projects.astro (.work-flow__*);
+   tidak ada aturan project-flow__* lagi di sini. */
 
-/* Garis pemisah halus yang sama dengan bahasa visual Hero. */
-.project-card__rule,
-.project-flow__label,
-.project-flow__step:first-child .project-flow__label {
-  border-color: rgba(255, 255, 255, 0.12);
-}
+/* --- Ritme section ------------------------------------------------------- */
 
-/* Klik / sentuh: label step memberi feedback state tanpa hover. */
-.project-flow__label:active { opacity: 0.74; }
-
-/* Hover desktop hanya menggerakkan tipografi + arrow, fokus keyboard
-   memakai outline dari aturan komponen. Touch tidak terpengaruh. */
-@media (hover: hover) {
-  .project-flow__label:hover .project-flow__name {
-    transform: translateX(3px);
-  }
-  .project-flow__label:hover .project-flow__arrow { opacity: 1; }
-}
-.project-flow__name { transition: transform var(--dur-ui) var(--ease-out); }
-.project-flow__arrow { transition: opacity var(--dur-ui) var(--ease-out); }
-
-/* Tautan demo: pergerakan arrow halus, border transition sudah di .text-link. */
-.project-card--feature .text-link__arrow,
-.project-card--lab .text-link__arrow { transition: transform var(--dur-ui) var(--ease-out); }
-@media (hover: hover) {
-  .project-card--feature .text-link:hover .text-link__arrow,
-  .project-card--lab .text-link:hover .text-link__arrow {
-    transform: translate(3px, -3px);
-  }
-}
-
-/* Kontras pembaca layar:radio tersembunyi tetap menerima focus-visible. */
-.project-flow__input:focus-visible + .project-flow__label {
-  outline: 2px solid var(--white);
-  outline-offset: 2px;
-}
-
-/* --- Komposisi feature card ------------------------------------------------
-   Judul + alur governance di kiri, bukti visual + narasi di kanan. Urutan
-   DOM: head -> flow -> body, jadi di layar sempit terbaca urut dalam satu
-   kolom tanpa overflow. R-31: satu focal point per kolom; alur mengisi
-   ruang kosong di bawah judul, bukan menunggu di bawah deskripsi. */
-.project-card--feature {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: 'head' 'flow' 'body';
-  gap: 36px;
-  min-width: 0;
-}
-.project-card--feature .project-card__head,
-.project-card--feature .project-flow,
-.project-card--feature .project-card__body { min-width: 0; }
-.project-card--feature .project-card__head { grid-area: head; }
-.project-card--feature .project-flow { grid-area: flow; }
-.project-card--feature .project-card__body { grid-area: body; }
-@media (min-width: 900px) {
-  .project-card--feature {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    grid-template-areas: 'head body' 'flow body';
-    grid-template-rows: auto 1fr;
-    column-gap: clamp(40px, 5vw, 72px);
-    row-gap: 28px;
-    align-items: start;
-  }
-}
-
-/* --- Ritme section (PRIORITAS 3) ------------------------------------------
-   Whitespace sebagai struktur, bukan kartu seragam. Tiap section punya
-   napas berbeda supaya halaman dibaca sebagai alur, bukan deretan slide.
-   Pemisah tetap garis 1px dari .section; tidak ada blok warna tambahan. */
 .section--about { padding-block: clamp(96px, 12vw, 152px) clamp(88px, 10vw, 136px); }
 .section--approach { padding-block: clamp(56px, 7vw, 88px); }
 .section--experience { padding-block: clamp(80px, 9vw, 120px); }
 .section--education { padding-block: clamp(72px, 8vw, 104px); }
 .section--interests { padding-block: clamp(96px, 11vw, 144px); }
 
-/* Sticky storytelling Only di desktop lebar. Di bawah 900px narasi dan visual
-   tetap berurutan normal (tidak ada elemen yang mengambang di layar kecil). */
 .about__quote { position: static; }
 @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
   .about__quote {
@@ -579,15 +494,13 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
   .about__quote { position: static !important; }
 }
 
-/* --- Timeline aktif & kontrol skills (PRIORITAS 4) -------------------------
-   Tambahan di atas aturan P3; garis progresif --progress tidak diubah. */
-.timeline__item.is-reached .timeline__bullets li::before { background: var(--black); }
-/* Ringkasan grup adalah satu target sentuh penuh, tanpa delay 300ms. */
+/* --- Timeline aktif & kontrol skills ------------------------------------- */
+
+.timeline__item.is-reached .timeline__bullets li::before { background: var(--ink); }
 .skills__summary { touch-action: manipulation; }
 
-/* --- Micro-interaction & mobile polish (PRIORITAS 5) ----------------------
-   Tambahan di atas P1-P4. Nav sudah punya ::after scaleX; di sini text-link
-   mendapat perlakuan sama. Arrow dari P2 sengaja tidak disentuh (tanpa dobel). */
+/* --- Micro-interaction & mobile polish ----------------------------------- */
+
 .text-link { position: relative; }
 .text-link::after {
   content: "";
@@ -596,24 +509,22 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
   right: 0;
   bottom: 0;
   height: 1px;
-  background: var(--ink);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-ui) var(--ease-out);
 }
 .text-link:hover::after,
 .text-link:focus-visible::after { transform: scaleX(1); }
-/* Border statis ditarik supaya hanya satu garis yang terlihat saat hover. */
 .text-link:hover,
 .text-link:focus-visible { border-bottom-color: transparent; }
 .surface-dark .text-link::after,
 .charcoal .text-link::after { background: var(--white); }
 
-/* State tombol konsisten: fokus selalu terlihat, transisi memakai --dur-ui. */
 .btn:focus-visible,
 .mobile-nav > summary:focus-visible,
 .site-footer__nav a:focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 .charcoal .btn:focus-visible,
@@ -623,28 +534,18 @@ section[id], div[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
 }
 .btn--ghost:active,
 .btn--light:active { transform: translateY(1px); }
-/* Sentuhan tidak perlu delay 300ms dan tidak boleh menggeser layout. */
-a, button, summary, label, .project-flow__label { touch-action: manipulation; }
+a, button, summary, label, .work-flow__label { touch-action: manipulation; }
 
-/* Headline tidak meluber di 360px: kata panjang dipecah, bukan di-clip. */
-.h1, .h2, .h3, .contact__title { overflow-wrap: break-word; }
-.hero__headline { hyphens: none; }
-/* Contact: head selebar container supaya headline tidak terpotong per kata;
-   dua baris disengaja dan kata tidak dipecah (R-31). */
+.h1, .h2, .h3 { overflow-wrap: normal; word-break: keep-all; }
 .contact__head { max-width: 100%; min-width: 0; }
 .charcoal .contact__title { word-break: keep-all; overflow-wrap: normal; hyphens: none; }
-/* Cover: spasi atas antara navbar dan metadata dirapikan. */
 .hero { padding-block-start: clamp(32px, 6vh, 72px); }
-/* .meta-label (0.75rem) dan .mono (0.8125rem) sudah >=12px dari aturan P1;
-   tidak diturunkan di sini. */
-/* Badge status boleh turun baris di layar sempit (<420px). */
+
 @media (max-width: 419px) {
   .status { white-space: normal; max-width: 100%; }
   .hero__actions { flex-wrap: wrap; }
 }
 
-/* Magnetic HANYA pointer presisi + no-preference, maksimal 4px. JS menulis
-   --mag-x/--mag-y pada elemen bertanda data-magnetic; tanpa JS tidak ada efek. */
 @media (prefers-reduced-motion: no-preference) {
   @media (hover: hover) and (pointer: fine) {
     html.has-motion [data-magnetic] {
@@ -653,14 +554,12 @@ a, button, summary, label, .project-flow__label { touch-action: manipulation; }
   }
 }
 
-/* --- Screenshot proyek asli (28 Nov 2026) ---------------------------------
-   Frame 16/9, tanpa shadow/glow/border radius. Caption di luar frame supaya
-   gambar tetap penuh. Zoom saat hover di motion.css, bukan di sini. */
+/* Screenshot proyek asli: frame 16/9, 1px border, tanpa shadow. */
 .project-screenshot { margin: 0 0 24px; min-width: 0; }
 .screenshot-frame {
   aspect-ratio: 16 / 9;
-  background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--ink);
+  border: 1px solid var(--border);
   overflow: hidden;
 }
 .screenshot-frame img {
@@ -671,7 +570,7 @@ a, button, summary, label, .project-flow__label { touch-action: manipulation; }
 }
 .project-screenshot figcaption {
   padding-top: 10px;
-  color: var(--muted);
+  color: var(--secondary-surface);
 }
 .charcoal .project-screenshot figcaption,
-.surface-dark .project-screenshot figcaption { color: var(--muted); }
+.surface-dark .project-screenshot figcaption { color: var(--secondary-surface); }
